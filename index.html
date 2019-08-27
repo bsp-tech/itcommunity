@@ -83,6 +83,7 @@
                   <i class="fas fa-code"></i>
                   Used technology
                 </button>
+                
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> html</a>
                   <a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> css</a>
@@ -90,9 +91,31 @@
                   
                 </div>
               </div>
-              <div class="ml-lg-auto mt-2 position-relative">
-                <a target="_blank" href="" onclick="myFunction();" class="stretched-link btn btn-success"><i class="fas fa-plus-circle"></i> Join Team</a>
-              </div>
+      
+<button type="button" class=" btn btn-success ml-lg-auto mt-2 " data-toggle="modal" data-target="#exampleModal">
+    <i class="fas fa-plus-circle"></i> Join Team
+  </button>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Join Team</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <h6>Bu komandaya qoşulmağa əminsinizmi?</h6> 
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Bəli</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Xeyir</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
             </div>
 
 
@@ -121,8 +144,3 @@
 </body>
 
 </html>
-<script>
-  function myFunction() {
-    confirm("Bu komandaya qoşulmağa əminsinizmi?");
-  }
-  </script>
