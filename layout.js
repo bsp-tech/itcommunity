@@ -7,5 +7,9 @@ $(function(){
 });
 
 $(function(){
-      $(".projectcard").load("projectcard.html"); 
+      $(".projectcard").load("projectcard.html");
+});
+
+$(function(){
+      $(".developerstable").load("developerstable.html"); 
 });
