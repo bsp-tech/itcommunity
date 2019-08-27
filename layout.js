@@ -7,5 +7,5 @@ $(function(){
 });
 
 $(function(){
-      $("#projectcard").load("projectcard.html"); 
+      $(".projectcard").load("projectcard.html"); 
 });

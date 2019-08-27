@@ -12,7 +12,14 @@
 </head>
 <body>
 	  <div id="header"></div>
-    <div id="projectcard"></div>
+    <div class="projectcard"></div>
+    <div class="projectcard"></div>
+    <div class="projectcard"></div>
+    <div class="projectcard"></div>
+    <div class="projectcard"></div>
+    <div class="projectcard"></div>
+    <div class="projectcard"></div>
+    <div class="projectcard"></div>
     <div id="footer"></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
