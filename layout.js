@@ -3,5 +3,13 @@ $(function(){
 });
 
 $(function(){
-      $("#footer").load("footer.html"); 
+      $("#footer").load("footer.html");
+});
+
+$(function(){
+      $(".projectcard").load("projectcard.html");
+});
+
+$(function(){
+      $(".developerstable").load("developerstable.html"); 
 });
