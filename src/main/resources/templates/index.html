@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+</head>
+<body>
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark secondary-color lighten-1">
+    <img width="35px" th:src="@{img/project/icons8-user-groups-96.png}" alt="">
+    <a class="navbar-brand ml-1" href="#">IT COMMUNITY</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+            <li class="ml-2  my-2  nav-item active">
+                <a href="#" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">Our Open Source Community</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="ml-2  my-2  nav-item active">
+                <a href="#" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">Create an IT Employee</a>
+            </li>
+            <li class="ml-2  my-2  nav-item active">
+                <a href="#" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">
+                    <img width="14px;" th:src="@{/img/project/icons8-customer-96.png}" alt=""> Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>
