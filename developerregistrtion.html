@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        font: normal 75% Arial, Helvetica, sans-serif;
+        height: 900px !important;
+    }
+
+    canvas {
+        display: block;
+        vertical-align: bottom;
+    }
+
+    /* ---- particles.js container ---- */
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        background-image: url("");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    /* ---- stats.js ---- */
+    .count-particles {
+        background: #000022;
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 80px;
+        color: #13E8E9;
+        font-size: .8em;
+        text-align: left;
+        text-indent: 4px;
+        line-height: 14px;
+        padding-bottom: 2px;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: bold;
+    }
+
+    .js-count-particles {
+        font-size: 1.1em;
+    }
+
+    #stats,
+    .count-particles {
+        -webkit-user-select: none;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+
+    #stats {
+        border-radius: 3px 3px 0 0;
+        overflow: hidden;
+    }
+
+    .count-particles {
+        border-radius: 0 0 3px 3px;
+    }
+</style>
+
+<body>
+    <div id="particles-js"></div>
+   
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
+    <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+
+    <div class="col-lg-4 pt-5 mx-auto ">
+        <div class="card border  border-dark  ">
+
+            <h4 class="card-header  text-white bg-dark">Sign up</h4>
+
+            <div class="card-body px-5">
+
+                <div class="input-group my-1">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-dark rounded-0" type="button"><i class="fas fa-link"></i></button>
+                    </div>
+                    <input type="text" class="form-control rounded-0 " placeholder="cvPath" name="cvPath">
+              
+<button type="button" class="btn btn-danger rounded-0 ml-1" data-container="body" data-toggle="popover" data-placement="right" data-content="Upload your cv to google drive etc. and paste link">
+    <i class="fas fa-question-circle"></i>
+  </button>
+                </div>
+
+                <div class="input-group my-1">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-dark rounded-0" type="button"><i class="fab fa-github"></i></button>
+                    </div>
+                    <input type="text" class="form-control rounded-0" placeholder="Github Account PAth" name="github">
+                </div>
+                <div class="input-group my-1">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-dark rounded-0" type="button"><i class="fab fa-linkedin-in"></i></button>
+                    </div>
+                    <input type="text" class="form-control rounded-0" placeholder="Linkedin Account PAth" name="linkedin">
+                </div>
+                <div class="input-group-prepend my-1">
+                        <button class="btn btn-dark rounded-0" type="button"><i class="fas fa-briefcase"></i></button>
+                        <select class="form-control rounded-0" id="exampleFormControlSelect1">
+                            <option disabled="" selected="">Are you working right now?</option>
+                            <option>is working</option>
+                            <option>isn't working</option>
+
+                        </select>
+
+                    </div>
+                <div class="input-group-prepend my-1">
+                        <button class="btn btn-dark rounded-0" type="button"><i class="fas fa-briefcase"></i></button>
+                        <select class="form-control rounded-0" id="exampleFormControlSelect1">
+                            <option disabled="" selected="">Are you Looking for Work?</option>
+                            <option>Yes</option>
+                            <option>No</option>
+
+                        </select>
+
+                    </div>
+              
+                <div class="language_box">
+                   
+                    <div id="repeater1">
+                        
+                        <div class="repeater-heading d-flex flex-column">
+                           
+                            <button class="btn btn-dark  pull-right repeater-add-btn">
+                                Add Language
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- Repeater Items -->
+                        <div class="items" data-group="test">
+                             <!-- Repeater Content -->
+                            <div class="item-content mt-2  d-flex  ">
+                                <div class="form-group col-lg-6">
+                                    <div class="">
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option disabled="" selected="">Language</option>
+                                            <option>English</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                   <div class="">
+                                    <select class="form-control" id="exampleFormControlSelect2">
+                                        <option disabled="" selected="">Level</option>
+                                        <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Repeater Remove Btn -->
+                            <div class="pull-right repeater-remove-btn">
+                                <button class="btn btn-danger remove-btn">
+                                    Remove
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                       
+                        
+                    </div>
+                    <!-- Repeater End -->
+                </div>
+                <div class="d-flex flex-row mt-2">
+                        <div class="row">
+                                <div class="col-lg-6">
+                                        <input type="text" disabled class="form-control otherLang rounded-0" placeholder="Other" name="otherInput">
+                                    
+                                </div>
+                                    <div class="col-lg-6 d-flex align-items-center">
+                                            <div class="custom-control custom-checkbox ">
+                                                    <input type="checkbox" class="custom-control-input" name="OtherCheck" id="customCheck1">
+                                                    <label class="custom-control-label pt-1" for="customCheck1">Other language</label>
+                                                  </div>
+
+                                    </div>
+                              
+                        </div>
+                      
+
+                    </div>
+                <div class="skills_box mt-2">
+                   
+                    <div id="repeater2">
+                        
+                        <div class="repeater-heading d-flex flex-column">
+                           
+                            <button class="btn btn-dark  pull-right repeater-add-btn">
+                                Add Skills
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- Repeater Items -->
+                        <div class="items  " data-group="test">
+                             <!-- Repeater Content -->
+                            <div class="item-content col-10 d-flex flex-row mt-2    ">
+                                <div class="form-group mr-2 ">
+                                    <div class="">
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option disabled="" selected="">Skill</option>
+                                            <option>Html</option>
+                                            <option>Css</option>
+                                            <option>Javascript</option>
+                                            <option>Java</option>
+                                            <option>Php</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group mr-2 ">
+                                   <div class="">
+                                    <select class="form-control" id="exampleFormControlSelect2">
+                                        <option disabled="" selected="">Level</option>
+                                        <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Repeater Remove Btn -->
+                            <div class="pull-right col-2  repeater-remove-btn  ">
+                                <button class="btn btn-danger remove-btn">Remove
+                                    
+                                </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        
+                        
+                    </div>
+
+                    <!-- Repeater End -->
+                    
+                    
+                </div>
+                <div class="input-group mt-3">
+                    <div class="text-center mx-auto">
+                        <button type="submit" class="btn  px-5 btn-dark mt-1 ">Create Account</button>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/000447bf4e.js"></script>
+    <script src="js/repeater.js"></script>
+    <script>
+        particlesJS("particles-js", { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true }); var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function () { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;
+    </script>
+    <div id="last_element"></div>
+</body>
+
+</html>
+
+<script>
+
+    $("#last_element").prev().hide();
+    $(function () {
+  $('[data-toggle="popover"]').popover()
+})
+$(function(){
+
+$("#repeater1").createRepeater();
+
+});
+$(function(){
+
+$("#repeater2").createRepeater();
+
+});
+$(function () {
+        $('[name="OtherCheck"]').change(function () {
+            if ($(this).is(':checked')) {
+                $(".otherLang").prop("disabled", false);
+            }
+            else {
+                $(".otherLang").prop("disabled", true);
+            }
+        });
+    });
+   
+
+</script>
