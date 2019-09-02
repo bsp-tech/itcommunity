@@ -1,266 +1,331 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Search</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 </head>
-
 <body>
-          <div class="container">
-                <div class="card bg-light">
-                	<div class="row my-3 mx-2">
-                	  	<div class="col-md-3 mt-2">	   
-			                    <input type="text" class="form-control" name="name" placeholder="Ad">
-                	    </div>
-                	    <div class="col-md-3 mt-2">	   
-			                    <input type="text" class="form-control" name="surname" placeholder="Soyad">
-                	    </div>
-                	    <div class="col-md-3 mt-2">	   
-			                    <input type="text" class="form-control" name="mail" placeholder="Mail">
-                	    </div>
-                	    <div class="col-md-3 mt-2">	   
-			                    <input type="text" class="form-control" name="number" placeholder="Number">
-                	    </div>
-                	     <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
-                                   <div class="d-flex">
-                                     <p >
-                             <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"  href="#collapseOne" >
-                                    Languages
-                             </button>
-                            </p>
-                            <p class="pl-3">
-                             <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"  href="#collapseTwo" >
-                                    Skills
-                             </button>
-                            </p>
-                                   </div>
-        <div class="card mt-3  border-0">
-      <div id="collapseOne" class="collapse" data-parent="#accordion">
-			<div class="p-3">
-					<div class="row">
-						<div class="col-md-4 mb-4">
-							<div class="row">
-								<div class="col-md-3 col-5 d-flex align-items-center">
-							<div class="form-check mr-3">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-								<label class="form-check-label" for="defaultCheck1">
-								Engilsh
-								</label>
-							</div>
-						</div>
-						<div class="col-md-5 col-7 d-flex align-items-center">
-							<div class="form-group mb-0">
-									<select id="inputState" class="form-control">
-											<option selected>Weak</option>
-											<option>Normal</option>
-											<option>Perfect</option>
-									</select>
-								  </div>
-								</div>
-							</div>
-							
-						</div>
-						<div class="col-md-4 mb-4">
-								<div class="row">
-									<div class="col-md-3 col-5 d-flex align-items-center">
-								<div class="form-check mr-3">
-									<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-									<label class="form-check-label" for="defaultCheck1">
-									Turkish
-									</label>
-								</div>
-							</div>
-							<div class="col-md-5 col-7 d-flex align-items-center">
-								<div class="form-group mb-0">
-										<select id="inputState" class="form-control">
-												<option selected>Weak</option>
-												<option>Normal</option>
-												<option>Perfect</option>
-										</select>
-									  </div>
-									</div>
-								</div>
-								
-							</div>
-							<div class="col-md-4 mb-4">
-									<div class="row">
-										<div class="col-md-3 col-5 d-flex align-items-center">
-									<div class="form-check mr-3">
-										<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-										<label class="form-check-label" for="defaultCheck1">
-										German
-										</label>
-									</div>
-								</div>
-								<div class="col-md-5 col-7 d-flex align-items-center">
-									<div class="form-group mb-0">
-											<select id="inputState" class="form-control">
-													<option selected>Weak</option>
-													<option>Normal</option>
-													<option>Perfect</option>
-											</select>
-										  </div>
-										</div>
-									</div>
-									
-								</div>
-								<div class="col-md-4 mb-4">
-										<div class="row">
-											<div class="col-md-3 col-5 d-flex align-items-center">
-										<div class="form-check mr-3">
-											<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-											<label class="form-check-label" for="defaultCheck1">
-											Italian
-											</label>
-										</div>
-									</div>
-									<div class="col-md-5 col-7 d-flex align-items-center">
-										<div class="form-group mb-0">
-												<select id="inputState" class="form-control">
-														<option selected>Weak</option>
-														<option>Normal</option>
-														<option>Perfect</option>
-												</select>
-											  </div>
-											</div>
-										</div>
-										
-									</div>
-					</div>
-				</div>
-      </div>
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark secondary-color lighten-1">
+    <img width="35px" th:src="@{/img/project/icons8-user-groups-96.png}"/>
+    <a class="navbar-brand ml-1" href="/">IT COMMUNITY</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+            <li class="ml-2  my-2  nav-item active">
+                <a href="/projects" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">Our Open Source Community</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="ml-2  my-2  nav-item active">
+                <a href="/employees/register" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">Create an IT Employee</a>
+            </li>
+            <li class="ml-2  my-2  nav-item active">
+                <a href="/user/login" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">
+                    <img width="14px;" src="assets/img/icons8-customer-96.png" alt=""> Login</a>
+            </li>
+        </ul>
     </div>
+</nav>
 
-    <div class="card  border-0">
-      <div id="collapseTwo" class="collapse" data-parent="#accordion">
-			<div class="p-3">
-					<div class="row">
-						<div class="col-md-4 mb-4">
-							<div class="row">
-								<div class="col-md-3 col-5 d-flex align-items-center">
-							<div class="form-check mr-3">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-								<label class="form-check-label" for="defaultCheck1">
-								Python
-								</label>
-							</div>
-						</div>
-						<div class="col-md-5 col-7 d-flex align-items-center">
-							<div class="form-group mb-0">
-									<select id="inputState" class="form-control">
-											<option selected>Weak</option>
-											<option>Normal</option>
-											<option>Perfect</option>
-									</select>
-								  </div>
-								</div>
-							</div>
-							
-						</div>
-						<div class="col-md-4 mb-4">
-								<div class="row">
-									<div class="col-md-3 col-5 d-flex align-items-center">
-								<div class="form-check mr-3">
-									<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-									<label class="form-check-label" for="defaultCheck1">
-									PHP
-									</label>
-								</div>
-							</div>
-							<div class="col-md-5 col-7 d-flex align-items-center">
-								<div class="form-group mb-0">
-										<select id="inputState" class="form-control">
-												<option selected>Weak</option>
-												<option>Normal</option>
-												<option>Perfect</option>
-										</select>
-									  </div>
-									</div>
-								</div>
-								
-							</div>
-							<div class="col-md-4 mb-4">
-									<div class="row">
-										<div class="col-md-3 col-5 d-flex align-items-center">
-									<div class="form-check mr-3">
-										<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-										<label class="form-check-label" for="defaultCheck1">
-										Java
-										</label>
-									</div>
-								</div>
-								<div class="col-md-5 col-7 d-flex align-items-center">
-									<div class="form-group mb-0">
-											<select id="inputState" class="form-control">
-													<option selected>Weak</option>
-													<option>Normal</option>
-													<option>Perfect</option>
-											</select>
-										  </div>
-										</div>
-									</div>
-									
-								</div>
-								<div class="col-md-4 mb-4">
-										<div class="row">
-											<div class="col-md-3 col-5 d-flex align-items-center">
-										<div class="form-check mr-3">
-											<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-											<label class="form-check-label" for="defaultCheck1">
-											C++
-											</label>
-										</div>
-									</div>
-									<div class="col-md-5 col-7 d-flex align-items-center">
-										<div class="form-group mb-0">
-												<select id="inputState" class="form-control">
-														<option selected>Weak</option>
-														<option>Normal</option>
-														<option>Perfect</option>
-												</select>
-											  </div>
-											</div>
-										</div>
-										
-									</div>
-					</div>
-				</div>
-      </div>
-    </div>
-  
-  </div>
+<!-- search -->
 
-                  <div class="col-md-12 mt-4 text-center">
-         <button class="btn btn-dark" >
-               <p class="my-1 mx-4">
-                  Axtar
+<div class="container">
+    <div class="card bg-light">
+        <div class="row my-3 mx-2">
+              <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="name" placeholder="Ad">
+            </div>
+            <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="surname" placeholder="Soyad">
+            </div>
+            <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="mail" placeholder="Mail">
+            </div>
+            <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="number" placeholder="Number">
+            </div>
+             <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
+                       <div class="d-flex">
+                         <p >
+                 <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"  href="#collapseOne" >
+                        Languages
+                 </button>
                 </p>
-            </button>
-          </div>
-
-                	</div>
+                <p class="pl-3">
+                 <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"  href="#collapseTwo" >
+                        Skills
+                 </button>
+                </p>
+                       </div>
+<div class="card mt-3  border-0">
+<div id="collapseOne" class="collapse" data-parent="#accordion">
+<div class="p-3">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="row">
+                    <div class="col-md-3 col-5 d-flex align-items-center">
+                <div class="form-check mr-3">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                    Engilsh
+                    </label>
                 </div>
-          </div>
+            </div>
+            <div class="col-md-5 col-7 d-flex align-items-center">
+                <div class="form-group mb-0">
+                        <select id="inputState" class="form-control">
+                                <option selected>Weak</option>
+                                <option>Normal</option>
+                                <option>Perfect</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-4 mb-4">
+                    <div class="row">
+                        <div class="col-md-3 col-5 d-flex align-items-center">
+                    <div class="form-check mr-3">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                        Turkish
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-5 col-7 d-flex align-items-center">
+                    <div class="form-group mb-0">
+                            <select id="inputState" class="form-control">
+                                    <option selected>Weak</option>
+                                    <option>Normal</option>
+                                    <option>Perfect</option>
+                            </select>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4 mb-4">
+                        <div class="row">
+                            <div class="col-md-3 col-5 d-flex align-items-center">
+                        <div class="form-check mr-3">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                            German
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-7 d-flex align-items-center">
+                        <div class="form-group mb-0">
+                                <select id="inputState" class="form-control">
+                                        <option selected>Weak</option>
+                                        <option>Normal</option>
+                                        <option>Perfect</option>
+                                </select>
+                              </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-4 mb-4">
+                            <div class="row">
+                                <div class="col-md-3 col-5 d-flex align-items-center">
+                            <div class="form-check mr-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                Italian
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-7 d-flex align-items-center">
+                            <div class="form-group mb-0">
+                                    <select id="inputState" class="form-control">
+                                            <option selected>Weak</option>
+                                            <option>Normal</option>
+                                            <option>Perfect</option>
+                                    </select>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+        </div>
+    </div>
+</div>
+</div>
 
+<div class="card  border-0">
+<div id="collapseTwo" class="collapse" data-parent="#accordion">
+<div class="p-3">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="row">
+                    <div class="col-md-3 col-5 d-flex align-items-center">
+                <div class="form-check mr-3">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                    Python
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-5 col-7 d-flex align-items-center">
+                <div class="form-group mb-0">
+                        <select id="inputState" class="form-control">
+                                <option selected>Weak</option>
+                                <option>Normal</option>
+                                <option>Perfect</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-4 mb-4">
+                    <div class="row">
+                        <div class="col-md-3 col-5 d-flex align-items-center">
+                    <div class="form-check mr-3">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                        PHP
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-5 col-7 d-flex align-items-center">
+                    <div class="form-group mb-0">
+                            <select id="inputState" class="form-control">
+                                    <option selected>Weak</option>
+                                    <option>Normal</option>
+                                    <option>Perfect</option>
+                            </select>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4 mb-4">
+                        <div class="row">
+                            <div class="col-md-3 col-5 d-flex align-items-center">
+                        <div class="form-check mr-3">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                            Java
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-7 d-flex align-items-center">
+                        <div class="form-group mb-0">
+                                <select id="inputState" class="form-control">
+                                        <option selected>Weak</option>
+                                        <option>Normal</option>
+                                        <option>Perfect</option>
+                                </select>
+                              </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-4 mb-4">
+                            <div class="row">
+                                <div class="col-md-3 col-5 d-flex align-items-center">
+                            <div class="form-check mr-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                C++
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-7 d-flex align-items-center">
+                            <div class="form-group mb-0">
+                                    <select id="inputState" class="form-control">
+                                            <option selected>Weak</option>
+                                            <option>Normal</option>
+                                            <option>Perfect</option>
+                                    </select>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+        </div>
+    </div>
+</div>
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
+</div>
 
+      <div class="col-md-12 mt-4 text-center">
+<button class="btn btn-dark" >
+   <p class="my-1 mx-4">
+      Axtar
+    </p>
+</button>
+</div>
 
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div>
+        <div  class="card">
+            <div class="card-header d-flex flex-row justify-content-between align-items-center">
+                <h4 >Goshgar Mirzayev</h4>
+            </div>
+
+            <div class="card-body d-flex flex-wrap ">
+                <div class="col-lg-3 d-flex  justify-content-center align-items-center  ">
+                    <img class="img-fluid rounded-circle" src="https://ca.slack-edge.com/TLW6FR718-ULW745ERH-a1cf0ca8c459-512" alt=""/>
+                </div>
+                <div class="col-lg-9 ">
+                    <div style="height: 80px;" class="col-12 mt-2 mb-3">
+                        <h4 class="font-weight-bold">About:</h4>
+                        <h6 class="font-weight-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat cum dolore dolorem tempore saepe dignissimos laboriosam, facere, totam natus quo, minus ab neque est. Distinctio, hic eveniet. Vitae, accusamus deserunt.</h6>
+                    </div>
+                    <div class="col-12  ">
+                        <div class="d-flex  flex-wrap">
+                            <div class="mr-2 mt-2 position-relative">
+                                <a target="_blank" href="" class="stretched-link btn btn-dark"><i class="fab fa-github"></i> github</a>
+                            </div>
+                            <div class="mr-2 mt-2 position-relative">
+                                <a target="_blank" href="" class="stretched-link btn btn-dark"><i class="fab fa-linkedin"></i> linkedin</a>
+                            </div>
+                            <div class="mr-2 mt-2 position-relative">
+                                <a target="_blank" href="" class="stretched-link btn btn-dark"><i class="fas fa-link"></i> web site
+                                    link</a>
+                            </div>
+                            <div class="dropdown mr-2 mt-2">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-code"></i>
+                                    Skills
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> html</a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> css</a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> java</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
-
 </html>
