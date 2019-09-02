@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class EmployeeProjectServiceImpl implements EmployeeItProjectServiceInter {
+
     @Autowired
     EmployeeItProjectDataInter employeeItProjectDataInter;
 
@@ -20,16 +21,15 @@ public class EmployeeProjectServiceImpl implements EmployeeItProjectServiceInter
         return employeeItProjectDataInter.findById(id).get();
     }
 
-
     @Override
     public List<EmployeeProject> findAllByEmployeeProfileId(EmployeeProfile employeeProfile) {
 
-        return (List<EmployeeProject>) employeeItProjectDataInter.findAllByEmployeeId(employeeProfile.getId());
+        return (List<EmployeeProject>) employeeItProjectDataInter.findAllByEmployeeId(employeeProfile);
     }
 
     @Override
     public List<EmployeeProject> findAllByItProjectId(Itproject itproject) {
-        return (List<EmployeeProject>) employeeItProjectDataInter.findAllByProjectId(itproject.getId());
+        return (List<EmployeeProject>) employeeItProjectDataInter.findAllByProjectId(itproject);
     }
 
     @Override

@@ -40,11 +40,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "EmployeeProfile.findAll", query = "SELECT e FROM EmployeeProfile e")
     , @NamedQuery(name = "EmployeeProfile.findById", query = "SELECT e FROM EmployeeProfile e WHERE e.id = :id")
     , @NamedQuery(name = "EmployeeProfile.findByApproved", query = "SELECT e FROM EmployeeProfile e WHERE e.approved = :approved")
-    , @NamedQuery(name = "EmployeeProfile.findByApprovedDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.approvedDateTime = :approvedDateTime")
     , @NamedQuery(name = "EmployeeProfile.findByCvPath", query = "SELECT e FROM EmployeeProfile e WHERE e.cvPath = :cvPath")
-    , @NamedQuery(name = "EmployeeProfile.findByInsertDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "EmployeeProfile.findByLinkedinPath", query = "SELECT e FROM EmployeeProfile e WHERE e.linkedinPath = :linkedinPath")
+    , @NamedQuery(name = "EmployeeProfile.findByGithubPath", query = "SELECT e FROM EmployeeProfile e WHERE e.githubPath = :githubPath")
     , @NamedQuery(name = "EmployeeProfile.findByIsLookingForWork", query = "SELECT e FROM EmployeeProfile e WHERE e.isLookingForWork = :isLookingForWork")
     , @NamedQuery(name = "EmployeeProfile.findByIsWorking", query = "SELECT e FROM EmployeeProfile e WHERE e.isWorking = :isWorking")
+    , @NamedQuery(name = "EmployeeProfile.findByInsertDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "EmployeeProfile.findByApprovedDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.approvedDateTime = :approvedDateTime")
     , @NamedQuery(name = "EmployeeProfile.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProfile implements Serializable {
 
@@ -54,25 +56,39 @@ public class EmployeeProfile implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "approved")
-    private Boolean approved;
-    @Column(name = "approved_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date approvedDateTime;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Column(name = "approved")
+    private boolean approved;
+    @Size(max = 255)
     @Column(name = "cv_path")
     private String cvPath;
+    @Size(max = 255)
+    @Column(name = "linkedin_path")
+    private String linkedinPath;
+    @Size(max = 255)
+    @Column(name = "github_path")
+    private String githubPath;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "is_looking_for_work")
+    private boolean isLookingForWork;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "is_working")
+    private boolean isWorking;
     @Basic(optional = false)
     @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
-    @Column(name = "is_looking_for_work")
-    private Boolean isLookingForWork;
-    @Column(name = "is_working")
-    private Boolean isWorking;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "approved_date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date approvedDateTime;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
@@ -93,10 +109,14 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProfile(Integer id, String cvPath, Date insertDateTime) {
+    public EmployeeProfile(Integer id, boolean approved, boolean isLookingForWork, boolean isWorking, Date insertDateTime, Date approvedDateTime, Date lastUpdateDateTime) {
         this.id = id;
-        this.cvPath = cvPath;
+        this.approved = approved;
+        this.isLookingForWork = isLookingForWork;
+        this.isWorking = isWorking;
         this.insertDateTime = insertDateTime;
+        this.approvedDateTime = approvedDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public Integer getId() {
@@ -107,20 +127,12 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public Boolean getApproved() {
+    public boolean getApproved() {
         return approved;
     }
 
-    public void setApproved(Boolean approved) {
+    public void setApproved(boolean approved) {
         this.approved = approved;
-    }
-
-    public Date getApprovedDateTime() {
-        return approvedDateTime;
-    }
-
-    public void setApprovedDateTime(Date approvedDateTime) {
-        this.approvedDateTime = approvedDateTime;
     }
 
     public String getCvPath() {
@@ -131,6 +143,38 @@ public class EmployeeProfile implements Serializable {
         this.cvPath = cvPath;
     }
 
+    public String getLinkedinPath() {
+        return linkedinPath;
+    }
+
+    public void setLinkedinPath(String linkedinPath) {
+        this.linkedinPath = linkedinPath;
+    }
+
+    public String getGithubPath() {
+        return githubPath;
+    }
+
+    public void setGithubPath(String githubPath) {
+        this.githubPath = githubPath;
+    }
+
+    public boolean getIsLookingForWork() {
+        return isLookingForWork;
+    }
+
+    public void setIsLookingForWork(boolean isLookingForWork) {
+        this.isLookingForWork = isLookingForWork;
+    }
+
+    public boolean getIsWorking() {
+        return isWorking;
+    }
+
+    public void setIsWorking(boolean isWorking) {
+        this.isWorking = isWorking;
+    }
+
     public Date getInsertDateTime() {
         return insertDateTime;
     }
@@ -139,20 +183,12 @@ public class EmployeeProfile implements Serializable {
         this.insertDateTime = insertDateTime;
     }
 
-    public Boolean getIsLookingForWork() {
-        return isLookingForWork;
+    public Date getApprovedDateTime() {
+        return approvedDateTime;
     }
 
-    public void setIsLookingForWork(Boolean isLookingForWork) {
-        this.isLookingForWork = isLookingForWork;
-    }
-
-    public Boolean getIsWorking() {
-        return isWorking;
-    }
-
-    public void setIsWorking(Boolean isWorking) {
-        this.isWorking = isWorking;
+    public void setApprovedDateTime(Date approvedDateTime) {
+        this.approvedDateTime = approvedDateTime;
     }
 
     public Date getLastUpdateDateTime() {
@@ -220,7 +256,7 @@ public class EmployeeProfile implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.EmployeeProfileLanguageServiceInter[ id=" + id + " ]";
+        return "com.bsptech.itcommunity.entity.EmployeeProfile[ id=" + id + " ]";
     }
     
 }

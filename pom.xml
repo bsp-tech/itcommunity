@@ -22,9 +22,9 @@
 
     <dependencies>
         <!--        <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-security</artifactId>
-                </dependency>-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -49,34 +49,34 @@
         </dependency>
         
         <!--        <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-configuration-processor</artifactId>
-                    <optional>true</optional>
-                </dependency>-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>-->
 
         <!--        <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                    <scope>provided</scope>
-                </dependency>-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
         <!--        <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-test</artifactId>
-                    <scope>test</scope>
-                </dependency>
-        <<<<<<< HEAD
-                <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <version>8.0.15</version>
-                </dependency>
-        =======
-        >>>>>>> release-1
-                <dependency>
-                    <groupId>org.springframework.security</groupId>
-                    <artifactId>spring-security-test</artifactId>
-                    <scope>test</scope>
-                </dependency>-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+<<<<<<< HEAD
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.15</version>
+        </dependency>
+=======
+>>>>>>> release-1
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -86,7 +86,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-
+      
     </dependencies>
 
     <build>

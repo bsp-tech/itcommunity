@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface EmployeeItProjectDataInter extends CrudRepository<EmployeeProject, Integer> {
 
-    EmployeeProject findAllByEmployeeId(Integer id);
+    EmployeeProject findAllByEmployeeId(EmployeeProfile employeeProfile);
 
-    EmployeeProject findAllByProjectId(Integer id);
+    EmployeeProject findAllByProjectId(Itproject itproject);
 }

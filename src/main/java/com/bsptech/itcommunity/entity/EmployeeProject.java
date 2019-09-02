@@ -37,9 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "EmployeeProject.findById", query = "SELECT e FROM EmployeeProject e WHERE e.id = :id")
     , @NamedQuery(name = "EmployeeProject.findByApproved", query = "SELECT e FROM EmployeeProject e WHERE e.approved = :approved")
     , @NamedQuery(name = "EmployeeProject.findByPosition", query = "SELECT e FROM EmployeeProject e WHERE e.position = :position")
-    , @NamedQuery(name = "EmployeeProject.findByInsertDate", query = "SELECT e FROM EmployeeProject e WHERE e.insertDate = :insertDate")
-    , @NamedQuery(name = "EmployeeProject.findByJoinDate", query = "SELECT e FROM EmployeeProject e WHERE e.joinDate = :joinDate")
-    , @NamedQuery(name = "EmployeeProject.findByLastUpdateDate", query = "SELECT e FROM EmployeeProject e WHERE e.lastUpdateDate = :lastUpdateDate")})
+    , @NamedQuery(name = "EmployeeProject.findByInsertDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "EmployeeProject.findByJoinDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.joinDateTime = :joinDateTime")
+    , @NamedQuery(name = "EmployeeProject.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,19 +57,19 @@ public class EmployeeProject implements Serializable {
     private String position;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "insert_date")
+    @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date insertDate;
+    private Date insertDateTime;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "join_date")
+    @Column(name = "join_date_time")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date joinDate;
+    private Date joinDateTime;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "last_update_date")
+    @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdateDate;
+    private Date lastUpdateDateTime;
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Itproject projectId;
@@ -84,12 +84,12 @@ public class EmployeeProject implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProject(Integer id, short approved, Date insertDate, Date joinDate, Date lastUpdateDate) {
+    public EmployeeProject(Integer id, short approved, Date insertDateTime, Date joinDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
-        this.insertDate = insertDate;
-        this.joinDate = joinDate;
-        this.lastUpdateDate = lastUpdateDate;
+        this.insertDateTime = insertDateTime;
+        this.joinDateTime = joinDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public Integer getId() {
@@ -116,28 +116,28 @@ public class EmployeeProject implements Serializable {
         this.position = position;
     }
 
-    public Date getInsertDate() {
-        return insertDate;
+    public Date getInsertDateTime() {
+        return insertDateTime;
     }
 
-    public void setInsertDate(Date insertDate) {
-        this.insertDate = insertDate;
+    public void setInsertDateTime(Date insertDateTime) {
+        this.insertDateTime = insertDateTime;
     }
 
-    public Date getJoinDate() {
-        return joinDate;
+    public Date getJoinDateTime() {
+        return joinDateTime;
     }
 
-    public void setJoinDate(Date joinDate) {
-        this.joinDate = joinDate;
+    public void setJoinDateTime(Date joinDateTime) {
+        this.joinDateTime = joinDateTime;
     }
 
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
+    public Date getLastUpdateDateTime() {
+        return lastUpdateDateTime;
     }
 
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
+    public void setLastUpdateDateTime(Date lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public Itproject getProjectId() {

@@ -34,9 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "EmployeeProfileSkill.findAll", query = "SELECT e FROM EmployeeProfileSkill e")
     , @NamedQuery(name = "EmployeeProfileSkill.findById", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.id = :id")
+    , @NamedQuery(name = "EmployeeProfileSkill.findByLevel", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.level = :level")
     , @NamedQuery(name = "EmployeeProfileSkill.findByInsertDateTime", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "EmployeeProfileSkill.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")
-    , @NamedQuery(name = "EmployeeProfileSkill.findByLevel", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.level = :level")})
+    , @NamedQuery(name = "EmployeeProfileSkill.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProfileSkill implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +45,8 @@ public class EmployeeProfileSkill implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "level")
+    private Integer level;
     @Basic(optional = false)
     @NotNull
     @Column(name = "insert_date_time")
@@ -53,8 +55,6 @@ public class EmployeeProfileSkill implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @Column(name = "level")
-    private Integer level;
     @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User insertUserId;
@@ -85,6 +85,14 @@ public class EmployeeProfileSkill implements Serializable {
         this.id = id;
     }
 
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
     public Date getInsertDateTime() {
         return insertDateTime;
     }
@@ -99,14 +107,6 @@ public class EmployeeProfileSkill implements Serializable {
 
     public void setLastUpdateDateTime(Date lastUpdateDateTime) {
         this.lastUpdateDateTime = lastUpdateDateTime;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
     }
 
     public User getInsertUserId() {
@@ -155,7 +155,7 @@ public class EmployeeProfileSkill implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.EmployeeProfileSkillServiceInter[ id=" + id + " ]";
+        return "com.bsptech.itcommunity.entity.EmployeeProfileSkill[ id=" + id + " ]";
     }
     
 }

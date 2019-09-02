@@ -45,8 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Itproject.findByNeedEmployee", query = "SELECT i FROM Itproject i WHERE i.needEmployee = :needEmployee")
     , @NamedQuery(name = "Itproject.findByWebsitePath", query = "SELECT i FROM Itproject i WHERE i.websitePath = :websitePath")
     , @NamedQuery(name = "Itproject.findByGithubPath", query = "SELECT i FROM Itproject i WHERE i.githubPath = :githubPath")
-    , @NamedQuery(name = "Itproject.findByInsertDate", query = "SELECT i FROM Itproject i WHERE i.insertDate = :insertDate")
-    , @NamedQuery(name = "Itproject.findByLastUpdateDate", query = "SELECT i FROM Itproject i WHERE i.lastUpdateDate = :lastUpdateDate")
+    , @NamedQuery(name = "Itproject.findByInsertDateTime", query = "SELECT i FROM Itproject i WHERE i.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "Itproject.findByLastUpdateDateTime", query = "SELECT i FROM Itproject i WHERE i.lastUpdateDateTime = :lastUpdateDateTime")
     , @NamedQuery(name = "Itproject.findByPublishDate", query = "SELECT i FROM Itproject i WHERE i.publishDate = :publishDate")})
 public class Itproject implements Serializable {
 
@@ -83,14 +83,14 @@ public class Itproject implements Serializable {
     private String githubPath;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "insert_date")
+    @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date insertDate;
+    private Date insertDateTime;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "last_update_date")
+    @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdateDate;
+    private Date lastUpdateDateTime;
     @Basic(optional = false)
     @NotNull
     @Column(name = "publish_date")
@@ -111,14 +111,14 @@ public class Itproject implements Serializable {
         this.id = id;
     }
 
-    public Itproject(Integer id, String name, String about, short inDevelopment, short needEmployee, Date insertDate, Date lastUpdateDate, Date publishDate) {
+    public Itproject(Integer id, String name, String about, short inDevelopment, short needEmployee, Date insertDateTime, Date lastUpdateDateTime, Date publishDate) {
         this.id = id;
         this.name = name;
         this.about = about;
         this.inDevelopment = inDevelopment;
         this.needEmployee = needEmployee;
-        this.insertDate = insertDate;
-        this.lastUpdateDate = lastUpdateDate;
+        this.insertDateTime = insertDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
         this.publishDate = publishDate;
     }
 
@@ -178,20 +178,20 @@ public class Itproject implements Serializable {
         this.githubPath = githubPath;
     }
 
-    public Date getInsertDate() {
-        return insertDate;
+    public Date getInsertDateTime() {
+        return insertDateTime;
     }
 
-    public void setInsertDate(Date insertDate) {
-        this.insertDate = insertDate;
+    public void setInsertDateTime(Date insertDateTime) {
+        this.insertDateTime = insertDateTime;
     }
 
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
+    public Date getLastUpdateDateTime() {
+        return lastUpdateDateTime;
     }
 
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
+    public void setLastUpdateDateTime(Date lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public Date getPublishDate() {

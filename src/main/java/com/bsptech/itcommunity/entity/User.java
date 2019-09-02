@@ -44,7 +44,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByAge", query = "SELECT u FROM User u WHERE u.age = :age")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
     , @NamedQuery(name = "User.findByEnabled", query = "SELECT u FROM User u WHERE u.enabled = :enabled")
-    , @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender")
     , @NamedQuery(name = "User.findByInsertDateTime", query = "SELECT u FROM User u WHERE u.insertDateTime = :insertDateTime")
     , @NamedQuery(name = "User.findByLastUpdateDateTime", query = "SELECT u FROM User u WHERE u.lastUpdateDateTime = :lastUpdateDateTime")})
 public class User implements Serializable {
@@ -91,10 +90,6 @@ public class User implements Serializable {
     private boolean enabled;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "gender")
-    private boolean gender;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
@@ -131,7 +126,7 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String name, String surname, String username, String password, int age, String email, boolean enabled, boolean gender, Date insertDateTime) {
+    public User(Integer id, String name, String surname, String username, String password, int age, String email, boolean enabled, Date insertDateTime) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -140,7 +135,6 @@ public class User implements Serializable {
         this.age = age;
         this.email = email;
         this.enabled = enabled;
-        this.gender = gender;
         this.insertDateTime = insertDateTime;
     }
 
@@ -206,14 +200,6 @@ public class User implements Serializable {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
     }
 
     public Date getInsertDateTime() {

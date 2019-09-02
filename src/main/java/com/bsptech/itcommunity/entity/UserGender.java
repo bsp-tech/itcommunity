@@ -49,12 +49,12 @@ public class UserGender implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "gender_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Gender genderId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User userId;
+    @JoinColumn(name = "gender_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Gender genderId;
 
     public UserGender() {
     }
@@ -87,20 +87,20 @@ public class UserGender implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public Gender getGenderId() {
-        return genderId;
-    }
-
-    public void setGenderId(Gender genderId) {
-        this.genderId = genderId;
-    }
-
     public User getUserId() {
         return userId;
     }
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    public Gender getGenderId() {
+        return genderId;
+    }
+
+    public void setGenderId(Gender genderId) {
+        this.genderId = genderId;
     }
 
     @Override
