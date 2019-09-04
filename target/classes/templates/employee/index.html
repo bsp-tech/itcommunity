@@ -36,162 +36,239 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<!-- search -->
+
+<div class="container">
     <div class="card bg-light">
         <div class="row my-3 mx-2">
-            <div class="col-md-3 mt-2">
-                <input type="text" class="form-control" name="name" placeholder="Ad">
+              <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="name" placeholder="Ad">
             </div>
-            <div class="col-md-3 mt-2">
-                <input type="text" class="form-control" name="surname" placeholder="Soyad">
+            <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="surname" placeholder="Soyad">
             </div>
-            <div class="col-md-3 mt-2">
-                <input type="text" class="form-control" name="mail" placeholder="Mail">
+            <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="mail" placeholder="Mail">
             </div>
-            <div class="col-md-3 mt-2">
-                <input type="text" class="form-control" name="number" placeholder="Number">
+            <div class="col-md-3 mt-2">	   
+                    <input type="text" class="form-control" name="number" placeholder="Number">
             </div>
-            <p class="pt-3 pl-3">
-                <button class="btn btn-info collapsed" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Languages
-                </button>
-            </p>
-            <p class="pt-3 pl-3">
-                <button class="btn btn-info collapsed" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-                    Technolagies
-                </button>
-            </p>
-            <div class="collapse pl-3 w-100" id="collapseExample">
-                <div class="card card-body  mr-3">
-                    <div class="row">
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="check1">
-                                <input type="checkbox" class="form-check-input" id="check1" name="option1"  >
-                                <p>
-                                    English
-                                </p>
-
-                            </label>
-                            <select class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white"    name="lang1">
-                                <option class="bg-light text-dark">Zeif</option>
-                                <option class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-                            </select>
-                        </div>
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="check2">
-                                <input type="checkbox" class="form-check-input" id="check2" name="option2"  >
-                                <p>Arabic</p>
-
-                            </label>
-                            <select  name="lang2" class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white">
-                                <option class="bg-light text-dark" >Zeif</option>
-                                <option  class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-
-                            </select>
-                        </div>
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="check3">
-                                <input type="checkbox" class="form-check-input" id="check3" name="option3"  >
-                                <p>Turkish</p>
-
-                            </label>
-                            <select name="lang3" class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white">
-                                <option  class="bg-light text-dark">Zeif</option>
-                                <option class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-
-                            </select>
-                        </div>
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="check4">
-                                <input type="checkbox" class="form-check-input" id="check4" name="option4"  >
-                                <p>German</p>
-
-                            </label>
-                            <select  name="lang4" class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white">
-                                <option  class="bg-light text-dark">Zeif</option>
-                                <option class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-
-                            </select>
-                        </div>
-                    </div>
-
-
+             <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
+                       <div class="d-flex">
+                         <p >
+                 <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"  href="#collapseOne" >
+                        Languages
+                 </button>
+                </p>
+                <p class="pl-3">
+                 <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"  href="#collapseTwo" >
+                        Skills
+                 </button>
+                </p>
+                       </div>
+<div class="card mt-3 bg-light  border-0">
+<div id="collapseOne" class="collapse" data-parent="#accordion">
+<div class="p-3">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="row">
+                    <div class="col-md-3 col-5 d-flex align-items-center">
+                <div class="form-check mr-3">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                    Engilsh
+                    </label>
                 </div>
             </div>
-
-
-            <div class="collapse pl-3 mt-4 w-100" id="collapseExample1" >
-                <div class="card card-body mr-3">
+            <div class="col-md-5 col-7 d-flex align-items-center">
+                <div class="form-group mb-0">
+                        <select id="inputState" class="form-control">
+                                <option selected>Weak</option>
+                                <option>Normal</option>
+                                <option>Perfect</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-4 mb-4">
                     <div class="row">
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="technocheck1">
-                                <input type="checkbox" class="form-check-input" id="technocheck1" name="technooption1"  >
-                                <p>Java</p>
-
-                            </label>
-                            <select  name="techno1" class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white">
-                                <option class="bg-light text-dark" >Zeif</option>
-                                <option class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-
+                        <div class="col-md-3 col-5 d-flex align-items-center">
+                    <div class="form-check mr-3">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                        Turkish
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-5 col-7 d-flex align-items-center">
+                    <div class="form-group mb-0">
+                            <select id="inputState" class="form-control">
+                                    <option selected>Weak</option>
+                                    <option>Normal</option>
+                                    <option>Perfect</option>
                             </select>
-                        </div>
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="technocheck2">
-                                <input type="checkbox" class="form-check-input" id="technocheck2" name="technooption2"  >
-                                <p>C++</p>
-
-                            </label>
-                            <select  name="techno2" class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white">
-                                <option  class="bg-light text-dark">Zeif</option>
-                                <option class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-
-                            </select>
-                        </div>
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="technocheck3">
-                                <input type="checkbox" class="form-check-input" id="technocheck3" name="technooption3"  >
-                                <p>Javascript</p>
-
-                            </label>
-                            <select  name="techno3" class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white">
-                                <option  class="bg-light text-dark">Zeif</option>
-                                <option class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-
-                            </select>
-                        </div>
-                        <div class="form-check col-md-4 d-flex">
-                            <label class="form-check-label pr-3 pt-1" for="technocheck4">
-                                <input type="checkbox" class="form-check-input" id="technocheck4" name="technooption4"  >
-                                <p>Php</p>
-
-                            </label>
-                            <select  name="techno4" class="form-control col-md-6 col-sm-4 col-6 mb-2 bg-dark text-white">
-                                <option  class="bg-light text-dark">Zeif</option>
-                                <option class="bg-light text-dark">Yaxsi</option>
-                                <option class="bg-light text-dark">Ela</option>
-
-                            </select>
+                          </div>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="col-md-4 mb-4">
+                        <div class="row">
+                            <div class="col-md-3 col-5 d-flex align-items-center">
+                        <div class="form-check mr-3">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                            German
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-7 d-flex align-items-center">
+                        <div class="form-group mb-0">
+                                <select id="inputState" class="form-control">
+                                        <option selected>Weak</option>
+                                        <option>Normal</option>
+                                        <option>Perfect</option>
+                                </select>
+                              </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-4 mb-4">
+                            <div class="row">
+                                <div class="col-md-3 col-5 d-flex align-items-center">
+                            <div class="form-check mr-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                Italian
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-7 d-flex align-items-center">
+                            <div class="form-group mb-0">
+                                    <select id="inputState" class="form-control">
+                                            <option selected>Weak</option>
+                                            <option>Normal</option>
+                                            <option>Perfect</option>
+                                    </select>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+        </div>
+    </div>
+</div>
+</div>
 
-
+<div class="card  border-0 bg-light">
+<div id="collapseTwo" class="collapse" data-parent="#accordion">
+<div class="p-3">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="row">
+                    <div class="col-md-3 col-5 d-flex align-items-center">
+                <div class="form-check mr-3">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                    Python
+                    </label>
                 </div>
             </div>
-            <div class="col-md-12 mt-4 text-center">
-                <button class="btn " >
-                    <p class="my-3 mx-5">
-                        Axtar
-                    </p>
-                </button>
+            <div class="col-md-5 col-7 d-flex align-items-center">
+                <div class="form-group mb-0">
+                        <select id="inputState" class="form-control">
+                                <option selected>Weak</option>
+                                <option>Normal</option>
+                                <option>Perfect</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                
             </div>
+            <div class="col-md-4 mb-4">
+                    <div class="row">
+                        <div class="col-md-3 col-5 d-flex align-items-center">
+                    <div class="form-check mr-3">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                        PHP
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-5 col-7 d-flex align-items-center">
+                    <div class="form-group mb-0">
+                            <select id="inputState" class="form-control">
+                                    <option selected>Weak</option>
+                                    <option>Normal</option>
+                                    <option>Perfect</option>
+                            </select>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4 mb-4">
+                        <div class="row">
+                            <div class="col-md-3 col-5 d-flex align-items-center">
+                        <div class="form-check mr-3">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                            Java
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-7 d-flex align-items-center">
+                        <div class="form-group mb-0">
+                                <select id="inputState" class="form-control">
+                                        <option selected>Weak</option>
+                                        <option>Normal</option>
+                                        <option>Perfect</option>
+                                </select>
+                              </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-4 mb-4">
+                            <div class="row">
+                                <div class="col-md-3 col-5 d-flex align-items-center">
+                            <div class="form-check mr-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                C++
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-7 d-flex align-items-center">
+                            <div class="form-group mb-0">
+                                    <select id="inputState" class="form-control">
+                                            <option selected>Weak</option>
+                                            <option>Normal</option>
+                                            <option>Perfect</option>
+                                    </select>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+        </div>
+    </div>
+</div>
+</div>
 
+</div>
+
+      <div class="col-md-12 mt-4 text-center">
+<button class="btn btn-dark" >
+   <p class="my-1 mx-4">
+      Axtar
+    </p>
+</button>
+</div>
 
         </div>
     </div>
