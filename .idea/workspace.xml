@@ -1,75 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/service/inter/ItProjectServiceInter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/service/inter/ItProjectServiceInter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/.netbeans_automatic_build" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/ServletInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/ServletInitializer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/EmployeeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/ProjectController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeItProjectDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeItProjectDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileLanguageDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileLanguageDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileSkillDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileSkillDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/ItProjectSkillDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/ItProjectSkillDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/LanguageDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/LanguageDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/SkillDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/SkillDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserGenderDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserGenderDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserRoleDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserRoleDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileLanguage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileLanguage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileSkill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileSkill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Gender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Gender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Itproject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Itproject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Language.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Language.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/ProjectSkill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/ProjectSkill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Skill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Skill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserGender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserGender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserRole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileLanguageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileLanguageServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProjectServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeSkillServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeSkillServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/GenderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/GenderServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectSkillServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectSkillServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/LanguageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/LanguageServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/RoleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/SkillServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/SkillServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserGenderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserGenderServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserRoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserRoleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeItProjectServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeItProjectServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileLanguageServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileLanguageServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileSkillServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileSkillServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/GenderServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/GenderServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectSkillServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectSkillServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/LanguageServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/LanguageServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/RoleServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/RoleServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/SkillServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/SkillServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserGenderServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserGenderServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserRoleServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserRoleServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/employee/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/employee/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/project/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/project/details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/project/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/project/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/.netbeans_automatic_build" beforeDir="false" />
-    </list>
+    <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -288,7 +220,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -561,15 +493,15 @@
       <workItem from="1567354645923" duration="2117000" />
       <workItem from="1567442784903" duration="11263000" />
       <workItem from="1567508993745" duration="3621000" />
-      <workItem from="1567588459701" duration="2960000" />
+      <workItem from="1567588459701" duration="3272000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22043000" />
+    <option name="totallyTimeSpent" value="22355000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.121522695" />
