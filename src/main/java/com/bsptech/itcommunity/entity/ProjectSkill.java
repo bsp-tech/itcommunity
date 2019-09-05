@@ -30,12 +30,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "project_skill")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ProjectSkill.findAll", query = "SELECT p FROM ProjectSkill p")
-    , @NamedQuery(name = "ProjectSkill.findById", query = "SELECT p FROM ProjectSkill p WHERE p.id = :id")
-    , @NamedQuery(name = "ProjectSkill.findByInsertDateTime", query = "SELECT p FROM ProjectSkill p WHERE p.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "ProjectSkill.findByLastUpdateDateTime", query = "SELECT p FROM ProjectSkill p WHERE p.lastUpdateDateTime = :lastUpdateDateTime")})
 public class ProjectSkill implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +43,6 @@ public class ProjectSkill implements Serializable {
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;

@@ -5,30 +5,13 @@
  */
 package com.bsptech.itcommunity.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,18 +19,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "itproject")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Itproject.findAll", query = "SELECT i FROM Itproject i")
-    , @NamedQuery(name = "Itproject.findById", query = "SELECT i FROM Itproject i WHERE i.id = :id")
-    , @NamedQuery(name = "Itproject.findByName", query = "SELECT i FROM Itproject i WHERE i.name = :name")
-    , @NamedQuery(name = "Itproject.findByInDevelopment", query = "SELECT i FROM Itproject i WHERE i.inDevelopment = :inDevelopment")
-    , @NamedQuery(name = "Itproject.findByNeedEmployee", query = "SELECT i FROM Itproject i WHERE i.needEmployee = :needEmployee")
-    , @NamedQuery(name = "Itproject.findByWebsitePath", query = "SELECT i FROM Itproject i WHERE i.websitePath = :websitePath")
-    , @NamedQuery(name = "Itproject.findByGithubPath", query = "SELECT i FROM Itproject i WHERE i.githubPath = :githubPath")
-    , @NamedQuery(name = "Itproject.findByInsertDateTime", query = "SELECT i FROM Itproject i WHERE i.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Itproject.findByLastUpdateDateTime", query = "SELECT i FROM Itproject i WHERE i.lastUpdateDateTime = :lastUpdateDateTime")
-    , @NamedQuery(name = "Itproject.findByPublishDate", query = "SELECT i FROM Itproject i WHERE i.publishDate = :publishDate")})
 public class Itproject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -67,14 +38,16 @@ public class Itproject implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "about")
     private String about;
+    @Column(name = "thumbnail")
+    private String thumbnail;
     @Basic(optional = false)
     @NotNull
     @Column(name = "in_development")
-    private short inDevelopment;
+    private Boolean inDevelopment;
     @Basic(optional = false)
     @NotNull
     @Column(name = "need_employee")
-    private short needEmployee;
+    private Boolean needEmployee;
     @Size(max = 255)
     @Column(name = "website_path")
     private String websitePath;
@@ -86,13 +59,9 @@ public class Itproject implements Serializable {
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "publish_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date publishDate;
@@ -111,7 +80,7 @@ public class Itproject implements Serializable {
         this.id = id;
     }
 
-    public Itproject(Integer id, String name, String about, short inDevelopment, short needEmployee, Date insertDateTime, Date lastUpdateDateTime, Date publishDate) {
+    public Itproject(Integer id, String name, String about, Boolean inDevelopment, Boolean needEmployee, Date insertDateTime, Date lastUpdateDateTime, Date publishDate) {
         this.id = id;
         this.name = name;
         this.about = about;
@@ -146,19 +115,19 @@ public class Itproject implements Serializable {
         this.about = about;
     }
 
-    public short getInDevelopment() {
+    public Boolean getInDevelopment() {
         return inDevelopment;
     }
 
-    public void setInDevelopment(short inDevelopment) {
+    public void setInDevelopment(Boolean inDevelopment) {
         this.inDevelopment = inDevelopment;
     }
 
-    public short getNeedEmployee() {
+    public Boolean getNeedEmployee() {
         return needEmployee;
     }
 
-    public void setNeedEmployee(short needEmployee) {
+    public void setNeedEmployee(Boolean needEmployee) {
         this.needEmployee = needEmployee;
     }
 
@@ -200,6 +169,14 @@ public class Itproject implements Serializable {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     @XmlTransient
