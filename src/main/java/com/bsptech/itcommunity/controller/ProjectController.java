@@ -28,7 +28,7 @@ public class ProjectController {
         Itproject itproject = itProjectServiceInter.findById(projectId);
 //        modelAndView.addObject("project", itproject);
 //        modelAndView.addObject("developers", employeeItProjectServiceInter.findAllByItProjectId(itproject));
-        modelAndView.setViewName("/project/details");
+        modelAndView.setViewName("project/details");
         return modelAndView;
     }
 

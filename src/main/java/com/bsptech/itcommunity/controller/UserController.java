@@ -6,7 +6,6 @@
 package com.bsptech.itcommunity.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,13 +19,13 @@ public class UserController {
 
     @RequestMapping(path = "/register")
     public ModelAndView register(ModelAndView modelAndView) {
-        modelAndView.setViewName("/user/registration");
+        modelAndView.setViewName("user/registration");
         return modelAndView;
     }
 
     @RequestMapping(path = "/login")
     public ModelAndView login(ModelAndView modelAndView) {
-        modelAndView.setViewName("/user/login");
+        modelAndView.setViewName("user/login");
         return modelAndView;
     }
 }
