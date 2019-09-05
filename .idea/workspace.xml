@@ -1,66 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/ServletInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/ServletInitializer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/EmployeeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/ProjectController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeItProjectDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeItProjectDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileLanguageDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileLanguageDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileSkillDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/EmployeeProfileSkillDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/ItProjectSkillDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/ItProjectSkillDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/LanguageDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/LanguageDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/SkillDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/SkillDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserGenderDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserGenderDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserRoleDataInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/dao/UserRoleDataInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileLanguage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileLanguage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileSkill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProfileSkill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/EmployeeProject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Gender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Gender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Itproject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Itproject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Language.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Language.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/ProjectSkill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/ProjectSkill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Skill.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/Skill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserGender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserGender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/entity/UserRole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileLanguageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileLanguageServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProfileServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeProjectServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeSkillServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/EmployeeSkillServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/GenderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/GenderServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectSkillServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/ItProjectSkillServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/LanguageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/LanguageServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/RoleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/SkillServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/SkillServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserGenderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserGenderServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserRoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserRoleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeItProjectServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeItProjectServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileLanguageServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileLanguageServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileSkillServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/EmployeeProfileSkillServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/GenderServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/GenderServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectSkillServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/ItProjectSkillServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/LanguageServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/LanguageServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/RoleServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/RoleServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/SkillServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/SkillServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserGenderServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserGenderServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserRoleServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserRoleServiceInter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserServiceInter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bsptech/itcommunity/service/inter/UserServiceInter.class" afterDir="false" />
-    </list>
+    <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,38 +15,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmployeeController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/EmployeeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+            <state relative-caret-position="330">
+              <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+            <state relative-caret-position="105">
+              <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+            <state relative-caret-position="240">
+              <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProjectController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/ProjectController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+            <state relative-caret-position="300">
+              <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,6 +68,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -141,13 +94,27 @@
     <bower-package value="" />
     <bower.json value="" />
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="93" />
     <option name="width" value="1386" />
     <option name="height" value="788" />
   </component>
@@ -175,10 +142,23 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -234,8 +214,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,50 +260,103 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet">
+    <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
+      <option name="WIDTH" value="0" />
+      <option name="HEIGHT" value="0" />
+      <module />
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="itcommunity" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bsptech.itcommunity.Main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <module name="itcommunity" />
+      <envs />
     </configuration>
-    <configuration default="true" type="TestNG">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
       <properties />
       <listeners />
-      <method v="2">
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
-      <method v="2">
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
@@ -338,62 +370,95 @@
       <updated>1567263614850</updated>
       <workItem from="1567263618952" duration="2082000" />
       <workItem from="1567354645923" duration="2117000" />
+      <workItem from="1567643670998" duration="8000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4199000" />
+    <option name="totallyTimeSpent" value="4207000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1386" height="788" extended-state="0" />
+    <frame x="93" y="0" width="1386" height="788" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36500755" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32824427" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32824427" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" />
-      <window_info anchor="bottom" id="Problems" order="11" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="RestServices" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/ProjectController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -403,61 +468,42 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/employee/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="252" selection-start-line="252" selection-end-line="252" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
+          <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/employee/registration.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#style#0;n#html#0;n#!!top" />
-            <element signature="e#388#503#0" />
-            <element signature="e#515#578#0" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/user/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1139">
-          <caret line="67" column="109" selection-start-line="67" selection-start-column="109" selection-end-line="67" selection-end-column="109" />
+          <caret line="67" column="109" lean-forward="false" selection-start-line="67" selection-start-column="109" selection-end-line="67" selection-end-column="109" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/user/registration.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1445">
-          <caret line="85" column="70" selection-start-line="85" selection-start-column="70" selection-end-line="85" selection-end-column="70" />
+          <caret line="85" column="70" lean-forward="false" selection-start-line="85" selection-start-column="70" selection-end-line="85" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/project/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/project/details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding>
-            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
+          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -470,29 +516,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        <state relative-caret-position="105">
+          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/ProjectController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state relative-caret-position="300">
+          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+        <state relative-caret-position="240">
+          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/EmployeeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+        <state relative-caret-position="330">
+          <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
