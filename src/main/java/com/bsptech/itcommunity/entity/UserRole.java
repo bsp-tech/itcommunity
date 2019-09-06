@@ -50,7 +50,6 @@ public class UserRole implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
@@ -73,7 +72,10 @@ public class UserRole implements Serializable {
         this.insertDateTime = insertDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
-
+    public UserRole(User userId,Role roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
     public Integer getId() {
         return id;
     }
