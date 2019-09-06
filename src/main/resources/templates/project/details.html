@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+    <title>About Project</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
@@ -30,7 +30,7 @@
                 </li>
                 <li class="ml-2  my-2  nav-item active">
                     <a href="#" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">
-                        <img width="14px;" src="assets/img/icons8-customer-96.png" alt=""> Login</a>
+                        <img width="14px;" th:src="@{img/project/icons8-customer-96.png}" alt=""> Login</a>
                 </li>
             </ul>
         </div>
@@ -61,9 +61,6 @@
                                 <a target="_blank" th:href="${itproject.websitePath}" class="stretched-link btn btn-dark"><i class="fas fa-link"></i> web site
                                     link</a>
                             </div>
-                            <div class="mr-2 mt-2 position-relative">
-                                <a target="_blank" href="developers.html" class="stretched-link btn btn-dark"><i class="fas fa-male"></i> Developers</a>
-                            </div>
                             <div class="dropdown mr-2 mt-2">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
@@ -72,13 +69,12 @@
                                 </button>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt="">
+                                    <a class="dropdown-item d-flex align-items-center" href="#!">
+                                        <img width="20px" class="mr-2 rounded-circle" th:src="@{img/project/icons8-password-128.png}">
                                         <div th:each="skill : ${itproject.projectSkillList}">
                                             <div th:text="${skill.skillId.name}"></div>
-                                        </div></a>
-                                    <!--<a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> css</a>-->
-                                    <!--<a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> java</a>-->
-
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
 
