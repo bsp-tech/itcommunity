@@ -6,8 +6,8 @@
 package com.bsptech.itcommunity.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "language")
@@ -39,9 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Language.findAll", query = "SELECT l FROM Language l")
     , @NamedQuery(name = "Language.findById", query = "SELECT l FROM Language l WHERE l.id = :id")
+    , @NamedQuery(name = "Language.findByName", query = "SELECT l FROM Language l WHERE l.name = :name")
     , @NamedQuery(name = "Language.findByInsertDateTime", query = "SELECT l FROM Language l WHERE l.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Language.findByLastUpdateDateTime", query = "SELECT l FROM Language l WHERE l.lastUpdateDateTime = :lastUpdateDateTime")
-    , @NamedQuery(name = "Language.findByName", query = "SELECT l FROM Language l WHERE l.name = :name")})
+    , @NamedQuery(name = "Language.findByLastUpdateDateTime", query = "SELECT l FROM Language l WHERE l.lastUpdateDateTime = :lastUpdateDateTime")})
 public class Language implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,6 +50,11 @@ public class Language implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "name")
+    private String name;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
@@ -60,16 +63,8 @@ public class Language implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "name")
-    private String name;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User insertUserId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProfileLanguage> employeeProfileLanguageCollection;
+    private List<EmployeeProfileLanguage> employeeProfileLanguageList;
 
     public Language() {
     }
@@ -78,11 +73,11 @@ public class Language implements Serializable {
         this.id = id;
     }
 
-    public Language(Integer id, Date insertDateTime, Date lastUpdateDateTime, String name) {
+    public Language(Integer id, String name, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
+        this.name = name;
         this.insertDateTime = insertDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -91,6 +86,14 @@ public class Language implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getInsertDateTime() {
@@ -109,29 +112,13 @@ public class Language implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User getInsertUserId() {
-        return insertUserId;
-    }
-
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
-    }
-
     @XmlTransient
-    public Collection<EmployeeProfileLanguage> getEmployeeProfileLanguageCollection() {
-        return employeeProfileLanguageCollection;
+    public List<EmployeeProfileLanguage> getEmployeeProfileLanguageList() {
+        return employeeProfileLanguageList;
     }
 
-    public void setEmployeeProfileLanguageCollection(Collection<EmployeeProfileLanguage> employeeProfileLanguageCollection) {
-        this.employeeProfileLanguageCollection = employeeProfileLanguageCollection;
+    public void setEmployeeProfileLanguageList(List<EmployeeProfileLanguage> employeeProfileLanguageList) {
+        this.employeeProfileLanguageList = employeeProfileLanguageList;
     }
 
     @Override

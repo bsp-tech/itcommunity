@@ -10,12 +10,9 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -26,17 +23,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
-@Table(name = "user_role")
+@Table(name = "auth_group_role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UserRole.findAll", query = "SELECT u FROM UserRole u")
-    , @NamedQuery(name = "UserRole.findById", query = "SELECT u FROM UserRole u WHERE u.id = :id")
-    , @NamedQuery(name = "UserRole.findByInsertDateTime", query = "SELECT u FROM UserRole u WHERE u.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "UserRole.findByLastUpdateDateTime", query = "SELECT u FROM UserRole u WHERE u.lastUpdateDateTime = :lastUpdateDateTime")})
-public class UserRole implements Serializable {
+    @NamedQuery(name = "AuthGroupRole.findAll", query = "SELECT a FROM AuthGroupRole a")
+    , @NamedQuery(name = "AuthGroupRole.findById", query = "SELECT a FROM AuthGroupRole a WHERE a.id = :id")
+    , @NamedQuery(name = "AuthGroupRole.findByRoleId", query = "SELECT a FROM AuthGroupRole a WHERE a.roleId = :roleId")
+    , @NamedQuery(name = "AuthGroupRole.findByUserId", query = "SELECT a FROM AuthGroupRole a WHERE a.userId = :userId")
+    , @NamedQuery(name = "AuthGroupRole.findByInsertDateTime", query = "SELECT a FROM AuthGroupRole a WHERE a.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "AuthGroupRole.findByLastUpdateDateTime", query = "SELECT a FROM AuthGroupRole a WHERE a.lastUpdateDateTime = :lastUpdateDateTime")})
+public class AuthGroupRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,32 +45,33 @@ public class UserRole implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "role_id")
+    private int roleId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "user_id")
+    private int userId;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Role roleId;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User userId;
 
-    public UserRole() {
+    public AuthGroupRole() {
     }
 
-    public UserRole(Integer id) {
+    public AuthGroupRole(Integer id) {
         this.id = id;
     }
 
-    public UserRole(Integer id, Date insertDateTime, Date lastUpdateDateTime) {
+    public AuthGroupRole(Integer id, int roleId, int userId, Date insertDateTime) {
         this.id = id;
+        this.roleId = roleId;
+        this.userId = userId;
         this.insertDateTime = insertDateTime;
-        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public Integer getId() {
@@ -80,6 +80,22 @@ public class UserRole implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getInsertDateTime() {
@@ -98,22 +114,6 @@ public class UserRole implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public Role getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -124,10 +124,10 @@ public class UserRole implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserRole)) {
+        if (!(object instanceof AuthGroupRole)) {
             return false;
         }
-        UserRole other = (UserRole) object;
+        AuthGroupRole other = (AuthGroupRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -136,7 +136,7 @@ public class UserRole implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.UserRole[ id=" + id + " ]";
+        return "com.bsptech.itcommunity.entity.AuthGroupRole[ id=" + id + " ]";
     }
     
 }

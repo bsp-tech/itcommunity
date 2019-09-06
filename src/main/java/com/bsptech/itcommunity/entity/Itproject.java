@@ -5,20 +5,48 @@
  */
 package com.bsptech.itcommunity.entity;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "itproject")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Itproject.findAll", query = "SELECT i FROM Itproject i")
+    , @NamedQuery(name = "Itproject.findById", query = "SELECT i FROM Itproject i WHERE i.id = :id")
+    , @NamedQuery(name = "Itproject.findByGithubPath", query = "SELECT i FROM Itproject i WHERE i.githubPath = :githubPath")
+    , @NamedQuery(name = "Itproject.findByInDevelopment", query = "SELECT i FROM Itproject i WHERE i.inDevelopment = :inDevelopment")
+    , @NamedQuery(name = "Itproject.findByName", query = "SELECT i FROM Itproject i WHERE i.name = :name")
+    , @NamedQuery(name = "Itproject.findByNeedEmployee", query = "SELECT i FROM Itproject i WHERE i.needEmployee = :needEmployee")
+    , @NamedQuery(name = "Itproject.findByPublishDate", query = "SELECT i FROM Itproject i WHERE i.publishDate = :publishDate")
+    , @NamedQuery(name = "Itproject.findByWebsitePath", query = "SELECT i FROM Itproject i WHERE i.websitePath = :websitePath")
+    , @NamedQuery(name = "Itproject.findByThumbnail", query = "SELECT i FROM Itproject i WHERE i.thumbnail = :thumbnail")
+    , @NamedQuery(name = "Itproject.findByInsertDateTime", query = "SELECT i FROM Itproject i WHERE i.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "Itproject.findByLastUpdateDateTime", query = "SELECT i FROM Itproject i WHERE i.lastUpdateDateTime = :lastUpdateDateTime")})
 public class Itproject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,31 +57,33 @@ public class Itproject implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "name")
-    private String name;
-    @Basic(optional = false)
-    @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
     @Column(name = "about")
     private String about;
-    @Column(name = "thumbnail")
-    private String thumbnail;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "in_development")
-    private Boolean inDevelopment;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "need_employee")
-    private Boolean needEmployee;
-    @Size(max = 255)
-    @Column(name = "website_path")
-    private String websitePath;
     @Size(max = 255)
     @Column(name = "github_path")
     private String githubPath;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "in_development")
+    private boolean inDevelopment;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "name")
+    private String name;
+    @Column(name = "need_employee")
+    private Boolean needEmployee;
+    @Column(name = "publish_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date publishDate;
+    @Size(max = 255)
+    @Column(name = "website_path")
+    private String websitePath;
+    @Size(max = 200)
+    @Column(name = "thumbnail")
+    private String thumbnail;
     @Basic(optional = false)
     @NotNull
     @Column(name = "insert_date_time")
@@ -62,16 +92,10 @@ public class Itproject implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @Column(name = "publish_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date publishDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId", fetch = FetchType.LAZY)
-    private Collection<ProjectSkill> projectSkillCollection;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User insertUserId;
+    private List<ProjectSkill> projectSkillList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProject> employeeProjectCollection;
+    private List<EmployeeProject> employeeProjectList;
 
     public Itproject() {
     }
@@ -80,15 +104,12 @@ public class Itproject implements Serializable {
         this.id = id;
     }
 
-    public Itproject(Integer id, String name, String about, Boolean inDevelopment, Boolean needEmployee, Date insertDateTime, Date lastUpdateDateTime, Date publishDate) {
+    public Itproject(Integer id, String about, boolean inDevelopment, String name, Date insertDateTime) {
         this.id = id;
-        this.name = name;
         this.about = about;
         this.inDevelopment = inDevelopment;
-        this.needEmployee = needEmployee;
+        this.name = name;
         this.insertDateTime = insertDateTime;
-        this.lastUpdateDateTime = lastUpdateDateTime;
-        this.publishDate = publishDate;
     }
 
     public Integer getId() {
@@ -99,14 +120,6 @@ public class Itproject implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getAbout() {
         return about;
     }
@@ -115,12 +128,28 @@ public class Itproject implements Serializable {
         this.about = about;
     }
 
-    public Boolean getInDevelopment() {
+    public String getGithubPath() {
+        return githubPath;
+    }
+
+    public void setGithubPath(String githubPath) {
+        this.githubPath = githubPath;
+    }
+
+    public boolean getInDevelopment() {
         return inDevelopment;
     }
 
-    public void setInDevelopment(Boolean inDevelopment) {
+    public void setInDevelopment(boolean inDevelopment) {
         this.inDevelopment = inDevelopment;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Boolean getNeedEmployee() {
@@ -131,6 +160,14 @@ public class Itproject implements Serializable {
         this.needEmployee = needEmployee;
     }
 
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
+
     public String getWebsitePath() {
         return websitePath;
     }
@@ -139,12 +176,12 @@ public class Itproject implements Serializable {
         this.websitePath = websitePath;
     }
 
-    public String getGithubPath() {
-        return githubPath;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setGithubPath(String githubPath) {
-        this.githubPath = githubPath;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public Date getInsertDateTime() {
@@ -163,46 +200,22 @@ public class Itproject implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
+    @XmlTransient
+    public List<ProjectSkill> getProjectSkillList() {
+        return projectSkillList;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setProjectSkillList(List<ProjectSkill> projectSkillList) {
+        this.projectSkillList = projectSkillList;
     }
 
     @XmlTransient
-    public Collection<ProjectSkill> getProjectSkillCollection() {
-        return projectSkillCollection;
+    public List<EmployeeProject> getEmployeeProjectList() {
+        return employeeProjectList;
     }
 
-    public void setProjectSkillCollection(Collection<ProjectSkill> projectSkillCollection) {
-        this.projectSkillCollection = projectSkillCollection;
-    }
-
-    public User getInsertUserId() {
-        return insertUserId;
-    }
-
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
-    }
-
-    @XmlTransient
-    public Collection<EmployeeProject> getEmployeeProjectCollection() {
-        return employeeProjectCollection;
-    }
-
-    public void setEmployeeProjectCollection(Collection<EmployeeProject> employeeProjectCollection) {
-        this.employeeProjectCollection = employeeProjectCollection;
+    public void setEmployeeProjectList(List<EmployeeProject> employeeProjectList) {
+        this.employeeProjectList = employeeProjectList;
     }
 
     @Override

@@ -6,8 +6,8 @@
 package com.bsptech.itcommunity.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "skill")
@@ -39,9 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Skill.findAll", query = "SELECT s FROM Skill s")
     , @NamedQuery(name = "Skill.findById", query = "SELECT s FROM Skill s WHERE s.id = :id")
+    , @NamedQuery(name = "Skill.findByName", query = "SELECT s FROM Skill s WHERE s.name = :name")
     , @NamedQuery(name = "Skill.findByInsertDateTime", query = "SELECT s FROM Skill s WHERE s.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Skill.findByLastUpdateTime", query = "SELECT s FROM Skill s WHERE s.lastUpdateTime = :lastUpdateTime")
-    , @NamedQuery(name = "Skill.findByName", query = "SELECT s FROM Skill s WHERE s.name = :name")})
+    , @NamedQuery(name = "Skill.findByLastUpdateTime", query = "SELECT s FROM Skill s WHERE s.lastUpdateTime = :lastUpdateTime")})
 public class Skill implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,24 +48,21 @@ public class Skill implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "name")
+    private String name;
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
     @Column(name = "last_update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateTime;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "name")
-    private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillId", fetch = FetchType.LAZY)
-    private Collection<ProjectSkill> projectSkillCollection;
+    private List<ProjectSkill> projectSkillList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProfileSkill> employeeProfileSkillCollection;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User insertUserId;
+    private List<EmployeeProfileSkill> employeeProfileSkillList;
 
     public Skill() {
     }
@@ -89,6 +84,14 @@ public class Skill implements Serializable {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Date getInsertDateTime() {
         return insertDateTime;
     }
@@ -105,38 +108,22 @@ public class Skill implements Serializable {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public String getName() {
-        return name;
+    @XmlTransient
+    public List<ProjectSkill> getProjectSkillList() {
+        return projectSkillList;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProjectSkillList(List<ProjectSkill> projectSkillList) {
+        this.projectSkillList = projectSkillList;
     }
 
     @XmlTransient
-    public Collection<ProjectSkill> getProjectSkillCollection() {
-        return projectSkillCollection;
+    public List<EmployeeProfileSkill> getEmployeeProfileSkillList() {
+        return employeeProfileSkillList;
     }
 
-    public void setProjectSkillCollection(Collection<ProjectSkill> projectSkillCollection) {
-        this.projectSkillCollection = projectSkillCollection;
-    }
-
-    @XmlTransient
-    public Collection<EmployeeProfileSkill> getEmployeeProfileSkillCollection() {
-        return employeeProfileSkillCollection;
-    }
-
-    public void setEmployeeProfileSkillCollection(Collection<EmployeeProfileSkill> employeeProfileSkillCollection) {
-        this.employeeProfileSkillCollection = employeeProfileSkillCollection;
-    }
-
-    public User getInsertUserId() {
-        return insertUserId;
-    }
-
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
+    public void setEmployeeProfileSkillList(List<EmployeeProfileSkill> employeeProfileSkillList) {
+        this.employeeProfileSkillList = employeeProfileSkillList;
     }
 
     @Override

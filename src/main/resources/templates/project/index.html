@@ -74,8 +74,8 @@
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt="">
-                                        <div th:each="skill : ${p.getProjectSkillCollection()}">
-                                            <div th:text="${skill.getSkillId().name}"></div>
+                                        <div th:each="skill : ${p.projectSkillList}">
+                                            <div th:text="${skill.skillId.name}"></div>
                                         </div></a>
                                     <!--<a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> css</a>-->
                                     <!--<a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> java</a>-->

@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "employee_profile_skill")
@@ -55,15 +55,12 @@ public class EmployeeProfileSkill implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User insertUserId;
-    @JoinColumn(name = "skill_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Skill skillId;
     @JoinColumn(name = "employee_profile_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private EmployeeProfile employeeProfileId;
+    @JoinColumn(name = "skill_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Skill skillId;
 
     public EmployeeProfileSkill() {
     }
@@ -109,12 +106,12 @@ public class EmployeeProfileSkill implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public User getInsertUserId() {
-        return insertUserId;
+    public EmployeeProfile getEmployeeProfileId() {
+        return employeeProfileId;
     }
 
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
+    public void setEmployeeProfileId(EmployeeProfile employeeProfileId) {
+        this.employeeProfileId = employeeProfileId;
     }
 
     public Skill getSkillId() {
@@ -123,14 +120,6 @@ public class EmployeeProfileSkill implements Serializable {
 
     public void setSkillId(Skill skillId) {
         this.skillId = skillId;
-    }
-
-    public EmployeeProfile getEmployeeProfileId() {
-        return employeeProfileId;
-    }
-
-    public void setEmployeeProfileId(EmployeeProfile employeeProfileId) {
-        this.employeeProfileId = employeeProfileId;
     }
 
     @Override

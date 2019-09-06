@@ -6,7 +6,6 @@
 package com.bsptech.itcommunity.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -20,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,15 +29,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author sarkhanrasullu
  */
 @Entity
-@Table(name = "gender")
+@Table(name = "auth_group")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Gender.findAll", query = "SELECT g FROM Gender g")
-    , @NamedQuery(name = "Gender.findById", query = "SELECT g FROM Gender g WHERE g.id = :id")
-    , @NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name")
-    , @NamedQuery(name = "Gender.findByInsertDateTime", query = "SELECT g FROM Gender g WHERE g.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Gender.findByLastUpdateDateTime", query = "SELECT g FROM Gender g WHERE g.lastUpdateDateTime = :lastUpdateDateTime")})
-public class Gender implements Serializable {
+    @NamedQuery(name = "AuthGroup.findAll", query = "SELECT a FROM AuthGroup a")
+    , @NamedQuery(name = "AuthGroup.findById", query = "SELECT a FROM AuthGroup a WHERE a.id = :id")
+    , @NamedQuery(name = "AuthGroup.findByName", query = "SELECT a FROM AuthGroup a WHERE a.name = :name")})
+public class AuthGroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,28 +48,19 @@ public class Gender implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "insert_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date insertDateTime;
-    @Column(name = "last_update_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdateDateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genderId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupId", fetch = FetchType.LAZY)
     private List<User> userList;
 
-    public Gender() {
+    public AuthGroup() {
     }
 
-    public Gender(Integer id) {
+    public AuthGroup(Integer id) {
         this.id = id;
     }
 
-    public Gender(Integer id, String name, Date insertDateTime) {
+    public AuthGroup(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.insertDateTime = insertDateTime;
     }
 
     public Integer getId() {
@@ -91,22 +77,6 @@ public class Gender implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getInsertDateTime() {
-        return insertDateTime;
-    }
-
-    public void setInsertDateTime(Date insertDateTime) {
-        this.insertDateTime = insertDateTime;
-    }
-
-    public Date getLastUpdateDateTime() {
-        return lastUpdateDateTime;
-    }
-
-    public void setLastUpdateDateTime(Date lastUpdateDateTime) {
-        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     @XmlTransient
@@ -128,10 +98,10 @@ public class Gender implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Gender)) {
+        if (!(object instanceof AuthGroup)) {
             return false;
         }
-        Gender other = (Gender) object;
+        AuthGroup other = (AuthGroup) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -140,7 +110,7 @@ public class Gender implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.Gender[ id=" + id + " ]";
+        return "com.bsptech.itcommunity.entity.AuthGroup[ id=" + id + " ]";
     }
     
 }

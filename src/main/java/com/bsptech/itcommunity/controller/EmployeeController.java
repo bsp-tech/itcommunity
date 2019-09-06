@@ -1,22 +1,19 @@
 package com.bsptech.itcommunity.controller;
 
+import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
+import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.User;
+import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import org.apache.commons.collections4.IteratorUtils;
-
-import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
-import com.bsptech.itcommunity.entity.EmployeeProfile;
-import com.bsptech.itcommunity.entity.EmployeeProfileLanguage;
-import com.bsptech.itcommunity.entity.EmployeeProfileSkill;
-import com.bsptech.itcommunity.entity.User;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping
@@ -101,7 +98,7 @@ public class EmployeeController {
                 if (user.getName().toLowerCase().equals(name.toLowerCase())
                         || user.getSurname().toLowerCase().equals(surname.toLowerCase())
                         || user.getEmail().toLowerCase().equals(mail.toLowerCase())
-                        || user.getNumber().toLowerCase().equals(number.toLowerCase())) {
+                        ) {
 
                     listFilter.add(employeeFilter);
 

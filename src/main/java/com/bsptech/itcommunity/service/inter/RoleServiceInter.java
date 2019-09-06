@@ -1,14 +1,14 @@
 package com.bsptech.itcommunity.service.inter;
 
-import com.bsptech.itcommunity.entity.Role;
+import com.bsptech.itcommunity.entity.AuthRole;
 
 import java.util.List;
 
 public interface RoleServiceInter {
-    public Role findById(Integer id);
+    public AuthRole findById(Integer id);
 
-    public List<Role> findAll();
+    public List<AuthRole> findAll();
 
-    public Role save(Role role);
+    public AuthRole save(AuthRole role);
     
 }
