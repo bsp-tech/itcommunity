@@ -5,29 +5,13 @@
  */
 package com.bsptech.itcommunity.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -102,8 +86,6 @@ public class User implements Serializable {
     private Collection<EmployeeProfileSkill> employeeProfileSkillCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "insertUserId", fetch = FetchType.LAZY)
     private Collection<Language> languageCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
-    private Collection<UserGender> userGenderCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
     private Collection<UserRole> userRoleCollection;
     @OneToMany(mappedBy = "insertUserId", fetch = FetchType.LAZY)
@@ -270,15 +252,6 @@ public class User implements Serializable {
 
     public void setLanguageCollection(Collection<Language> languageCollection) {
         this.languageCollection = languageCollection;
-    }
-
-    @XmlTransient
-    public Collection<UserGender> getUserGenderCollection() {
-        return userGenderCollection;
-    }
-
-    public void setUserGenderCollection(Collection<UserGender> userGenderCollection) {
-        this.userGenderCollection = userGenderCollection;
     }
 
     @XmlTransient
