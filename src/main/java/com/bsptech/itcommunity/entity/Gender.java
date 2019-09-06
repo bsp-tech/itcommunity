@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -66,8 +67,8 @@ public class Gender implements Serializable {
     @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private User insertUserId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genderId", fetch = FetchType.LAZY)
-    private Collection<UserGender> userGenderCollection;
+    @OneToOne(mappedBy = "gender")
+    private User user;
 
     public Gender() {
     }
@@ -122,16 +123,15 @@ public class Gender implements Serializable {
         this.insertUserId = insertUserId;
     }
 
-    @XmlTransient
-    public Collection<UserGender> getUserGenderCollection() {
-        return userGenderCollection;
-    }
+    public User getUser() {
+		return user;
+	}
 
-    public void setUserGenderCollection(Collection<UserGender> userGenderCollection) {
-        this.userGenderCollection = userGenderCollection;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
