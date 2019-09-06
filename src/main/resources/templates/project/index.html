@@ -36,7 +36,6 @@
     </div>
 </nav>
 <div class="container mt-3" th:each="p : ${projectList}" >
-    <div>
         <div  class="card">
             <div class="card-header d-flex flex-row justify-content-between align-items-center">
                 <h4><div th:text="${p.name}"></div></h4>
@@ -48,11 +47,16 @@
                     <img class="img-fluid" th:src="${p.thumbnail!=null?p.thumbnail:'/img/project/icons8-user-groups-96.png'}"/>
                 </div>
                 <div class="col-lg-9 ">
-                    <div style="height: 80px;" class="col-12 mt-2 mb-3">
+                    <div class="row">
+                    <div class="col-12">
                         <h4 class="font-weight-bold">Project about:</h4>
-                        <h6 class="font-weight-normal"><div th:text="${p.about}"></div></h6>
+                        <h6 class="font-weight-normal">
+                            <div th:text="${p.about}"></div>
+                        </h6>
                     </div>
-                    <div class="col-12  ">
+                    </div>
+                    <div class="row">
+                    <div class="col-12">
                         <div class="d-flex  flex-wrap">
                             <div class="mr-2 mt-2 position-relative">
                                 <a target="_blank" th:href="${p.githubPath}" class="stretched-link btn btn-dark"><i class="fab fa-github"></i> github</a>
@@ -107,11 +111,10 @@
 
 
                     </div>
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
