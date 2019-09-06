@@ -63,7 +63,7 @@
                                     link</a>
                             </div>
                             <div class="mr-2 mt-2 position-relative">
-                                <a target="_blank" href="/projects/1" class="stretched-link btn btn-dark"><i class="fas fa-male"></i> Developers</a>
+                                <a target="_self" th:href="${'/projects/'+p.id}" class="stretched-link btn btn-dark"><i class="fas fa-male"></i> Developers</a>
                             </div>
                             <div class="dropdown mr-2 mt-2">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -77,12 +77,9 @@
                                         <div th:each="skill : ${p.projectSkillList}">
                                             <div th:text="${skill.skillId.name}"></div>
                                         </div></a>
-                                    <!--<a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> css</a>-->
-                                    <!--<a class="dropdown-item d-flex align-items-center" href="#!"><img width="20px" class="mr-2 rounded-circle" src="assets/img/icons8-password-128.png" alt=""> java</a>-->
-
                                 </div>
                             </div>
-                            <div th:if="${p.needEmployee==1}">
+                            <div th:if="${p.needEmployee==true}">
                             <button type="button" class=" btn btn-success ml-lg-auto mt-2 " data-toggle="modal" data-target="#exampleModal">
                                 <i class="fas fa-plus-circle"></i> Join Team
                             </button>

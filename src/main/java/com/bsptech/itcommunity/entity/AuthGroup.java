@@ -49,6 +49,8 @@ public class AuthGroup implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupId", fetch = FetchType.LAZY)
+    private List<AuthGroupRole> authGroupRoleList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupId", fetch = FetchType.LAZY)
     private List<User> userList;
 
     public AuthGroup() {
@@ -77,6 +79,15 @@ public class AuthGroup implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @XmlTransient
+    public List<AuthGroupRole> getAuthGroupRoleList() {
+        return authGroupRoleList;
+    }
+
+    public void setAuthGroupRoleList(List<AuthGroupRole> authGroupRoleList) {
+        this.authGroupRoleList = authGroupRoleList;
     }
 
     @XmlTransient
