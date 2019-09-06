@@ -26,8 +26,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.GET, path = "/{projectId}")
     public ModelAndView detail(@PathVariable("projectId") Integer projectId, ModelAndView modelAndView) {
         Itproject itproject = itProjectServiceInter.findById(projectId);
-//        modelAndView.addObject("project", itproject);
-//        modelAndView.addObject("developers", employeeItProjectServiceInter.findAllByItProjectId(itproject));
+       modelAndView.addObject("itproject", itproject);
         modelAndView.setViewName("project/details");
         return modelAndView;
     }
