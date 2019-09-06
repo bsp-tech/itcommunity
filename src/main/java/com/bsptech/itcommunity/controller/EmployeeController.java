@@ -12,7 +12,7 @@ public class EmployeeController {
 
     @GetMapping
     public ModelAndView index(ModelAndView modelAndView) {
-        modelAndView.setViewName("employee/index");
+        modelAndView.setViewName("index2");
 
         return modelAndView;
     }
