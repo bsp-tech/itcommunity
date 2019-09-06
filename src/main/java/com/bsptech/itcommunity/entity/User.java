@@ -72,6 +72,13 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
+    @Size(min = 1, max = 255)
+    @Column(name = "number")
+    private String number; // yeni yaradilan
+    @Basic(optional = false)
+    @Column(name = "avatar_path")
+    private String avatarPath; // yeni yaradilan
+    @Basic(optional = false)
     @NotNull
     @Column(name = "enabled")
     private boolean enabled;
@@ -112,7 +119,7 @@ public class User implements Serializable {
     public User(Integer id) {
         this.id = id;
     }
-
+    
     public User(Integer id, String name, String surname, String username, String password, int age, String email, boolean enabled, Date insertDateTime) {
         this.id = id;
         this.name = name;
@@ -125,6 +132,22 @@ public class User implements Serializable {
         this.insertDateTime = insertDateTime;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+    
     public Integer getId() {
         return id;
     }

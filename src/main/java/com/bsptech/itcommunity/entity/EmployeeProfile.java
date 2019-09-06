@@ -6,8 +6,10 @@
 package com.bsptech.itcommunity.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -71,6 +73,10 @@ public class EmployeeProfile implements Serializable {
     private String githubPath;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "about")
+    private String about; // yeni yaradilan
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "is_looking_for_work")
     private boolean isLookingForWork;
     @Basic(optional = false)
@@ -117,6 +123,14 @@ public class EmployeeProfile implements Serializable {
         this.insertDateTime = insertDateTime;
         this.approvedDateTime = approvedDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public Integer getId() {
