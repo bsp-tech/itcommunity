@@ -27,6 +27,9 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Size(max = 255)
+    @Column(name = "thumbnail")
+    private String thumbnail;
     @Basic(optional = false)
     @NotNull
     @Column(name = "age")
@@ -80,8 +83,8 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, Integer age, String email, boolean enabled, String name, String password, String surname, Date insertDateTime) {
-        this.id = id;
+    public User(@Size(max = 255) String thumbnail, @NotNull Integer age, @NotNull @Size(min = 1, max = 255) String email, @NotNull boolean enabled, @NotNull @Size(min = 1, max = 255) String name, @NotNull @Size(min = 1, max = 255) String password, @NotNull @Size(min = 1, max = 255) String surname, @NotNull Date insertDateTime, Date lastUpdateDateTime, List<EmployeeProfile> employeeProfileList, Gender genderId, AuthGroup groupId) {
+        this.thumbnail = thumbnail;
         this.age = age;
         this.email = email;
         this.enabled = enabled;
@@ -89,6 +92,10 @@ public class User implements Serializable {
         this.password = password;
         this.surname = surname;
         this.insertDateTime = insertDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.employeeProfileList = employeeProfileList;
+        this.genderId = genderId;
+        this.groupId = groupId;
     }
 
     public Integer getId() {
@@ -157,6 +164,14 @@ public class User implements Serializable {
 
     public Date getLastUpdateDateTime() {
         return lastUpdateDateTime;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public void setLastUpdateDateTime(Date lastUpdateDateTime) {
