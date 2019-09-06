@@ -1,262 +1,278 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.7.21 - MySQL Community Server (GPL)
--- Server OS:                    Win64
--- HeidiSQL Version:             9.4.0.5125
--- --------------------------------------------------------
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+ Source Server         : localhostMac
+ Source Server Type    : MySQL
+ Source Server Version : 50721
+ Source Host           : 192.168.1.102:3306
+ Source Schema         : itcommunity
 
--- Dumping structure for table itcommunity.employee_profile
+ Target Server Type    : MySQL
+ Target Server Version : 50721
+ File Encoding         : 65001
+
+ Date: 06/09/2019 18:14:12
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for auth_group
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_group`;
+CREATE TABLE `auth_group`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of auth_group
+-- ----------------------------
+INSERT INTO `auth_group` VALUES (1, 'ADMIN');
+INSERT INTO `auth_group` VALUES (2, 'CLIENT');
+
+-- ----------------------------
+-- Table structure for auth_group_role
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_group_role`;
+CREATE TABLE `auth_group_role`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKa68196081fvovjhkek5m97n3y`(`role_id`) USING BTREE,
+  INDEX `FK859n2jvi8ivhui0rl0esws6o`(`user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of auth_group_role
+-- ----------------------------
+INSERT INTO `auth_group_role` VALUES (2, 2, 6, '2019-09-05 17:59:36', NULL);
+INSERT INTO `auth_group_role` VALUES (3, 2, 7, '2019-09-06 12:53:48', NULL);
+
+-- ----------------------------
+-- Table structure for auth_role
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_role`;
+CREATE TABLE `auth_role`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of auth_role
+-- ----------------------------
+INSERT INTO `auth_role` VALUES (1, 'ADMIN', '2019-05-09 00:00:00', '2019-05-09 00:00:00');
+INSERT INTO `auth_role` VALUES (2, 'CLIENT', '2019-05-09 00:00:00', '2019-05-09 00:00:00');
+
+-- ----------------------------
+-- Table structure for employee_profile
+-- ----------------------------
 DROP TABLE IF EXISTS `employee_profile`;
-CREATE TABLE IF NOT EXISTS `employee_profile` (
+CREATE TABLE `employee_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `approved` bit(1) NOT NULL,
-  `approved_date_time` datetime NOT NULL,
-  `cv_path` varchar(255) DEFAULT NULL,
-  `github_path` varchar(255) DEFAULT NULL,
-  `insert_date_time` datetime NOT NULL,
+  `approved_date_time` datetime(0) NOT NULL,
+  `cv_path` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `github_path` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `is_looking_for_work` bit(1) NOT NULL,
   `is_working` bit(1) NOT NULL,
-  `last_update_date_time` datetime NOT NULL,
-  `linkedin_path` varchar(255) DEFAULT NULL,
+  `linkedin_path` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK5s5kad0xi8m49gscqaxjq2hcw` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FK5s5kad0xi8m49gscqaxjq2hcw`(`user_id`) USING BTREE,
+  CONSTRAINT `employee_profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.employee_profile: 0 rows
-/*!40000 ALTER TABLE `employee_profile` DISABLE KEYS */;
-/*!40000 ALTER TABLE `employee_profile` ENABLE KEYS */;
-
--- Dumping structure for table itcommunity.employee_profile_language
+-- ----------------------------
+-- Table structure for employee_profile_language
+-- ----------------------------
 DROP TABLE IF EXISTS `employee_profile_language`;
-CREATE TABLE IF NOT EXISTS `employee_profile_language` (
+CREATE TABLE `employee_profile_language`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `level` int(11) NOT NULL,
   `employee_profile_id` int(11) NOT NULL,
-  `insert_user_id` int(11) DEFAULT NULL,
   `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKs4muhk6x4j4tkxqb1odmnfj7m` (`employee_profile_id`),
-  KEY `FK7j30pdjum3yw8s98g6suimrsv` (`insert_user_id`),
-  KEY `FK9wagkcbieklokxxyeeo3e69tq` (`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `insert_date_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKs4muhk6x4j4tkxqb1odmnfj7m`(`employee_profile_id`) USING BTREE,
+  INDEX `FK9wagkcbieklokxxyeeo3e69tq`(`language_id`) USING BTREE,
+  CONSTRAINT `employee_profile_language_ibfk_1` FOREIGN KEY (`employee_profile_id`) REFERENCES `employee_profile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `employee_profile_language_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.employee_profile_language: 0 rows
-/*!40000 ALTER TABLE `employee_profile_language` DISABLE KEYS */;
-/*!40000 ALTER TABLE `employee_profile_language` ENABLE KEYS */;
-
--- Dumping structure for table itcommunity.employee_profile_skill
+-- ----------------------------
+-- Table structure for employee_profile_skill
+-- ----------------------------
 DROP TABLE IF EXISTS `employee_profile_skill`;
-CREATE TABLE IF NOT EXISTS `employee_profile_skill` (
+CREATE TABLE `employee_profile_skill`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insert_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime DEFAULT NULL,
-  `level` int(11) DEFAULT NULL,
+  `level` int(11) NULL DEFAULT NULL,
   `employee_profile_id` int(11) NOT NULL,
-  `insert_user_id` int(11) DEFAULT NULL,
   `skill_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKi0g6h7113kqhy19m5xqu34jhf` (`employee_profile_id`),
-  KEY `FKhlppa0870a9httphd222l38l7` (`insert_user_id`),
-  KEY `FK6vt32pmm7jwvo7yndis5k9395` (`skill_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKi0g6h7113kqhy19m5xqu34jhf`(`employee_profile_id`) USING BTREE,
+  INDEX `FK6vt32pmm7jwvo7yndis5k9395`(`skill_id`) USING BTREE,
+  CONSTRAINT `employee_profile_skill_ibfk_1` FOREIGN KEY (`employee_profile_id`) REFERENCES `employee_profile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `employee_profile_skill_ibfk_2` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.employee_profile_skill: 0 rows
-/*!40000 ALTER TABLE `employee_profile_skill` DISABLE KEYS */;
-/*!40000 ALTER TABLE `employee_profile_skill` ENABLE KEYS */;
-
--- Dumping structure for table itcommunity.employee_project
+-- ----------------------------
+-- Table structure for employee_project
+-- ----------------------------
 DROP TABLE IF EXISTS `employee_project`;
-CREATE TABLE IF NOT EXISTS `employee_project` (
+CREATE TABLE `employee_project`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `approved` smallint(6) NOT NULL,
-  `insert_date_time` datetime NOT NULL,
-  `join_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime NOT NULL,
-  `position` varchar(255) DEFAULT NULL,
+  `position` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `employee_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKpdp6ekpc8854dn4mebe7d1sdj` (`employee_id`),
-  KEY `FKhi5ffkj0w09uieki7lhiop2ub` (`project_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `join_date_time` datetime(0) NOT NULL,
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKpdp6ekpc8854dn4mebe7d1sdj`(`employee_id`) USING BTREE,
+  INDEX `FKhi5ffkj0w09uieki7lhiop2ub`(`project_id`) USING BTREE,
+  CONSTRAINT `employee_project_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee_profile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `employee_project_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `itproject` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.employee_project: 0 rows
-/*!40000 ALTER TABLE `employee_project` DISABLE KEYS */;
-/*!40000 ALTER TABLE `employee_project` ENABLE KEYS */;
-
--- Dumping structure for table itcommunity.gender
+-- ----------------------------
+-- Table structure for gender
+-- ----------------------------
 DROP TABLE IF EXISTS `gender`;
-CREATE TABLE IF NOT EXISTS `gender` (
+CREATE TABLE `gender`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insert_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `insert_user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK215eyw15xo7olf04ivx8wsnfj` (`insert_user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.gender: 2 rows
-/*!40000 ALTER TABLE `gender` DISABLE KEYS */;
-INSERT INTO `gender` (`id`, `insert_date_time`, `last_update_date_time`, `name`, `insert_user_id`) VALUES
-	(1, '2019-09-05 14:57:41', NULL, 'male', 1),
-	(2, '2019-09-05 14:57:51', NULL, 'female', 1);
-/*!40000 ALTER TABLE `gender` ENABLE KEYS */;
+-- ----------------------------
+-- Records of gender
+-- ----------------------------
+INSERT INTO `gender` VALUES (1, 'male', '2019-09-05 14:57:41', NULL);
+INSERT INTO `gender` VALUES (2, 'female', '2019-09-05 14:57:51', NULL);
 
--- Dumping structure for table itcommunity.itproject
+-- ----------------------------
+-- Table structure for itproject
+-- ----------------------------
 DROP TABLE IF EXISTS `itproject`;
-CREATE TABLE IF NOT EXISTS `itproject` (
+CREATE TABLE `itproject`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `about` longtext CHARACTER SET utf8 NOT NULL,
-  `github_path` varchar(255) DEFAULT NULL,
+  `about` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `github_path` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `in_development` tinyint(1) NOT NULL,
-  `insert_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `need_employee` tinyint(1) DEFAULT NULL,
-  `publish_date` datetime DEFAULT NULL,
-  `website_path` varchar(255) DEFAULT NULL,
-  `insert_user_id` int(11) NOT NULL,
-  `thumbnail` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKnm613r98cxys625b04c4vmrgk` (`insert_user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `need_employee` tinyint(1) NULL DEFAULT NULL,
+  `publish_date` datetime(0) NULL DEFAULT NULL,
+  `website_path` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `thumbnail` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.itproject: 1 rows
-/*!40000 ALTER TABLE `itproject` DISABLE KEYS */;
-INSERT INTO `itproject` (`id`, `about`, `github_path`, `in_development`, `insert_date_time`, `last_update_date_time`, `name`, `need_employee`, `publish_date`, `website_path`, `insert_user_id`, `thumbnail`) VALUES
-	(1, 'Bu proyekt IT sahəsində olan, hal-hazırda çalışan və ya çalışmayan hər kəsi eyni platforma altında cəmləyir. IT sahəsində olan şəxs özü haqqında qısa məlumat təsvir edir, hansı bacarıqları hansı səviyyədə bilir onu qeyd edir, cv-sini, linkedin profilini, hal-hazırda çalışıb çalışmadığını qeyd edir.\nBu proyekt ona imkan yaradacaq ki, hansısa şirkət və ya entrepreneur IT sahəsindən hər hansısa məqsədlə(işə götürmə, seminar vermək üçün, freelance layihələr və s.) şəxs axtardıqda rahatlıqla bu portaldan istifadə edə biləcək.', 'https://github.com/bsp-tech/itcommunity', 1, '2019-09-05 15:00:00', NULL, 'test', NULL, NULL, 'https://github.com/bsp-tech/itcommunity', 1, 'https://web-material3.yokogawa.com/f50b5c6f3b3ab4006f471295cdff5684f5afafe9.png');
-/*!40000 ALTER TABLE `itproject` ENABLE KEYS */;
+-- ----------------------------
+-- Records of itproject
+-- ----------------------------
+INSERT INTO `itproject` VALUES (1, 'Bu proyekt IT sahəsində olan, hal-hazırda çalışan və ya çalışmayan hər kəsi eyni platforma altında cəmləyir. IT sahəsində olan şəxs özü haqqında qısa məlumat təsvir edir, hansı bacarıqları hansı səviyyədə bilir onu qeyd edir, cv-sini, linkedin profilini, hal-hazırda çalışıb çalışmadığını qeyd edir.\nBu proyekt ona imkan yaradacaq ki, hansısa şirkət və ya entrepreneur IT sahəsindən hər hansısa məqsədlə(işə götürmə, seminar vermək üçün, freelance layihələr və s.) şəxs axtardıqda rahatlıqla bu portaldan istifadə edə biləcək.', 'https://github.com/bsp-tech/itcommunity', 1, 'test', NULL, NULL, 'https://github.com/bsp-tech/itcommunity', 'https://web-material3.yokogawa.com/f50b5c6f3b3ab4006f471295cdff5684f5afafe9.png', '2019-09-05 15:00:00', NULL);
 
--- Dumping structure for table itcommunity.language
+-- ----------------------------
+-- Table structure for language
+-- ----------------------------
 DROP TABLE IF EXISTS `language`;
-CREATE TABLE IF NOT EXISTS `language` (
+CREATE TABLE `language`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insert_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `insert_user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKdwp1pgedsyc6fy6jwl968ssvo` (`insert_user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.language: 0 rows
-/*!40000 ALTER TABLE `language` DISABLE KEYS */;
-/*!40000 ALTER TABLE `language` ENABLE KEYS */;
-
--- Dumping structure for table itcommunity.project_skill
+-- ----------------------------
+-- Table structure for project_skill
+-- ----------------------------
 DROP TABLE IF EXISTS `project_skill`;
-CREATE TABLE IF NOT EXISTS `project_skill` (
+CREATE TABLE `project_skill`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insert_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime DEFAULT NULL,
-  `insert_user_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `skill_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK6d8u9eejfdghrefo87s61bdk1` (`insert_user_id`),
-  KEY `FKebssgfcqvrsaxrs00sj0anbi9` (`project_id`),
-  KEY `FKrhm021cfqcutusb89uxtgyred` (`skill_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKebssgfcqvrsaxrs00sj0anbi9`(`project_id`) USING BTREE,
+  INDEX `FKrhm021cfqcutusb89uxtgyred`(`skill_id`) USING BTREE,
+  CONSTRAINT `project_skill_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `itproject` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `project_skill_ibfk_2` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.project_skill: 2 rows
-/*!40000 ALTER TABLE `project_skill` DISABLE KEYS */;
-INSERT INTO `project_skill` (`id`, `insert_date_time`, `last_update_date_time`, `insert_user_id`, `project_id`, `skill_id`) VALUES
-	(1, '2019-05-09 00:00:00', NULL, 1, 1, 1),
-	(2, '2019-05-09 00:00:00', NULL, 1, 1, 2);
-/*!40000 ALTER TABLE `project_skill` ENABLE KEYS */;
+-- ----------------------------
+-- Records of project_skill
+-- ----------------------------
+INSERT INTO `project_skill` VALUES (1, 1, 1, '2019-05-09 00:00:00', NULL);
+INSERT INTO `project_skill` VALUES (2, 1, 2, '2019-05-09 00:00:00', NULL);
 
--- Dumping structure for table itcommunity.role
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE IF NOT EXISTS `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insert_date_time` datetime NOT NULL,
-  `last_update_time` datetime DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `insert_user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKgw4yqgxj9ncnn8e9kndmnqleh` (`insert_user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
--- Dumping data for table itcommunity.role: 2 rows
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` (`id`, `insert_date_time`, `last_update_time`, `name`, `insert_user_id`) VALUES
-	(1, '2019-05-09 00:00:00', '2019-05-09 00:00:00', 'ADMIN', 1),
-	(2, '2019-05-09 00:00:00', '2019-05-09 00:00:00', 'CLIENT', 1);
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
-
--- Dumping structure for table itcommunity.skill
+-- ----------------------------
+-- Table structure for skill
+-- ----------------------------
 DROP TABLE IF EXISTS `skill`;
-CREATE TABLE IF NOT EXISTS `skill` (
+CREATE TABLE `skill`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insert_date_time` datetime DEFAULT NULL,
-  `last_update_time` datetime DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `insert_user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK8lybb5iwlwxoold07nw25oh2o` (`insert_user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `insert_date_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.skill: 2 rows
-/*!40000 ALTER TABLE `skill` DISABLE KEYS */;
-INSERT INTO `skill` (`id`, `insert_date_time`, `last_update_time`, `name`, `insert_user_id`) VALUES
-	(1, NULL, NULL, 'Java', 1),
-	(2, NULL, NULL, 'Bootstrap', 1);
-/*!40000 ALTER TABLE `skill` ENABLE KEYS */;
+-- ----------------------------
+-- Records of skill
+-- ----------------------------
+INSERT INTO `skill` VALUES (1, 'Java', NULL, NULL);
+INSERT INTO `skill` VALUES (2, 'Bootstrap', NULL, NULL);
 
--- Dumping structure for table itcommunity.user
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `age` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `insert_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `gender_id` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKcbf93j56y7t2tyhunb4neewva` (`gender_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `surname` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `gender_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKcbf93j56y7t2tyhunb4neewva`(`gender_id`) USING BTREE,
+  INDEX `group_id`(`group_id`) USING BTREE,
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
--- Dumping data for table itcommunity.user: 2 rows
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `age`, `email`, `enabled`, `insert_date_time`, `last_update_date_time`, `name`, `password`, `surname`, `username`, `gender_id`) VALUES
-	(1, 26, 'sarkhanrasullu@gmail.com', 1, '2019-09-05 15:00:00', NULL, 'Sarkhan', '111111', 'Rasullu', 'sarkhan', 0),
-	(6, 1111, 'aa@mail.ru', 0, '2019-09-05 17:59:36', NULL, 'aa', '1111', 'aa', 'aa', 2),
-	(7, 111, 'aasdcsdc@mail.ru', 0, '2019-09-06 12:53:48', NULL, 'aa', '1111', 'aa', 'aa', 2);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 26, 'sarkhanrasullu@gmail.com', 1, 'Sarkhan', '111111', 'Rasullu', 1, 1, '2019-09-05 15:00:00', '2019-09-06 16:33:41');
+INSERT INTO `user` VALUES (6, 1111, 'aa@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-05 17:59:36', '2019-09-06 16:33:34');
+INSERT INTO `user` VALUES (7, 111, 'aasdcsdc@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-06 12:53:48', '2019-09-06 16:33:37');
+INSERT INTO `user` VALUES (9, 26, 'serxan@gmail.com', 0, 'Sarkhan', '111111', 'Rasullu', 1, 2, '2019-09-06 17:12:10', NULL);
 
--- Dumping structure for table itcommunity.user_role
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE IF NOT EXISTS `user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `insert_date_time` datetime NOT NULL,
-  `last_update_date_time` datetime DEFAULT NULL,
-  `role_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`),
-  KEY `FK859n2jvi8ivhui0rl0esws6o` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
--- Dumping data for table itcommunity.user_role: 1 rows
-/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-INSERT INTO `user_role` (`id`, `insert_date_time`, `last_update_date_time`, `role_id`, `user_id`) VALUES
-	(2, '2019-09-05 17:59:36', NULL, 2, 6),
-	(3, '2019-09-06 12:53:48', NULL, 2, 7);
-/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
-
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+SET FOREIGN_KEY_CHECKS = 1;
