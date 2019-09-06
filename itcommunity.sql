@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhostMac
+ Source Server         : itcommunity
  Source Server Type    : MySQL
- Source Server Version : 50721
- Source Host           : 192.168.1.102:3306
+ Source Server Version : 80016
+ Source Host           : localhost:3306
  Source Schema         : itcommunity
 
  Target Server Type    : MySQL
- Target Server Version : 50721
+ Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 06/09/2019 18:14:12
+ Date: 07/09/2019 01:40:56
 */
 
 SET NAMES utf8mb4;
@@ -39,20 +39,16 @@ INSERT INTO `auth_group` VALUES (2, 'CLIENT');
 DROP TABLE IF EXISTS `auth_group_role`;
 CREATE TABLE `auth_group_role`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FKa68196081fvovjhkek5m97n3y`(`role_id`) USING BTREE,
-  INDEX `FK859n2jvi8ivhui0rl0esws6o`(`user_id`) USING BTREE
+  INDEX `FK859n2jvi8ivhui0rl0esws6o`(`group_id`) USING BTREE,
+  CONSTRAINT `auth_group_role_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `auth_group_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `auth_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of auth_group_role
--- ----------------------------
-INSERT INTO `auth_group_role` VALUES (2, 2, 6, '2019-09-05 17:59:36', NULL);
-INSERT INTO `auth_group_role` VALUES (3, 2, 7, '2019-09-06 12:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for auth_role
@@ -92,6 +88,11 @@ CREATE TABLE `employee_profile`  (
   INDEX `FK5s5kad0xi8m49gscqaxjq2hcw`(`user_id`) USING BTREE,
   CONSTRAINT `employee_profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of employee_profile
+-- ----------------------------
+INSERT INTO `employee_profile` VALUES (1, b'1', '2019-09-10 22:52:06', 'asd', 'asb', b'1', b'1', 'asdf', 1, '2019-09-06 22:52:34', '2019-09-09 22:52:30');
 
 -- ----------------------------
 -- Table structure for employee_profile_language
@@ -150,6 +151,11 @@ CREATE TABLE `employee_project`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of employee_project
+-- ----------------------------
+INSERT INTO `employee_project` VALUES (1, 1, 'developer', 1, 1, '2019-09-02 22:55:41', '2019-09-03 22:55:48', '2019-09-06 23:18:14');
+
+-- ----------------------------
 -- Table structure for gender
 -- ----------------------------
 DROP TABLE IF EXISTS `gender`;
@@ -189,7 +195,7 @@ CREATE TABLE `itproject`  (
 -- ----------------------------
 -- Records of itproject
 -- ----------------------------
-INSERT INTO `itproject` VALUES (1, 'Bu proyekt IT sahəsində olan, hal-hazırda çalışan və ya çalışmayan hər kəsi eyni platforma altında cəmləyir. IT sahəsində olan şəxs özü haqqında qısa məlumat təsvir edir, hansı bacarıqları hansı səviyyədə bilir onu qeyd edir, cv-sini, linkedin profilini, hal-hazırda çalışıb çalışmadığını qeyd edir.\nBu proyekt ona imkan yaradacaq ki, hansısa şirkət və ya entrepreneur IT sahəsindən hər hansısa məqsədlə(işə götürmə, seminar vermək üçün, freelance layihələr və s.) şəxs axtardıqda rahatlıqla bu portaldan istifadə edə biləcək.', 'https://github.com/bsp-tech/itcommunity', 1, 'test', NULL, NULL, 'https://github.com/bsp-tech/itcommunity', 'https://web-material3.yokogawa.com/f50b5c6f3b3ab4006f471295cdff5684f5afafe9.png', '2019-09-05 15:00:00', NULL);
+INSERT INTO `itproject` VALUES (1, 'Bu proyekt IT sahəsində olan, hal-hazırda çalışan və ya çalışmayan hər kəsi eyni platforma altında cəmləyir. IT sahəsində olan şəxs özü haqqında qısa məlumat təsvir edir, hansı bacarıqları hansı səviyyədə bilir onu qeyd edir, cv-sini, linkedin profilini, hal-hazırda çalışıb çalışmadığını qeyd edir.\nBu proyekt ona imkan yaradacaq ki, hansısa şirkət və ya entrepreneur IT sahəsindən hər hansısa məqsədlə(işə göt', 'https://github.com/bsp-tech/itcommunity', 1, 'test', 1, '2019-09-16 22:56:38', 'https://github.com/bsp-tech/itcommunity', 'https://web-material3.yokogawa.com/f50b5c6f3b3ab4006f471295cdff5684f5afafe9.png', '2019-09-05 15:00:00', '2019-09-06 23:17:15');
 
 -- ----------------------------
 -- Table structure for language
@@ -260,6 +266,7 @@ CREATE TABLE `user`  (
   `group_id` int(11) NOT NULL,
   `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `thumbnail` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FKcbf93j56y7t2tyhunb4neewva`(`gender_id`) USING BTREE,
   INDEX `group_id`(`group_id`) USING BTREE,
@@ -270,9 +277,10 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 26, 'sarkhanrasullu@gmail.com', 1, 'Sarkhan', '111111', 'Rasullu', 1, 1, '2019-09-05 15:00:00', '2019-09-06 16:33:41');
-INSERT INTO `user` VALUES (6, 1111, 'aa@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-05 17:59:36', '2019-09-06 16:33:34');
-INSERT INTO `user` VALUES (7, 111, 'aasdcsdc@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-06 12:53:48', '2019-09-06 16:33:37');
-INSERT INTO `user` VALUES (9, 26, 'serxan@gmail.com', 0, 'Sarkhan', '111111', 'Rasullu', 1, 2, '2019-09-06 17:12:10', NULL);
+INSERT INTO `user` VALUES (1, 26, 'sarkhanrasullu@gmail.com', 1, 'Sarkhan', '111111', 'Rasullu', 1, 1, '2019-09-05 15:00:00', '2019-09-07 01:10:09', 'https://web-material3.yokogawa.com/f50b5c6f3b3ab4006f471295cdff5684f5afafe9.png');
+INSERT INTO `user` VALUES (6, 1111, 'aa@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-05 17:59:36', '2019-09-06 16:33:34', NULL);
+INSERT INTO `user` VALUES (7, 111, 'aasdcsdc@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-06 12:53:48', '2019-09-06 16:33:37', NULL);
+INSERT INTO `user` VALUES (9, 26, 'serxan@gmail.com', 0, 'Sarkhan', '111111', 'Rasullu', 1, 2, '2019-09-06 17:12:10', NULL, NULL);
+INSERT INTO `user` VALUES (11, 12, 'za@gmail.com', 0, 'sadfdsf', '1234', 'asdf', 1, 2, '2019-09-06 21:42:03', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
