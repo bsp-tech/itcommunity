@@ -5,26 +5,13 @@
  */
 package com.bsptech.itcommunity.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -57,8 +44,12 @@ public class EmployeeProfile implements Serializable {
     private String githubPath;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "speciality")
+    private String speciality;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "about")
-    private String about; // yeni yaradilan
+    private String about;
     @Basic(optional = false)
     @NotNull
     @Column(name = "is_looking_for_work")
@@ -201,6 +192,14 @@ public class EmployeeProfile implements Serializable {
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
     @XmlTransient
