@@ -1,18 +1,20 @@
 package com.bsptech.itcommunity.service.impl;
 
 import com.bsptech.itcommunity.dao.UserDataInter;
+import com.bsptech.itcommunity.entity.AuthGroup;
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserServiceInter {
     @Autowired
     UserDataInter userDataInter;
+
 
     @Override
     public User findById(Integer id) {
@@ -26,6 +28,8 @@ public class UserServiceImpl implements UserServiceInter {
 
     @Override
     public User save(User user) {
+        user.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+        user.setGroupId(new AuthGroup(2));
         return userDataInter.save(user);
     }
 

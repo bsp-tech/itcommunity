@@ -10,12 +10,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "user")
@@ -29,28 +29,8 @@ public class User implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "name")
-    private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "surname")
-    private String surname;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "username")
-    private String username;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "password")
-    private String password;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "age")
-    private int age;
+    private Integer age;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -63,35 +43,35 @@ public class User implements Serializable {
     private boolean enabled;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "name")
+    private String name;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "surname")
+    private String surname;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "insertUserId", fetch = FetchType.LAZY)
-    private Collection<ProjectSkill> projectSkillCollection;
-    @OneToMany(mappedBy = "insertUserId", fetch = FetchType.LAZY)
-    private Collection<Role> roleCollection;
-    
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
+    private List<EmployeeProfile> employeeProfileList;
     @JoinColumn(name = "gender_id", referencedColumnName = "id")
-    private Gender gender;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "insertUserId", fetch = FetchType.LAZY)
-    private Collection<Itproject> itprojectCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProfile> employeeProfileCollection;
-    @OneToMany(mappedBy = "insertUserId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProfileSkill> employeeProfileSkillCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "insertUserId", fetch = FetchType.LAZY)
-    private Collection<Language> languageCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
-    private Collection<UserRole> userRoleCollection;
-    @OneToMany(mappedBy = "insertUserId", fetch = FetchType.LAZY)
-    private Collection<Skill> skillCollection;
-    @OneToMany(mappedBy = "insertUserId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProfileLanguage> employeeProfileLanguageCollection;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Gender genderId;
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private AuthGroup groupId;
 
     public User() {
     }
@@ -100,15 +80,14 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String name, String surname, String username, String password, int age, String email, boolean enabled, Date insertDateTime) {
+    public User(Integer id, Integer age, String email, boolean enabled, String name, String password, String surname, Date insertDateTime) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
         this.age = age;
         this.email = email;
         this.enabled = enabled;
+        this.name = name;
+        this.password = password;
+        this.surname = surname;
         this.insertDateTime = insertDateTime;
     }
 
@@ -120,43 +99,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -176,6 +123,30 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public Date getInsertDateTime() {
         return insertDateTime;
     }
@@ -193,92 +164,28 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<ProjectSkill> getProjectSkillCollection() {
-        return projectSkillCollection;
+    public List<EmployeeProfile> getEmployeeProfileList() {
+        return employeeProfileList;
     }
 
-    public void setProjectSkillCollection(Collection<ProjectSkill> projectSkillCollection) {
-        this.projectSkillCollection = projectSkillCollection;
+    public void setEmployeeProfileList(List<EmployeeProfile> employeeProfileList) {
+        this.employeeProfileList = employeeProfileList;
     }
 
-    @XmlTransient
-    public Collection<Role> getRoleCollection() {
-        return roleCollection;
+    public Gender getGenderId() {
+        return genderId;
     }
 
-    public void setRoleCollection(Collection<Role> roleCollection) {
-        this.roleCollection = roleCollection;
+    public void setGenderId(Gender genderId) {
+        this.genderId = genderId;
     }
 
-    public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	@XmlTransient
-    public Collection<Itproject> getItprojectCollection() {
-        return itprojectCollection;
+    public AuthGroup getGroupId() {
+        return groupId;
     }
 
-    public void setItprojectCollection(Collection<Itproject> itprojectCollection) {
-        this.itprojectCollection = itprojectCollection;
-    }
-
-    @XmlTransient
-    public Collection<EmployeeProfile> getEmployeeProfileCollection() {
-        return employeeProfileCollection;
-    }
-
-    public void setEmployeeProfileCollection(Collection<EmployeeProfile> employeeProfileCollection) {
-        this.employeeProfileCollection = employeeProfileCollection;
-    }
-
-    @XmlTransient
-    public Collection<EmployeeProfileSkill> getEmployeeProfileSkillCollection() {
-        return employeeProfileSkillCollection;
-    }
-
-    public void setEmployeeProfileSkillCollection(Collection<EmployeeProfileSkill> employeeProfileSkillCollection) {
-        this.employeeProfileSkillCollection = employeeProfileSkillCollection;
-    }
-
-    @XmlTransient
-    public Collection<Language> getLanguageCollection() {
-        return languageCollection;
-    }
-
-    public void setLanguageCollection(Collection<Language> languageCollection) {
-        this.languageCollection = languageCollection;
-    }
-
-    @XmlTransient
-    public Collection<UserRole> getUserRoleCollection() {
-        return userRoleCollection;
-    }
-
-    public void setUserRoleCollection(Collection<UserRole> userRoleCollection) {
-        this.userRoleCollection = userRoleCollection;
-    }
-
-    @XmlTransient
-    public Collection<Skill> getSkillCollection() {
-        return skillCollection;
-    }
-
-    public void setSkillCollection(Collection<Skill> skillCollection) {
-        this.skillCollection = skillCollection;
-    }
-
-    @XmlTransient
-    public Collection<EmployeeProfileLanguage> getEmployeeProfileLanguageCollection() {
-        return employeeProfileLanguageCollection;
-    }
-
-    public void setEmployeeProfileLanguageCollection(Collection<EmployeeProfileLanguage> employeeProfileLanguageCollection) {
-        this.employeeProfileLanguageCollection = employeeProfileLanguageCollection;
+    public void setGroupId(AuthGroup groupId) {
+        this.groupId = groupId;
     }
 
     @Override
@@ -303,7 +210,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.User[ id=" + id + "name="+name+" insertDate="+insertDateTime+" ]";
+        return "com.bsptech.itcommunity.entity.User[ id=" + id + " ]";
     }
     
 }

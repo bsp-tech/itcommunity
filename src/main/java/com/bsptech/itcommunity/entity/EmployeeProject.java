@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "employee_project")
@@ -37,8 +37,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "EmployeeProject.findById", query = "SELECT e FROM EmployeeProject e WHERE e.id = :id")
     , @NamedQuery(name = "EmployeeProject.findByApproved", query = "SELECT e FROM EmployeeProject e WHERE e.approved = :approved")
     , @NamedQuery(name = "EmployeeProject.findByPosition", query = "SELECT e FROM EmployeeProject e WHERE e.position = :position")
-    , @NamedQuery(name = "EmployeeProject.findByInsertDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.insertDateTime = :insertDateTime")
     , @NamedQuery(name = "EmployeeProject.findByJoinDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.joinDateTime = :joinDateTime")
+    , @NamedQuery(name = "EmployeeProject.findByInsertDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.insertDateTime = :insertDateTime")
     , @NamedQuery(name = "EmployeeProject.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProject implements Serializable {
 
@@ -57,25 +57,25 @@ public class EmployeeProject implements Serializable {
     private String position;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "insert_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date insertDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "join_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date joinDateTime;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "insert_date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date insertDateTime;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Itproject projectId;
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private EmployeeProfile employeeId;
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Itproject projectId;
 
     public EmployeeProject() {
     }
@@ -84,11 +84,11 @@ public class EmployeeProject implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProject(Integer id, short approved, Date insertDateTime, Date joinDateTime, Date lastUpdateDateTime) {
+    public EmployeeProject(Integer id, short approved, Date joinDateTime, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
-        this.insertDateTime = insertDateTime;
         this.joinDateTime = joinDateTime;
+        this.insertDateTime = insertDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
@@ -116,20 +116,20 @@ public class EmployeeProject implements Serializable {
         this.position = position;
     }
 
-    public Date getInsertDateTime() {
-        return insertDateTime;
-    }
-
-    public void setInsertDateTime(Date insertDateTime) {
-        this.insertDateTime = insertDateTime;
-    }
-
     public Date getJoinDateTime() {
         return joinDateTime;
     }
 
     public void setJoinDateTime(Date joinDateTime) {
         this.joinDateTime = joinDateTime;
+    }
+
+    public Date getInsertDateTime() {
+        return insertDateTime;
+    }
+
+    public void setInsertDateTime(Date insertDateTime) {
+        this.insertDateTime = insertDateTime;
     }
 
     public Date getLastUpdateDateTime() {
@@ -140,20 +140,20 @@ public class EmployeeProject implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public Itproject getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Itproject projectId) {
-        this.projectId = projectId;
-    }
-
     public EmployeeProfile getEmployeeId() {
         return employeeId;
     }
 
     public void setEmployeeId(EmployeeProfile employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public Itproject getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Itproject projectId) {
+        this.projectId = projectId;
     }
 
     @Override

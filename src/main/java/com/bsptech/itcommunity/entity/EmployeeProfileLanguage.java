@@ -6,6 +6,7 @@
 package com.bsptech.itcommunity.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,12 +19,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "employee_profile_language")
@@ -31,7 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "EmployeeProfileLanguage.findAll", query = "SELECT e FROM EmployeeProfileLanguage e")
     , @NamedQuery(name = "EmployeeProfileLanguage.findById", query = "SELECT e FROM EmployeeProfileLanguage e WHERE e.id = :id")
-    , @NamedQuery(name = "EmployeeProfileLanguage.findByLevel", query = "SELECT e FROM EmployeeProfileLanguage e WHERE e.level = :level")})
+    , @NamedQuery(name = "EmployeeProfileLanguage.findByLevel", query = "SELECT e FROM EmployeeProfileLanguage e WHERE e.level = :level")
+    , @NamedQuery(name = "EmployeeProfileLanguage.findByInsertDateTime", query = "SELECT e FROM EmployeeProfileLanguage e WHERE e.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "EmployeeProfileLanguage.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProfileLanguage e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProfileLanguage implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,15 +49,18 @@ public class EmployeeProfileLanguage implements Serializable {
     @NotNull
     @Column(name = "level")
     private int level;
-    @JoinColumn(name = "language_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Language languageId;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User insertUserId;
+    @Column(name = "insert_date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date insertDateTime;
+    @Column(name = "last_update_date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdateDateTime;
     @JoinColumn(name = "employee_profile_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private EmployeeProfile employeeProfileId;
+    @JoinColumn(name = "language_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Language languageId;
 
     public EmployeeProfileLanguage() {
     }
@@ -82,20 +90,20 @@ public class EmployeeProfileLanguage implements Serializable {
         this.level = level;
     }
 
-    public Language getLanguageId() {
-        return languageId;
+    public Date getInsertDateTime() {
+        return insertDateTime;
     }
 
-    public void setLanguageId(Language languageId) {
-        this.languageId = languageId;
+    public void setInsertDateTime(Date insertDateTime) {
+        this.insertDateTime = insertDateTime;
     }
 
-    public User getInsertUserId() {
-        return insertUserId;
+    public Date getLastUpdateDateTime() {
+        return lastUpdateDateTime;
     }
 
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
+    public void setLastUpdateDateTime(Date lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public EmployeeProfile getEmployeeProfileId() {
@@ -104,6 +112,14 @@ public class EmployeeProfileLanguage implements Serializable {
 
     public void setEmployeeProfileId(EmployeeProfile employeeProfileId) {
         this.employeeProfileId = employeeProfileId;
+    }
+
+    public Language getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(Language languageId) {
+        this.languageId = languageId;
     }
 
     @Override
