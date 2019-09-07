@@ -340,7 +340,22 @@
         <div class="col-md-4" th:each="p : ${employeeList}">
             <div class="position-relative developer-card">
                 <div class="py-2 px-3 position-absolute w-100 h-100 developer-card-details">
+                    <div class="row">
+                        <h5 class="mb-3 col-md-6" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
+                        <div class="social-media col-md-6">
+                            <a target="_blank" th:href="${p.githubPath}" class="stretched-link btn btn-dark btn-sm pt-0">
+                                <i class="fab fa-github fa-sm"></i>
+                            </a>
+                            <a target="_blank" th:href="${p.linkedinPath}" class="stretched-link btn btn-dark btn-sm pt-0">
+                                <i class="fab fa-linkedin fa-sm"></i>
+                            </a>
+                            <a target="_blank" th:href="${p.cvPath}" class="stretched-link btn btn-dark btn-sm pt-0">
+                                <i class="fas fa-file fa-sm"></i>
+                            </a>
+                        </div>
+                    </div>
                     <h5 class="mb-3" th:text="${p.speciality}"></h5>
+
                     <p th:text="${p.about}"></p>
                     <div class="mb-3">
                         <h5 class="my-4">Skills</h5>
@@ -380,11 +395,6 @@
                 <div class="card-body text-center">
                   <h5 class="card-title" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
                   <p class="my-4 text-secondary" th:text="${p.speciality}"></p>
-                    <div class="social-media">
-                        <a target="_blank" th:href="${p.githubPath}" class="stretched-link btn btn-dark"><i class="fab fa-github"></i></a>
-                        <a target="_blank" th:href="${p.linkedinPath}" class="stretched-link btn btn-dark"><i class="fab fa-linkedin"></i></a>
-                        <a target="_blank" th:href="${p.cvPath}" class="stretched-link btn btn-dark"><i class="fas fa-file"></i></a>
-                    </div>
                 </div>
             </div>
         </div>
