@@ -30,38 +30,15 @@ public class EmployeeController {
             @RequestParam(name = "name", required = false, defaultValue = "") String name,
             @RequestParam(name = "surname", required = false, defaultValue = "") String surname,
             @RequestParam(name = "mail", required = false, defaultValue = "") String mail,
-            @RequestParam(name = "number", required = false, defaultValue = "") String number,
-            @RequestParam(name = "eng" , required = false , defaultValue = "0") int engLev,
-            @RequestParam(name = "turk" , required = false , defaultValue = "0") int turkLev,
-            @RequestParam(name = "germ" , required = false , defaultValue = "0") int germLev,
-            @RequestParam(name = "ital" , required = false , defaultValue = "0") int italLev,
-            @RequestParam(name = "pyth" , required = false , defaultValue = "0") int pythLev,
-            @RequestParam(name = "php" , required = false , defaultValue = "0") int phpLev,
-            @RequestParam(name = "java" , required = false , defaultValue = "0") int javaLev,
-            @RequestParam(name = "c" , required = false , defaultValue = "0") int cLev
+            @RequestParam(name = "number", required = false, defaultValue = "") String number
+           
             // ve s.
     ) {
         //DEBUG
         System.out.println("Controller : "+name+" "+surname+" "+mail+" "+number);
-        System.out.println(engLev+" "+turkLev+" "+germLev+" "+italLev);
-        System.out.println(pythLev+" "+phpLev+" "+javaLev+" "+cLev);
         //DEBUG
         
-        // BEGIN PAGINATION
-        if(page==null) page=1;
-        
-        PageRequest pageable = PageRequest.of(page - 1,10);
-        Page<EmployeeProfile> listPage = employeeProfileServiceInter.getPaginatedEmployees(pageable);
-
-        int totalPages = listPage.getTotalPages();
-
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-            modelAndView.addObject("pageNumbers", pageNumbers);
-        }
-        // END PAGINATION
-        
-        List<EmployeeProfile> employeeProfileList = employeeProfileServiceInter.findAllWithPagianation(page,name,surname,mail,number);
+        List<EmployeeProfile>   employeeProfileList = employeeProfileServiceInter.findAll(name,surname,mail,number);
         
         modelAndView.addObject("employeeList", employeeProfileList);
         modelAndView.setViewName("employee/index");

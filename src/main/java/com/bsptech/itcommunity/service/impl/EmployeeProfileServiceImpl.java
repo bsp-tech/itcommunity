@@ -30,8 +30,6 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Override
     public List<EmployeeProfile> findAll(String name,String surname,String email,String number) {
         
-        System.out.println("Service : "+name+" "+surname+" "+email+" "+number);
-        
         List<EmployeeProfile> employeeProfileList = (List<EmployeeProfile>) employeeProfileDataInter.findAll();
         
         if(name.equals("") && surname.equals("") && email.equals("") && number.equals("")){
@@ -71,29 +69,5 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     public int delete(Integer id) {
         employeeProfileDataInter.deleteById(id);
         return 0;
-    }
-
-    @Override
-    public Page<EmployeeProfile> getPaginatedEmployees(Pageable pageable) {
-        return employeeProfileDataInter.findAll(pageable);
-    }
-
-    @Override
-    public List<EmployeeProfile> findAllWithPagianation(int page,String name,String surname,String email,String number) {
-        List<EmployeeProfile> list = findAll(name,surname,email,number);
-        List<EmployeeProfile> listPagination = new ArrayList();
-        
-        int firstIndex = page*10-10;
-        int lastIndex = page*10-1;
-        
-        if(lastIndex>list.size()){
-            lastIndex=list.size()-1;
-        }
-        
-        for(int i = firstIndex ; i<=lastIndex ; i++){
-            listPagination.add(list.get(i));
-        }
-        
-        return listPagination;
     }
 }

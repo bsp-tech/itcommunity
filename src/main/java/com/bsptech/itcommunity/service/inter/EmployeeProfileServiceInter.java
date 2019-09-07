@@ -19,7 +19,4 @@ public interface EmployeeProfileServiceInter {
 
     public int delete(Integer id);
     
-    public Page<EmployeeProfile> getPaginatedEmployees(Pageable pageable);
-    
-    public List<EmployeeProfile> findAllWithPagianation(int page,String name,String surname,String email,String number);
 }
