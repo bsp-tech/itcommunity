@@ -1,10 +1,14 @@
 package com.bsptech.itcommunity.controller;
 
-import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
-import com.bsptech.itcommunity.entity.User;
-import org.apache.commons.collections4.IteratorUtils;
+import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,105 +16,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping
 public class EmployeeController {
 
-    private Integer pages;
-
     @Autowired
-    EmployeeProfileDataInter employeeProfileDataInter;
+    private EmployeeProfileServiceInter employeeProfileServiceInter;
 
     @GetMapping(value = {"", "/{page}"})
     public ModelAndView index(
-            @PathVariable(name = "page", required = false) String pageS,
+            @PathVariable(name = "page", required = false) Integer page,
             ModelAndView modelAndView,
             @RequestParam(name = "name", required = false, defaultValue = "") String name,
             @RequestParam(name = "surname", required = false, defaultValue = "") String surname,
             @RequestParam(name = "mail", required = false, defaultValue = "") String mail,
-            @RequestParam(name = "number", required = false, defaultValue = "") String number
-        ){
-
-        Iterable<EmployeeProfile> it = employeeProfileDataInter.findAll();
-
-        List<EmployeeProfile> employeeProfileList = IteratorUtils.toList(it.iterator());//butun list
-        List<EmployeeProfile> listPagination = new ArrayList<>();//pagination list
-
-        Integer size = employeeProfileList.size();
-
-        //Total sehife sayini teyin edir.
-        if (size % 10 == 0) {//==0 - pages ,, !=0 + pages+1
-            pages = size / 10;
-        } else {
-            pages = size / 10 + 1;
-        }
-
-        Integer page = null;
-        Integer firstIndex = null;
-        Integer lastIndex = null;
+            @RequestParam(name = "number", required = false, defaultValue = "") String number,
+            @RequestParam(name = "eng" , required = false , defaultValue = "0") int engLev,
+            @RequestParam(name = "turk" , required = false , defaultValue = "0") int turkLev,
+            @RequestParam(name = "germ" , required = false , defaultValue = "0") int germLev,
+            @RequestParam(name = "ital" , required = false , defaultValue = "0") int italLev,
+            @RequestParam(name = "pyth" , required = false , defaultValue = "0") int pythLev,
+            @RequestParam(name = "php" , required = false , defaultValue = "0") int phpLev,
+            @RequestParam(name = "java" , required = false , defaultValue = "0") int javaLev,
+            @RequestParam(name = "c" , required = false , defaultValue = "0") int cLev
+            // ve s.
+    ) {
+        //DEBUG
+        System.out.println("Controller : "+name+" "+surname+" "+mail+" "+number);
+        System.out.println(engLev+" "+turkLev+" "+germLev+" "+italLev);
+        System.out.println(pythLev+" "+phpLev+" "+javaLev+" "+cLev);
+        //DEBUG
         
-        //PAGINATION - page-1,page,page+1
+        // BEGIN PAGINATION
+        if(page==null) page=1;
+        
+        PageRequest pageable = PageRequest.of(page - 1,10);
+        Page<EmployeeProfile> listPage = employeeProfileServiceInter.getPaginatedEmployees(pageable);
 
-        if (pageS != null) { //page e click olunub,
-            page = Integer.valueOf(pageS);
-            firstIndex = page * 10 - 10; 
-            lastIndex = page * 10 - 1;
-        } else if (page == pages) { //limit i teyin edir.
-            firstIndex = page * 10 - 10;
-            lastIndex = page * 10 - 1;
-            page--;
-        } else if (page == null) { //Sehife ilk defe yuklenib
-            System.out.println("xello");
-            page = 1;
-            firstIndex = 0;
-            lastIndex = 9;
+        int totalPages = listPage.getTotalPages();
+
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+            modelAndView.addObject("pageNumbers", pageNumbers);
         }
-
-        modelAndView.addObject("pages", pages);
-        modelAndView.addObject("page", page);
-
-        //eger son index, size dan boyukdurse, onda son index list uzunlugu olur
-        if (lastIndex > size) {
-            lastIndex = size - 1;
-//            modelAndView.addObject("page", page-1);
-        }
-
-        if (name.equals("") && surname.equals("") && mail.equals("") && number.equals("")) { // default
-
-            for (int i = firstIndex; i <= lastIndex; i++) {
-                listPagination.add(employeeProfileList.get(i));
-            }
-
-            modelAndView.addObject("employeeList", listPagination);
-            modelAndView.addObject("pagination", true);
-
-        } else { // search
-
-            List<EmployeeProfile> listFilter = new ArrayList<>();
-
-            for (EmployeeProfile employeeFilter : employeeProfileList) {
-                User user = employeeFilter.getUserId();
-                
-
-                if (user.getName().toLowerCase().equals(name.toLowerCase())
-                        || user.getSurname().toLowerCase().equals(surname.toLowerCase())
-                        || user.getEmail().toLowerCase().equals(mail.toLowerCase())
-                        ) {
-
-                    listFilter.add(employeeFilter);
-
-                }
-            }
-           
-
-            modelAndView.addObject("employeeList", listFilter);
-            modelAndView.addObject("pagination", false);
-
-        }
-
+        // END PAGINATION
+        
+        List<EmployeeProfile> employeeProfileList = employeeProfileServiceInter.findAllWithPagianation(page,name,surname,mail,number);
+        
+        modelAndView.addObject("employeeList", employeeProfileList);
         modelAndView.setViewName("employee/index");
 
         return modelAndView;
