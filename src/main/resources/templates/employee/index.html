@@ -380,6 +380,11 @@
                 <div class="card-body text-center">
                   <h5 class="card-title" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
                   <p class="my-4 text-secondary" th:text="${p.speciality}"></p>
+                    <div class="social-media">
+                        <a target="_blank" th:href="${p.githubPath}" class="stretched-link btn btn-dark"><i class="fab fa-github"></i></a>
+                        <a target="_blank" th:href="${p.linkedinPath}" class="stretched-link btn btn-dark"><i class="fab fa-linkedin"></i></a>
+                        <a target="_blank" th:href="${p.cvPath}" class="stretched-link btn btn-dark"><i class="fas fa-file"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
