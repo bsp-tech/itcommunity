@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 @Service
 public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
@@ -28,11 +26,11 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     }
 
     @Override
-    public List<EmployeeProfile> findAll(String name,String surname,String email,String number) {
+    public List<EmployeeProfile> findAll(String name,String surname,String email,String phone) {
         
         List<EmployeeProfile> employeeProfileList = (List<EmployeeProfile>) employeeProfileDataInter.findAll();
         
-        if(name.equals("") && surname.equals("") && email.equals("") && number.equals("")){
+        if(name.equals("") && surname.equals("") && email.equals("") && phone.equals("")){
             
             return employeeProfileList;
             
@@ -45,7 +43,8 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
                 
                 if(user.getName().toLowerCase().equals(name.toLowerCase())
                         || user.getSurname().toLowerCase().equals(surname.toLowerCase())
-                        || user.getEmail().toLowerCase().equals(email.toLowerCase())){
+                        || user.getEmail().toLowerCase().equals(email.toLowerCase())
+                        || user.getPhone().equals(phone)){
                     
                     result.add(employee);
                 }

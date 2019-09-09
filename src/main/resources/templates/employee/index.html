@@ -37,7 +37,7 @@
 </nav>
 
 <!-- search -->
-
+<form>
 <div class="container col-md-11">
     <div class="card bg-light">
         <div class="row my-3 mx-2">
@@ -51,7 +51,7 @@
                 <input type="text" class="form-control" name="mail" placeholder="Email">
             </div>
             <div class="col-md-3">
-                <input type="text" class="form-control" name="number" placeholder="Phone">
+                <input type="text" class="form-control" name="phone" placeholder="Phone">
             </div>
             <div class="col-md-2">
 
@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="col-md-5 col-7 d-flex align-items-center">
                                             <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
+                                                <select id="inputState" class="form-control" name="levLan">
                                                     <option selected="" value="0">Level</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -118,7 +118,7 @@
                                         </div>
                                         <div class="col-md-5 col-7 d-flex align-items-center">
                                             <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
+                                                <select id="inputState" class="form-control" name="levLan">
                                                     <option selected="" value="0">Level</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="col-md-5 col-7 d-flex align-items-center">
                                             <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
+                                                <select id="inputState" class="form-control" name="levLan">
                                                     <option selected="" value="0">Level</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -176,7 +176,7 @@
                                         </div>
                                         <div class="col-md-5 col-7 d-flex align-items-center">
                                             <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
+                                                <select id="inputState" class="form-control" name="levLan">
                                                     <option selected="" value="0">Level</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -333,6 +333,10 @@
         </div>
     </div>
 </div>
+</form>
+
+
+
 <!-- developer card -->
 
 <div class="container mt-4">
@@ -340,6 +344,20 @@
         <div class="col-md-4" th:each="p : ${employeeList}">
             <div class="position-relative developer-card">
                 <div class="py-2 px-3 position-absolute w-100 h-100 developer-card-details">
+                    <div class="row">
+                        <h5 class="mb-3 col-md-6" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
+                        <div class="social-media col-md-6">
+                            <a target="_blank" th:href="${p.githubPath}" class="stretched-link btn btn-dark btn-sm pt-0">
+                                <i class="fab fa-github fa-sm"></i>
+                            </a>
+                            <a target="_blank" th:href="${p.linkedinPath}" class="stretched-link btn btn-dark btn-sm pt-0">
+                                <i class="fab fa-linkedin fa-sm"></i>
+                            </a>
+                            <a target="_blank" th:href="${p.cvPath}" class="stretched-link btn btn-dark btn-sm pt-0">
+                                <i class="fas fa-file fa-sm"></i>
+                            </a>
+                        </div>
+                    </div>
                     <h5 class="mb-3" th:text="${p.speciality}"></h5>
                     <p th:text="${p.about}"></p>
                     <div class="mb-3">
@@ -361,8 +379,7 @@
                             <div class="progress my-2">
                                  <div class="progress-bar bg-dark"
                                       th:attr="aria-valuenow=${l.level*10}, style=${'width:'+l.level*10+'%'}"
-                                      th:text="${l.level*10+'%'}">
-                                     90%
+                                      th:text="${l.level*10+'%'}">                                    
                                  </div>
                             </div>
                         </div>

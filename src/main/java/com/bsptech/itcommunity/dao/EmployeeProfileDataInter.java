@@ -13,6 +13,4 @@ import org.springframework.data.domain.Pageable;
 public interface EmployeeProfileDataInter extends CrudRepository<EmployeeProfile, Integer> {
 
     EmployeeProfile findByUserId(User user);
-    
-    Page<EmployeeProfile> findAll(Pageable pageable);
 }
