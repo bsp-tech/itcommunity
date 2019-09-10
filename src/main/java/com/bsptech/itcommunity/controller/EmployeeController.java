@@ -1,6 +1,8 @@
 package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.EmployeeProfileLanguage;
+import com.bsptech.itcommunity.entity.Language;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
 import com.bsptech.itcommunity.service.inter.SkillServiceInter;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -60,7 +63,18 @@ public class EmployeeController {
 
     @RequestMapping(path = "/employees/register")
     public ModelAndView register(ModelAndView modelAndView, Model model) {
-    	modelAndView.addObject("employeeProfile",new EmployeeProfile());
+        List<EmployeeProfileLanguage> ll = new ArrayList<>();
+        EmployeeProfileLanguage empL1 = new EmployeeProfileLanguage();
+        empL1.setEmployeeProfileId(new EmployeeProfile(1));
+        empL1.setLanguageId(new Language(1));
+        empL1.setLevel(5);
+
+        ll.add(empL1);
+
+        EmployeeProfile emp = new EmployeeProfile();
+        emp.setEmployeeProfileLanguageList(ll);
+
+        modelAndView.addObject("employeeProfile",emp);
     	modelAndView.addObject("listLanguages",languageServiceInter.findAll());
     	modelAndView.addObject("listSkills",skillServiceInter.findAll());
         modelAndView.setViewName("employee/registration");
@@ -74,12 +88,13 @@ public class EmployeeController {
                 @Valid @ModelAttribute("employeeProfile") EmployeeProfile employeeProfile,
                 BindingResult result,
                 HttpSession session) {
-        if(result.hasErrors()) {
-        	modelAndView.setViewName("employee/registration");
-        	return modelAndView;
-        }
+//        if(result.hasErrors()) {
+//        	modelAndView.setViewName("employee/registration");
+//        	return modelAndView;
+//        }
         System.out.println(employeeProfile);
-    	EmployeeProfile ep = employeeProfileServiceInter.save(employeeProfile,session);
+        System.out.println(employeeProfile.getEmployeeProfileLanguageList());
+//    	EmployeeProfile ep = employeeProfileServiceInter.save(employeeProfile,session);
         modelAndView.setViewName("employee/index");
     	return modelAndView;
     }
