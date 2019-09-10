@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class UserServiceImpl implements UserServiceInter {
     @Autowired

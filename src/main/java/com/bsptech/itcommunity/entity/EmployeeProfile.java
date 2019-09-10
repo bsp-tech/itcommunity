@@ -59,13 +59,13 @@ public class EmployeeProfile implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "approved")
-    private boolean approved;
+    private int approved;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "approved_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDateTime;
     @Size(max = 255)
+    @NotNull
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
@@ -74,21 +74,19 @@ public class EmployeeProfile implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "is_looking_for_work")
-    private boolean isLookingForWork;
+    private int isLookingForWork;
     @Basic(optional = false)
     @NotNull
     @Column(name = "is_working")
-    private boolean isWorking;
+    private int isWorking;
     @Size(max = 255)
     @Column(name = "linkedin_path")
     private String linkedinPath;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
@@ -109,7 +107,7 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProfile(Integer id, boolean approved, Date approvedDateTime, boolean isLookingForWork, boolean isWorking, Date insertDateTime, Date lastUpdateDateTime) {
+    public EmployeeProfile(Integer id, int approved, Date approvedDateTime, int isLookingForWork, int isWorking, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
         this.approvedDateTime = approvedDateTime;
@@ -127,11 +125,11 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public boolean getApproved() {
+    public int getApproved() {
         return approved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(int approved) {
         this.approved = approved;
     }
 
@@ -159,19 +157,19 @@ public class EmployeeProfile implements Serializable {
         this.githubPath = githubPath;
     }
 
-    public boolean getIsLookingForWork() {
+    public int getIsLookingForWork() {
         return isLookingForWork;
     }
 
-    public void setIsLookingForWork(boolean isLookingForWork) {
+    public void setIsLookingForWork(int isLookingForWork) {
         this.isLookingForWork = isLookingForWork;
     }
 
-    public boolean getIsWorking() {
+    public int getIsWorking() {
         return isWorking;
     }
 
-    public void setIsWorking(boolean isWorking) {
+    public void setIsWorking(int isWorking) {
         this.isWorking = isWorking;
     }
 
@@ -254,9 +252,15 @@ public class EmployeeProfile implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.bsptech.itcommunity.entity.EmployeeProfile[ id=" + id + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "EmployeeProfile [id=" + id + ", approved=" + approved + ", approvedDateTime=" + approvedDateTime
+				+ ", cvPath=" + cvPath + ", githubPath=" + githubPath + ", isLookingForWork=" + isLookingForWork
+				+ ", isWorking=" + isWorking + ", linkedinPath=" + linkedinPath + ", insertDateTime=" + insertDateTime
+				+ ", lastUpdateDateTime=" + lastUpdateDateTime + ", userId=" + userId + ", employeeProfileSkillList="
+				+ employeeProfileSkillList + ", employeeProjectList=" + employeeProjectList
+				+ ", employeeProfileLanguageList=" + employeeProfileLanguageList + "]";
+	}
+
+  
 }

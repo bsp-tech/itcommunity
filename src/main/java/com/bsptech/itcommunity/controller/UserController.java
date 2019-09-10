@@ -7,6 +7,9 @@ package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,7 +42,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public String registerPost(ModelAndView modelAndView, @ModelAttribute User user,RedirectAttributes redirectAttributes) {
+    public String registerPost(ModelAndView modelAndView, @ModelAttribute User user,RedirectAttributes redirectAttributes,HttpSession session) {
     	User u = userServiceInter.save(user);
     	if(u!=null) {
     		return "redirect:/user/login?success=true";
