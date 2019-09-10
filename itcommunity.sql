@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : itcommunity
+ Source Server         : localhostMac
  Source Server Type    : MySQL
- Source Server Version : 80016
- Source Host           : localhost:3306
+ Source Server Version : 50721
+ Source Host           : 192.168.1.102:3306
  Source Schema         : itcommunity
 
  Target Server Type    : MySQL
- Target Server Version : 80016
+ Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 07/09/2019 01:40:56
+ Date: 07/09/2019 14:12:02
 */
 
 SET NAMES utf8mb4;
@@ -84,15 +84,17 @@ CREATE TABLE `employee_profile`  (
   `user_id` int(11) NOT NULL,
   `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update_date_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `about` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `speciality` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK5s5kad0xi8m49gscqaxjq2hcw`(`user_id`) USING BTREE,
   CONSTRAINT `employee_profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of employee_profile
 -- ----------------------------
-INSERT INTO `employee_profile` VALUES (1, b'1', '2019-09-10 22:52:06', 'asd', 'asb', b'1', b'1', 'asdf', 1, '2019-09-06 22:52:34', '2019-09-09 22:52:30');
+INSERT INTO `employee_profile` VALUES (1, b'1', '2019-09-10 22:52:06', 'asd', 'asb', b'0', b'1', 'asdf', 1, '2019-09-06 22:52:34', '2019-09-07 02:42:16', 'lorem', 'developer');
 
 -- ----------------------------
 -- Table structure for employee_profile_language
@@ -110,7 +112,14 @@ CREATE TABLE `employee_profile_language`  (
   INDEX `FK9wagkcbieklokxxyeeo3e69tq`(`language_id`) USING BTREE,
   CONSTRAINT `employee_profile_language_ibfk_1` FOREIGN KEY (`employee_profile_id`) REFERENCES `employee_profile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `employee_profile_language_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of employee_profile_language
+-- ----------------------------
+INSERT INTO `employee_profile_language` VALUES (1, 10, 1, 1, '2019-09-07 02:21:07', NULL);
+INSERT INTO `employee_profile_language` VALUES (2, 5, 1, 2, '2019-09-07 02:21:12', NULL);
+INSERT INTO `employee_profile_language` VALUES (3, 9, 1, 3, '2019-09-07 02:21:18', NULL);
 
 -- ----------------------------
 -- Table structure for employee_profile_skill
@@ -128,7 +137,13 @@ CREATE TABLE `employee_profile_skill`  (
   INDEX `FK6vt32pmm7jwvo7yndis5k9395`(`skill_id`) USING BTREE,
   CONSTRAINT `employee_profile_skill_ibfk_1` FOREIGN KEY (`employee_profile_id`) REFERENCES `employee_profile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `employee_profile_skill_ibfk_2` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of employee_profile_skill
+-- ----------------------------
+INSERT INTO `employee_profile_skill` VALUES (1, 10, 1, 1, '2019-09-07 02:23:17', NULL);
+INSERT INTO `employee_profile_skill` VALUES (2, 7, 1, 2, '2019-09-07 02:23:22', '2019-09-07 02:34:24');
 
 -- ----------------------------
 -- Table structure for employee_project
@@ -148,7 +163,7 @@ CREATE TABLE `employee_project`  (
   INDEX `FKhi5ffkj0w09uieki7lhiop2ub`(`project_id`) USING BTREE,
   CONSTRAINT `employee_project_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee_profile` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `employee_project_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `itproject` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of employee_project
@@ -205,9 +220,16 @@ CREATE TABLE `language`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_update_date_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of language
+-- ----------------------------
+INSERT INTO `language` VALUES (1, 'English', '2019-09-07 02:20:46', NULL);
+INSERT INTO `language` VALUES (2, 'Russian', '2019-09-07 02:20:50', NULL);
+INSERT INTO `language` VALUES (3, 'Turkish', '2019-09-07 02:20:54', NULL);
 
 -- ----------------------------
 -- Table structure for project_skill
@@ -267,20 +289,17 @@ CREATE TABLE `user`  (
   `insert_date_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update_date_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   `thumbnail` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `avatar_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FKcbf93j56y7t2tyhunb4neewva`(`gender_id`) USING BTREE,
   INDEX `group_id`(`group_id`) USING BTREE,
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`gender_id`) REFERENCES `gender` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `user_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 26, 'sarkhanrasullu@gmail.com', 1, 'Sarkhan', '111111', 'Rasullu', 1, 1, '2019-09-05 15:00:00', '2019-09-07 01:10:09', 'https://web-material3.yokogawa.com/f50b5c6f3b3ab4006f471295cdff5684f5afafe9.png');
-INSERT INTO `user` VALUES (6, 1111, 'aa@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-05 17:59:36', '2019-09-06 16:33:34', NULL);
-INSERT INTO `user` VALUES (7, 111, 'aasdcsdc@mail.ru', 0, 'aa', '1111', 'aa', 2, 1, '2019-09-06 12:53:48', '2019-09-06 16:33:37', NULL);
-INSERT INTO `user` VALUES (9, 26, 'serxan@gmail.com', 0, 'Sarkhan', '111111', 'Rasullu', 1, 2, '2019-09-06 17:12:10', NULL, NULL);
-INSERT INTO `user` VALUES (11, 12, 'za@gmail.com', 0, 'sadfdsf', '1234', 'asdf', 1, 2, '2019-09-06 21:42:03', NULL, NULL);
+INSERT INTO `user` VALUES (1, 26, 'sarkhanrasullu@gmail.com', 1, 'Sarkhan', '111111', 'Rasullu', 1, 1, '2019-09-05 15:00:00', '2019-09-07 01:10:09', 'https://web-material3.yokogawa.com/f50b5c6f3b3ab4006f471295cdff5684f5afafe9.png', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

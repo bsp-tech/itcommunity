@@ -7,9 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/itcommunity.iml" beforeDir="false" afterPath="$PROJECT_DIR$/itcommunity.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/itcommunity.sql" beforeDir="false" afterPath="$PROJECT_DIR$/itcommunity.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/registration.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,38 +27,6 @@
   </component>
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>https://ca.slack-edge.com/TLW6FR718-ULW745ERH-a1cf0ca8c459-512</find>
-      <find>IT COM</find>
-      <find>Developers</find>
-      <find>Create An</find>
-      <find>login</find>
-      <find>needEmployee</find>
-      <find>boolean</find>
-      <find>dev</find>
-      <find>projectLis</find>
-      <find>dial</find>
-      <find>database-platform</find>
-      <find>for</find>
-      <find>bg-whi</find>
-      <find>collection</find>
-      <find>username</find>
-      <find>gender</find>
-      <find>age</find>
-      <find>spring.datasource.type</find>
-      <find>+p</find>
-      <find>developers</find>
-      <find>src</find>
-      <find>Add ski</find>
-      <find>Path</find>
-      <find>Project abou</find>
-      <find>cvPath</find>
-      <find>th:</find>
-      <find>Project abo</find>
-      <find>female</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,7 +49,10 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1QdjZ4oYZVtBlD3epVk6JvmUyTL" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
@@ -203,12 +182,15 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="" />
       <created>1567802960045</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567802960045</updated>
-      <workItem from="1567802961719" duration="3197000" />
-      <workItem from="1568107659279" duration="256000" />
+      <workItem from="1567802961719" duration="3134000" />
+      <workItem from="1567806595263" duration="16000" />
+      <workItem from="1567806679260" duration="89000" />
+      <workItem from="1567806851290" duration="8342000" />
     </task>
     <servers />
   </component>
@@ -220,9 +202,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>

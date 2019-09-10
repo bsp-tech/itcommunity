@@ -1,37 +1,53 @@
 package com.bsptech.itcommunity.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
+import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
+import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
+import com.bsptech.itcommunity.service.inter.SkillServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bsptech.itcommunity.entity.EmployeeProfile;
-import com.bsptech.itcommunity.entity.User;
-import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
-import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
-import com.bsptech.itcommunity.service.inter.SkillServiceInter;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping
 public class EmployeeController {
+
 	@Autowired
 	EmployeeProfileServiceInter employeeProfileServiceInter;
+
 	@Autowired
 	LanguageServiceInter languageServiceInter;
+
 	@Autowired
 	SkillServiceInter skillServiceInter;
-    @GetMapping
-    public ModelAndView index(ModelAndView modelAndView) {
+
+    @Autowired
+    EmployeeProfileServiceInter serviceInter;
+
+    @GetMapping(value = {"", "/{page}"})
+    public ModelAndView index(
+            @PathVariable(name = "page", required = false) String pageS,
+            ModelAndView modelAndView,
+            @RequestParam(name = "name", required = false, defaultValue = "") String name,
+            @RequestParam(name = "surname", required = false, defaultValue = "") String surname,
+            @RequestParam(name = "mail", required = false, defaultValue = "") String mail,
+            @RequestParam(name = "number", required = false, defaultValue = "") String number
+        ){
+
+        List<EmployeeProfile> list = serviceInter.findAll();
+
+        modelAndView.addObject("pages", 10);
+        modelAndView.addObject("page", 1);
+        modelAndView.addObject("employeeList", list);
+        modelAndView.addObject("pagination", false);
+
         modelAndView.setViewName("employee/index");
         return modelAndView;
     }
@@ -43,7 +59,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(path = "/employees/register")
-    public ModelAndView register(ModelAndView modelAndView,Model model) {
+    public ModelAndView register(ModelAndView modelAndView, Model model) {
     	modelAndView.addObject("employeeProfile",new EmployeeProfile());
     	modelAndView.addObject("listLanguages",languageServiceInter.findAll());
     	modelAndView.addObject("listSkills",skillServiceInter.findAll());
@@ -51,10 +67,13 @@ public class EmployeeController {
         System.out.println(modelAndView);
         return modelAndView;
     }
+
     @RequestMapping(value = "/employees/register",method=RequestMethod.POST)
-    public ModelAndView register(ModelAndView modelAndView,@Valid @ModelAttribute("employeeProfile") EmployeeProfile employeeProfile,BindingResult result
-    		,HttpSession session) {
-    	System.out.println(employeeProfile);
+    public ModelAndView register(
+                ModelAndView modelAndView,
+                @Valid @ModelAttribute("employeeProfile") EmployeeProfile employeeProfile,
+                BindingResult result,
+                HttpSession session) {
         if(result.hasErrors()) {
         	modelAndView.setViewName("employee/registration");
         	return modelAndView;

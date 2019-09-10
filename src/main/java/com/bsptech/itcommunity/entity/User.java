@@ -85,6 +85,10 @@ public class User implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "surname")
     private String surname;
+
+    @Column(name = "avatarPath")
+    private String avatarPath;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "insert_date_time")
@@ -123,6 +127,14 @@ public class User implements Serializable {
         this.insertDateTime = insertDateTime;
     }
 
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+    
     public Integer getId() {
         return id;
     }
