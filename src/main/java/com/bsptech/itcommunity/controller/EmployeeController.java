@@ -21,7 +21,7 @@ public class EmployeeController {
     @Autowired
     EmployeeProfileServiceInter serviceInter;
 
-    @GetMapping(value = {"", "/{page}"})
+    @GetMapping(value = {"", "/{doLogin}"})
     public ModelAndView index(
             @PathVariable(name = "page", required = false) String pageS,
             ModelAndView modelAndView,

@@ -39,14 +39,14 @@
                                             <span class="input-group-text bg-dark"><i
                                                     class="text-white fa fa-user"></i></span>
                                         </div>
-                                        <input name="name" class="form-control" placeholder="Email" type="text">
+                                        <input name="username" class="form-control" placeholder="Email" type="text">
                                     </div>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-dark"> <i
                                                     class="text-white fa fa-lock"></i> </span>
                                         </div>
-                                        <input name="name" class="form-control" placeholder="Password" type="password">
+                                        <input name="password" class="form-control" placeholder="Password" type="password">
                                     </div>
                                     <!-- Buttons -->
                                     <div class="form-group w-100">
@@ -54,7 +54,9 @@
                                             <div class="col-12 mb-2">
                                                 <button type="submit" class="btn-block d-inline btn btn-dark"> Log In
                                                 </button>
-
+                                                <th:if test="${not empty error}">
+                                                    <div style="color: red"> ${error}</div>
+                                                </th:if>
                                             </div>
                                             <div class="col-12">
                                                 <button type="submit" class="btn-block d-inline btn btn-secondary"> Log
