@@ -251,7 +251,7 @@ public class EmployeeProfile implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.EmployeeProfile[ id=" + id + " ]";
+        return ""+employeeProfileLanguageList;
     }
-    
+
 }

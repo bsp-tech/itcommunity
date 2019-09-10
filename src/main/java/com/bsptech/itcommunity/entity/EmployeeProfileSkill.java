@@ -144,7 +144,7 @@ public class EmployeeProfileSkill implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.EmployeeProfileSkill[ id=" + id + " ]";
+        return "skillid:"+skillId+",level:"+level;
     }
-    
+
 }
