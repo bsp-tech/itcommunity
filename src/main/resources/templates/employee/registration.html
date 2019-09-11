@@ -165,7 +165,7 @@ canvas {
 
 
 							<!-- Repeater Items -->
-							<div class="items" data-group-template style="display: none">
+							<div class="items" data-group-template-language style="display: none">
 								<div class="item-content mt-2  d-flex">
 									<div class="form-group col-lg-5 p-0 pr-2">
 										<select name="employeeProfileLanguageList[$index].languageId.id"
@@ -196,14 +196,46 @@ canvas {
 								<div class="clearfix"></div>
 							</div>
 
+<div class="items" data-group-template-skill style="display: none">
+								<div class="item-content mt-2  d-flex">
+									<div class="form-group col-lg-5 p-0 pr-2">
+										<select name="employeeProfileSkillList[$index].skillId.id"
+												class="form-control">
+											<option disabled="" selected=""  value="-1">Skills</option>
+											<option
+													th:each="skill : ${listSkills}"
+													th:value="${skill.id}"
+													th:text="${skill.name}"></option>
+										</select>
+									</div>
+									<div class="form-group col-lg-4 p-0 pr-2">
+										<select name="employeeProfileSkillList[$index].level" class="form-control" >
+											<option disabled="" selected="" value="-1">Level</option>
+											<option th:each="i: ${#numbers.sequence(1, 10)}"
+													th:value="${i}"
+													th:text="${i}"
+											>
+											</option>
+										</select>
+									</div>
+									<div class="form-group col-lg-4 p-0">
+										<div>
+											<button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">Remove</button>
+										</div>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+
 
 							<!-- Repeater Items -->
-							<div class="items" data-group th:each="empLanguage, stat : *{employeeProfileLanguageList}">
+							<div class="items" data-group-language>
+							<div class="items" th:each="empLanguage, stat : *{employeeProfileLanguageList}">
 								<div class="item-content mt-2  d-flex" data-group-element>
 									<div class="form-group col-lg-5 p-0 pr-2">
 										<select data-name="employeeProfileLanguageList[$index].languageId.id"
 												class="form-control"
-												th:field="*{employeeProfileLanguageList[__${stat.index}__].languageId.id}">
+												>
 											<option disabled="" selected=""  value="-1">Languages</option>
 											<option
 													th:each="language : ${listLanguages}"
@@ -213,8 +245,7 @@ canvas {
 										</select>
 									</div>
 									<div class="form-group col-lg-4 p-0 pr-2">
-										<select data-name="employeeProfileLanguageList[$index].level" class="form-control"
-												th:field="*{employeeProfileLanguageList[__${stat.index}__].level}">
+										<select data-name="employeeProfileLanguageList[$index].level" class="form-control">
 											<option disabled="" selected="" value="-1">Level</option>
 											<option th:each="i: ${#numbers.sequence(1, 10)}"
 													th:value="${i}"
@@ -232,55 +263,45 @@ canvas {
 								</div>
 								<div class="clearfix"></div>
 							</div>
+							</div>
+							<div class="items" data-group-skill>
+							<div class="items" th:each="empSkill, stat : *{employeeProfileSkillList}">
+								<div class="item-content mt-2  d-flex" data-group-element>
+									<div class="form-group col-lg-5 p-0 pr-2">
+										<select data-name="employeeProfileSkillList[$index].skillId.id"
+												class="form-control"
+												>
+											<option disabled="" selected=""  value="-1">Skills</option>
+											<option
+													th:each="skill : ${listSkills}"
+													th:value="${skill.id}"
+													th:selected="${skill.id == empSkill.skillId.id}"
+													th:text="${skill.name}"></option>
+										</select>
+									</div>
+									<div class="form-group col-lg-4 p-0 pr-2">
+										<select data-name="employeeProfileSkillList[$index].level" class="form-control">
+											<option disabled="" selected="" value="-1">Level</option>
+											<option th:each="i: ${#numbers.sequence(1, 10)}"
+													th:value="${i}"
+													th:text="${i}"
+													th:selected="${i == empSkill.level}"
+											>
+											</option>
+										</select>
+									</div>
+									<div class="form-group col-lg-4 p-0">
+										<div>
+											<button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">Remove</button>
+										</div>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							</div>
 						</div>
 						<!-- Repeater End -->
 					</div>
-<!--					<div class="skills_box mt-2">-->
-<!--						<div id="repeater2">-->
-<!--							<div class="repeater-heading d-flex flex-column">-->
-<!--								<button type="button" class="btn btn-dark  pull-right repeater-add-btn">-->
-<!--									Add Skill-->
-<!--								</button>-->
-<!--							</div>-->
-<!--							<div class="clearfix"></div>-->
-<!--							&lt;!&ndash; Repeater Items &ndash;&gt;-->
-<!--							<div class="items" data-group="test">-->
-<!--								<div class="item-content mt-2  d-flex  ">-->
-<!--									<div class="form-group col-lg-5 p-0 pr-2">-->
-<!--										<select class="form-control" id="exampleFormControlSelect1">-->
-<!--											<option disabled="" selected="">Skills</option>-->
-<!--											<option th:each ="skill : ${listSkills}"-->
-<!--													th:value="${skill.id}"-->
-<!--													th:text ="${skill.name}">-->
-<!--											</option>-->
-<!--										</select>-->
-<!--									</div>-->
-<!--									<div class="form-group col-lg-4 p-0 pr-2">-->
-<!--										<select class="form-control" id="exampleFormControlSelect2">-->
-<!--											<option disabled="" selected="" value="-1">Level</option>-->
-<!--											<option value="1">1</option>-->
-<!--											<option value="2">2</option>-->
-<!--											<option value="3">3</option>-->
-<!--											<option value="4">4</option>-->
-<!--											<option value="5">5</option>-->
-<!--											<option value="6">6</option>-->
-<!--											<option value="7">7</option>-->
-<!--											<option value="8">8</option>-->
-<!--											<option value="9">9</option>-->
-<!--											<option value="10">10</option>-->
-<!--										</select>-->
-<!--									</div>-->
-<!--									<div class="form-group col-lg-4 p-0">-->
-<!--										<div>-->
-<!--											<button type="button" class="btn btn-danger remove-btn">Remove</button>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="clearfix"></div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						&lt;!&ndash; Repeater End &ndash;&gt;-->
-<!--					</div>-->
 					<div class="input-group mt-3">
 						<div class="text-center mx-auto">
 							<button type="submit" class="btn  px-5 btn-dark mt-1 ">Create
@@ -319,20 +340,6 @@ canvas {
     $(function () {
         $('[data-toggle="popover"]').popover()
     })
-    // $(function(){
-    //     $("#repeater1").createRepeater();
-    // });
-    // $(function(){
-    //     $("#repeater2").createRepeater();
-    // });
-    $(function () {
-        // $('[name="OtherCheck"]').change(function () {
-        //     if ($(this).is(':checked')) {
-        //         $(".otherLang").prop("disabled", false);
-        //     }
-        //     else {
-        //         $(".otherLang").prop("disabled", true);
-        //     }
-        // });
-    });
+	initRepeater('data-group-language','data-group-template-language');
+    initRepeater('data-group-skill','data-group-template-skill');
 </script>

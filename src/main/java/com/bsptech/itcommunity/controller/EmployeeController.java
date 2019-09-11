@@ -63,18 +63,18 @@ public class EmployeeController {
 
     @RequestMapping(path = "/employees/register")
     public ModelAndView register(ModelAndView modelAndView, Model model) {
-        List<EmployeeProfileLanguage> ll = new ArrayList<>();
-        EmployeeProfileLanguage empL1 = new EmployeeProfileLanguage();
-        empL1.setEmployeeProfileId(new EmployeeProfile(1));
-        empL1.setLanguageId(new Language(1));
-        empL1.setLevel(5);
-
-        ll.add(empL1);
-
-        EmployeeProfile emp = new EmployeeProfile();
-        emp.setEmployeeProfileLanguageList(ll);
-
-        modelAndView.addObject("employeeProfile",emp);
+//        List<EmployeeProfileLanguage> ll = new ArrayList<>();
+//        EmployeeProfileLanguage empL1 = new EmployeeProfileLanguage();
+//        empL1.setEmployeeProfileId(new EmployeeProfile(1));
+//        empL1.setLanguageId(new Language(1));
+//        empL1.setLevel(5);
+//
+//        ll.add(empL1);
+//
+//        EmployeeProfile emp = new EmployeeProfile();
+//        emp.setEmployeeProfileLanguageList(ll);
+        
+        modelAndView.addObject("employeeProfile",new EmployeeProfile());
     	modelAndView.addObject("listLanguages",languageServiceInter.findAll());
     	modelAndView.addObject("listSkills",skillServiceInter.findAll());
         modelAndView.setViewName("employee/registration");
