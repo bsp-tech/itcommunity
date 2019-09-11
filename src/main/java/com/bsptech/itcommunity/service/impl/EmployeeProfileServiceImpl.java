@@ -1,23 +1,26 @@
 package com.bsptech.itcommunity.service.impl;
 
 import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
-import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
 import com.bsptech.itcommunity.entity.User;
+import com.bsptech.itcommunity.security.SecurityUtil;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 @Service
 public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Autowired
     EmployeeProfileDataInter employeeProfileDataInter;
-   
+
+
+    @Autowired
+    SecurityUtil securityUtil;
+
     @Override
     public EmployeeProfile findById(Integer id) {
         return employeeProfileDataInter.findById(id).get();
@@ -35,7 +38,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Override
     public EmployeeProfile save(EmployeeProfile employeeProfile) {
-    	
+
         return employeeProfileDataInter.save(employeeProfile);
     }
 
@@ -56,9 +59,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     	employeeProfile.setApprovedDateTime(new java.sql.Date(new Date().getTime()));
     	employeeProfile.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
     	employeeProfile.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-    	//when user logged in set session attribute
-    	//employeeProfile.setUserId((User)session.getAttribute("s_user"));
-    	employeeProfile.setUserId(new User(1));
+    	employeeProfile.setUserId(securityUtil.loggedInUser());
 		EmployeeProfile ep = employeeProfileDataInter.save(employeeProfile);
 		return employeeProfile;
 	}

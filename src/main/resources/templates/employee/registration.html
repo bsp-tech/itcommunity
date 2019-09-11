@@ -154,10 +154,11 @@ canvas {
 						<label th:if="${#fields.hasErrors('isLookingForWork')}" th:errors="${employeeProfile.isLookingForWork}">Error</label>
 					</div>
 
+
 					<div class="language-box mt-2">
 						<div id="repeater1">
 							<div class="repeater-heading d-flex flex-column">
-								<button type="button" class="btn btn-dark  pull-right repeater-add-btn">
+								<button type="button" class="btn btn-dark  pull-right repeater-add-btn" add-btn-language>
 									Add Language
 								</button>
 							</div>
@@ -196,38 +197,6 @@ canvas {
 								<div class="clearfix"></div>
 							</div>
 
-<div class="items" data-group-template-skill style="display: none">
-								<div class="item-content mt-2  d-flex">
-									<div class="form-group col-lg-5 p-0 pr-2">
-										<select name="employeeProfileSkillList[$index].skillId.id"
-												class="form-control">
-											<option disabled="" selected=""  value="-1">Skills</option>
-											<option
-													th:each="skill : ${listSkills}"
-													th:value="${skill.id}"
-													th:text="${skill.name}"></option>
-										</select>
-									</div>
-									<div class="form-group col-lg-4 p-0 pr-2">
-										<select name="employeeProfileSkillList[$index].level" class="form-control" >
-											<option disabled="" selected="" value="-1">Level</option>
-											<option th:each="i: ${#numbers.sequence(1, 10)}"
-													th:value="${i}"
-													th:text="${i}"
-											>
-											</option>
-										</select>
-									</div>
-									<div class="form-group col-lg-4 p-0">
-										<div>
-											<button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">Remove</button>
-										</div>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-
-
 							<!-- Repeater Items -->
 							<div class="items" data-group-language>
 							<div class="items" th:each="empLanguage, stat : *{employeeProfileLanguageList}">
@@ -264,28 +233,38 @@ canvas {
 								<div class="clearfix"></div>
 							</div>
 							</div>
-							<div class="items" data-group-skill>
-							<div class="items" th:each="empSkill, stat : *{employeeProfileSkillList}">
-								<div class="item-content mt-2  d-flex" data-group-element>
+							</div>
+						<!-- Repeater End -->
+					</div>
+
+
+					<div class="language-box mt-2">
+						<div id="repeater1">
+							<div class="repeater-heading d-flex flex-column">
+								<button type="button" class="btn btn-dark  pull-right repeater-add-btn" add-btn-skill>
+									Add Skill
+								</button>
+							</div>
+							<div class="clearfix"></div>
+
+							<div class="items" data-group-template-skill style="display: none">
+								<div class="item-content mt-2  d-flex">
 									<div class="form-group col-lg-5 p-0 pr-2">
-										<select data-name="employeeProfileSkillList[$index].skillId.id"
-												class="form-control"
-												>
+										<select name="employeeProfileSkillList[$index].skillId.id"
+												class="form-control">
 											<option disabled="" selected=""  value="-1">Skills</option>
 											<option
 													th:each="skill : ${listSkills}"
 													th:value="${skill.id}"
-													th:selected="${skill.id == empSkill.skillId.id}"
 													th:text="${skill.name}"></option>
 										</select>
 									</div>
 									<div class="form-group col-lg-4 p-0 pr-2">
-										<select data-name="employeeProfileSkillList[$index].level" class="form-control">
+										<select name="employeeProfileSkillList[$index].level" class="form-control" >
 											<option disabled="" selected="" value="-1">Level</option>
 											<option th:each="i: ${#numbers.sequence(1, 10)}"
 													th:value="${i}"
 													th:text="${i}"
-													th:selected="${i == empSkill.level}"
 											>
 											</option>
 										</select>
@@ -298,10 +277,46 @@ canvas {
 								</div>
 								<div class="clearfix"></div>
 							</div>
+
+							<div class="items" data-group-skill>
+								<div class="items" th:each="empSkill, stat : *{employeeProfileSkillList}">
+									<div class="item-content mt-2  d-flex" data-group-element>
+										<div class="form-group col-lg-5 p-0 pr-2">
+											<select data-name="employeeProfileSkillList[$index].skillId.id"
+													class="form-control"
+											>
+												<option disabled="" selected=""  value="-1">Skills</option>
+												<option
+														th:each="skill : ${listSkills}"
+														th:value="${skill.id}"
+														th:selected="${skill.id == empSkill.skillId.id}"
+														th:text="${skill.name}"></option>
+											</select>
+										</div>
+										<div class="form-group col-lg-4 p-0 pr-2">
+											<select data-name="employeeProfileSkillList[$index].level" class="form-control">
+												<option disabled="" selected="" value="-1">Level</option>
+												<option th:each="i: ${#numbers.sequence(1, 10)}"
+														th:value="${i}"
+														th:text="${i}"
+														th:selected="${i == empSkill.level}"
+												>
+												</option>
+											</select>
+										</div>
+										<div class="form-group col-lg-4 p-0">
+											<div>
+												<button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">Remove</button>
+											</div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
 							</div>
+
+							<!-- Repeater End -->
 						</div>
-						<!-- Repeater End -->
-					</div>
+
 					<div class="input-group mt-3">
 						<div class="text-center mx-auto">
 							<button type="submit" class="btn  px-5 btn-dark mt-1 ">Create
@@ -340,6 +355,6 @@ canvas {
     $(function () {
         $('[data-toggle="popover"]').popover()
     })
-	initRepeater('data-group-language','data-group-template-language');
-    initRepeater('data-group-skill','data-group-template-skill');
+	initRepeater('data-group-language','data-group-template-language', 'add-btn-language');
+    initRepeater('data-group-skill','data-group-template-skill', 'add-btn-skill');
 </script>
