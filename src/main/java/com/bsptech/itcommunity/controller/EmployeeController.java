@@ -1,13 +1,19 @@
 package com.bsptech.itcommunity.controller;
 
-import com.bsptech.itcommunity.entity.*;
+import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.Language;
+import com.bsptech.itcommunity.entity.Skill;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
+import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
+import com.bsptech.itcommunity.service.inter.SkillServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,35 +22,33 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeProfileServiceInter employeeProfileServiceInter;
+    
+    @Autowired
+    private LanguageServiceInter languageServiceInter;
+    
+    @Autowired
+    private SkillServiceInter skillServiceInter;
 
     @GetMapping(value = {"", "/{page}"})
     public ModelAndView index(
             @PathVariable(name = "page", required = false) Integer page,
             @ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
             ModelAndView modelAndView
-            ) {
+            ){
 
         modelAndView.addObject("employeeProfile", new EmployeeProfile());
-        //DEBUG
-        List<Language> languagesDb = new ArrayList<>();
-        languagesDb.add(new Language(1, "Azerbaijani"));
-        languagesDb.add(new Language(2, "Turkish"));
-        languagesDb.add(new Language(3, "English"));
-        languagesDb.add(new Language(4, "Russian"));
+        
+        List<Language> languages = languageServiceInter.findAll();
+        List<Skill> skills = skillServiceInter.findAll();
 
-
-        List<Skill> skillsDb = new ArrayList<>();
-        skillsDb.add(new Skill(1, "Java"));
-        skillsDb.add(new Skill(2, "C++"));
-        skillsDb.add(new Skill(3, "Python"));
-        skillsDb.add(new Skill(4, "Ruby"));
-
-        System.out.println(employeeProfile);
-//        List<EmployeeProfile>   employeeProfileList = employeeProfileServiceInter.findAll(employeeProfile.get,surname,mail,phone);
-//
-//        modelAndView.addObject("employeeList", employeeProfileList);
-        modelAndView.addObject("languages", languagesDb);
-        modelAndView.addObject("skills", skillsDb);
+        List<EmployeeProfile> employeeProfileList = employeeProfileServiceInter.findAll(employeeProfile);
+        
+        System.out.println(employeeProfile.getEmployeeProfileLanguageList()+"\n"+employeeProfile.getEmployeeProfileSkillList());
+        
+        
+        modelAndView.addObject("employeeList", employeeProfileList);
+        modelAndView.addObject("languages", languages);
+        modelAndView.addObject("skills", skills);
         modelAndView.setViewName("employee/index");
 
         return modelAndView;

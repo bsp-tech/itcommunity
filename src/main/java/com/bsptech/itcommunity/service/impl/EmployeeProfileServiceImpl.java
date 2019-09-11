@@ -4,10 +4,10 @@ import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
-import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,32 +26,18 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     }
 
     @Override
-    public List<EmployeeProfile> findAll(String name,String surname,String email,String phone) {
+    public List<EmployeeProfile> findAll(EmployeeProfile e) {
         
-        List<EmployeeProfile> employeeProfileList = (List<EmployeeProfile>) employeeProfileDataInter.findAll();
-        
-        if(name.equals("") && surname.equals("") && email.equals("") && phone.equals("")){
-            
-            return employeeProfileList;
-            
-        } else {
-            
-            List<EmployeeProfile> result = new ArrayList<>();
-            
-            for(EmployeeProfile employee : employeeProfileList ){
-                User user = employee.getUserId();
-                
-                if(user.getName().toLowerCase().equals(name.toLowerCase())
-                        || user.getSurname().toLowerCase().equals(surname.toLowerCase())
-                        || user.getEmail().toLowerCase().equals(email.toLowerCase())
-                        || user.getPhone().equals(phone)){
-                    
-                    result.add(employee);
-                }
-            }
-            
-            return result;
+        List<EmployeeProfile> employeeProfileList = new ArrayList<>();
+
+        if(e.getUserId()==null){
+            employeeProfileList = (List<EmployeeProfile>) employeeProfileDataInter.findAll();            
+        } else {   
+            User u = e.getUserId();
+            employeeProfileList = employeeProfileDataInter.find(u.getName(),u.getSurname(),u.getEmail(),u.getPhone());
         }
+
+        return employeeProfileList;
     }
 
     @Override

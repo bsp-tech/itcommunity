@@ -74,6 +74,8 @@
                             </button>
                         </p>
                     </div>
+                    
+                    <!--languages-->
                     <div class="card mt-3 bg-light  border-0">
                         <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
                             <div class="p-3">
@@ -106,123 +108,40 @@
                             </div>
                         </div>
                     </div>
-
-<!--                    <div class="card  border-0 bg-light">-->
-<!--                        <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">-->
-<!--                            <div class="p-3">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-4 mb-4" th:each="skill : ${skills}">-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-md-3 col-5 d-flex align-items-center">-->
-<!--                                                <div class="form-check mr-3">-->
-<!--                                                    <label class="form-check-label" th:text="${skill.name}">                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-md-5 col-7 d-flex align-items-center">-->
-<!--                                                <div class="form-group mb-0">-->
-<!--                                                    <select class="form-control">-->
-<!--                                                        <option selected="" value="0">Level</option>-->
-<!--                                                        <option th:each="i: ${#numbers.sequence(1, 10)}"-->
-<!--                                                                th:value="${i}"-->
-<!--                                                                th:text="${i}"-->
-<!--                                                        >-->
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4 mb-4">-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-md-3 col-5 d-flex align-items-center">-->
-<!--                                                <div class="form-check mr-3">-->
-<!--                                                    <label class="form-check-label" for="defaultCheck1">-->
-<!--                                                        PHP-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-md-5 col-7 d-flex align-items-center">-->
-<!--                                                <div class="form-group mb-0">-->
-<!--                                                    <select id="inputState" class="form-control">-->
-<!--                                                        <option selected="" value="0">Level</option>-->
-<!--                                                        <option value="1">1</option>-->
-<!--                                                        <option value="2">2</option>-->
-<!--                                                        <option value="3">3</option>-->
-<!--                                                        <option value="4">4</option>-->
-<!--                                                        <option value="5">5</option>-->
-<!--                                                        <option value="6">6</option>-->
-<!--                                                        <option value="7">7</option>-->
-<!--                                                        <option value="8">8</option>-->
-<!--                                                        <option value="9">9</option>-->
-<!--                                                        <option value="10">10</option>-->
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4 mb-4">-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-md-3 col-5 d-flex align-items-center">-->
-<!--                                                <div class="form-check mr-3">-->
-<!--                                                    <label class="form-check-label" for="defaultCheck1">-->
-<!--                                                        Java-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-md-5 col-7 d-flex align-items-center">-->
-<!--                                                <div class="form-group mb-0">-->
-<!--                                                    <select id="inputState" class="form-control">-->
-<!--                                                        <option selected="" value="0">Level</option>-->
-<!--                                                        <option value="1">1</option>-->
-<!--                                                        <option value="2">2</option>-->
-<!--                                                        <option value="3">3</option>-->
-<!--                                                        <option value="4">4</option>-->
-<!--                                                        <option value="5">5</option>-->
-<!--                                                        <option value="6">6</option>-->
-<!--                                                        <option value="7">7</option>-->
-<!--                                                        <option value="8">8</option>-->
-<!--                                                        <option value="9">9</option>-->
-<!--                                                        <option value="10">10</option>-->
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4 mb-4">-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-md-3 col-5 d-flex align-items-center">-->
-<!--                                                <div class="form-check mr-3">-->
-<!--                                                    <label class="form-check-label" for="defaultCheck1">-->
-<!--                                                        C++-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-md-5 col-7 d-flex align-items-center">-->
-<!--                                                <div class="form-group mb-0">-->
-<!--                                                    <select id="inputState" class="form-control">-->
-<!--                                                        <option selected="" value="0">Level</option>-->
-<!--                                                        <option value="1">1</option>-->
-<!--                                                        <option value="2">2</option>-->
-<!--                                                        <option value="3">3</option>-->
-<!--                                                        <option value="4">4</option>-->
-<!--                                                        <option value="5">5</option>-->
-<!--                                                        <option value="6">6</option>-->
-<!--                                                        <option value="7">7</option>-->
-<!--                                                        <option value="8">8</option>-->
-<!--                                                        <option value="9">9</option>-->
-<!--                                                        <option value="10">10</option>-->
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    
+                    <!--skills-->
+                    <div class="card mt-3 bg-light  border-0">
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+                            <div class="p-3">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4" th:each="skill, stat : ${skills}"
+                                         >
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" th:text="${skill.name}">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <input th:type="hidden" th:name="${'employeeProfileSkillList['+stat.index+'].skillId.id'}" th:value="${skill.id}">
+                                                    <select th:name="${'employeeProfileSkillList['+stat.index+'].level'}"
+                                                            class="form-control" >
+                                                        <option selected="" value="0">Level</option>
+                                                        <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                                                th:value="${i}"
+                                                                th:text="${i}"
+                                                        >
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
