@@ -2,21 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f8746c1-d8e0-4dea-b7ba-c9ddbeb5ffd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.m2e.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/itcommunity.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nb-configuration.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -135,7 +120,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568296045830</updated>
-      <workItem from="1568296047452" duration="354000" />
+      <workItem from="1568296047452" duration="464000" />
     </task>
     <servers />
   </component>
