@@ -2,17 +2,27 @@ package com.bsptech.itcommunity.service.impl;
 
 import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.EmployeeProfileLanguage;
+import com.bsptech.itcommunity.entity.EmployeeProfileSkill;
 import com.bsptech.itcommunity.entity.User;
+//import com.bsptech.itcommunity.security.SecurityUtil;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Autowired
     EmployeeProfileDataInter employeeProfileDataInter;
+
+
+//    @Autowired
+//    SecurityUtil securityUtil;
 
     @Override
     public EmployeeProfile findById(Integer id) {
@@ -31,6 +41,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Override
     public EmployeeProfile save(EmployeeProfile employeeProfile) {
+
         return employeeProfileDataInter.save(employeeProfile);
     }
 
@@ -43,5 +54,32 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     public int delete(Integer id) {
         employeeProfileDataInter.deleteById(id);
         return 0;
+    }
+
+    @Override
+    public EmployeeProfile register(EmployeeProfile employeeProfile) {
+        employeeProfile.setApproved(1);
+        employeeProfile.setApprovedDateTime(new java.sql.Date(new Date().getTime()));
+        employeeProfile.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
+        employeeProfile.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+        employeeProfile.setUserId(new User(1));
+        List<EmployeeProfileLanguage> epLanguageList = employeeProfile.getEmployeeProfileLanguageList();
+        if(epLanguageList!=null && epLanguageList.size()>0){
+            for (EmployeeProfileLanguage epLanguage : epLanguageList) {
+                epLanguage.setEmployeeProfileId(employeeProfile);
+                epLanguage.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+            }
+        }
+        List<EmployeeProfileSkill> epSkillList = employeeProfile.getEmployeeProfileSkillList();
+        if(epSkillList!=null && epSkillList.size()>0){
+            for (EmployeeProfileSkill epSkill : epSkillList) {
+                epSkill.setEmployeeProfileId(employeeProfile);
+                epSkill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+            }
+        }
+        employeeProfile.setEmployeeProfileLanguageList(epLanguageList);
+        employeeProfile.setEmployeeProfileSkillList(epSkillList);
+        EmployeeProfile ep = employeeProfileDataInter.save(employeeProfile);
+        return employeeProfile;
     }
 }

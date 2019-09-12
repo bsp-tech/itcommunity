@@ -374,11 +374,11 @@
                         <div th:each="l : ${p.employeeProfileLanguageList}">
                             <span th:text="${l.languageId.name}"></span>
                             <div class="progress my-2">
-                                 <div class="progress-bar bg-dark"
-                                      th:attr="aria-valuenow=${l.level*10}, style=${'width:'+l.level*10+'%'}"
-                                      th:text="${l.level*10+'%'}">
-                                     90%
-                                 </div>
+                                <div class="progress-bar bg-dark"
+                                     th:attr="aria-valuenow=${l.level*10}, style=${'width:'+l.level*10+'%'}"
+                                     th:text="${l.level*10+'%'}">
+                                    90%
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -390,52 +390,52 @@
                 <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isLookingForWork}">Not Available for Job Offer</p>
 
                 <div class="text-center">
-                    <img th:src="${p.userId.thumbnail}" class="card-img-top rounded-circle"  style="width: 120px; height: 120px;" alt="">
+                    <img th:src="${p.userId.thumbnail}" class="card-img-top rounded-circle"  style="width: 120px; height: 120px;"/>
                 </div>
                 <div class="card-body text-center">
-                  <h5 class="card-title" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
-                  <p class="my-4 text-secondary" th:text="${p.speciality}"></p>
+                    <h5 class="card-title" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
+                    <p class="my-4 text-secondary" th:text="${p.speciality}"></p>
                 </div>
             </div>
         </div>
 
-    <th:block th:if="${pagination}">
+        <th:block th:if="${pagination}">
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
 
-                <th:block th:if="${page!=1}">
+                    <th:block th:if="${page!=1}">
 
-                    <li class="page-item">
-                        <a class="page-link" th:href="${page-1}" >Previous</a>
-                    </li>
-
-
-                    <li class="page-item"><a class="page-link" th:href="${page-1}" th:text="${page-1}"></a></li>
-
-                </th:block>
-
-                <li class="page-item active"><a class="page-link" th:href="${page}" th:text="${page}"></a></li>
-
-                <th:block th:if="${page+1<=pages}">
-
-                    <li class="page-item"><a class="page-link" th:href="${page+1}" th:text="${page+1}"></a></li>
-
-                    <li class="page-item">
-                        <a class="page-link" th:href="${page+1}" >Next</a>
-                    </li>
-
-                </th:block>
+                        <li class="page-item">
+                            <a class="page-link" th:href="${page-1}" >Previous</a>
+                        </li>
 
 
-            </ul>
-        </nav>
+                        <li class="page-item"><a class="page-link" th:href="${page-1}" th:text="${page-1}"></a></li>
 
-    </th:block>
+                    </th:block>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+                    <li class="page-item active"><a class="page-link" th:href="${page}" th:text="${page}"></a></li>
+
+                    <th:block th:if="${page+1<=pages}">
+
+                        <li class="page-item"><a class="page-link" th:href="${page+1}" th:text="${page+1}"></a></li>
+
+                        <li class="page-item">
+                            <a class="page-link" th:href="${page+1}" >Next</a>
+                        </li>
+
+                    </th:block>
+
+
+                </ul>
+            </nav>
+
+        </th:block>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     </div>
 </div>
