@@ -47,7 +47,7 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "speciality")
     private String speciality;
     @Column(name = "experience")
-    private int experience;
+    private Integer experience;
     @Basic(optional = false)
     @NotNull
     @Column(name = "about")
@@ -202,11 +202,11 @@ public class EmployeeProfile implements Serializable {
         this.speciality = speciality;
     }
 
-    public int getExperience() {
+    public Integer getExperience() {
         return experience;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(Integer experience) {
         this.experience = experience;
     }
 
