@@ -15,7 +15,7 @@ public interface EmployeeProfileServiceInter {
 
     public EmployeeProfile save(EmployeeProfile employeeProfile);
     
-    public EmployeeProfile save(EmployeeProfile employeeProfile,HttpSession session);
+    public EmployeeProfile register(EmployeeProfile employeeProfile);
 
     public EmployeeProfile update(EmployeeProfile employeeProfile);
 

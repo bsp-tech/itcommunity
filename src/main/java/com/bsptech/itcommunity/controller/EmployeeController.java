@@ -79,7 +79,7 @@ public class EmployeeController {
 //        }
         System.out.println(employeeProfile);
         System.out.println(employeeProfile.getEmployeeProfileLanguageList());//
-//    	EmployeeProfile ep = employeeProfileServiceInter.save(employeeProfile,session);
+    	EmployeeProfile ep = employeeProfileServiceInter.register(employeeProfile);
         modelAndView.setViewName("employee/index");
     	return modelAndView;
     }
