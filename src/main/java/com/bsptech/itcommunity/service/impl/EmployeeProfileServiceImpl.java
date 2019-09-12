@@ -64,14 +64,18 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         employeeProfile.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         employeeProfile.setUserId(new User(1));
         List<EmployeeProfileLanguage> epLanguageList = employeeProfile.getEmployeeProfileLanguageList();
-        for (EmployeeProfileLanguage epLanguage : epLanguageList) {
-            epLanguage.setEmployeeProfileId(employeeProfile);
-            epLanguage.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+        if(epLanguageList!=null && epLanguageList.size()>0){
+            for (EmployeeProfileLanguage epLanguage : epLanguageList) {
+                epLanguage.setEmployeeProfileId(employeeProfile);
+                epLanguage.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+            }
         }
         List<EmployeeProfileSkill> epSkillList = employeeProfile.getEmployeeProfileSkillList();
-        for (EmployeeProfileSkill epSkill : epSkillList) {
-            epSkill.setEmployeeProfileId(employeeProfile);
-            epSkill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+        if(epSkillList!=null && epSkillList.size()>0){
+            for (EmployeeProfileSkill epSkill : epSkillList) {
+                epSkill.setEmployeeProfileId(employeeProfile);
+                epSkill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+            }
         }
         employeeProfile.setEmployeeProfileLanguageList(epLanguageList);
         employeeProfile.setEmployeeProfileSkillList(epSkillList);

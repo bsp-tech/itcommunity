@@ -46,6 +46,8 @@ public class EmployeeProfile implements Serializable {
     @NotNull
     @Column(name = "speciality")
     private String speciality;
+    @Column(name = "experience")
+    private int experience;
     @Basic(optional = false)
     @NotNull
     @Column(name = "about")
@@ -198,6 +200,14 @@ public class EmployeeProfile implements Serializable {
 
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     @XmlTransient
