@@ -106,7 +106,7 @@ public class User implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Gender genderId;
     @JoinColumn(name = "group_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private AuthGroup groupId;
 
     public User() {

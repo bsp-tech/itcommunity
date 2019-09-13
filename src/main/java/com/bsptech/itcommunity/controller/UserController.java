@@ -32,11 +32,11 @@ public class UserController {
         return modelAndView;
     }
 
-//    @RequestMapping(path = "/login")
-//    public ModelAndView login(ModelAndView modelAndView) {
-//        modelAndView.setViewName("user/login");
-//        return modelAndView;
-//    }
+    @RequestMapping(path = "/login")
+    public ModelAndView login(ModelAndView modelAndView) {
+        modelAndView.setViewName("user/login");
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String registerPost(ModelAndView modelAndView, @ModelAttribute User user,RedirectAttributes redirectAttributes) {

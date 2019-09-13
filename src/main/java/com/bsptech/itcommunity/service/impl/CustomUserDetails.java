@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,16 +19,19 @@ public class CustomUserDetails implements UserDetailsService {
     private UserDataInter userDataInter;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = userDataInter.findByUsername(username);
+        User user = userDataInter.findByEmail(email);
 
-        List<GrantedAuthority> roles = user.getGroupId().getUserList()
+        List<GrantedAuthority> roles = user.getGroupId().getAuthGroupRoleList()
                 .stream()
-                .map(u -> new SimpleGrantedAuthority(u.getName()))
+                .map(u -> new SimpleGrantedAuthority(u.getRoleId().getName()))
                 .collect(Collectors.toList());
 
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getName(),user.getPassword(),roles);
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                roles);
 
         return userDetails;
     }
