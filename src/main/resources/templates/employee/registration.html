@@ -7,7 +7,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <!-- font awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Document</title>
     </head>
     <style>
@@ -78,7 +79,7 @@
         <!-- stats.js lib -->
         <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
 
-        <div class="col-lg-4 pt-5 mx-auto ">
+        <div class="col-lg-5 pt-5 mx-auto ">
             <div class="card border  border-dark  ">
 
                 <h4 class="card-header  text-white bg-dark">Create Employee Profile</h4>
@@ -193,39 +194,6 @@
                                 </div>
                                 <div class="clearfix"></div>
 
-
-                                <!-- Repeater Items -->
-                                <div class="items" data-group-template-language style="display: none">
-                                    <div class="item-content mt-2  d-flex">
-                                        <div class="form-group col-lg-5 p-0 pr-2">
-                                            <select name="employeeProfileLanguageList[$index].languageId.id"
-                                                    class="form-control">
-                                                <option disabled="" selected=""  value="-1">Languages</option>
-                                                <option
-                                                    th:each="language : ${listLanguages}"
-                                                    th:value="${language.id}"
-                                                    th:text="${language.name}"></option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4 p-0 pr-2">
-                                            <select name="employeeProfileLanguageList[$index].level" class="form-control" >
-                                                <option disabled="" selected="" value="-1">Level</option>
-                                                <option th:each="i: ${#numbers.sequence(1, 10)}"
-                                                        th:value="${i}"
-                                                        th:text="${i}"
-                                                        >
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4 p-0">
-                                            <div>
-                                                <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">Remove</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-
                                 <!-- Repeater Items -->
                                 <div class="items" data-group-language>
                                     <div class="items" th:each="empLanguage, stat : *{employeeProfileLanguageList}">
@@ -276,41 +244,11 @@
                                 </div>
                                 <div class="clearfix"></div>
 
-                                <div class="items" data-group-template-skill style="display: none">
-                                    <div class="item-content mt-2  d-flex">
-                                        <div class="form-group col-lg-5 p-0 pr-2">
-                                            <select name="employeeProfileSkillList[$index].skillId.id"
-                                                    class="form-control">
-                                                <option disabled="" selected=""  value="-1">Skills</option>
-                                                <option
-                                                    th:each="skill : ${listSkills}"
-                                                    th:value="${skill.id}"
-                                                    th:text="${skill.name}"></option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4 p-0 pr-2">
-                                            <select name="employeeProfileSkillList[$index].level" class="form-control" >
-                                                <option disabled="" selected="" value="-1">Level</option>
-                                                <option th:each="i: ${#numbers.sequence(1, 10)}"
-                                                        th:value="${i}"
-                                                        th:text="${i}"
-                                                        >
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-lg-4 p-0">
-                                            <div>
-                                                <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">Remove</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
 
                                 <div class="items" data-group-skill>
                                     <div class="items" th:each="empSkill, stat : *{employeeProfileSkillList}">
                                         <div class="item-content mt-2  d-flex" data-group-element>
-                                            <div class="form-group col-lg-5 p-0 pr-2">
+                                            <div class="form-group col-lg-3 p-0 pr-2">
                                                 <select data-name="employeeProfileSkillList[$index].skillId.id"
                                                         class="form-control"
                                                         >
@@ -322,7 +260,7 @@
                                                         th:text="${skill.name}"></option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-lg-4 p-0 pr-2">
+                                            <div class="form-group col-lg-3 p-0 pr-2">
                                                 <select data-name="employeeProfileSkillList[$index].level" class="form-control">
                                                     <option disabled="" selected="" value="-1">Level</option>
                                                     <option th:each="i: ${#numbers.sequence(1, 10)}"
@@ -387,6 +325,76 @@
                                                         requestAnimationFrame(update);
         </script>
         <div id="last_element"></div>
+
+
+
+        <div class="items" data-group-template-skill style="display: none">
+            <div class="item-content mt-2  d-flex">
+                <div class="form-group col-lg-4 p-0 pr-2">
+                    <select name="employeeProfileSkillList[$index].skillId.id"
+                            class="form-control">
+                        <option disabled="" selected=""  value="-1">Skills</option>
+                        <option
+                                th:each="skill : ${listSkills}"
+                                th:value="${skill.id}"
+                                th:text="${skill.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4 p-0 pr-2">
+                    <input type="text" name="employeeProfileSkillList[$index].skillId.name" class="form-control" placeholder="Other Skill">
+                </div>
+                <div class="form-group col-lg-3 p-0 pr-2">
+                    <select name="employeeProfileSkillList[$index].level" class="form-control" >
+                        <option disabled="" selected="" value="-1">Level</option>
+                        <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                th:value="${i}"
+                                th:text="${i}"
+                        >
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-2 p-0">
+                    <div>
+                        <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="items" data-group-template-language style="display: none">
+            <div class="item-content mt-2  d-flex">
+                <div class="form-group col-lg-5 p-0 pr-2">
+                    <select name="employeeProfileLanguageList[$index].languageId.id"
+                            class="form-control">
+                        <option disabled="" selected=""  value="-1">Languages</option>
+                        <option
+                                th:each="language : ${listLanguages}"
+                                th:value="${language.id}"
+                                th:text="${language.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4 p-0 pr-2">
+                    <select name="employeeProfileLanguageList[$index].level" class="form-control" >
+                        <option disabled="" selected="" value="-1">Level</option>
+                        <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                th:value="${i}"
+                                th:text="${i}"
+                        >
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-4 p-0">
+                    <div>
+                        <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
     </body>
 </html>
 <script>

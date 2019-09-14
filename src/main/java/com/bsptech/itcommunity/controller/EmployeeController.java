@@ -1,10 +1,10 @@
 package com.bsptech.itcommunity.controller;
 
+import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.service.impl.SecurityServiceImpl;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
-import com.bsptech.itcommunity.service.inter.SkillServiceInter;
-import com.bsptech.itcommunity.service.impl.SecurityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class EmployeeController {
 	LanguageServiceInter languageServiceInter;
 
 	@Autowired
-	SkillServiceInter skillServiceInter;
+    SkillDataInter skillDao;
 
     @Autowired
     EmployeeProfileServiceInter serviceInter;
@@ -65,7 +65,7 @@ public class EmployeeController {
     public ModelAndView register(ModelAndView modelAndView, Model model) {
         modelAndView.addObject("employeeProfile",new EmployeeProfile());
     	modelAndView.addObject("listLanguages",languageServiceInter.findAll());
-    	modelAndView.addObject("listSkills",skillServiceInter.findAll());
+    	modelAndView.addObject("listSkills",skillDao.findByEnabled(true));
         modelAndView.setViewName("employee/registration");
         return modelAndView;
     }

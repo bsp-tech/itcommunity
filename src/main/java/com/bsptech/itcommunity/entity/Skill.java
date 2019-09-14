@@ -5,27 +5,13 @@
  */
 package com.bsptech.itcommunity.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,13 +19,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "skill")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Skill.findAll", query = "SELECT s FROM Skill s")
-    , @NamedQuery(name = "Skill.findById", query = "SELECT s FROM Skill s WHERE s.id = :id")
-    , @NamedQuery(name = "Skill.findByName", query = "SELECT s FROM Skill s WHERE s.name = :name")
-    , @NamedQuery(name = "Skill.findByInsertDateTime", query = "SELECT s FROM Skill s WHERE s.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Skill.findByLastUpdateTime", query = "SELECT s FROM Skill s WHERE s.lastUpdateTime = :lastUpdateTime")})
 public class Skill implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,10 +38,15 @@ public class Skill implements Serializable {
     @Column(name = "last_update_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "skillId", fetch = FetchType.LAZY)
     private List<ProjectSkill> projectSkillList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "skillId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "skillId", fetch = FetchType.LAZY)
     private List<EmployeeProfileSkill> employeeProfileSkillList;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "enabled")
+    private Boolean enabled;
 
     public Skill() {
     }
@@ -126,6 +110,14 @@ public class Skill implements Serializable {
         this.employeeProfileSkillList = employeeProfileSkillList;
     }
 
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -148,7 +140,7 @@ public class Skill implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.Skill[ id=" + id + " ]";
+        return "id="+id+",name="+name;
     }
-    
+
 }

@@ -1,6 +1,7 @@
 package com.bsptech.itcommunity.service.impl;
 
 import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
+import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.*;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
@@ -8,6 +9,8 @@ import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +21,6 @@ import java.util.List;
 public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Autowired
     EmployeeProfileDataInter employeeProfileDataInter;
-
 
 //    @Autowired
 //    SecurityUtil securityUtil;
@@ -58,6 +60,10 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Autowired
     private SecurityServiceInter securityService;
 
+
+    @Autowired
+    private SkillDataInter skillDao;
+
     @Autowired
     private UserDataInter userDao;
 
@@ -79,10 +85,37 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
             }
         }
         List<EmployeeProfileSkill> epSkillList = employeeProfile.getEmployeeProfileSkillList();
+
+        List<EmployeeProfileSkill> epSkillFilteredList = new ArrayList<>();
+
         if(epSkillList!=null && epSkillList.size()>0){
+            Date now_ = new java.sql.Date(new Date().getTime());
+
             for (EmployeeProfileSkill epSkill : epSkillList) {
+                if(epSkill==null) continue;
+                if(epSkill.getSkillId()==null) continue;
+                if(epSkill.getLevel()==null || epSkill.getLevel()==0) continue;
+                Skill skill_ = new Skill();
+
+                Integer id_ = epSkill.getSkillId().getId();
+                if(id_!=null && id_>0){
+                    skill_ = skillDao.getOne(id_);
+                }else {
+                    String name_ = epSkill.getSkillId().getName();
+                    if (name_ != null && !name_.trim().isEmpty()) {
+                        skill_.setName(name_.trim());
+                        skill_.setEnabled(false);
+                        skill_.setInsertDateTime(now_);
+                    }else{
+                        continue;
+                    }
+                }
+                System.out.println("skill="+skill_);
+                epSkill.setSkillId(skill_);
+                epSkill.setInsertDateTime(now_);
                 epSkill.setEmployeeProfileId(employeeProfile);
-                epSkill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+
+                epSkillFilteredList.add(epSkill);
             }
         }
         employeeProfile.setEmployeeProfileLanguageList(epLanguageList);
