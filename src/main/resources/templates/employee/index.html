@@ -27,8 +27,10 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="ml-2  my-2  nav-item active">
-                <a href="/employees/register" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">Create an IT Employee</a>
+            <li class="ml-2  my-2  nav-item active" sec:authorize="hasAuthority('CREATE_EMPLOYEE_PROFILE')">
+                <a href="/employees/register" class="btn border-light fs-14  text-white bg-dark btn-lg stretched-link">
+                    Create an IT Employee
+                </a>
             </li>
             <li class="ml-2  my-2  nav-item active">
                 <a href="/user/login"
@@ -43,6 +45,7 @@
                    sec:authorize="isAuthenticated()"
                 >
                     <img width="14px;" th:src="@{img/project/icons8-customer-96.png}">
+                    <span th:text="${'('+#authentication.getPrincipal().getUser().getName()+' '+#authentication.getPrincipal().getUser().getSurname()+')'}"></span>
                     Logout
                 </a>
             </li>

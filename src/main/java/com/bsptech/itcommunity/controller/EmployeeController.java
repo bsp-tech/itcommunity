@@ -4,6 +4,7 @@ import com.bsptech.itcommunity.entity.EmployeeProfile;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
 import com.bsptech.itcommunity.service.inter.SkillServiceInter;
+import com.bsptech.itcommunity.service.impl.SecurityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,9 @@ public class EmployeeController {
     @Autowired
     EmployeeProfileServiceInter serviceInter;
 
+    @Autowired
+    SecurityServiceImpl securityServiceInter;
+
     @GetMapping(path = "/")
     public ModelAndView index(
             @PathVariable(name = "page", required = false) String pageS,
@@ -40,7 +44,6 @@ public class EmployeeController {
             @RequestParam(name = "number", required = false, defaultValue = "") String number,
             ModelAndView modelAndView
             ){
-
         List<EmployeeProfile> list = serviceInter.findAll();
 
         modelAndView.addObject("pages", 10);
@@ -68,8 +71,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/employees/register",method=RequestMethod.POST)
-    public ModelAndView register(
-                ModelAndView modelAndView,
+    public String register(
                 @Valid @ModelAttribute("employeeProfile") EmployeeProfile employeeProfile,
                 BindingResult result,
                 HttpSession session) {
@@ -80,8 +82,7 @@ public class EmployeeController {
         System.out.println(employeeProfile);
         System.out.println(employeeProfile.getEmployeeProfileLanguageList());//
     	EmployeeProfile ep = employeeProfileServiceInter.register(employeeProfile);
-        modelAndView.setViewName("employee/index");
-    	return modelAndView;
+        return "redirect:/";
     }
 
 }

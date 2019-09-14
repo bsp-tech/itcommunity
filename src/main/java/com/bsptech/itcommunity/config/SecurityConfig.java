@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("customUserDetails")
+    @Qualifier("customUserDetailServiceImpl")
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -46,8 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/user/login", "/user/register").anonymous()//this means only un authenticated users can access to login and register page
                 .antMatchers("/employees/register","/logout").authenticated()//this means only authenticated users can access to logout
+                .antMatchers("/employees/register").hasAnyAuthority("CREATE_EMPLOYEE_PROFILE")
                 .and().formLogin().loginPage("/user/login").loginProcessingUrl("/login").defaultSuccessUrl("/")
-                .and().logout().logoutSuccessUrl("/user/login")
+                .and().logout().logoutSuccessUrl("/")
                 .and().csrf().disable();
     }
 

@@ -72,7 +72,7 @@ public class EmployeeProfile implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
     private List<EmployeeProfileSkill> employeeProfileSkillList;

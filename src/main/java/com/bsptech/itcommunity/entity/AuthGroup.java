@@ -31,7 +31,7 @@ public class AuthGroup implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupId", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupId", fetch = FetchType.LAZY)
     private List<AuthGroupRole> authGroupRoleList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupId", fetch = FetchType.LAZY)
     private List<User> userList;
@@ -106,5 +106,5 @@ public class AuthGroup implements Serializable {
     public String toString() {
         return "com.bsptech.itcommunity.entity.AuthGroup[ id=" + id + " ]";
     }
-    
+
 }

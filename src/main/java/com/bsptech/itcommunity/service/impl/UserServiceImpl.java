@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserServiceInter {
     public User save(User user) {
         user.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         user.setGroupId(new AuthGroup(2));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userDataInter.save(user);
     }
 

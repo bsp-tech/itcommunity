@@ -1,5 +1,6 @@
 package com.bsptech.itcommunity.service.impl;
 
+import com.bsptech.itcommunity.bean.CustomUserDetail;
 import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CustomUserDetails implements UserDetailsService {
+public class CustomUserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserDataInter userDataInter;
@@ -28,7 +29,8 @@ public class CustomUserDetails implements UserDetailsService {
                 .map(u -> new SimpleGrantedAuthority(u.getRoleId().getName()))
                 .collect(Collectors.toList());
 
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+        UserDetails userDetails = new CustomUserDetail(
+                user,
                 user.getEmail(),
                 user.getPassword(),
                 roles);

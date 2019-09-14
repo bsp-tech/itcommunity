@@ -1,21 +1,20 @@
 package com.bsptech.itcommunity.service.impl;
 
 import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
-import com.bsptech.itcommunity.entity.EmployeeProfile;
-import com.bsptech.itcommunity.entity.EmployeeProfileLanguage;
-import com.bsptech.itcommunity.entity.EmployeeProfileSkill;
-import com.bsptech.itcommunity.entity.User;
-//import com.bsptech.itcommunity.security.SecurityUtil;
+import com.bsptech.itcommunity.dao.UserDataInter;
+import com.bsptech.itcommunity.entity.*;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
-import java.util.ArrayList;
+import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpSession;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 
+//import com.bsptech.itcommunity.security.SecurityUtil;
+
 @Service
+@Transactional
 public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Autowired
     EmployeeProfileDataInter employeeProfileDataInter;
@@ -56,13 +55,22 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         return 0;
     }
 
+    @Autowired
+    private SecurityServiceInter securityService;
+
+    @Autowired
+    private UserDataInter userDao;
+
     @Override
     public EmployeeProfile register(EmployeeProfile employeeProfile) {
         employeeProfile.setApproved(1);
         employeeProfile.setApprovedDateTime(new java.sql.Date(new Date().getTime()));
         employeeProfile.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
         employeeProfile.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-        employeeProfile.setUserId(new User(1));
+
+        User loggedInUser = userDao.getOne(securityService.getLoggedInUserDetails().getUser().getId());
+        loggedInUser.setGroupId(new AuthGroup(3));
+        employeeProfile.setUserId(loggedInUser);
         List<EmployeeProfileLanguage> epLanguageList = employeeProfile.getEmployeeProfileLanguageList();
         if(epLanguageList!=null && epLanguageList.size()>0){
             for (EmployeeProfileLanguage epLanguage : epLanguageList) {
@@ -80,6 +88,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         employeeProfile.setEmployeeProfileLanguageList(epLanguageList);
         employeeProfile.setEmployeeProfileSkillList(epSkillList);
         EmployeeProfile ep = employeeProfileDataInter.save(employeeProfile);
-        return employeeProfile;
+
+        return ep;
     }
 }

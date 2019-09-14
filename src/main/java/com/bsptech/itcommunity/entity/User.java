@@ -73,13 +73,13 @@ public class User implements Serializable {
     @Size(max = 300)
     @Column(name = "thumbnail")
     private String thumbnail;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
     private List<EmployeeProfile> employeeProfileList;
     @JoinColumn(name = "gender_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Gender genderId;
     @JoinColumn(name = "group_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private AuthGroup groupId;
 
     public User() {
