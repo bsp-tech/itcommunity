@@ -31,15 +31,15 @@ public class EmployeeController {
     @Autowired
     EmployeeProfileServiceInter serviceInter;
 
-    @GetMapping(value = {"", "/{page}"})
+    @GetMapping(path = "/")
     public ModelAndView index(
             @PathVariable(name = "page", required = false) String pageS,
-            ModelAndView modelAndView,
             @RequestParam(name = "name", required = false, defaultValue = "") String name,
             @RequestParam(name = "surname", required = false, defaultValue = "") String surname,
             @RequestParam(name = "mail", required = false, defaultValue = "") String mail,
-            @RequestParam(name = "number", required = false, defaultValue = "") String number
-        ){
+            @RequestParam(name = "number", required = false, defaultValue = "") String number,
+            ModelAndView modelAndView
+            ){
 
         List<EmployeeProfile> list = serviceInter.findAll();
 

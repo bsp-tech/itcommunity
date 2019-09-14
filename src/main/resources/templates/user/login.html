@@ -27,45 +27,43 @@
                         <div class="col-12">
                             <br>
                             <div class="d-flex flex-column align-items-center justify-content-center">
-                                <img width="30%" src="../../../../../itcommunity_frontend/assets/img/53879006.jpg" alt="">
+                                <img width="30%" th:src="${'/img/project/53879006.jpg'}" alt="">
                                 <p class="m-0" style="font-size: 30px;">Log In</p>
                             </div>
                             <!-- Card Body-Content -->
                             <article class="card-body mx-auto" style="max-width: 400px;">
-                                <form>
+                                <form action="/login" method="POST">
                                     <!-- Inputs -->
                                     <div class="input-group my-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-dark"><i
                                                     class="text-white fa fa-user"></i></span>
                                         </div>
-                                        <input name="name" class="form-control" placeholder="Email" type="text">
+                                        <input name="username" class="form-control" placeholder="Email" type="text">
                                     </div>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-dark"> <i
                                                     class="text-white fa fa-lock"></i> </span>
                                         </div>
-                                        <input name="name" class="form-control" placeholder="Password" type="password">
+                                        <input name="password" class="form-control" placeholder="Password" type="password">
                                     </div>
                                     <!-- Buttons -->
                                     <div class="form-group w-100">
                                         <div class="row">
                                             <div class="col-12 mb-2">
-                                                <button type="submit" class="btn-block d-inline btn btn-dark"> Log In
+                                                <button type="submit" class="btn-block d-inline btn btn-dark">
+                                                    Log In
                                                 </button>
-
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="submit" class="btn-block d-inline btn btn-secondary"> Log
-                                                    In with
-                                                    Gmail</button>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Option for Register -->
                                     <div class="w-100 register-option">
-                                        <p class="text-center">Don't have an account? <a href="/user/register">Register</a></p>
+                                        <p class="text-center">
+                                            Don't have an account?
+                                            <a href="/user/register">Register</a>
+                                        </p>
                                     </div>
                                 </form>
                             </article>
