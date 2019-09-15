@@ -5,6 +5,7 @@ import com.bsptech.itcommunity.entity.AuthGroup;
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,10 @@ import java.util.List;
 public class UserServiceImpl implements UserServiceInter {
     @Autowired
     UserDataInter userDataInter;
+
+    @Autowired
+    @Qualifier("pwdEncoder")
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -27,8 +32,6 @@ public class UserServiceImpl implements UserServiceInter {
         return (List<User>) userDataInter.findAll();
     }
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Override
     public User save(User user) {

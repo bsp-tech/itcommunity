@@ -22,13 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
+    @Qualifier("pwdEncoder")
     private PasswordEncoder passwordEncoder;
 
 //    public static void main(String[] args) {
 //        System.out.println(new BCryptPasswordEncoder().encode("111111"));
 //    }
 
-    @Bean
+    @Bean("pwdEncoder")
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
