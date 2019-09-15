@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/config/AllConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/config/SecurityConfig.java" afterDir="false" />
     </list>
@@ -22,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -193,7 +194,7 @@
       <workItem from="1567806595263" duration="16000" />
       <workItem from="1567806679260" duration="89000" />
       <workItem from="1567806851290" duration="8342000" />
-      <workItem from="1568543877639" duration="2425000" />
+      <workItem from="1568543877639" duration="2549000" />
     </task>
     <servers />
   </component>
