@@ -6,13 +6,8 @@
     </facet>
     <facet type="web" name="Web">
       <configuration>
-        <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
-        </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </sourceRoots>
+        <webroots />
+        <sourceRoots />
       </configuration>
     </facet>
   </component>

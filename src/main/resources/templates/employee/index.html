@@ -11,6 +11,8 @@
     <link rel="stylesheet" th:href="@{/css/employee-index.css}">
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script th:src="@{/js/pnglib.js}"></script>
+    <script th:src="@{/js/identicon.js}"></script>
 </head>
 <body>
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark secondary-color lighten-1">
@@ -407,7 +409,13 @@
                 <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isLookingForWork}">Not Available for Job Offer</p>
 
                 <div class="text-center">
-                    <img th:src="${p.userId.thumbnail}" class="card-img-top rounded-circle"  style="width: 120px; height: 120px;"/>
+                    <img th:id="${'profile-image-'+p.userId.email}"
+                         class="card-img-top"
+                         style="width: 120px; height: 120px;"/>
+                    <script th:inline="javascript">
+                        generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
+                    </script>
+
                 </div>
                 <div class="card-body text-center">
                     <h5 class="card-title" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
