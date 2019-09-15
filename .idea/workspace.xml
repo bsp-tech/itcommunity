@@ -7,11 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/identicon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/pnglib.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/itcommunity.iml" beforeDir="false" afterPath="$PROJECT_DIR$/itcommunity.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/identicon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/identicon.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +193,7 @@
       <workItem from="1567806595263" duration="16000" />
       <workItem from="1567806679260" duration="89000" />
       <workItem from="1567806851290" duration="8342000" />
-      <workItem from="1568543877639" duration="1381000" />
+      <workItem from="1568543877639" duration="1794000" />
     </task>
     <servers />
   </component>
