@@ -10,8 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
         <ul class="navbar-nav mr-auto">
             <li class="ml-2  my-2  nav-item active">
-                <a href="/projects" class="btn border-light fs-15  text-white bg-dark btn-lg stretched-link">Our Open
-                    Source Community</a>
+                <a href="/projects" class="btn border-light fs-15  text-white bg-dark btn-lg stretched-link">Our Open Source Community</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -21,15 +20,14 @@
                 </a>
             </li>
             <li class="ml-2 my-2 nav-item active" sec:authorize="isAnonymous()">
-                <a href="/user/login"
-                   class="btn border-light fs-15 text-white bg-dark btn-lg stretched-link">
-                    <img width="14px;" th:src="@{img/project/icons8-customer-96.png}">
+                <a href="/user/login" class="btn border-light fs-15 text-white bg-dark btn-lg stretched-link">
+                    <img width="20px;" th:src="@{/img/project/icons8-customer-96.png}">
                     Login
                 </a>
             </li>
         </ul>
-        <ul class="nav nav-pills mr-4" sec:authorize="isAuthenticated()">
-            <li class="nav-item dropdown d-flex border rounded pl-2 pr-2 ml-2">
+        <ul class="navbar-nav nav-flex-icons" sec:authorize="isAuthenticated()">
+            <li class="nav-item active dropdown d-flex border rounded pl-2 pr-2 ml-2">
                 <img th:src="@{/img/project/icons8-customer-96.png}"
                      style="width: 20px; cursor: pointer;"
                      class="dropdown-toggle p-0 rounded-circle mt-2 my-2"
@@ -39,13 +37,16 @@
                       th:text="${'('+#authentication.getPrincipal().getUser().getName()+' '+#authentication.getPrincipal().getUser().getSurname()+')'}">
                 </span>
 
-                <div class="dropdown-menu mt-2">
-                    <a class="dropdown-item" href="#">Edit user profile</a>
-                    <a class="dropdown-item" href="#">Edit employee profile</a>
+                <div class="dropdown-menu mt-2" >
+                    <a class="dropdown-item" href="/user/edit">Edit user profile</a>
+                    <a class="dropdown-item"
+                       sec:authorize="!hasAuthority('CREATE_EMPLOYEE_PROFILE')"
+                       th:href="${'/employees/profile/edit'}" >Edit employee profile</a>
                     <a class="dropdown-item" href="/logout">Log out</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
+
 </html>

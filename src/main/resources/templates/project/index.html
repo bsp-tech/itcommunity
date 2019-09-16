@@ -1,21 +1,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:with="http://www.thymeleaf.org/extras/with"
-      layout:decorate="~{layouts/base}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+      layout:decorate="~{layouts/base}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
+        <title>Index</title>
 </head>
-<div layout:fragment="content">
-    <body>
-
-
+<body layout:fragment="content">
     <div class="container mt-3" th:each="p : ${projectList}">
-        <div>
             <div class="card">
                 <div class="card-header d-flex flex-row justify-content-between align-items-center">
                     <h4>
@@ -107,10 +97,7 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
-
-    </body>
-</div>
+</body>
 
 </html>
