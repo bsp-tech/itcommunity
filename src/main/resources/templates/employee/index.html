@@ -63,7 +63,7 @@
 
 <!-- search -->
 
-<div class="container col-md-11">
+<div class="container col-md-11 mt-4">
     <div class="card bg-light">
         <div class="row my-3 mx-2 ">
             <div class="col-md-2 mb-2">
@@ -362,8 +362,8 @@
 
 <div class="container mt-4">
     <div class="row">
-        <div class="card col-md-4" th:each="p : ${employeeList}">
-            <div class="position-relative developer-card">
+        <div class=" col-md-4 mt-2" th:each="p : ${employeeList}">
+            <div class=" card position-relative developer-card mx-3 px-4 ">
                 <div class="py-2 px-3 position-absolute w-100 h-100 developer-card-details">
                     <div class="row">
                         <h5 class="mb-3 col-md-6" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
