@@ -71,9 +71,7 @@ public class EmployeeController {
     public ModelAndView edit(ModelAndView modelAndView) {
         User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
         loggedInUser = userServiceInter.findById(loggedInUser.getId());
-        System.out.println("loggedInUser="+loggedInUser);
         EmployeeProfile emp = loggedInUser.getEmployeeProfile();
-        System.out.println("emp="+emp);
         if(emp==null) {
             modelAndView.setViewName("redirect:/");
             modelAndView.setStatus(HttpStatus.BAD_REQUEST);
@@ -83,7 +81,7 @@ public class EmployeeController {
         modelAndView.addObject("employeeProfile",emp);
         modelAndView.addObject("listLanguages",languageServiceInter.findAll());
         modelAndView.addObject("listSkills",skillDao.findByEnabled(true));
-        modelAndView.setViewName("employee/registration");
+        modelAndView.setViewName("employee/edit");
         return modelAndView;
     }
 

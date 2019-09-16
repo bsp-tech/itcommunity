@@ -54,7 +54,7 @@
                 </span>
 
                 <div class="dropdown-menu mt-2" >
-                    <a class="dropdown-item" href="#">Edit user profile</a>
+                    <a class="dropdown-item" href="/user/edit">Edit user profile</a>
                     <a class="dropdown-item"
                        sec:authorize="!hasAuthority('CREATE_EMPLOYEE_PROFILE')"
                        th:href="${'/employees/profile/edit'}" >Edit employee profile</a>
