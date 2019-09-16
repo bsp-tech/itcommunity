@@ -4,6 +4,8 @@ import com.bsptech.itcommunity.entity.*;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 public interface EmployeeProfileServiceInter {
     public EmployeeProfile findById(Integer id);
 
@@ -12,6 +14,8 @@ public interface EmployeeProfileServiceInter {
     public List<EmployeeProfile> findAll();
 
     public EmployeeProfile save(EmployeeProfile employeeProfile);
+    
+    public EmployeeProfile register(EmployeeProfile employeeProfile);
 
     public EmployeeProfile update(EmployeeProfile employeeProfile);
 

@@ -5,49 +5,20 @@
  */
 package com.bsptech.itcommunity.entity;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "employee_profile")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "EmployeeProfile.findAll", query = "SELECT e FROM EmployeeProfile e")
-    , @NamedQuery(name = "EmployeeProfile.findById", query = "SELECT e FROM EmployeeProfile e WHERE e.id = :id")
-    , @NamedQuery(name = "EmployeeProfile.findByApproved", query = "SELECT e FROM EmployeeProfile e WHERE e.approved = :approved")
-    , @NamedQuery(name = "EmployeeProfile.findByCvPath", query = "SELECT e FROM EmployeeProfile e WHERE e.cvPath = :cvPath")
-    , @NamedQuery(name = "EmployeeProfile.findByLinkedinPath", query = "SELECT e FROM EmployeeProfile e WHERE e.linkedinPath = :linkedinPath")
-    , @NamedQuery(name = "EmployeeProfile.findByGithubPath", query = "SELECT e FROM EmployeeProfile e WHERE e.githubPath = :githubPath")
-    , @NamedQuery(name = "EmployeeProfile.findByIsLookingForWork", query = "SELECT e FROM EmployeeProfile e WHERE e.isLookingForWork = :isLookingForWork")
-    , @NamedQuery(name = "EmployeeProfile.findByIsWorking", query = "SELECT e FROM EmployeeProfile e WHERE e.isWorking = :isWorking")
-    , @NamedQuery(name = "EmployeeProfile.findByInsertDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "EmployeeProfile.findByApprovedDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.approvedDateTime = :approvedDateTime")
-    , @NamedQuery(name = "EmployeeProfile.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProfile e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProfile implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,48 +30,56 @@ public class EmployeeProfile implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "approved")
-    private boolean approved;
+    private int approved;
+    @Basic(optional = false)
+    @Column(name = "approved_date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date approvedDateTime;
     @Size(max = 255)
+    @NotNull
     @Column(name = "cv_path")
     private String cvPath;
-    @Size(max = 255)
-    @Column(name = "linkedin_path")
-    private String linkedinPath;
     @Size(max = 255)
     @Column(name = "github_path")
     private String githubPath;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "speciality")
+    private String speciality;
+    @Column(name = "experience")
+    private Integer experience;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "about")
+    private String about;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "is_looking_for_work")
-    private boolean isLookingForWork;
+    private Boolean isLookingForWork;
     @Basic(optional = false)
     @NotNull
     @Column(name = "is_working")
-    private boolean isWorking;
+    private Boolean isWorking;
+    @Size(max = 255)
+    @Column(name = "linkedin_path")
+    private String linkedinPath;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "approved_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date approvedDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User userId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProfileSkill> employeeProfileSkillCollection;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
+    private List<EmployeeProfileSkill> employeeProfileSkillList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProject> employeeProjectCollection;
+    private List<EmployeeProject> employeeProjectList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
-    private Collection<EmployeeProfileLanguage> employeeProfileLanguageCollection;
+    private List<EmployeeProfileLanguage> employeeProfileLanguageList;
 
     public EmployeeProfile() {
     }
@@ -109,14 +88,22 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProfile(Integer id, boolean approved, boolean isLookingForWork, boolean isWorking, Date insertDateTime, Date approvedDateTime, Date lastUpdateDateTime) {
+    public EmployeeProfile(Integer id, int approved, Date approvedDateTime, Boolean isLookingForWork, Boolean isWorking, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
+        this.approvedDateTime = approvedDateTime;
         this.isLookingForWork = isLookingForWork;
         this.isWorking = isWorking;
         this.insertDateTime = insertDateTime;
-        this.approvedDateTime = approvedDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public Integer getId() {
@@ -127,12 +114,20 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public boolean getApproved() {
+    public int getApproved() {
         return approved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(int approved) {
         this.approved = approved;
+    }
+
+    public Date getApprovedDateTime() {
+        return approvedDateTime;
+    }
+
+    public void setApprovedDateTime(Date approvedDateTime) {
+        this.approvedDateTime = approvedDateTime;
     }
 
     public String getCvPath() {
@@ -143,14 +138,6 @@ public class EmployeeProfile implements Serializable {
         this.cvPath = cvPath;
     }
 
-    public String getLinkedinPath() {
-        return linkedinPath;
-    }
-
-    public void setLinkedinPath(String linkedinPath) {
-        this.linkedinPath = linkedinPath;
-    }
-
     public String getGithubPath() {
         return githubPath;
     }
@@ -159,20 +146,28 @@ public class EmployeeProfile implements Serializable {
         this.githubPath = githubPath;
     }
 
-    public boolean getIsLookingForWork() {
+    public Boolean getIsLookingForWork() {
         return isLookingForWork;
     }
 
-    public void setIsLookingForWork(boolean isLookingForWork) {
+    public void setIsLookingForWork(Boolean isLookingForWork) {
         this.isLookingForWork = isLookingForWork;
     }
 
-    public boolean getIsWorking() {
+    public Boolean getIsWorking() {
         return isWorking;
     }
 
-    public void setIsWorking(boolean isWorking) {
+    public void setIsWorking(Boolean isWorking) {
         this.isWorking = isWorking;
+    }
+
+    public String getLinkedinPath() {
+        return linkedinPath;
+    }
+
+    public void setLinkedinPath(String linkedinPath) {
+        this.linkedinPath = linkedinPath;
     }
 
     public Date getInsertDateTime() {
@@ -181,14 +176,6 @@ public class EmployeeProfile implements Serializable {
 
     public void setInsertDateTime(Date insertDateTime) {
         this.insertDateTime = insertDateTime;
-    }
-
-    public Date getApprovedDateTime() {
-        return approvedDateTime;
-    }
-
-    public void setApprovedDateTime(Date approvedDateTime) {
-        this.approvedDateTime = approvedDateTime;
     }
 
     public Date getLastUpdateDateTime() {
@@ -207,31 +194,47 @@ public class EmployeeProfile implements Serializable {
         this.userId = userId;
     }
 
-    @XmlTransient
-    public Collection<EmployeeProfileSkill> getEmployeeProfileSkillCollection() {
-        return employeeProfileSkillCollection;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setEmployeeProfileSkillCollection(Collection<EmployeeProfileSkill> employeeProfileSkillCollection) {
-        this.employeeProfileSkillCollection = employeeProfileSkillCollection;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
-    @XmlTransient
-    public Collection<EmployeeProject> getEmployeeProjectCollection() {
-        return employeeProjectCollection;
+    public Integer getExperience() {
+        return experience;
     }
 
-    public void setEmployeeProjectCollection(Collection<EmployeeProject> employeeProjectCollection) {
-        this.employeeProjectCollection = employeeProjectCollection;
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 
     @XmlTransient
-    public Collection<EmployeeProfileLanguage> getEmployeeProfileLanguageCollection() {
-        return employeeProfileLanguageCollection;
+    public List<EmployeeProfileSkill> getEmployeeProfileSkillList() {
+        return employeeProfileSkillList;
     }
 
-    public void setEmployeeProfileLanguageCollection(Collection<EmployeeProfileLanguage> employeeProfileLanguageCollection) {
-        this.employeeProfileLanguageCollection = employeeProfileLanguageCollection;
+    public void setEmployeeProfileSkillList(List<EmployeeProfileSkill> employeeProfileSkillList) {
+        this.employeeProfileSkillList = employeeProfileSkillList;
+    }
+
+    @XmlTransient
+    public List<EmployeeProject> getEmployeeProjectList() {
+        return employeeProjectList;
+    }
+
+    public void setEmployeeProjectList(List<EmployeeProject> employeeProjectList) {
+        this.employeeProjectList = employeeProjectList;
+    }
+
+    @XmlTransient
+    public List<EmployeeProfileLanguage> getEmployeeProfileLanguageList() {
+        return employeeProfileLanguageList;
+    }
+
+    public void setEmployeeProfileLanguageList(List<EmployeeProfileLanguage> employeeProfileLanguageList) {
+        this.employeeProfileLanguageList = employeeProfileLanguageList;
     }
 
     @Override
@@ -254,9 +257,15 @@ public class EmployeeProfile implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.bsptech.itcommunity.entity.EmployeeProfile[ id=" + id + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "EmployeeProfile [id=" + id + ", approved=" + approved + ", approvedDateTime=" + approvedDateTime
+				+ ", cvPath=" + cvPath + ", githubPath=" + githubPath + ", isLookingForWork=" + isLookingForWork
+				+ ", isWorking=" + isWorking + ", linkedinPath=" + linkedinPath + ", insertDateTime=" + insertDateTime
+				+ ", lastUpdateDateTime=" + lastUpdateDateTime + ", userId=" + userId + ", employeeProfileSkillList="
+				+ employeeProfileSkillList + ", employeeProjectList=" + employeeProjectList
+				+ ", employeeProfileLanguageList=" + employeeProfileLanguageList + "]";
+	}
+
+
 }

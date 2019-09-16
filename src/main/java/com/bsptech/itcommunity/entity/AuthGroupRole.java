@@ -21,21 +21,22 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
-@Table(name = "user_gender")
+@Table(name = "auth_group_role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UserGender.findAll", query = "SELECT u FROM UserGender u")
-    , @NamedQuery(name = "UserGender.findById", query = "SELECT u FROM UserGender u WHERE u.id = :id")
-    , @NamedQuery(name = "UserGender.findByInsertDateTime", query = "SELECT u FROM UserGender u WHERE u.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "UserGender.findByLastUpdateDateTime", query = "SELECT u FROM UserGender u WHERE u.lastUpdateDateTime = :lastUpdateDateTime")})
-public class UserGender implements Serializable {
+    @NamedQuery(name = "AuthGroupRole.findAll", query = "SELECT a FROM AuthGroupRole a")
+    , @NamedQuery(name = "AuthGroupRole.findById", query = "SELECT a FROM AuthGroupRole a WHERE a.id = :id")
+    , @NamedQuery(name = "AuthGroupRole.findByInsertDateTime", query = "SELECT a FROM AuthGroupRole a WHERE a.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "AuthGroupRole.findByLastUpdateDateTime", query = "SELECT a FROM AuthGroupRole a WHERE a.lastUpdateDateTime = :lastUpdateDateTime")})
+public class AuthGroupRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,24 +44,31 @@ public class UserGender implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User userId;
-    @JoinColumn(name = "gender_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Gender genderId;
+    private AuthGroup groupId;
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private AuthRole roleId;
 
-    public UserGender() {
+    public AuthGroupRole() {
     }
 
-    public UserGender(Integer id) {
+    public AuthGroupRole(Integer id) {
         this.id = id;
+    }
+
+    public AuthGroupRole(Integer id, Date insertDateTime) {
+        this.id = id;
+        this.insertDateTime = insertDateTime;
     }
 
     public Integer getId() {
@@ -87,20 +95,20 @@ public class UserGender implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public User getUserId() {
-        return userId;
+    public AuthGroup getGroupId() {
+        return groupId;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setGroupId(AuthGroup groupId) {
+        this.groupId = groupId;
     }
 
-    public Gender getGenderId() {
-        return genderId;
+    public AuthRole getRoleId() {
+        return roleId;
     }
 
-    public void setGenderId(Gender genderId) {
-        this.genderId = genderId;
+    public void setRoleId(AuthRole roleId) {
+        this.roleId = roleId;
     }
 
     @Override
@@ -113,10 +121,10 @@ public class UserGender implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserGender)) {
+        if (!(object instanceof AuthGroupRole)) {
             return false;
         }
-        UserGender other = (UserGender) object;
+        AuthGroupRole other = (AuthGroupRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -125,7 +133,7 @@ public class UserGender implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.UserGender[ id=" + id + " ]";
+        return "com.bsptech.itcommunity.entity.AuthGroupRole[ id=" + id + " ]";
     }
     
 }

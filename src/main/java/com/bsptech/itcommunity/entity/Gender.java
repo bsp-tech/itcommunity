@@ -6,8 +6,8 @@
 package com.bsptech.itcommunity.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "gender")
@@ -63,11 +61,8 @@ public class Gender implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User insertUserId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "genderId", fetch = FetchType.LAZY)
-    private Collection<UserGender> userGenderCollection;
+    private List<User> userList;
 
     public Gender() {
     }
@@ -114,21 +109,13 @@ public class Gender implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public User getInsertUserId() {
-        return insertUserId;
-    }
-
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
-    }
-
     @XmlTransient
-    public Collection<UserGender> getUserGenderCollection() {
-        return userGenderCollection;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUserGenderCollection(Collection<UserGender> userGenderCollection) {
-        this.userGenderCollection = userGenderCollection;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     @Override

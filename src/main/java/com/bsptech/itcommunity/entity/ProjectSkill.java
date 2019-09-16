@@ -26,10 +26,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
 @Table(name = "project_skill")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "ProjectSkill.findAll", query = "SELECT p FROM ProjectSkill p")
+    , @NamedQuery(name = "ProjectSkill.findById", query = "SELECT p FROM ProjectSkill p WHERE p.id = :id")
+    , @NamedQuery(name = "ProjectSkill.findByInsertDateTime", query = "SELECT p FROM ProjectSkill p WHERE p.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "ProjectSkill.findByLastUpdateDateTime", query = "SELECT p FROM ProjectSkill p WHERE p.lastUpdateDateTime = :lastUpdateDateTime")})
 public class ProjectSkill implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,15 +52,12 @@ public class ProjectSkill implements Serializable {
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
-    @JoinColumn(name = "skill_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Skill skillId;
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Itproject projectId;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
+    @JoinColumn(name = "skill_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User insertUserId;
+    private Skill skillId;
 
     public ProjectSkill() {
     }
@@ -63,10 +66,9 @@ public class ProjectSkill implements Serializable {
         this.id = id;
     }
 
-    public ProjectSkill(Integer id, Date insertDateTime, Date lastUpdateDateTime) {
+    public ProjectSkill(Integer id, Date insertDateTime) {
         this.id = id;
         this.insertDateTime = insertDateTime;
-        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
     public Integer getId() {
@@ -93,14 +95,6 @@ public class ProjectSkill implements Serializable {
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 
-    public Skill getSkillId() {
-        return skillId;
-    }
-
-    public void setSkillId(Skill skillId) {
-        this.skillId = skillId;
-    }
-
     public Itproject getProjectId() {
         return projectId;
     }
@@ -109,12 +103,12 @@ public class ProjectSkill implements Serializable {
         this.projectId = projectId;
     }
 
-    public User getInsertUserId() {
-        return insertUserId;
+    public Skill getSkillId() {
+        return skillId;
     }
 
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
+    public void setSkillId(Skill skillId) {
+        this.skillId = skillId;
     }
 
     @Override

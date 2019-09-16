@@ -6,8 +6,8 @@
 package com.bsptech.itcommunity.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,18 +29,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Goshgar
+ * @author sarkhanrasullu
  */
 @Entity
-@Table(name = "role")
+@Table(name = "auth_role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
-    , @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id")
-    , @NamedQuery(name = "Role.findByInsertDateTime", query = "SELECT r FROM Role r WHERE r.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "Role.findByLastUpdateTime", query = "SELECT r FROM Role r WHERE r.lastUpdateTime = :lastUpdateTime")
-    , @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")})
-public class Role implements Serializable {
+    @NamedQuery(name = "AuthRole.findAll", query = "SELECT a FROM AuthRole a")
+    , @NamedQuery(name = "AuthRole.findById", query = "SELECT a FROM AuthRole a WHERE a.id = :id")
+    , @NamedQuery(name = "AuthRole.findByName", query = "SELECT a FROM AuthRole a WHERE a.name = :name")
+    , @NamedQuery(name = "AuthRole.findByInsertDateTime", query = "SELECT a FROM AuthRole a WHERE a.insertDateTime = :insertDateTime")
+    , @NamedQuery(name = "AuthRole.findByLastUpdateTime", query = "SELECT a FROM AuthRole a WHERE a.lastUpdateTime = :lastUpdateTime")})
+public class AuthRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,37 +50,31 @@ public class Role implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "insert_date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date insertDateTime;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "last_update_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastUpdateTime;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
-    @JoinColumn(name = "insert_user_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User insertUserId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "insert_date_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date insertDateTime;
+    @Column(name = "last_update_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdateTime;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleId", fetch = FetchType.LAZY)
-    private Collection<UserRole> userRoleCollection;
+    private List<AuthGroupRole> authGroupRoleList;
 
-    public Role() {
+    public AuthRole() {
     }
 
-    public Role(Integer id) {
+    public AuthRole(Integer id) {
         this.id = id;
     }
 
-    public Role(Integer id, Date insertDateTime, Date lastUpdateTime, String name) {
+    public AuthRole(Integer id, String name, Date insertDateTime) {
         this.id = id;
-        this.insertDateTime = insertDateTime;
-        this.lastUpdateTime = lastUpdateTime;
         this.name = name;
+        this.insertDateTime = insertDateTime;
     }
 
     public Integer getId() {
@@ -91,6 +83,14 @@ public class Role implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getInsertDateTime() {
@@ -109,29 +109,13 @@ public class Role implements Serializable {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User getInsertUserId() {
-        return insertUserId;
-    }
-
-    public void setInsertUserId(User insertUserId) {
-        this.insertUserId = insertUserId;
-    }
-
     @XmlTransient
-    public Collection<UserRole> getUserRoleCollection() {
-        return userRoleCollection;
+    public List<AuthGroupRole> getAuthGroupRoleList() {
+        return authGroupRoleList;
     }
 
-    public void setUserRoleCollection(Collection<UserRole> userRoleCollection) {
-        this.userRoleCollection = userRoleCollection;
+    public void setAuthGroupRoleList(List<AuthGroupRole> authGroupRoleList) {
+        this.authGroupRoleList = authGroupRoleList;
     }
 
     @Override
@@ -144,10 +128,10 @@ public class Role implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Role)) {
+        if (!(object instanceof AuthRole)) {
             return false;
         }
-        Role other = (Role) object;
+        AuthRole other = (AuthRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -156,7 +140,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "com.bsptech.itcommunity.entity.Role[ id=" + id + " ]";
+        return "com.bsptech.itcommunity.entity.AuthRole[ id=" + id + " ]";
     }
     
 }
