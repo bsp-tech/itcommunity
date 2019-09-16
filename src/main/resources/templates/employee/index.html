@@ -1,392 +1,350 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/base}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/main.css}">
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <script th:src="@{/js/pnglib.js}"></script>
     <script th:src="@{/js/identicon.js}"></script>
 </head>
-<body>
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark secondary-color lighten-1">
-    <img width="35px" th:src="@{/img/project/icons8-user-groups-96.png}"/>
-    <a class="navbar-brand ml-1" href="/">IT COMMUNITY</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-        <ul class="navbar-nav mr-auto">
-            <li class="ml-2  my-2  nav-item active">
-                <a href="/projects" class="btn border-light fs-15  text-white bg-dark btn-lg stretched-link">Our Open Source Community</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="ml-2 my-2 nav-item active" sec:authorize="hasAuthority('CREATE_EMPLOYEE_PROFILE')">
-                <a href="/employees/register" class="btn border-light fs-15  text-white bg-dark btn-lg stretched-link">
-                    Create an IT Employee
-                </a>
-            </li>
-            <li class="ml-2 my-2 nav-item active" sec:authorize="isAnonymous()">
-                <a href="/user/login"
-                   class="btn border-light fs-15 text-white bg-dark btn-lg stretched-link">
-                    <img width="14px;" th:src="@{img/project/icons8-customer-96.png}">
-                    Login
-                </a>
-            </li>
-        </ul>
-        <ul class="nav nav-pills mr-4" sec:authorize="isAuthenticated()">
-            <li class="nav-item dropdown d-flex border rounded pl-2 pr-2 ml-2">
-                <img th:src="@{/img/project/icons8-customer-96.png}"
-                     style="width: 20px; cursor: pointer;"
-                     class="dropdown-toggle p-0 rounded-circle mt-2 my-2"
-                     data-toggle="dropdown"/>
-                <span class="text-white mt-1"
-                      style="cursor: pointer;" data-toggle="dropdown" href="#"
-                      th:text="${'('+#authentication.getPrincipal().getUser().getName()+' '+#authentication.getPrincipal().getUser().getSurname()+')'}">
-                </span>
+<div layout:fragment="content">
+    <body>
 
-                <div class="dropdown-menu mt-2" >
-                    <a class="dropdown-item" href="#">Edit user profile</a>
-                    <a class="dropdown-item" href="#">Edit employee profile</a>
-                    <a class="dropdown-item" href="/logout">Log out</a>
+    <!-- search -->
+
+    <div class="container col-md-11 mt-4">
+        <div class="card bg-light">
+            <div class="row my-3 mx-2 ">
+                <div class="col-md-2 mb-2">
+                    <input type="text" class="form-control" name="name" placeholder="Ad">
                 </div>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<!-- search -->
-
-<div class="container col-md-11 mt-4">
-    <div class="card bg-light">
-        <div class="row my-3 mx-2 ">
-            <div class="col-md-2 mb-2">
-                <input type="text" class="form-control" name="name" placeholder="Ad">
-            </div>
-            <div class="col-md-2 mb-2">
-                <input type="text" class="form-control" name="surname" placeholder="Soyad">
-            </div>
-            <div class="col-md-3 mb-2">
-                <input type="text" class="form-control" name="mail" placeholder="Email">
-            </div>
-            <div class="col-md-3 mb-2">
-                <input type="text" class="form-control" name="number" placeholder="Phone">
-            </div>
-            <div class="col-md-2 mb-2">
-
-                <button class="btn btn-dark">
-                    <p class="my-0 mx-4">
-                        Axtar
-                    </p>
-                </button>
-            </div>
-            <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
-                <div class="d-flex">
-                    <p>
-                        <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
-                            Languages
-                        </button>
-                    </p>
-                    <p class="pl-3">
-                        <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">
-                            Skills
-                        </button>
-                    </p>
+                <div class="col-md-2 mb-2">
+                    <input type="text" class="form-control" name="surname" placeholder="Soyad">
                 </div>
-                <div class="card mt-3 bg-light  border-0">
-                    <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
-                        <div class="p-3">
-                            <div class="row">
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    Engilsh
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="col-md-3 mb-2">
+                    <input type="text" class="form-control" name="mail" placeholder="Email">
+                </div>
+                <div class="col-md-3 mb-2">
+                    <input type="text" class="form-control" name="number" placeholder="Phone">
+                </div>
+                <div class="col-md-2 mb-2">
 
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    Turkish
-                                                </label>
+                    <button class="btn btn-dark">
+                        <p class="my-0 mx-4">
+                            Axtar
+                        </p>
+                    </button>
+                </div>
+                <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
+                    <div class="d-flex">
+                        <p>
+                            <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"
+                                    href="#collapseOne"
+                                    aria-expanded="false">
+                                Languages
+                            </button>
+                        </p>
+                        <p class="pl-3">
+                            <button class="btn btn-dark collapsed" type="button" data-toggle="collapse"
+                                    href="#collapseTwo"
+                                    aria-expanded="false">
+                                Skills
+                            </button>
+                        </p>
+                    </div>
+                    <div class="card mt-3 bg-light  border-0">
+                        <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
+                            <div class="p-3">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Engilsh
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    German
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Turkish
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    Italian
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        German
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Italian
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card  border-0 bg-light">
-                    <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
-                        <div class="p-3">
-                            <div class="row">
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    Python
-                                                </label>
+                    <div class="card  border-0 bg-light">
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+                            <div class="p-3">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Python
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
+
                                     </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        PHP
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    PHP
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Java
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    Java
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        C++
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <select id="inputState" class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <div class="row">
-                                        <div class="col-md-3 col-5 d-flex align-items-center">
-                                            <div class="form-check mr-3">
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    C++
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-7 d-flex align-items-center">
-                                            <div class="form-group mb-0">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="" value="0">Level</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                </div>
+
+                <div class="col-md-12 mt-4 text-center">
+
                 </div>
 
             </div>
-
-            <div class="col-md-12 mt-4 text-center">
-
-            </div>
-
         </div>
     </div>
-</div>
-<!-- developer card -->
+    <!-- developer card -->
 
-<div class="container mt-4">
-    <div class="row">
-        <div class=" col-md-4 mt-2" th:each="p : ${employeeList}">
-            <div class=" card position-relative developer-card mx-3">
-                <div class="py-2 px-3 position-absolute w-100 h-100 developer-card-details">
-                    <div class="row">
-                        <h5 class="mb-3 col-md-6" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
-                        <div class="social-media col-md-6">
-                            <a target="_blank" th:href="${p.githubPath}" class="stretched-link btn btn-dark btn-sm pt-0">
-                                <i class="fab fa-github fa-sm"></i>
-                            </a>
-                            <a target="_blank" th:href="${p.linkedinPath}" class="stretched-link btn btn-dark btn-sm pt-0">
-                                <i class="fab fa-linkedin fa-sm"></i>
-                            </a>
-                            <a target="_blank" th:href="${p.cvPath}" class="stretched-link btn btn-dark btn-sm pt-0">
-                                <i class="fas fa-file fa-sm"></i>
-                            </a>
+    <div class="container mt-4">
+        <div class="row">
+            <div class=" col-md-4 mt-2" th:each="p : ${employeeList}">
+                <div class=" card position-relative developer-card mx-3">
+                    <div class="py-2 px-3 position-absolute w-100 h-100 developer-card-details">
+                        <div class="row">
+                            <h5 class="mb-3 col-md-6" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
+                            <div class="social-media col-md-6">
+                                <a target="_blank" th:href="${p.githubPath}"
+                                   class="stretched-link btn btn-dark btn-sm pt-0">
+                                    <i class="fab fa-github fa-sm"></i>
+                                </a>
+                                <a target="_blank" th:href="${p.linkedinPath}"
+                                   class="stretched-link btn btn-dark btn-sm pt-0">
+                                    <i class="fab fa-linkedin fa-sm"></i>
+                                </a>
+                                <a target="_blank" th:href="${p.cvPath}"
+                                   class="stretched-link btn btn-dark btn-sm pt-0">
+                                    <i class="fas fa-file fa-sm"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <h5 class="mb-3" th:text="${p.speciality}"></h5>
+                        <h5 class="mb-3" th:text="${p.speciality}"></h5>
 
-                    <p th:text="${p.about}"></p>
-                    <div class="mb-3">
-                        <h5 class="my-4">Skills</h5>
-                        <span th:each="s : ${p.employeeProfileSkillList}">
+                        <p th:text="${p.about}"></p>
+                        <div class="mb-3">
+                            <h5 class="my-4">Skills</h5>
+                            <span th:each="s : ${p.employeeProfileSkillList}">
                             <span th:text="${s.skillId.name}"></span>
                             <div class="progress my-2">
                                  <div class="progress-bar bg-dark"
@@ -395,83 +353,87 @@
                                  </div>
                             </div>
                         </span>
-                    </div>
-                    <div class="mb-3">
-                        <h5 class="my-4">Languages</h5>
-                        <div th:each="l : ${p.employeeProfileLanguageList}">
-                            <span th:text="${l.languageId.name}"></span>
-                            <div class="progress my-2">
-                                <div class="progress-bar bg-dark"
-                                     th:attr="aria-valuenow=${l.level*10}, style=${'width:'+l.level*10+'%'}"
-                                     th:text="${l.level*10+'%'}">
-                                    90%
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="my-4">Languages</h5>
+                            <div th:each="l : ${p.employeeProfileLanguageList}">
+                                <span th:text="${l.languageId.name}"></span>
+                                <div class="progress my-2">
+                                    <div class="progress-bar bg-dark"
+                                         th:attr="aria-valuenow=${l.level*10}, style=${'width:'+l.level*10+'%'}"
+                                         th:text="${l.level*10+'%'}">
+                                        90%
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-                <div class="px-3">
-                    <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold" th:if="${p.isWorking}">Working</p>
-                    <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold" th:if="${p.isLookingForWork}">Available for Job Offer</p>
-                    <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isWorking}">Not Working</p>
-                    <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isLookingForWork}">Not Available for Job Offer</p>
-
-                    <div class="text-center">
-                        <img th:id="${'profile-image-'+p.userId.email}"
-                             class="card-img-top"
-                             style="width: 120px; height: 120px;"/>
-                        <script th:inline="javascript">
-                            generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
-                        </script>
                     </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
-                        <p class="my-4 text-secondary" th:text="${p.speciality}"></p>
+                    <div class="px-3">
+                        <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold"
+                           th:if="${p.isWorking}">Working</p>
+                        <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold"
+                           th:if="${p.isLookingForWork}">Available for Job Offer</p>
+                        <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold"
+                           th:if="${!p.isWorking}">Not Working</p>
+                        <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold"
+                           th:if="${!p.isLookingForWork}">Not Available for Job Offer</p>
+
+                        <div class="text-center">
+                            <img th:id="${'profile-image-'+p.userId.email}"
+                                 class="card-img-top"
+                                 style="width: 120px; height: 120px;"/>
+                            <script th:inline="javascript">
+                                generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
+                            </script>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title" th:text="${p.userId.name+' '+p.userId.surname}"></h5>
+                            <p class="my-4 text-secondary" th:text="${p.speciality}"></p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <th:block th:if="${pagination}">
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+
+                        <th:block th:if="${page!=1}">
+
+                            <li class="page-item">
+                                <a class="page-link" th:href="${page-1}">Previous</a>
+                            </li>
+
+
+                            <li class="page-item"><a class="page-link" th:href="${page-1}" th:text="${page-1}"></a></li>
+
+                        </th:block>
+
+                        <li class="page-item active"><a class="page-link" th:href="${page}" th:text="${page}"></a></li>
+
+                        <th:block th:if="${page+1<=pages}">
+
+                            <li class="page-item"><a class="page-link" th:href="${page+1}" th:text="${page+1}"></a></li>
+
+                            <li class="page-item">
+                                <a class="page-link" th:href="${page+1}">Next</a>
+                            </li>
+
+                        </th:block>
+
+
+                    </ul>
+                </nav>
+
+            </th:block>
+
+
+
         </div>
-
-        <th:block th:if="${pagination}">
-
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-
-                    <th:block th:if="${page!=1}">
-
-                        <li class="page-item">
-                            <a class="page-link" th:href="${page-1}" >Previous</a>
-                        </li>
-
-
-                        <li class="page-item"><a class="page-link" th:href="${page-1}" th:text="${page-1}"></a></li>
-
-                    </th:block>
-
-                    <li class="page-item active"><a class="page-link" th:href="${page}" th:text="${page}"></a></li>
-
-                    <th:block th:if="${page+1<=pages}">
-
-                        <li class="page-item"><a class="page-link" th:href="${page+1}" th:text="${page+1}"></a></li>
-
-                        <li class="page-item">
-                            <a class="page-link" th:href="${page+1}" >Next</a>
-                        </li>
-
-                    </th:block>
-
-
-                </ul>
-            </nav>
-
-        </th:block>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
     </div>
+    </body>
+
 </div>
-</body>
 </html>
