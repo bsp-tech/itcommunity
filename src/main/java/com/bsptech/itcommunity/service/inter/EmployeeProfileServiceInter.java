@@ -10,8 +10,11 @@ public interface EmployeeProfileServiceInter {
 
     public EmployeeProfile findByUserId(User user);
 
+    public List<EmployeeProfile> findAll(EmployeeProfile employeeProfile);
+    
+    public EmployeeProfile save(EmployeeProfile employeeProfile);
+  
     public List<EmployeeProfile> findAll();
-
     
     public EmployeeProfile register(EmployeeProfile employeeProfile);
 
