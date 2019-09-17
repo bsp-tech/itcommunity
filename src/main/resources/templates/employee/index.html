@@ -401,10 +401,10 @@
                     </div>
 
                 </div>
-                <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold" th:if="${p.isWorking}">Working</p>
-                <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold" th:if="${p.isLookingForWork}">Available for Job Offer</p>
-                <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isWorking}">Not Working</p>
-                <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isLookingForWork}">Not Available for Job Offer</p>
+                <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold" th:if="${p.isWorking.equals(1)}">Working</p>
+                <p class="text-center my-3 py-1 rounded border border-success text-success font-weight-bold" th:if="${p.isLookingForWork.equals(1)}">Available for Job Offer</p>
+                <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isWorking.equals(1)}">Not Working</p>
+                <p class="text-center my-3 py-1 rounded border border-danger text-danger font-weight-bold" th:if="${!p.isLookingForWork.equals(1)}">Not Available for Job Offer</p>
 
                 <div class="text-center">
                     <img th:src="${p.userId.thumbnail}" class="card-img-top rounded-circle"  style="width: 120px; height: 120px;"/>

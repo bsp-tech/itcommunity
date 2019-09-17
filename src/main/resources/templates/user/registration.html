@@ -30,30 +30,35 @@
 	                        <button class="btn btn-dark " type="button"><i class="fas fa-user"></i></button>
 	                    </div>
 	                    <input type="text" class="form-control" placeholder="Name"  th:field="${user.name}">
+                            <label th:if="${#fields.hasErrors('name')}" th:errors="${user.name}"></label>
 	                </div>
 	                <div class="input-group my-1">
 	                    <div class="input-group-prepend">
 	                        <button class="btn btn-dark" type="button"><i class="fas fa-user"></i></button>
 	                    </div>
 	                    <input type="text" class="form-control" placeholder="Surname" th:field="${user.surname}">
+                            <label th:if="${#fields.hasErrors('surname')}" th:errors="${user.surname}"></label>
 	                </div>
 	                <div class="input-group my-1">
 	                    <div class="input-group-prepend">
 	                        <button class="btn btn-dark" type="button"><i class="fas fa-calendar-day"></i></button>
 	                    </div>
 	                    <input type="text" class="form-control" placeholder="Age" th:field="${user.age}">
+                            <label th:if="${#fields.hasErrors('age')}" th:errors="${user.age}"></label>
 	                </div>
 	                <div class="input-group my-1">
 	                    <div class="input-group-prepend">
 	                        <button class="btn btn-dark" type="button"><i style="font-size: 14px;color: white;" class="fas fa-at"></i></button>
 	                    </div>
 	                    <input type="email" class="form-control" placeholder="Email" th:field="${user.email}">
+                            <label th:if="${#fields.hasErrors('email')}" th:errors="${user.email}"></label>
 	                </div>
 	                <div class="input-group my-1">
 	                    <div class="input-group-prepend">
 	                        <button class="btn btn-dark" type="button"><i class="fas fa-lock"></i></button>
 	                    </div>
 	                    <input type="password" class="form-control" placeholder="Password" th:field="${user.password}">
+                            <label th:if="${#fields.hasErrors('password')}" th:errors="${user.password}"></label>
 	                </div>
 	                <div class="input-group my-1">
 	                    <div class="input-group-prepend">

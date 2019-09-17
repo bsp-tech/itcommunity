@@ -110,7 +110,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
                         continue;
                     }
                 }
-                System.out.println("skill="+skill_);
+//                System.out.println("skill="+skill_);
                 epSkill.setSkillId(skill_);
                 epSkill.setInsertDateTime(now_);
                 epSkill.setEmployeeProfileId(employeeProfile);

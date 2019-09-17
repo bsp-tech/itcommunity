@@ -94,7 +94,7 @@
                             </div>
                             <input type="text" class="form-control rounded-0 " placeholder="cv path"
                                    th:field="${employeeProfile.cvPath}">
-                            <label th:if="${#fields.hasErrors('cvPath')}" th:errors="${employeeProfile.cvPath}">Error</label>
+                            <label th:if="${#fields.hasErrors('cvPath')}" th:errors="*{cvPath}">Error</label>
                             <button type="button" class="btn btn-danger rounded-0 ml-1"
                                     data-container="body" data-toggle="popover"
                                     data-placement="right"
@@ -168,6 +168,7 @@
                                     placeholder=" Speciality"
                                     th:field="${employeeProfile.speciality}"
                                     >
+                          <label th:if="${#fields.hasErrors('speciality')}" th:errors="${employeeProfile.speciality}">Error</label>
                         </div>
                         <div class="input-group-prepend my-1">
                             <button class="btn btn-dark rounded-0" type="button">

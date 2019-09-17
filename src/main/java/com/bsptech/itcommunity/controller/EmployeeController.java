@@ -71,18 +71,16 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/employees/register",method=RequestMethod.POST)
-    public String register(
-                @Valid @ModelAttribute("employeeProfile") EmployeeProfile employeeProfile,
-                BindingResult result,
-                HttpSession session) {
-//        if(result.hasErrors()) {
-//        	modelAndView.setViewName("employee/registration");
-//        	return modelAndView;
-//        }
-        System.out.println(employeeProfile);
-        System.out.println(employeeProfile.getEmployeeProfileLanguageList());//
+    public ModelAndView register(
+                @ModelAttribute @Valid EmployeeProfile employeeProfile,
+                BindingResult result) {
+        if(result.hasErrors()) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("employee/registration");
+            return mv;
+        }
     	EmployeeProfile ep = employeeProfileServiceInter.register(employeeProfile);
-        return "redirect:/";
+        return new ModelAndView("redirect:/");
     }
 
 }
