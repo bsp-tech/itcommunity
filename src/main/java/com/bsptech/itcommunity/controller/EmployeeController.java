@@ -2,6 +2,7 @@ package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.EmployeeProject;
 import com.bsptech.itcommunity.service.impl.SecurityServiceImpl;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
@@ -85,4 +86,23 @@ public class EmployeeController {
         return "redirect:/";
     }
 
+//    @RequestMapping("/")
+//    ResponseEntity<String> join_team(
+//            @ModelAttribute("employeeProject") EmployeeProject employeeProject) {
+//        if (employeeProject.getEmployeeId()==null) {
+//            return new ResponseEntity<>(
+//                    HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(
+//                HttpStatus.BAD_REQUEST);
+//    }
+      @RequestMapping("/")
+      public String join_team(
+               @ModelAttribute("employeeProject") EmployeeProject employeeProject){
+        if(employeeProject.getEmployeeId()==null){
+            return "redirect:/project/index?success";
+        }else
+            return "redirect:/project/index?error";
+
+      }
 }
