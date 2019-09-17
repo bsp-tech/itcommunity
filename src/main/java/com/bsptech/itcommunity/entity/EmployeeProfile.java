@@ -42,9 +42,11 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
-    @NotBlank
     @Column(name = "github_path")
     private String githubPath;
+    @Size(max = 255)
+    @Column(name = "linkedin_path")
+    private String linkedinPath;
     @Basic(optional = false)
     @NotBlank
     @Column(name = "speciality")
@@ -63,9 +65,6 @@ public class EmployeeProfile implements Serializable {
     @NotNull
     @Column(name = "is_working")
     private Integer isWorking;
-    @Size(max = 255)
-    @Column(name = "linkedin_path")
-    private String linkedinPath;
     @Basic(optional = false)
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)

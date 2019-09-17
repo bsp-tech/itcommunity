@@ -30,7 +30,7 @@
                                         <i class="fas fa-link" style="font-size: 14px;"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control rounded-0 " placeholder="cv path"
+                                <input type="text" class="form-control rounded-0 " placeholder="cv path, ex: https://url_goes_to_your_cv"
                                        th:field="${employeeProfile.cvPath}">
                                 <button type="button" class="btn btn-danger rounded-0 ml-1"
                                         data-container="body" data-toggle="popover"
@@ -49,7 +49,7 @@
                                     </button>
                                 </div>
                                 <input class="form-control rounded-0"
-                                       placeholder="Github Account"
+                                       placeholder="ex: https://github.com/YourUserName"
                                        th:field="${employeeProfile.githubPath}"
                                        type="text">
                             </div>
@@ -63,7 +63,7 @@
                                     </button>
                                 </div>
                                 <input class="form-control rounded-0"
-                                       placeholder="Linkedin Account"
+                                       placeholder="ex: https://www.linkedin.com/in/YourUserName"
                                        th:field="${employeeProfile.linkedinPath}"
                                        type="text">
                             </div>
@@ -75,7 +75,7 @@
                                     <i class="fas fa-briefcase" style="font-size: 14px;"></i>
                                 </button>
                                 <select class="form-control rounded-0" id="isWorking" th:field="${employeeProfile.isWorking}">
-                                    <option th:selected="selected" th:value="0">Are you working right
+                                    <option th:selected="selected" th:value="null">Are you working right
                                         now?
                                     </option>
                                     <option th:value="1">Yes</option>
@@ -92,7 +92,7 @@
                                 <select class="form-control rounded-0"
                                         id="isLookingForWork"
                                         th:field="${employeeProfile.isLookingForWork}">
-                                    <option th:selected="selected" value="0">Are you Looking for
+                                    <option th:selected="selected" th:value="null">Are you Looking for
                                         Work?
                                     </option>
                                     <option th:value="1">Yes</option>
@@ -111,7 +111,7 @@
                                     </button>
                                 </div>
                                 <input class="form-control rounded-0"
-                                       placeholder=" Speciality"
+                                       placeholder=" Speciality, ex: Java Software Developer"
                                        th:field="${employeeProfile.speciality}"
                                        type="text"
                                 >
@@ -124,7 +124,7 @@
                                     <i class="fas fa-briefcase" style="font-size: 14px;"></i>
                                 </button>
                                 <select class="form-control rounded-0" id="isWorking" th:field="${employeeProfile.experience}">
-                                    <option th:value="null">Experience
+                                    <option th:value="null">Experience with years
                                     </option>
                                     <option th:each="i: ${#numbers.sequence(1, 15)}"
                                             th:selected="${i == employeeProfile.experience}"
