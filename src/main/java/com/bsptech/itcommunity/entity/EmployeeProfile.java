@@ -6,14 +6,13 @@
 package com.bsptech.itcommunity.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -39,28 +38,22 @@ public class EmployeeProfile implements Serializable {
     private Date approvedDateTime;
     @Basic(optional = false)
     @Size(max = 255)
-    @NotNull
-    @NotEmpty
     @NotBlank
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
-    @NotNull
-    @NotEmpty
     @NotBlank
     @Column(name = "github_path")
     private String githubPath;
     @Basic(optional = false)
-    @NotNull
-    @NotEmpty
     @NotBlank
     @Column(name = "speciality")
     private String speciality;
     @Column(name = "experience")
     private Integer experience;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "about")
+    @Size(min=300, max = 500)
     private String about;
     @Basic(optional = false)
     @NotNull

@@ -23,106 +23,118 @@
                 <h4 class="card-header  text-white bg-dark">Create Employee Profile</h4>
                 <form th:action="@{/employees/register}" th:object="${employeeProfile}" method="POST">
                     <div class="card-body px-5">
-
-                        <div class="input-group my-1">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-dark rounded-0" type="button">
-                                    <i class="fas fa-link" style="font-size: 14px;"></i>
+                        <div class="w-100">
+                            <div class="input-group my-1">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-dark rounded-0" type="button">
+                                        <i class="fas fa-link" style="font-size: 14px;"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control rounded-0 " placeholder="cv path"
+                                       th:field="${employeeProfile.cvPath}">
+                                <button type="button" class="btn btn-danger rounded-0 ml-1"
+                                        data-container="body" data-toggle="popover"
+                                        data-placement="right"
+                                        data-content="Upload your cv to google drive etc. and paste link">
+                                    <i class="fas fa-question-circle"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control rounded-0 " placeholder="cv path"
-                                   th:field="${employeeProfile.cvPath}">
-                            <label th:if="${#fields.hasErrors('cvPath')}" th:errors="*{cvPath}">Error</label>
-                            <button type="button" class="btn btn-danger rounded-0 ml-1"
-                                    data-container="body" data-toggle="popover"
-                                    data-placement="right"
-                                    data-content="Upload your cv to google drive etc. and paste link">
-                                <i class="fas fa-question-circle"></i>
-                            </button>
+                            <label th:if="${#fields.hasErrors('cvPath')}" class="text-danger" th:errors="*{cvPath}">Error</label>
                         </div>
-
-                        <div class="input-group my-1">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-dark rounded-0" type="button">
-                                    <i class="fab fa-github" style="font-size: 15px;"></i>
-                                </button>
+                        <div class="w-100">
+                            <div class="input-group my-1">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-dark rounded-0" type="button">
+                                        <i class="fab fa-github" style="font-size: 15px;"></i>
+                                    </button>
+                                </div>
+                                <input class="form-control rounded-0"
+                                       placeholder="Github Account"
+                                       th:field="${employeeProfile.githubPath}"
+                                       type="text">
                             </div>
-                            <input  type="text"
-                                    class="form-control rounded-0"
-                                    placeholder="Github Account"
-                                    th:field="${employeeProfile.githubPath}">
-                            <label th:if="${#fields.hasErrors('githubPath')}" th:errors="${employeeProfile.githubPath}">Error</label>
+                            <label th:if="${#fields.hasErrors('githubPath')}" class="text-danger" th:errors="${employeeProfile.githubPath}">Error</label>
                         </div>
-                        <div class="input-group my-1">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-dark rounded-0" type="button">
-                                    <i class="fab fa-linkedin-in" style="font-size: 16px;"></i>
-                                </button>
+                        <div class="w-100">
+                            <div class="input-group my-1">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-dark rounded-0" type="button">
+                                        <i class="fab fa-linkedin-in" style="font-size: 16px;"></i>
+                                    </button>
+                                </div>
+                                <input class="form-control rounded-0"
+                                       placeholder="Linkedin Account"
+                                       th:field="${employeeProfile.linkedinPath}"
+                                       type="text">
                             </div>
-                            <input  type="text"
-                                    class="form-control rounded-0"
-                                    placeholder="Linkedin Account"
-                                    th:field="${employeeProfile.linkedinPath}">
-                            <label th:if="${#fields.hasErrors('linkedinPath')}" th:errors="${employeeProfile.linkedinPath}">Error</label>
+                            <label th:if="${#fields.hasErrors('linkedinPath')}" class="text-danger" th:errors="${employeeProfile.linkedinPath}">Error</label>
                         </div>
-                        <div class="input-group-prepend my-1">
-                            <button class="btn btn-dark rounded-0" type="button">
-                                <i class="fas fa-briefcase" style="font-size: 14px;"></i>
-                            </button>
-                            <select class="form-control rounded-0" id="isWorking" th:field="${employeeProfile.isWorking}">
-                                <option th:selected="selected" th:value="0">Are you working right
-                                    now?
-                                </option>
-                                <option th:value="1">Yes</option>
-                                <option th:value="0">No</option>
-                            </select>
-                            <label th:if="${#fields.hasErrors('isWorking')}" th:errors="${employeeProfile.isWorking}">Error</label>
-                        </div>
-                        <div class="input-group-prepend my-1">
-                            <button class="btn btn-dark rounded-0" type="button">
-                                <i class="fas fa-briefcase" style="font-size: 14px;"></i>
-                            </button>
-                            <select class="form-control rounded-0"
-                                    id="isLookingForWork"
-                                    th:field="${employeeProfile.isLookingForWork}">
-                                <option th:selected="selected" value="0">Are you Looking for
-                                    Work?
-                                </option>
-                                <option th:value="1">Yes</option>
-                                <option th:value="0">No</option>
-
-                            </select>
-                            <label th:if="${#fields.hasErrors('isLookingForWork')}" th:errors="${employeeProfile.isLookingForWork}">Error</label>
-                        </div>
-                        <div class="input-group my-1">
-                            <div class="input-group-prepend">
+                        <div class="w-100">
+                            <div class="input-group-prepend my-1">
                                 <button class="btn btn-dark rounded-0" type="button">
-                                    <i class="fas fa-certificate" style="font-size: 15px;"></i>
-
+                                    <i class="fas fa-briefcase" style="font-size: 14px;"></i>
                                 </button>
+                                <select class="form-control rounded-0" id="isWorking" th:field="${employeeProfile.isWorking}">
+                                    <option th:selected="selected" th:value="0">Are you working right
+                                        now?
+                                    </option>
+                                    <option th:value="1">Yes</option>
+                                    <option th:value="0">No</option>
+                                </select>
                             </div>
-                            <input  type="text"
-                                    class="form-control rounded-0"
-                                    placeholder=" Speciality"
-                                    th:field="${employeeProfile.speciality}"
+                            <label th:if="${#fields.hasErrors('isWorking')}" class="text-danger" th:errors="${employeeProfile.isWorking}">Error</label>
+                        </div>
+                        <div class="w-100">
+                            <div class="input-group-prepend my-1">
+                                <button class="btn btn-dark rounded-0" type="button">
+                                    <i class="fas fa-briefcase" style="font-size: 14px;"></i>
+                                </button>
+                                <select class="form-control rounded-0"
+                                        id="isLookingForWork"
+                                        th:field="${employeeProfile.isLookingForWork}">
+                                    <option th:selected="selected" value="0">Are you Looking for
+                                        Work?
+                                    </option>
+                                    <option th:value="1">Yes</option>
+                                    <option th:value="0">No</option>
+
+                                </select>
+                            </div>
+                            <label th:if="${#fields.hasErrors('isLookingForWork')}" class="text-danger" th:errors="${employeeProfile.isLookingForWork}">Error</label>
+                        </div>
+                        <div class="w-100">
+                            <div class="input-group my-1">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-dark rounded-0" type="button">
+                                        <i class="fas fa-certificate" style="font-size: 15px;"></i>
+
+                                    </button>
+                                </div>
+                                <input class="form-control rounded-0"
+                                       placeholder=" Speciality"
+                                       th:field="${employeeProfile.speciality}"
+                                       type="text"
+                                >
+                            </div>
+                            <label class="text-danger" th:errors="${employeeProfile.speciality}" th:if="${#fields.hasErrors('speciality')}">Error</label>
+                        </div>
+                        <div class="w-100">
+                            <div class="input-group-prepend my-1">
+                                <button class="btn btn-dark rounded-0" type="button">
+                                    <i class="fas fa-briefcase" style="font-size: 14px;"></i>
+                                </button>
+                                <select class="form-control rounded-0" id="isWorking" th:field="${employeeProfile.experience}">
+                                    <option th:value="null">Experience
+                                    </option>
+                                    <option th:each="i: ${#numbers.sequence(1, 15)}"
+                                            th:selected="${i == employeeProfile.experience}"
+                                            th:text="${i}"
+                                            th:value="${i}"
                                     >
-                          <label th:if="${#fields.hasErrors('speciality')}" th:errors="${employeeProfile.speciality}">Error</label>
-                        </div>
-                        <div class="input-group-prepend my-1">
-                            <button class="btn btn-dark rounded-0" type="button">
-                                <i class="fas fa-briefcase" style="font-size: 14px;"></i>
-                            </button>
-                            <select class="form-control rounded-0" id="isWorking" th:field="${employeeProfile.experience}">
-                                <option th:value="0">Experience
-                                </option>
-                                <option th:each="i: ${#numbers.sequence(1, 15)}"
-                                        th:value="${i}"
-                                        th:text="${i}"
-                                        th:selected="${i == employeeProfile.experience}"
-                                        >
-                                </option>
-                            </select>
-                            <label th:if="${#fields.hasErrors('isWorking')}" th:errors="${employeeProfile.isWorking}">Error</label>
+                                    </option>
+                                </select>
+                            </div>
+                            <label th:if="${#fields.hasErrors('isWorking')}" class="text-danger" th:errors="${employeeProfile.isWorking}">Error</label>
                         </div>
 
                         <div class="language-box mt-2">
@@ -228,9 +240,12 @@
 
                                 <!-- Repeater End -->
                             </div>
-                            <div class="form-group mt-2">
-                                <label for="exampleFormControlTextarea1"><Strong style="font-size: 15px;">About</Strong></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="${employeeProfile.about}"></textarea>
+                            <div class="w-100">
+                                <div class="form-group mt-2">
+                                    <label for="exampleFormControlTextarea1"><Strong style="font-size: 15px;">About</Strong></label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="${employeeProfile.about}"></textarea>
+                                </div>
+                                <label th:if="${#fields.hasErrors('about')}" class="text-danger" th:errors="*{about}">Error</label>
                             </div>
                             <div class="input-group mt-3">
                                 <div class="text-center mx-auto">

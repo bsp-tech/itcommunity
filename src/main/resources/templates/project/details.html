@@ -55,7 +55,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div th:if="${itproject.needEmployee==1}">
+                                <div th:if="${itproject.needEmployee}">
                                     <button type="button" class=" btn btn-success ml-lg-auto mt-2 " data-toggle="modal"
                                             data-target="#exampleModal">
                                         <i class="fas fa-plus-circle"></i> Join Team
@@ -117,7 +117,7 @@
 
                             <tbody>
                             <tr th:each=" p : ${itproject.getEmployeeProjectList()}">
-                                <div th:if="${p.approved==1}">
+                                <div th:if="${p.approved}">
                                     <th scope="row" th:text="${p.employeeId.userId.id}"></th>
                                     <td th:text="${p.getEmployeeId().userId.name}"></td>
                                     <td th:text="${p.getEmployeeId().userId.surname}"></td>

@@ -6,7 +6,17 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="" />
+    <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/config/AllConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/config/AllConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/interceptors/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/interceptors/InterceptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/registration.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,10 +29,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -198,6 +208,7 @@
       <workItem from="1568543877639" duration="4229000" />
       <workItem from="1568619548033" duration="4618000" />
       <workItem from="1568662321674" duration="3870000" />
+      <workItem from="1568753708338" duration="3844000" />
     </task>
     <servers />
   </component>
