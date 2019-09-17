@@ -42,11 +42,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         return (List<EmployeeProfile>) employeeProfileDataInter.findAll();
     }
 
-    @Override
-    public EmployeeProfile save(EmployeeProfile employeeProfile) {
 
-        return employeeProfileDataInter.save(employeeProfile);
-    }
 
     @Override
     public EmployeeProfile update(EmployeeProfile employeeProfile) {

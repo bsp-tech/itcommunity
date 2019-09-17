@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author Goshgar
  */
@@ -70,4 +72,5 @@ public class UserController {
         User u = userServiceInter.save(user);
           return new ModelAndView("redirect:/user/login?success=true");
     }
+
 }
