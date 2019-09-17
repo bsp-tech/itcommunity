@@ -6,6 +6,7 @@
 package com.bsptech.itcommunity.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
@@ -30,51 +31,52 @@ public class EmployeeProfile implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "approved")
-    private boolean approved;
+    private int approved;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "approved_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDateTime;
+    @Basic(optional = false)
     @Size(max = 255)
+    @NotBlank
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
     @Column(name = "github_path")
     private String githubPath;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "speciality")
-    private String speciality;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "about")
-    private String about;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "is_looking_for_work")
-    private boolean isLookingForWork;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "is_working")
-    private boolean isWorking;
     @Size(max = 255)
     @Column(name = "linkedin_path")
     private String linkedinPath;
     @Basic(optional = false)
+    @NotBlank
+    @Column(name = "speciality")
+    private String speciality;
+    @Column(name = "experience")
+    private Integer experience;
+    @Basic(optional = false)
+    @Column(name = "about")
+    @Size(min=300, max = 500)
+    private String about;
+    @Basic(optional = false)
     @NotNull
+    @Column(name = "is_looking_for_work")
+    private Integer isLookingForWork;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "is_working")
+    private Integer isWorking;
+    @Basic(optional = false)
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User userId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
     private List<EmployeeProfileSkill> employeeProfileSkillList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId", fetch = FetchType.LAZY)
     private List<EmployeeProject> employeeProjectList;
@@ -88,7 +90,7 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProfile(Integer id, boolean approved, Date approvedDateTime, boolean isLookingForWork, boolean isWorking, Date insertDateTime, Date lastUpdateDateTime) {
+    public EmployeeProfile(Integer id, int approved, Date approvedDateTime, Integer isLookingForWork, Integer isWorking, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
         this.approvedDateTime = approvedDateTime;
@@ -114,11 +116,11 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public boolean getApproved() {
+    public int getApproved() {
         return approved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(int approved) {
         this.approved = approved;
     }
 
@@ -146,19 +148,19 @@ public class EmployeeProfile implements Serializable {
         this.githubPath = githubPath;
     }
 
-    public boolean getIsLookingForWork() {
+    public Integer getIsLookingForWork() {
         return isLookingForWork;
     }
 
-    public void setIsLookingForWork(boolean isLookingForWork) {
+    public void setIsLookingForWork(Integer isLookingForWork) {
         this.isLookingForWork = isLookingForWork;
     }
 
-    public boolean getIsWorking() {
+    public Integer getIsWorking() {
         return isWorking;
     }
 
-    public void setIsWorking(boolean isWorking) {
+    public void setIsWorking(Integer isWorking) {
         this.isWorking = isWorking;
     }
 
@@ -200,6 +202,14 @@ public class EmployeeProfile implements Serializable {
 
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 
     @XmlTransient
@@ -249,9 +259,14 @@ public class EmployeeProfile implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return ""+employeeProfileLanguageList;
-    }
+	@Override
+	public String toString() {
+		return "EmployeeProfile [id=" + id + ", approved=" + approved + ", approvedDateTime=" + approvedDateTime
+				+ ", cvPath=" + cvPath + ", githubPath=" + githubPath + ", isLookingForWork=" + isLookingForWork
+				+ ", isWorking=" + isWorking + ", linkedinPath=" + linkedinPath + ", insertDateTime=" + insertDateTime
+				+ ", lastUpdateDateTime=" + lastUpdateDateTime + ", userId=" + userId + ", employeeProfileSkillList="
+				+ employeeProfileSkillList + ", employeeProjectList=" + employeeProjectList
+				+ ", employeeProfileLanguageList=" + employeeProfileLanguageList + "]";
+	}
 
 }

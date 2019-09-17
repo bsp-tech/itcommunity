@@ -5,29 +5,18 @@
  */
 package com.bsptech.itcommunity.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -36,18 +25,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "user")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
-    , @NamedQuery(name = "User.findByAge", query = "SELECT u FROM User u WHERE u.age = :age")
-    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByEnabled", query = "SELECT u FROM User u WHERE u.enabled = :enabled")
-    , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
-    , @NamedQuery(name = "User.findBySurname", query = "SELECT u FROM User u WHERE u.surname = :surname")
-    , @NamedQuery(name = "User.findByInsertDateTime", query = "SELECT u FROM User u WHERE u.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "User.findByLastUpdateDateTime", query = "SELECT u FROM User u WHERE u.lastUpdateDateTime = :lastUpdateDateTime")
-    , @NamedQuery(name = "User.findByThumbnail", query = "SELECT u FROM User u WHERE u.thumbnail = :thumbnail")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,9 +35,10 @@ public class User implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Min(1)
     @Column(name = "age")
-    private int age;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    private Integer age;
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -72,23 +50,28 @@ public class User implements Serializable {
     private boolean enabled;
     @Basic(optional = false)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "surname")
     private String surname;
     @Column(name = "phone")
     private String phone;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
@@ -98,7 +81,7 @@ public class User implements Serializable {
     @Size(max = 300)
     @Column(name = "thumbnail")
     private String thumbnail;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<EmployeeProfile> employeeProfileList;
     @JoinColumn(name = "gender_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -132,7 +115,7 @@ public class User implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -141,11 +124,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -238,6 +221,9 @@ public class User implements Serializable {
         this.groupId = groupId;
     }
 
+    public EmployeeProfile getEmployeeProfile(){
+        return this.employeeProfileList!=null && this.employeeProfileList.size()>0 ? this.employeeProfileList.get(0):null;
+    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -258,9 +244,15 @@ public class User implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.bsptech.itcommunity.entity.User[ id=" + id + " ]";
-    }
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", age=" + age + ", email=" + email + ", enabled=" + enabled + ", name=" + name
+				+ ", password=" + password + ", surname=" + surname + ", avatarPath=" + avatarPath + ", insertDateTime="
+				+ insertDateTime + ", lastUpdateDateTime=" + lastUpdateDateTime + ", thumbnail=" + thumbnail
+				+ ", employeeProfileList=" + employeeProfileList + ", genderId=" + genderId + ", groupId=" + groupId
+				+ "]";
+	}
+
     
+
 }

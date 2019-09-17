@@ -131,7 +131,7 @@ public class EmployeeProfileLanguage implements Serializable {
 
     @Override
     public String toString() {
-        return "language:"+languageId+", level:"+level;
+        return "languageId:"+languageId+",level:"+level;
     }
 
 }

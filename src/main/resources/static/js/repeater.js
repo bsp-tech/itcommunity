@@ -1,86 +1,29 @@
-jQuery.fn.extend({
-    createRepeater: function (options = {}) {
-        var hasOption = function (optionKey) {
-            return options.hasOwnProperty(optionKey);
-        };
 
-        var option = function (optionKey) {
-            return options[optionKey];
-        };
+var initRepeater=function(dataGroupSelector,dataGroupTemplateSelector, addButtonSelector){
+	var addItem = function () {
+	    var dataGroup = document.querySelector('['+dataGroupSelector+']');
+	    var index = dataGroup.querySelectorAll('[data-group-element]').length;
+	    var dataGroupTemplate = document.querySelector('['+dataGroupTemplateSelector+']');
 
-        var generateId = function (string) {
-            return string
-                .replace(/\[/g, '_')
-                .replace(/\]/g, '')
-                .toLowerCase();
-        };
+	    var e = document.createElement('div');
+	    e.innerHTML = dataGroupTemplate.innerHTML.split("$index").join(index);
+	    e.setAttribute("data-group-element","");
 
-        var addItem = function (items, key, fresh = true) {
-            var itemContent = items;
-            var group = itemContent.data("group");
-            var item = itemContent;
-            var input = item.find('input,select');
+	    dataGroup.appendChild(e);
+	};
 
-            input.each(function (index, el) {
-                var attrName = $(el).data('name');
-                var skipName = $(el).data('skip-name');
-                if (skipName != true) {
-                    $(el).attr("name", group + "[" + key + "]" + "[" + attrName + "]");
-                } else {
-                    if (attrName != 'undefined') {
-                        $(el).attr("name", attrName);
-                    }
-                }
-                if (fresh == true) {
-                    $(el).attr('value', '');
-                }
 
-                $(el).attr('id', generateId($(el).attr('name')));
-                $(el).parent().find('label').attr('for', generateId($(el).attr('name')));
-            })
+	var addButton = document.querySelector('['+addButtonSelector+']');
 
-            var itemClone = items;
+	addButton.addEventListener('click', function() {
+	    addItem();
+	}, false);
+}
 
-            /* Handling remove btn */
-            var removeButton = itemClone.find('.remove-btn');
+function remove(element) {
+	var container_ = element.parentNode.parentNode.parentNode.parentNode;
+	var delete_ = element.parentNode.parentNode.parentNode;
+	container_.removeChild(delete_);
+}
 
-            if (key == 0) {
-                removeButton.attr('disabled', true);
-            } else {
-                removeButton.attr('disabled', false);
-            }
 
-            removeButton.attr('onclick', '$(this).parents(\'.items\').remove()');
-
-            var newItem = $("<div class='items'>" + itemClone.html() + "<div/>");
-            newItem.attr('data-index', key)
-
-            newItem.appendTo(repeater);
-        };
-
-        /* find elements */
-        var repeater = this;
-        var items = repeater.find(".items");
-        var key = 0;
-        var addButton = repeater.find('.repeater-add-btn');
-
-        items.each(function (index, item) {
-            items.remove();
-            if (hasOption('showFirstItemToDefault') && option('showFirstItemToDefault') == true) {
-                addItem($(item), key);
-                key++;
-            } else {
-                if (items.length > 1) {
-                    addItem($(item), key);
-                    key++;
-                }
-            }
-        });
-
-        /* handle click and add items */
-        addButton.on("click", function () {
-            addItem($(items[0]), key);
-            key++;
-        });
-    }
-});

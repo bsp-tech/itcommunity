@@ -56,7 +56,7 @@ public class AuthGroupRole implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private AuthGroup groupId;
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private AuthRole roleId;
 
     public AuthGroupRole() {

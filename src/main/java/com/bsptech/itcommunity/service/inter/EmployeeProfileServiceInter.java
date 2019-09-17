@@ -1,6 +1,7 @@
 package com.bsptech.itcommunity.service.inter;
 
-import com.bsptech.itcommunity.entity.*;
+import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.User;
 
 import java.util.List;
 
@@ -12,6 +13,10 @@ public interface EmployeeProfileServiceInter {
     public List<EmployeeProfile> findAll(EmployeeProfile employeeProfile);
     
     public EmployeeProfile save(EmployeeProfile employeeProfile);
+  
+    public List<EmployeeProfile> findAll();
+    
+    public EmployeeProfile register(EmployeeProfile employeeProfile);
 
     public EmployeeProfile update(EmployeeProfile employeeProfile);
 

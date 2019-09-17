@@ -5,24 +5,10 @@
  */
 package com.bsptech.itcommunity.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -30,13 +16,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "employee_profile_skill")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "EmployeeProfileSkill.findAll", query = "SELECT e FROM EmployeeProfileSkill e")
-    , @NamedQuery(name = "EmployeeProfileSkill.findById", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.id = :id")
-    , @NamedQuery(name = "EmployeeProfileSkill.findByLevel", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.level = :level")
-    , @NamedQuery(name = "EmployeeProfileSkill.findByInsertDateTime", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "EmployeeProfileSkill.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProfileSkill e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProfileSkill implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,7 +38,7 @@ public class EmployeeProfileSkill implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private EmployeeProfile employeeProfileId;
     @JoinColumn(name = "skill_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Skill skillId;
 
     public EmployeeProfileSkill() {
