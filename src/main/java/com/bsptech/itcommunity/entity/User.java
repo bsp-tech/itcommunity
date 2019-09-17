@@ -13,6 +13,10 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -31,9 +35,10 @@ public class User implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Min(1)
     @Column(name = "age")
     private Integer age;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -45,16 +50,22 @@ public class User implements Serializable {
     private boolean enabled;
     @Basic(optional = false)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "surname")
     private String surname;
@@ -63,7 +74,6 @@ public class User implements Serializable {
     private String avatarPath;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
@@ -236,9 +246,15 @@ public class User implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.bsptech.itcommunity.entity.User[ id=" + id + " ]";
-    }
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", age=" + age + ", email=" + email + ", enabled=" + enabled + ", name=" + name
+				+ ", password=" + password + ", surname=" + surname + ", avatarPath=" + avatarPath + ", insertDateTime="
+				+ insertDateTime + ", lastUpdateDateTime=" + lastUpdateDateTime + ", thumbnail=" + thumbnail
+				+ ", employeeProfileList=" + employeeProfileList + ", genderId=" + genderId + ", groupId=" + groupId
+				+ "]";
+	}
+
+    
 
 }
