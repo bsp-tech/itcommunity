@@ -42,11 +42,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         return (List<EmployeeProfile>) employeeProfileDataInter.findAll();
     }
 
-    @Override
-    public EmployeeProfile save(EmployeeProfile employeeProfile) {
 
-        return employeeProfileDataInter.save(employeeProfile);
-    }
 
     @Override
     public EmployeeProfile update(EmployeeProfile employeeProfile) {
@@ -112,7 +108,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
                         continue;
                     }
                 }
-                System.out.println("skill="+skill_);
+//                System.out.println("skill="+skill_);
                 epSkill.setSkillId(skill_);
                 epSkill.setInsertDateTime(now_);
                 epSkill.setEmployeeProfileId(employeeProfile);

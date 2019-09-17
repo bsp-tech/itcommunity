@@ -2,6 +2,7 @@ package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.EmployeeProject;
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.impl.SecurityServiceImpl;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
@@ -95,18 +96,25 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/employees/register",method=RequestMethod.POST)
-    public String register(
-                @Valid @ModelAttribute("employeeProfile") EmployeeProfile employeeProfile,
-                BindingResult result,
-                HttpSession session) {
-//        if(result.hasErrors()) {
-//        	modelAndView.setViewName("employee/registration");
-//        	return modelAndView;
-//        }
-        System.out.println(employeeProfile);
-        System.out.println(employeeProfile.getEmployeeProfileLanguageList());//
+    public ModelAndView register(
+                @ModelAttribute @Valid EmployeeProfile employeeProfile,
+                BindingResult result) {
+        if(result.hasErrors()) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("employee/registration");
+            return mv;
+        }
     	EmployeeProfile ep = employeeProfileServiceInter.register(employeeProfile);
-        return "redirect:/";
+        return new ModelAndView("redirect:/");
     }
 
+      @RequestMapping("/")
+      public String join_team(
+               @ModelAttribute("employeeProject") EmployeeProject employeeProject){
+        if(employeeProject.getEmployeeId()==null){
+            return "redirect:/project/index?success";
+        }else
+            return "redirect:/project/index?error";
+
+      }
 }

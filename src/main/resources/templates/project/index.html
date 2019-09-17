@@ -59,32 +59,38 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div th:if="${p.needEmployee==1}">
-                                    <button type="button" class=" btn btn-success ml-lg-auto mt-2 " data-toggle="modal"
-                                            data-target="#exampleModal">
-                                        <i class="fas fa-plus-circle"></i> Join Team
-                                    </button>
-                                </div>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Join Team</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h6>Bu komandaya qoşulmağa əminsinizmi?</h6>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">Bəli</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Xeyir
-                                                </button>
-
+                            </div>
+                            <div th:if="${p.needEmployee==true}">
+                            <a sec:authorize="hasAnyAuthority('CREATE_EMPLOYEE_PROFILE')"
+                                class="btn btn-success ml-lg-auto mt-2 text-light"
+                                href="/employees/register">
+                                <i class="fas fa-plus-circle"></i> Join Team
+                            </a>
+                            <a sec:authorize="isAnonymous()"
+                                   class="btn btn-success ml-lg-auto mt-2 text-light"
+                                   href="/user/login">
+                                    <i class="fas fa-plus-circle"></i> Join Team
+                            </a>
+                            <a sec:authorize="hasAuthority('JOIN_TEAM')" class="btn btn-success ml-lg-auto mt-2 text-light" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fas fa-plus-circle"></i> Join Team
+                            </a>
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Join Team</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>Bu komandaya qoşulmağa əminsinizmi?</h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <th
+                                            <button type="button" class="btn btn-primary"  >Bəli</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Xeyir</button>
                                             </div>
                                         </div>
                                     </div>
