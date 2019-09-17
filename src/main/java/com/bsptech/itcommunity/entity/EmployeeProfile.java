@@ -12,6 +12,8 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -35,15 +37,23 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "approved_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDateTime;
+    @Basic(optional = false)
     @Size(max = 255)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
+    @NotNull
+    @NotEmpty
+    @NotBlank
     @Column(name = "github_path")
     private String githubPath;
     @Basic(optional = false)
     @NotNull
+    @NotEmpty
+    @NotBlank
     @Column(name = "speciality")
     private String speciality;
     @Column(name = "experience")
@@ -55,11 +65,11 @@ public class EmployeeProfile implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "is_looking_for_work")
-    private Boolean isLookingForWork;
+    private Integer isLookingForWork;
     @Basic(optional = false)
     @NotNull
     @Column(name = "is_working")
-    private Boolean isWorking;
+    private Integer isWorking;
     @Size(max = 255)
     @Column(name = "linkedin_path")
     private String linkedinPath;
@@ -88,7 +98,7 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProfile(Integer id, int approved, Date approvedDateTime, Boolean isLookingForWork, Boolean isWorking, Date insertDateTime, Date lastUpdateDateTime) {
+    public EmployeeProfile(Integer id, int approved, Date approvedDateTime, Integer isLookingForWork, Integer isWorking, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
         this.approvedDateTime = approvedDateTime;
@@ -146,19 +156,19 @@ public class EmployeeProfile implements Serializable {
         this.githubPath = githubPath;
     }
 
-    public Boolean getIsLookingForWork() {
+    public Integer getIsLookingForWork() {
         return isLookingForWork;
     }
 
-    public void setIsLookingForWork(Boolean isLookingForWork) {
+    public void setIsLookingForWork(Integer isLookingForWork) {
         this.isLookingForWork = isLookingForWork;
     }
 
-    public Boolean getIsWorking() {
+    public Integer getIsWorking() {
         return isWorking;
     }
 
-    public void setIsWorking(Boolean isWorking) {
+    public void setIsWorking(Integer isWorking) {
         this.isWorking = isWorking;
     }
 

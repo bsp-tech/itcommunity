@@ -34,7 +34,7 @@ public class SecurityServiceImpl implements SecurityServiceInter {
         if (authentication == null) {
             return null;
         }
-        System.out.println(authentication.getPrincipal());
+//        System.out.println(authentication.getPrincipal());
         if( !(authentication.getPrincipal() instanceof  CustomUserDetail)) return null;
         CustomUserDetail principal = (CustomUserDetail) authentication.getPrincipal();
         return principal;
@@ -48,7 +48,7 @@ public class SecurityServiceImpl implements SecurityServiceInter {
         User user = userDao.getOne(loggedInUser.getId());
 
         AuthGroup group = user.getGroupId();
-        System.out.println(group);
+//        System.out.println(group);
         List<AuthGroupRole> authGroupRoleList = authGroupRoleDaoInter.findByGroupId(group);
         List<GrantedAuthority> updatedAuthorities = new ArrayList<>();
         for(int i=0;i<authGroupRoleList.size();i++){

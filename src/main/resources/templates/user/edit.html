@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,13 @@
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 	<link rel="stylesheet" th:href="@{/css/particle.css}">
 </head>
-<body>
+<body >
 		<div id="particles-js"></div> <!-- stats - count particles -->
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 pt-5 mx-auto ">
 					<div class="card border border-dark">
-						<h4 class="card-header text-white bg-dark">Sign up</h4>
+						<h4 class="card-header text-white bg-dark">Edit User Profile</h4>
 
 						<div class="card-body px-5">
 							<form th:object="${user}" method="post">
@@ -25,35 +26,30 @@
 											<button class="btn btn-dark " type="button"><i class="fas fa-user"></i></button>
 										</div>
 										<input type="text" class="form-control" placeholder="Name"  th:field="${user.name}">
-										<label th:if="${#fields.hasErrors('name')}" th:errors="${user.name}"></label>
 									</div>
 									<div class="input-group my-1">
 										<div class="input-group-prepend">
 											<button class="btn btn-dark" type="button"><i class="fas fa-user"></i></button>
 										</div>
 										<input type="text" class="form-control" placeholder="Surname" th:field="${user.surname}">
-										<label th:if="${#fields.hasErrors('surname')}" th:errors="${user.surname}"></label>
 									</div>
 									<div class="input-group my-1">
 										<div class="input-group-prepend">
 											<button class="btn btn-dark" type="button"><i class="fas fa-calendar-day"></i></button>
 										</div>
 										<input type="text" class="form-control" placeholder="Age" th:field="${user.age}">
-										<label th:if="${#fields.hasErrors('age')}" th:errors="${user.age}"></label>
 									</div>
 									<div class="input-group my-1">
 										<div class="input-group-prepend">
 											<button class="btn btn-dark" type="button"><i style="font-size: 14px;color: white;" class="fas fa-at"></i></button>
 										</div>
 										<input type="email" class="form-control" placeholder="Email" th:field="${user.email}">
-										<label th:if="${#fields.hasErrors('email')}" th:errors="${user.email}"></label>
 									</div>
 									<div class="input-group my-1">
 										<div class="input-group-prepend">
 											<button class="btn btn-dark" type="button"><i class="fas fa-lock"></i></button>
 										</div>
 										<input type="password" class="form-control" placeholder="Password" th:field="${user.password}">
-										<label th:if="${#fields.hasErrors('password')}" th:errors="${user.password}"></label>
 									</div>
 									<div class="input-group my-1">
 										<div class="input-group-prepend">
@@ -75,10 +71,7 @@
 
 										<div class="input-group mt-3">
 											<div class="text-center mx-auto">
-												<button type="submit" class="btn btn-dark mt-1">Create Account</button>
-												<a class="btn btn-secondary mt-1 mr-0" href="/user/login">
-													<span class="text-light">Already using? Sign In</span>
-												</a>
+												<button type="submit" class="btn btn-dark mt-1">Save</button>
 											</div>
 										</div>
 									</div>

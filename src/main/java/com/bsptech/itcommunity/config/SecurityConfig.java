@@ -3,16 +3,16 @@ package com.bsptech.itcommunity.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,16 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
+    @Qualifier("pwdEncoder")
     private PasswordEncoder passwordEncoder;
-
-//    public static void main(String[] args) {
-//        System.out.println(new BCryptPasswordEncoder().encode("111111"));
-//    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/user/login", "/user/register").anonymous()//this means only un authenticated users can access to login and register page
-                .antMatchers("/employees/register","/logout").authenticated()//this means only authenticated users can access to logout
+                .antMatchers("/employees/register","/logout","/employees/profile/edit","/user/edit").authenticated()//this means only authenticated users can access to logout
                 .antMatchers("/employees/register").hasAnyAuthority("CREATE_EMPLOYEE_PROFILE")
                 .and().formLogin().loginPage("/user/login").loginProcessingUrl("/login").defaultSuccessUrl("/")
                 .and().logout().logoutSuccessUrl("/")

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 //import com.bsptech.itcommunity.security.SecurityUtil;
 
@@ -27,7 +28,8 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Override
     public EmployeeProfile findById(Integer id) {
-        return employeeProfileDataInter.findById(id).get();
+        Optional<EmployeeProfile> op = employeeProfileDataInter.findById(id);
+        return op.isPresent()?op.get():null;
     }
 
     @Override
@@ -106,7 +108,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
                         continue;
                     }
                 }
-                System.out.println("skill="+skill_);
+//                System.out.println("skill="+skill_);
                 epSkill.setSkillId(skill_);
                 epSkill.setInsertDateTime(now_);
                 epSkill.setEmployeeProfileId(employeeProfile);
