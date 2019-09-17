@@ -2,10 +2,13 @@ package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.impl.SecurityServiceImpl;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
+import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,6 +38,9 @@ public class EmployeeController {
     @Autowired
     SecurityServiceImpl securityServiceInter;
 
+    @Autowired
+    UserServiceInter userServiceInter;
+
     @GetMapping(path = "/")
     public ModelAndView index(
             @PathVariable(name = "page", required = false) String pageS,
@@ -58,6 +64,24 @@ public class EmployeeController {
     @RequestMapping(path = "/employees/{employeeId}")
     public ModelAndView detail(@PathVariable("employeeId") Integer employeeId, ModelAndView modelAndView) {
         modelAndView.setViewName("employee/details");
+        return modelAndView;
+    }
+
+    @RequestMapping(path = "/employees/profile/edit")
+    public ModelAndView edit(ModelAndView modelAndView) {
+        User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
+        loggedInUser = userServiceInter.findById(loggedInUser.getId());
+        EmployeeProfile emp = loggedInUser.getEmployeeProfile();
+        if(emp==null) {
+            modelAndView.setViewName("redirect:/");
+            modelAndView.setStatus(HttpStatus.BAD_REQUEST);
+            return modelAndView;
+        }
+
+        modelAndView.addObject("employeeProfile",emp);
+        modelAndView.addObject("listLanguages",languageServiceInter.findAll());
+        modelAndView.addObject("listSkills",skillDao.findByEnabled(true));
+        modelAndView.setViewName("employee/edit");
         return modelAndView;
     }
 

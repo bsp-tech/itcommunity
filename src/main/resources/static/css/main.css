@@ -5,3 +5,22 @@
 .btn,.form-control:focus{
     box-shadow: none !important;
 }
+
+.fs-15{
+    font-size: 15px;
+}
+
+.developer-card {
+    overflow: hidden;
+}
+.developer-card-details {
+    opacity: 0;
+    transition: all .4s;
+    background-color: lightblue;
+    height: 40px;
+    width: 200px;
+    overflow-y: scroll;
+}
+.developer-card:hover .developer-card-details {
+    opacity: 1;
+}

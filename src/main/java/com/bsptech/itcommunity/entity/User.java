@@ -83,7 +83,7 @@ public class User implements Serializable {
     @Size(max = 300)
     @Column(name = "thumbnail")
     private String thumbnail;
-    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<EmployeeProfile> employeeProfileList;
     @JoinColumn(name = "gender_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -223,6 +223,9 @@ public class User implements Serializable {
         this.groupId = groupId;
     }
 
+    public EmployeeProfile getEmployeeProfile(){
+        return this.employeeProfileList!=null && this.employeeProfileList.size()>0 ? this.employeeProfileList.get(0):null;
+    }
     @Override
     public int hashCode() {
         int hash = 0;
