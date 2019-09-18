@@ -269,5 +269,4 @@ public class EmployeeProfile implements Serializable {
 				+ ", employeeProfileLanguageList=" + employeeProfileLanguageList + "]";
 	}
 
-
 }
