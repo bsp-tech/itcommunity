@@ -32,8 +32,6 @@ public class EmployeeProject implements Serializable {
     @Size(max = 255)
     @Column(name = "position")
     private String position;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "join_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date joinDateTime;
@@ -42,8 +40,6 @@ public class EmployeeProject implements Serializable {
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;

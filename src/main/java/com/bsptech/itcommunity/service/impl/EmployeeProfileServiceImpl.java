@@ -1,6 +1,7 @@
 package com.bsptech.itcommunity.service.impl;
 
 import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
+import com.bsptech.itcommunity.dao.EmployeeProjectDaoInter;
 import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.*;
@@ -121,5 +122,43 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         EmployeeProfile ep = employeeProfileDataInter.save(employeeProfile);
 
         return ep;
+    }
+
+    @Autowired
+    private SecurityServiceInter securityServiceInter;
+
+    @Autowired
+    UserDataInter userDataInter;
+
+    @Autowired
+    EmployeeProjectDaoInter employeeProjectDaoInter;
+
+    public int joinProject(Integer projectId){
+        User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
+        loggedInUser = userDataInter.getOne(loggedInUser.getId());
+        EmployeeProfile ep = loggedInUser.getEmployeeProfile();
+        List<EmployeeProject> projects = ep.getEmployeeProjectList();
+        if(projects!=null && projects.size()>0){
+            for(EmployeeProject epr: projects){
+                if(epr.getProjectId().getId()==projectId){
+                    if(epr.getApproved()){
+                        return 2;
+                    }else{
+                        return 3;
+                    }
+                }
+            }
+        }
+
+        Itproject itproject = new Itproject(projectId);
+        EmployeeProject epr = new EmployeeProject();
+        epr.setApproved(false);
+        epr.setInsertDateTime(new Date());
+        epr.setEmployeeId(ep);
+        epr.setProjectId(itproject);
+
+        employeeProjectDaoInter.save(epr);
+
+        return 1;
     }
 }

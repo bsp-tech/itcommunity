@@ -12,11 +12,13 @@ public interface EmployeeProfileServiceInter {
 
     public List<EmployeeProfile> findAll();
 
-    
+
     public EmployeeProfile register(EmployeeProfile employeeProfile);
 
     public EmployeeProfile update(EmployeeProfile employeeProfile);
 
     public int delete(Integer id);
-    
+
+    public int joinProject(Integer projectId);
+
 }
