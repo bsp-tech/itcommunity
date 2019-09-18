@@ -51,6 +51,7 @@ public class EmployeeController {
             ){
         List<EmployeeProfile> list = serviceInter.findAll();
 
+        modelAndView.addObject("employeeProfile", new EmployeeProfile());
         modelAndView.addObject("pages", 10);
         modelAndView.addObject("page", 1);
         modelAndView.addObject("employeeList", list);

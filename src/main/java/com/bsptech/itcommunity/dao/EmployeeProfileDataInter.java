@@ -6,6 +6,8 @@ import com.bsptech.itcommunity.entity.Skill;
 import com.bsptech.itcommunity.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface EmployeeProfileDataInter extends CrudRepository<EmployeeProfile, Integer> {
     EmployeeProfile findByUserId(User user);
 
