@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -39,12 +40,15 @@ public class EmployeeProfile implements Serializable {
     @Basic(optional = false)
     @Size(max = 255)
     @NotBlank
+    @Pattern(regexp="^((http|https):\\/\\/)?+[a-zA-Z0-9-]+$", message="Invalid cv path")
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
+    @Pattern(regexp="^((http|https):\\/\\/)?+(github.com\\/)+[a-zA-Z0-9-]+$", message="Invalid github account")
     @Column(name = "github_path")
     private String githubPath;
     @Size(max = 255)
+    @Pattern(regexp="^((http|https):\\/\\/)?+(www.linkedin.com\\/in\\/)+[a-zA-Z0-9-]{5,30}+$", message="Invalid Linkedin account")
     @Column(name = "linkedin_path")
     private String linkedinPath;
     @Basic(optional = false)
