@@ -285,7 +285,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1"><Strong style="font-size: 15px;">About</Strong></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="${employeeProfile.about}"></textarea>
+                                <textarea class="form-control about-input" rows="3" placeholder="Write min 300,max 500 letters about yourself" th:field="${employeeProfile.about}"></textarea>
+                                <div class="mt-2"> <span class="length-of-about-value text-danger">0 </span> (use min 300,max 500 symbols)</div>
                             </div>
                             <div class="input-group mt-3">
                                 <div class="text-center mx-auto">
@@ -394,6 +395,28 @@
             </div>
             <div class="clearfix"></div>
         </div>
+
+        <script>
+            let aboutİnput=document.querySelector(".about-input")
+           
+            aboutİnput.addEventListener("input",()=>{
+                document.querySelector(".length-of-about-value").innerHTML=aboutİnput.value.length
+                if(aboutİnput.value.length>300 && aboutİnput.value.length<500) {
+                    document.querySelector(".length-of-about-value").classList.add("text-success")
+                    document.querySelector(".length-of-about-value").classList.remove("text-danger")
+                }
+                else {
+                    document.querySelector(".length-of-about-value").classList.remove("text-success")
+                    document.querySelector(".length-of-about-value").classList.add("text-danger")
+                }
+
+            })
+
+
+           
+              
+            
+        </script>
 
     </body>
 </html>
