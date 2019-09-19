@@ -2,6 +2,8 @@ package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
+import com.bsptech.itcommunity.entity.Language;
+import com.bsptech.itcommunity.entity.Skill;
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.impl.SecurityServiceImpl;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
@@ -50,7 +52,11 @@ public class EmployeeController {
             ModelAndView modelAndView
             ){
         List<EmployeeProfile> list = serviceInter.findAll();
+        List<Language> languages = languageServiceInter.findAll();
+        List<Skill> skills = skillDao.findAll();
 
+        modelAndView.addObject("languages", languages);
+        modelAndView.addObject("skills", skills);
         modelAndView.addObject("employeeProfile", new EmployeeProfile());
         modelAndView.addObject("pages", 10);
         modelAndView.addObject("page", 1);

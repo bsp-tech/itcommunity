@@ -68,7 +68,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Override
     public EmployeeProfile register(EmployeeProfile employeeProfile) {
-        employeeProfile.setApproved(1);
+        employeeProfile.setApproved(true);
         employeeProfile.setApprovedDateTime(new java.sql.Date(new Date().getTime()));
         employeeProfile.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
         employeeProfile.setInsertDateTime(new java.sql.Date(new Date().getTime()));

@@ -8,12 +8,12 @@ package com.bsptech.itcommunity.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -30,16 +30,15 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "required")
     @Column(name = "approved")
-    private int approved;
+    private Boolean approved;
     @Basic(optional = false)
     @Column(name = "approved_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDateTime;
     @Basic(optional = false)
     @Size(max = 255)
-    @NotBlank
     @Pattern(regexp="^((http|https):\\/\\/)?+[a-zA-Z0-9-]+$", message="Invalid cv path")
     @Column(name = "cv_path")
     private String cvPath;
@@ -52,21 +51,22 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "linkedin_path")
     private String linkedinPath;
     @Basic(optional = false)
-    @NotBlank
+    @NotBlank(message = "required")
     @Column(name = "speciality")
     private String speciality;
+    @NotNull(message = "required")
     @Column(name = "experience")
     private Integer experience;
     @Basic(optional = false)
     @Column(name = "about")
-    @Size(min=300, max = 500)
+    @Size(min=300, max = 500, message = "use at least 300, maximum 500 symbols")
     private String about;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "required")
     @Column(name = "is_looking_for_work")
     private Integer isLookingForWork;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "required")
     @Column(name = "is_working")
     private Integer isWorking;
     @Basic(optional = false)
@@ -94,7 +94,7 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProfile(Integer id, int approved, Date approvedDateTime, Integer isLookingForWork, Integer isWorking, Date insertDateTime, Date lastUpdateDateTime) {
+    public EmployeeProfile(Integer id, Boolean approved, Date approvedDateTime, Integer isLookingForWork, Integer isWorking, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
         this.approvedDateTime = approvedDateTime;
@@ -120,11 +120,11 @@ public class EmployeeProfile implements Serializable {
         this.id = id;
     }
 
-    public int getApproved() {
+    public Boolean getApproved() {
         return approved;
     }
 
-    public void setApproved(int approved) {
+    public void setApproved(Boolean approved) {
         this.approved = approved;
     }
 
