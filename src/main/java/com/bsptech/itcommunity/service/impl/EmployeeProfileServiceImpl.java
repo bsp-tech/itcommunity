@@ -1,6 +1,7 @@
 package com.bsptech.itcommunity.service.impl;
 
 import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
+import com.bsptech.itcommunity.dao.EmployeeProjectDaoInter;
 import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.*;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 //import com.bsptech.itcommunity.security.SecurityUtil;
 
@@ -27,7 +29,8 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Override
     public EmployeeProfile findById(Integer id) {
-        return employeeProfileDataInter.findById(id).get();
+        Optional<EmployeeProfile> op = employeeProfileDataInter.findById(id);
+        return op.isPresent()?op.get():null;
     }
 
     @Override
@@ -40,11 +43,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         return (List<EmployeeProfile>) employeeProfileDataInter.findAll();
     }
 
-    @Override
-    public EmployeeProfile save(EmployeeProfile employeeProfile) {
 
-        return employeeProfileDataInter.save(employeeProfile);
-    }
 
     @Override
     public EmployeeProfile update(EmployeeProfile employeeProfile) {
@@ -69,7 +68,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Override
     public EmployeeProfile register(EmployeeProfile employeeProfile) {
-        employeeProfile.setApproved(1);
+        employeeProfile.setApproved(true);
         employeeProfile.setApprovedDateTime(new java.sql.Date(new Date().getTime()));
         employeeProfile.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
         employeeProfile.setInsertDateTime(new java.sql.Date(new Date().getTime()));
@@ -110,7 +109,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
                         continue;
                     }
                 }
-                System.out.println("skill="+skill_);
+//                System.out.println("skill="+skill_);
                 epSkill.setSkillId(skill_);
                 epSkill.setInsertDateTime(now_);
                 epSkill.setEmployeeProfileId(employeeProfile);
@@ -123,5 +122,43 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         EmployeeProfile ep = employeeProfileDataInter.save(employeeProfile);
 
         return ep;
+    }
+
+    @Autowired
+    private SecurityServiceInter securityServiceInter;
+
+    @Autowired
+    UserDataInter userDataInter;
+
+    @Autowired
+    EmployeeProjectDaoInter employeeProjectDaoInter;
+
+    public int joinProject(Integer projectId){
+        User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
+        loggedInUser = userDataInter.getOne(loggedInUser.getId());
+        EmployeeProfile ep = loggedInUser.getEmployeeProfile();
+        List<EmployeeProject> projects = ep.getEmployeeProjectList();
+        if(projects!=null && projects.size()>0){
+            for(EmployeeProject epr: projects){
+                if(epr.getProjectId().getId()==projectId){
+                    if(epr.getApproved()){
+                        return 2;
+                    }else{
+                        return 3;
+                    }
+                }
+            }
+        }
+
+        Itproject itproject = new Itproject(projectId);
+        EmployeeProject epr = new EmployeeProject();
+        epr.setApproved(false);
+        epr.setInsertDateTime(new Date());
+        epr.setEmployeeId(ep);
+        epr.setProjectId(itproject);
+
+        employeeProjectDaoInter.save(epr);
+
+        return 1;
     }
 }

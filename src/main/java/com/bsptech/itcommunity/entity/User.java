@@ -6,8 +6,7 @@
 package com.bsptech.itcommunity.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -31,39 +30,35 @@ public class User implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Min(1)
     @Column(name = "age")
     private Integer age;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "enabled")
     private boolean enabled;
     @Basic(optional = false)
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "surname")
     private String surname;
-
-    @Column(name = "avatarPath")
-    private String avatarPath;
-
+    @Column(name = "phone")
+    private String phone;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
@@ -73,7 +68,7 @@ public class User implements Serializable {
     @Size(max = 300)
     @Column(name = "thumbnail")
     private String thumbnail;
-    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<EmployeeProfile> employeeProfileList;
     @JoinColumn(name = "gender_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -100,12 +95,12 @@ public class User implements Serializable {
         this.insertDateTime = insertDateTime;
     }
 
-    public String getAvatarPath() {
-        return avatarPath;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setAvatarPath(String avatarPath) {
-        this.avatarPath = avatarPath;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Integer getId() {
@@ -213,6 +208,9 @@ public class User implements Serializable {
         this.groupId = groupId;
     }
 
+    public EmployeeProfile getEmployeeProfile(){
+        return this.employeeProfileList!=null && this.employeeProfileList.size()>0 ? this.employeeProfileList.get(0):null;
+    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -233,9 +231,15 @@ public class User implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.bsptech.itcommunity.entity.User[ id=" + id + " ]";
-    }
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", age=" + age + ", email=" + email + ", enabled=" + enabled + ", name=" + name
+				+ ", password=" + password + ", surname=" + surname  + ", insertDateTime="
+				+ insertDateTime + ", lastUpdateDateTime=" + lastUpdateDateTime + ", thumbnail=" + thumbnail
+				+ ", employeeProfileList=" + employeeProfileList + ", genderId=" + genderId + ", groupId=" + groupId
+				+ "]";
+	}
+
+
 
 }

@@ -10,4 +10,6 @@ public interface ItProjectServiceInter {
     public List<Itproject> findAll();
     public Itproject findById(Integer id);
 
+
+
 }

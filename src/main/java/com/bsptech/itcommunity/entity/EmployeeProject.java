@@ -5,25 +5,11 @@
  */
 package com.bsptech.itcommunity.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -31,15 +17,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "employee_project")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "EmployeeProject.findAll", query = "SELECT e FROM EmployeeProject e")
-    , @NamedQuery(name = "EmployeeProject.findById", query = "SELECT e FROM EmployeeProject e WHERE e.id = :id")
-    , @NamedQuery(name = "EmployeeProject.findByApproved", query = "SELECT e FROM EmployeeProject e WHERE e.approved = :approved")
-    , @NamedQuery(name = "EmployeeProject.findByPosition", query = "SELECT e FROM EmployeeProject e WHERE e.position = :position")
-    , @NamedQuery(name = "EmployeeProject.findByJoinDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.joinDateTime = :joinDateTime")
-    , @NamedQuery(name = "EmployeeProject.findByInsertDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.insertDateTime = :insertDateTime")
-    , @NamedQuery(name = "EmployeeProject.findByLastUpdateDateTime", query = "SELECT e FROM EmployeeProject e WHERE e.lastUpdateDateTime = :lastUpdateDateTime")})
 public class EmployeeProject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,12 +28,10 @@ public class EmployeeProject implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "approved")
-    private short approved;
+    private Boolean approved;
     @Size(max = 255)
     @Column(name = "position")
     private String position;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "join_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date joinDateTime;
@@ -65,8 +40,6 @@ public class EmployeeProject implements Serializable {
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date insertDateTime;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "last_update_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdateDateTime;
@@ -84,7 +57,7 @@ public class EmployeeProject implements Serializable {
         this.id = id;
     }
 
-    public EmployeeProject(Integer id, short approved, Date joinDateTime, Date insertDateTime, Date lastUpdateDateTime) {
+    public EmployeeProject(Integer id, Boolean approved, Date joinDateTime, Date insertDateTime, Date lastUpdateDateTime) {
         this.id = id;
         this.approved = approved;
         this.joinDateTime = joinDateTime;
@@ -100,11 +73,11 @@ public class EmployeeProject implements Serializable {
         this.id = id;
     }
 
-    public short getApproved() {
+    public Boolean getApproved() {
         return approved;
     }
 
-    public void setApproved(short approved) {
+    public void setApproved(Boolean approved) {
         this.approved = approved;
     }
 
@@ -180,5 +153,5 @@ public class EmployeeProject implements Serializable {
     public String toString() {
         return "com.bsptech.itcommunity.entity.EmployeeProject[ id=" + id + " ]";
     }
-    
+
 }

@@ -1,14 +1,11 @@
 package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.entity.Itproject;
+import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.ItProjectServiceInter;
-import com.bsptech.itcommunity.service.inter.SkillServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -21,7 +18,7 @@ public class ProjectController {
     private ItProjectServiceInter itProjectServiceInter;
 
     @Autowired
-    private SkillServiceInter skillServiceInter;
+    private EmployeeProfileServiceInter employeeProfileServiceInter;
 
     @RequestMapping(method = RequestMethod.GET, path = "/{projectId}")
     public ModelAndView detail(@PathVariable("projectId") Integer projectId, ModelAndView modelAndView) {
@@ -39,5 +36,17 @@ public class ProjectController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/join", method = RequestMethod.POST)
+    public String joinTeam(@RequestParam("projectId") Integer projectId){
 
+        int result= employeeProfileServiceInter.joinProject(projectId);
+        if(result==2)
+            return "redirect:/projects/"+projectId+"?alreadyjoined";
+        else if(result==1)
+            return "redirect:/projects/"+projectId+"?joinsuccess";
+        else if(result==3)
+            return "redirect:/projects/"+projectId+"?alreadysent";
+        else
+            return "redirect:/projects?error";
+    }
 }
