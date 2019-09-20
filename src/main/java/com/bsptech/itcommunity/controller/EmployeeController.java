@@ -44,29 +44,30 @@ public class EmployeeController {
 
     @GetMapping(path = "/")
     public ModelAndView index(
-            @PathVariable(name = "page", required = false) String pageS,
+            @ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
+            @PathVariable(name = "page", required = false) String page,
             @RequestParam(name = "name", required = false, defaultValue = "") String name,
             @RequestParam(name = "surname", required = false, defaultValue = "") String surname,
             @RequestParam(name = "mail", required = false, defaultValue = "") String mail,
             @RequestParam(name = "number", required = false, defaultValue = "") String number,
             ModelAndView modelAndView
-            ){
+    ) {
         List<EmployeeProfile> list = serviceInter.findAll();
-        List<Language> languages = languageServiceInter.findAll();
-        List<Skill> skills = skillDao.findAll();
 
-        modelAndView.addObject("languages", languages);
-        modelAndView.addObject("skills", skills);
-        modelAndView.addObject("employeeProfile", new EmployeeProfile());
         modelAndView.addObject("pages", 10);
         modelAndView.addObject("page", 1);
         modelAndView.addObject("employeeList", list);
         modelAndView.addObject("pagination", false);
-
+        List<EmployeeProfile> employeeProfileList = employeeProfileServiceInter.search(employeeProfile);
+        System.out.println(employeeProfile.getEmployeeProfileLanguageList() + "\n" + employeeProfile.getEmployeeProfileSkillList());
+        List<Language> languages = languageServiceInter.findAll();
+        List<Skill> skills = skillDao.findAll();
+        modelAndView.addObject("employeeList", employeeProfileList);
+        modelAndView.addObject("languages", languages);
+        modelAndView.addObject("skills", skills);
         modelAndView.setViewName("employee/index");
         return modelAndView;
     }
-
     @RequestMapping(path = "/employees/{employeeId}")
     public ModelAndView detail(@PathVariable("employeeId") Integer employeeId, ModelAndView modelAndView) {
         modelAndView.setViewName("employee/details");
