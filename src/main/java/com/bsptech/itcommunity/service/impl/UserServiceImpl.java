@@ -44,7 +44,15 @@ public class UserServiceImpl implements UserServiceInter {
 
     @Override
     public User update(User user) {
-        return userDataInter.save(user);
+        user.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+        user.setLastUpdateDateTime(new java.sql.Date(new Date().getTime()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setGroupId(new AuthGroup(2));
+        user.setEnabled(true);
+        User update= userDataInter.update(user.getId(),user.getAge(),user.getEmail(),user.getName(),user.getPassword()
+               ,user.getSurname(),user.getPhone(),user.getInsertDateTime(),user.getLastUpdateDateTime(),user.getThumbnail()
+               ,user.getEmployeeProfileList(),user.getGenderId(),user.getGroupId(),user.getEnabled());
+        return update;
     }
 
     @Override

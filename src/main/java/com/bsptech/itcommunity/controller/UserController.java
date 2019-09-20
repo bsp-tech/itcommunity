@@ -8,7 +8,6 @@ package com.bsptech.itcommunity.controller;
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * @author Goshgar
@@ -54,6 +53,15 @@ public class UserController {
             return "redirect:/";
         }
         return "redirect:/";
+    }
+
+
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    public ModelAndView update(@ModelAttribute User user,ModelAndView modelAndView) {
+        User user1=userServiceInter.update(user);
+       // modelAndView.addObject("user",user1);
+        modelAndView.setViewName("user/edit?success");
+        return modelAndView;
     }
 
     @RequestMapping(path = "/login")
