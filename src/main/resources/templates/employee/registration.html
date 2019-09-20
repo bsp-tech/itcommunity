@@ -243,7 +243,8 @@
                             <div class="w-100">
                                 <div class="form-group mt-2">
                                     <label for="exampleFormControlTextarea1"><Strong style="font-size: 15px;">About</Strong></label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="${employeeProfile.about}"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="${employeeProfile.about}" placeholder="Write min 300,max 500 letters about yourself"></textarea>
+                                    <div class="mt-2"> <span class="length-of-about-value text-danger">0 </span> (use min 300,max 500 symbols)</div>
                                 </div>
                                 <label th:if="${#fields.hasErrors('about')}" class="text-danger" th:errors="*{about}">Error</label>
                             </div>
@@ -254,8 +255,6 @@
                                     </button>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </form>
@@ -329,6 +328,23 @@
             <div class="clearfix"></div>
         </div>
 
+        <script>
+            let aboutInput=document.querySelector(".about-input")
+           
+            aboutInput.addEventListener("input",()=>{
+                document.querySelector(".length-of-about-value").innerHTML=aboutİnput.value.length
+                if(aboutİnput.value.length>300 && aboutİnput.value.length<500) {
+                    document.querySelector(".length-of-about-value").classList.add("text-success")
+                    document.querySelector(".length-of-about-value").classList.remove("text-danger")
+                }
+                else {
+                    document.querySelector(".length-of-about-value").classList.remove("text-success")
+                    document.querySelector(".length-of-about-value").classList.add("text-danger")
+                }
+
+            })
+
+        </script>
         <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
         <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
