@@ -9,15 +9,17 @@
                     <i class="fas fa-link" style="font-size: 14px;"></i>
                 </button>
             </div>
-            <input type="text" class="form-control rounded-0 " placeholder="cv path"
+            <input type="text" class="form-control rounded-0 "
+                   placeholder="http(s)://url_goes_to_your_cv"
                    th:field="${employeeProfile.cvPath}">
-            <label th:if="${#fields.hasErrors('cvPath')}" th:errors="${employeeProfile.cvPath}">Error</label>
             <button type="button" class="btn btn-danger rounded-0 ml-1"
                     data-container="body" data-toggle="popover"
                     data-placement="right"
                     data-content="Upload your cv to google drive etc. and paste link">
                 <i class="fas fa-question-circle"></i>
             </button>
+            <label th:if="${#fields.hasErrors('cvPath')}" class="text-danger w-100" th:errors="${employeeProfile.cvPath}">Error</label>
+
         </div>
         <div class="input-group my-1">
             <div class="input-group-prepend">
@@ -27,9 +29,9 @@
             </div>
             <input  type="text"
                     class="form-control rounded-0"
-                    placeholder="Github Account"
+                    placeholder="https://github.com/Your_Github_Username"
                     th:field="${employeeProfile.githubPath}">
-            <label th:if="${#fields.hasErrors('githubPath')}" th:errors="${employeeProfile.githubPath}">Error</label>
+            <label th:if="${#fields.hasErrors('githubPath')}" class="text-danger w-100" th:errors="${employeeProfile.githubPath}">Error</label>
         </div>
         <div class="input-group my-1">
             <div class="input-group-prepend">
@@ -39,22 +41,23 @@
             </div>
             <input  type="text"
                     class="form-control rounded-0"
-                    placeholder="Linkedin Account"
+                    placeholder="https://linkedin.com/in/Your_Linkedin_Username"
                     th:field="${employeeProfile.linkedinPath}">
-            <label th:if="${#fields.hasErrors('linkedinPath')}" th:errors="${employeeProfile.linkedinPath}">Error</label>
+            <label th:if="${#fields.hasErrors('linkedinPath')}" class="text-danger w-100" th:errors="${employeeProfile.linkedinPath}">Error</label>
         </div>
         <div class="input-group-prepend my-1">
             <button class="btn btn-dark rounded-0" type="button">
                 <i class="fas fa-briefcase" style="font-size: 14px;"></i>
             </button>
             <select class="form-control rounded-0" id="isWorking" th:field="${employeeProfile.isWorking}">
-                <option th:selected="selected" th:value="0">Are you working right
-                    now?
+                <option th:value="null">Are you working right now?
                 </option>
                 <option th:value="1">Yes</option>
                 <option th:value="0">No</option>
             </select>
-            <label th:if="${#fields.hasErrors('isWorking')}" th:errors="${employeeProfile.isWorking}">Error</label>
+        </div>
+        <div>
+            <label th:if="${#fields.hasErrors('isWorking')}" class="text-danger w-100" th:errors="${employeeProfile.isWorking}">Error</label>
         </div>
         <div class="input-group-prepend my-1">
             <button class="btn btn-dark rounded-0" type="button">
@@ -63,14 +66,14 @@
             <select class="form-control rounded-0"
                     id="isLookingForWork"
                     th:field="${employeeProfile.isLookingForWork}">
-                <option th:selected="selected" value="0">Are you Looking for
-                    Work?
+                <option th:selected="selected" th:value="null"l>Are you looking for work?
                 </option>
                 <option th:value="1">Yes</option>
                 <option th:value="0">No</option>
-
             </select>
-            <label th:if="${#fields.hasErrors('isLookingForWork')}" th:errors="${employeeProfile.isLookingForWork}">Error</label>
+        </div>
+        <div class="w-100">
+            <label th:if="${#fields.hasErrors('isLookingForWork')}" class="text-danger w-100" th:errors="${employeeProfile.isLookingForWork}">Error</label>
         </div>
         <div class="input-group my-1">
             <div class="input-group-prepend">
@@ -81,10 +84,12 @@
             </div>
             <input  type="text"
                     class="form-control rounded-0"
-                    placeholder=" Speciality"
+                    placeholder="Speciality"
                     th:field="${employeeProfile.speciality}"
             >
         </div>
+        <label th:if="${#fields.hasErrors('speciality')}" class="text-danger w-100" th:errors="${employeeProfile.speciality}">Error</label>
+
         <div class="input-group-prepend my-1">
             <button class="btn btn-dark rounded-0" type="button">
                 <i class="fas fa-briefcase" style="font-size: 14px;"></i>
@@ -99,8 +104,9 @@
                 >
                 </option>
             </select>
-            <label th:if="${#fields.hasErrors('isWorking')}" th:errors="${employeeProfile.isWorking}">Error</label>
         </div>
+        <label th:if="${#fields.hasErrors('experience')}" class="text-danger w-100" th:errors="${employeeProfile.experience}">Error</label>
+
 
         <div class="language-box mt-2">
             <div id="repeater1">
@@ -207,71 +213,5 @@
         </div>
     </div>
 
-    <div class="items" data-group-template-skill style="display: none">
-        <div class="item-content mt-2  d-flex">
-            <div class="form-group col-lg-4 p-0 pr-2">
-                <select name="employeeProfileSkillList[$index].skillId.id"
-                        class="form-control">
-                    <option value="0">Skills</option>
-                    <option
-                            th:each="skill : ${listSkills}"
-                            th:value="${skill.id}"
-                            th:text="${skill.name}"></option>
-                </select>
-            </div>
-            <div class="form-group col-lg-4 p-0 pr-2">
-                <input type="text" name="employeeProfileSkillList[$index].skillId.name" class="form-control" placeholder="Other Skill">
-            </div>
-            <div class="form-group col-lg-3 p-0 pr-2">
-                <select name="employeeProfileSkillList[$index].level" class="form-control" >
-                    <option value="0">Level</option>
-                    <option th:each="i: ${#numbers.sequence(1, 10)}"
-                            th:value="${i}"
-                            th:text="${i}"
-                    >
-                    </option>
-                </select>
-            </div>
-            <div class="form-group col-lg-2 p-0">
-                <div>
-                    <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
-                        <i class="fa fa-remove"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-
-    <div class="items" data-group-template-language style="display: none">
-        <div class="item-content mt-2  d-flex">
-            <div class="form-group col-lg-8 p-0 pr-2">
-                <select name="employeeProfileLanguageList[$index].languageId.id"
-                        class="form-control">
-                    <option value="0">Languages</option>
-                    <option
-                            th:each="language : ${listLanguages}"
-                            th:value="${language.id}"
-                            th:text="${language.name}"></option>
-                </select>
-            </div>
-            <div class="form-group col-lg-3 p-0 pr-2">
-                <select name="employeeProfileLanguageList[$index].level" class="form-control" >
-                    <option  value="0">Level</option>
-                    <option th:each="i: ${#numbers.sequence(1, 10)}"
-                            th:value="${i}"
-                            th:text="${i}"
-                    >
-                    </option>
-                </select>
-            </div>
-            <div class="form-group col-lg-4 p-0">
-                <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
-                            <i class="fa fa-remove"></i>
-                </button>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
 
 </div>

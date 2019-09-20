@@ -6,10 +6,7 @@
 package com.bsptech.itcommunity.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
@@ -43,7 +40,7 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
-    @Pattern(regexp="^((http|https):\\/\\/)?+(github.com\\/)+[a-zA-Z0-9-]+$", message="Invalid github account")
+    @Pattern(regexp="^$|((http|https):\\/\\/)?+(github.com\\/)+[a-zA-Z0-9-]+$", message="invalid github account")
     @Column(name = "github_path")
     private String githubPath;
     @Size(max = 255)
@@ -51,10 +48,11 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "linkedin_path")
     private String linkedinPath;
     @Basic(optional = false)
-    @NotBlank(message = "required")
+    @Size(min=5, message = "use your real speciality")
     @Column(name = "speciality")
     private String speciality;
     @NotNull(message = "required")
+    @Min(value = 1, message = "oh, no, really?")
     @Column(name = "experience")
     private Integer experience;
     @Basic(optional = false)

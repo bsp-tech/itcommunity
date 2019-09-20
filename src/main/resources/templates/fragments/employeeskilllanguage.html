@@ -1,0 +1,69 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+     th:fragment="employeeskilllanguage">
+    <div class="items" data-group-template-skill style="display: none">
+    <div class="item-content mt-2  d-flex">
+        <div class="form-group col-lg-4 p-0 pr-2">
+            <select name="employeeProfileSkillList[$index].skillId.id"
+                    class="form-control">
+                <option value="0">Skills</option>
+                <option
+                        th:each="skill : ${listSkills}"
+                        th:value="${skill.id}"
+                        th:text="${skill.name}"></option>
+            </select>
+        </div>
+        <div class="form-group col-lg-4 p-0 pr-2">
+            <input type="text" name="employeeProfileSkillList[$index].skillId.name" class="form-control" placeholder="Other Skill">
+        </div>
+        <div class="form-group col-lg-3 p-0 pr-2">
+            <select name="employeeProfileSkillList[$index].level" class="form-control" >
+                <option value="0">Level</option>
+                <option th:each="i: ${#numbers.sequence(1, 10)}"
+                        th:value="${i}"
+                        th:text="${i}"
+                >
+                </option>
+            </select>
+        </div>
+        <div class="form-group col-lg-2 p-0">
+            <div>
+                <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
+                    <i class="fa fa-remove"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+    <div class="items" data-group-template-language style="display: none">
+    <div class="item-content mt-2  d-flex">
+        <div class="form-group col-lg-8 p-0 pr-2">
+            <select name="employeeProfileLanguageList[$index].languageId.id"
+                    class="form-control">
+                <option value="0">Languages</option>
+                <option
+                        th:each="language : ${listLanguages}"
+                        th:value="${language.id}"
+                        th:text="${language.name}"></option>
+            </select>
+        </div>
+        <div class="form-group col-lg-3 p-0 pr-2">
+            <select name="employeeProfileLanguageList[$index].level" class="form-control" >
+                <option  value="0">Level</option>
+                <option th:each="i: ${#numbers.sequence(1, 10)}"
+                        th:value="${i}"
+                        th:text="${i}"
+                >
+                </option>
+            </select>
+        </div>
+        <div class="form-group col-lg-4 p-0">
+            <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
+                <i class="fa fa-remove"></i>
+            </button>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+</div>
