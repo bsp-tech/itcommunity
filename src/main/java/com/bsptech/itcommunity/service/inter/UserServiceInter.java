@@ -1,18 +1,18 @@
 package com.bsptech.itcommunity.service.inter;
 
 
-import com.bsptech.itcommunity.entity.User;
+import com.bsptech.itcommunity.bean.User;
 
 import java.util.List;
 
 public interface UserServiceInter {
-    public User findById(Integer id);
+    public com.bsptech.itcommunity.entity.User findById(Integer id);
 
-    public List<User> findAll();
+    public List<com.bsptech.itcommunity.entity.User> findAll();
 
-    public User save(User user);
+    public com.bsptech.itcommunity.entity.User save(com.bsptech.itcommunity.entity.User user);
 
-    public User update(User user);
+        public com.bsptech.itcommunity.entity.User update(User user);
 
     public int delete(Integer id);
 }

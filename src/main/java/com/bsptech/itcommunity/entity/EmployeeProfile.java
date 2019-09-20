@@ -265,12 +265,7 @@ public class EmployeeProfile implements Serializable {
 
 	@Override
 	public String toString() {
-		return "EmployeeProfile [id=" + id + ", approved=" + approved + ", approvedDateTime=" + approvedDateTime
-				+ ", cvPath=" + cvPath + ", githubPath=" + githubPath + ", isLookingForWork=" + isLookingForWork
-				+ ", isWorking=" + isWorking + ", linkedinPath=" + linkedinPath + ", insertDateTime=" + insertDateTime
-				+ ", lastUpdateDateTime=" + lastUpdateDateTime + ", userId=" + userId + ", employeeProfileSkillList="
-				+ employeeProfileSkillList + ", employeeProjectList=" + employeeProjectList
-				+ ", employeeProfileLanguageList=" + employeeProfileLanguageList + "]";
+		return "EmployeeProfile [id=" + id + "]";
 	}
 
 }

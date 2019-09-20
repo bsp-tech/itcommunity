@@ -7,10 +7,11 @@
     <title>Document</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
-	<link rel="stylesheet" th:href="@{/css/particle.css}">
+<!--	<link rel="stylesheet" th:href="@{/css/particle.css}">-->
 </head>
 <body>
-		<div id="particles-js"></div> <!-- stats - count particles -->
+<!--		<div id="particles-js"></div> &lt;!&ndash; stats - count particles &ndash;&gt;-->
+		<div th:replace="fragments/navbar :: navbar"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 pt-5 mx-auto ">
@@ -19,77 +20,15 @@
 
 						<div class="card-body px-5">
 							<form th:object="${user}" method="post">
-								<div class="row">
-									<div class="w-100">
-										<div class="input-group my-1">
-											<div class="input-group-prepend">
-												<button class="btn btn-dark " type="button"><i class="fas fa-user"></i></button>
-											</div>
-											<input type="text" class="form-control" placeholder="Name"  th:field="${user.name}">
-										</div>
-										<label th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="${user.name}"></label>
-									</div>
-									<div class="w-100">
-										<div class="input-group my-1">
-											<div class="input-group-prepend">
-												<button class="btn btn-dark" type="button"><i class="fas fa-user"></i></button>
-											</div>
-											<input type="text" class="form-control" placeholder="Surname" th:field="${user.surname}">
-										</div>
-										<label th:if="${#fields.hasErrors('surname')}" class="text-danger" th:errors="${user.surname}"></label>
-									</div>
-									<div class="w-100">
-										<div class="input-group my-1">
-											<div class="input-group-prepend">
-												<button class="btn btn-dark" type="button"><i class="fas fa-calendar-day"></i></button>
-											</div>
-											<input type="text" class="form-control" placeholder="Age" th:field="${user.age}">
-										</div>
-											<label th:if="${#fields.hasErrors('age')}" class="text-danger" th:errors="${user.age}"></label>
-									</div>
-									<div class="w-100">
-									<div class="input-group my-1">
-										<div class="input-group-prepend">
-											<button class="btn btn-dark" type="button"><i style="font-size: 14px;color: white;" class="fas fa-at"></i></button>
-										</div>
-										<input type="email" class="form-control" placeholder="Email" th:field="${user.email}">
-									</div>
-										<label th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="${user.email}"></label>
-									</div>
-									<div class="w-100">
-									<div class="input-group my-1">
-										<div class="input-group-prepend">
-											<button class="btn btn-dark" type="button"><i class="fas fa-lock"></i></button>
-										</div>
-										<input type="password" class="form-control" placeholder="Password" th:field="${user.password}">
-									</div>
-										<label th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="${user.password}"></label>
-									</div>
-									<div class="w-100">
-										<div class="input-group my-1">
-											<div class="input-group-prepend">
-												<button class="btn btn-dark" type="button"><i class="fas fa-lock"></i></button>
-											</div>
-											<input type="password" class="form-control" placeholder="Repeat password" name="password1">
-										</div>
-									</div>
-									<div class="w-100">
-										<div class="input-group my-1">
-												<select class="form-control" th:field="${user.genderId.id}">
-													<option value="1"  th:selected="${1 == user.genderId.id}">Male</option>
-													<option value="2" th:selected="${2 == user.genderId.id}">Female</option>
-												</select>
-										</div>
-									</div>
+								<div th:replace="fragments/userform :: userform"></div>
 
-									<div class="input-group mt-3">
+								<div class="input-group mt-3">
 											<div class="text-center mx-auto">
 												<button type="submit" class="btn btn-dark mt-1">Create Account</button>
 												<a class="btn btn-secondary mt-1 mr-0" href="/user/login">
 													<span class="text-light">Already using? Sign In</span>
 												</a>
 											</div>
-									</div>
 								</div>
 							</form>
 						</div>

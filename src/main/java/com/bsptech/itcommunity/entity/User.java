@@ -29,33 +29,36 @@ public class User implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Min(1)
+    @NotNull(message = "you must be at least 13 years old")
+    @Min(value = 13, message = "You must be at least 13 years old")
     @Column(name = "age")
     private Integer age;
     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @Size(min = 1, max = 255)
+    @Size(min = 7, max = 255)//a@a.com
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
     @Column(name = "enabled")
     private boolean enabled;
+
     @Basic(optional = false)
-    @NotBlank
-    @Size(min = 1, max = 255)
+    @Size(min = 3, max = 15, message ="use your real name")
     @Column(name = "name")
     private String name;
+
     @Basic(optional = false)
-    @NotBlank
-    @Size(min = 1, max = 255)
-    @Column(name = "password")
-    private String password;
-    @Basic(optional = false)
-    @NotBlank
-    @Size(min = 1, max = 255)
+    @Size(min = 3, max = 30, message = "use your real surname")
     @Column(name = "surname")
     private String surname;
+
+    @Basic(optional = false)
+    @Size(min = 8, max = 255, message = "use minimum 8 symbols")
+    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}|$",
+            message="Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "phone")
     private String phone;
     @Basic(optional = false)
@@ -71,7 +74,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
     private List<EmployeeProfile> employeeProfileList;
     @JoinColumn(name = "gender_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Gender genderId;
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -233,11 +236,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", age=" + age + ", email=" + email + ", enabled=" + enabled + ", name=" + name
-				+ ", password=" + password + ", surname=" + surname  + ", insertDateTime="
-				+ insertDateTime + ", lastUpdateDateTime=" + lastUpdateDateTime + ", thumbnail=" + thumbnail
-				+ ", employeeProfileList=" + employeeProfileList + ", genderId=" + genderId + ", groupId=" + groupId
-				+ "]";
+		return "User [id=" + id + "]";
 	}
 
 

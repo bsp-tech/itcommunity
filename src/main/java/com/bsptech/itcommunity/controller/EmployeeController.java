@@ -102,7 +102,8 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees/register",method=RequestMethod.POST)
     public ModelAndView register(
-                @ModelAttribute @Valid EmployeeProfile employeeProfile,
+                @ModelAttribute @Valid
+                EmployeeProfile employeeProfile,
                 BindingResult result) {
         if(result.hasErrors()) {
             ModelAndView mv = new ModelAndView();
