@@ -48,7 +48,7 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "github_path")
     private String githubPath;
     @Size(max = 255)
-    @Pattern(regexp="^((http|https):\\/\\/)?+(www.linkedin.com\\/in\\/)+[a-zA-Z0-9-]{5,30}+$", message="Invalid Linkedin account")
+    @Pattern(regexp="^$|((http|https):\\/\\/)?+(www.linkedin.com\\/in\\/)+[a-zA-Z0-9-]{5,30}+$", message="Invalid Linkedin account")
     @Column(name = "linkedin_path")
     private String linkedinPath;
     @Basic(optional = false)
