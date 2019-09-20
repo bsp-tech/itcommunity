@@ -35,7 +35,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Override
     public EmployeeProfile findById(Integer id) {
         Optional<EmployeeProfile> op = employeeProfileDataInter.findById(id);
-        return op.isPresent()?op.get():null;
+        return op.isPresent() ? op.get() : null;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     }
 
     @Override
-    public List<EmployeeProfile> findAll(EmployeeProfile e) {
+    public List<EmployeeProfile> search(EmployeeProfile e) {
 
         List<EmployeeProfile> employeeProfileList = new ArrayList<>();
         List<Language> languages = new ArrayList<>();
@@ -53,15 +53,26 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         List<Integer> skillLevels = new ArrayList<>();
         if (e.getEmployeeProfileLanguageList() != null) {
             for (EmployeeProfileLanguage l : e.getEmployeeProfileLanguageList()) {
-                languages.add(l.getLanguageId());
-                langLevels.add(l.getLevel());
+                if (l.getLevel() > 0) {
+                    languages.add(l.getLanguageId());
+                    for (int i = l.getLevel(); i < 11; i++) {
+                        langLevels.add(i);
+                    }
+
+                }
+
             }
 
         }
         if (e.getEmployeeProfileSkillList() != null) {
             for (EmployeeProfileSkill l : e.getEmployeeProfileSkillList()) {
-                skills.add(l.getSkillId());
-                skillLevels.add(l.getLevel());
+                if (l.getLevel() > 0) {
+                    skills.add(l.getSkillId());
+                    for (int i = l.getLevel(); i < 11; i++) {
+                        skillLevels.add(i);
+                    }
+
+                }
             }
         }
         if (e.getUserId() == null) {
@@ -76,6 +87,15 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         return employeeProfileList;
     }
 
+    @Override
+    public EmployeeProfile save(EmployeeProfile employeeProfile) {
+        return null;
+    }
+
+    @Override
+    public List<EmployeeProfile> findAll() {
+        return (List<EmployeeProfile>) employeeProfileDataInter.findAll();
+    }
 
 
     @Override
@@ -110,7 +130,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         loggedInUser.setGroupId(new AuthGroup(3));
         employeeProfile.setUserId(loggedInUser);
         List<EmployeeProfileLanguage> epLanguageList = employeeProfile.getEmployeeProfileLanguageList();
-        if(epLanguageList!=null && epLanguageList.size()>0){
+        if (epLanguageList != null && epLanguageList.size() > 0) {
             for (EmployeeProfileLanguage epLanguage : epLanguageList) {
                 epLanguage.setEmployeeProfileId(employeeProfile);
                 epLanguage.setInsertDateTime(new java.sql.Date(new Date().getTime()));
@@ -120,25 +140,25 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
         List<EmployeeProfileSkill> epSkillFilteredList = new ArrayList<>();
 
-        if(epSkillList!=null && epSkillList.size()>0){
+        if (epSkillList != null && epSkillList.size() > 0) {
             Date now_ = new java.sql.Date(new Date().getTime());
 
             for (EmployeeProfileSkill epSkill : epSkillList) {
-                if(epSkill==null) continue;
-                if(epSkill.getSkillId()==null) continue;
-                if(epSkill.getLevel()==null || epSkill.getLevel()==0) continue;
+                if (epSkill == null) continue;
+                if (epSkill.getSkillId() == null) continue;
+                if (epSkill.getLevel() == null || epSkill.getLevel() == 0) continue;
                 Skill skill_ = new Skill();
 
                 Integer id_ = epSkill.getSkillId().getId();
-                if(id_!=null && id_>0){
+                if (id_ != null && id_ > 0) {
                     skill_ = skillDao.getOne(id_);
-                }else {
+                } else {
                     String name_ = epSkill.getSkillId().getName();
                     if (name_ != null && !name_.trim().isEmpty()) {
                         skill_.setName(name_.trim());
                         skill_.setEnabled(false);
                         skill_.setInsertDateTime(now_);
-                    }else{
+                    } else {
                         continue;
                     }
                 }

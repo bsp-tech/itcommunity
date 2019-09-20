@@ -6,17 +6,12 @@
 package com.bsptech.itcommunity.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -247,7 +242,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", age=" + age + ", email=" + email + ", enabled=" + enabled + ", name=" + name
-				+ ", password=" + password + ", surname=" + surname + ", avatarPath=" + avatarPath + ", insertDateTime="
+				+ ", password=" + password + ", surname=" + surname+ ", insertDateTime="
 				+ insertDateTime + ", lastUpdateDateTime=" + lastUpdateDateTime + ", thumbnail=" + thumbnail
 				+ ", employeeProfileList=" + employeeProfileList + ", genderId=" + genderId + ", groupId=" + groupId
 				+ "]";
