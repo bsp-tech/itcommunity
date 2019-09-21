@@ -11,6 +11,7 @@ public interface EmployeeProfileServiceInter {
     public EmployeeProfile findByUserId(User user);
 
     public List<EmployeeProfile> findAll();
+    public List<EmployeeProfile> search(EmployeeProfile employeeProfile);
 
 
     public EmployeeProfile register(EmployeeProfile employeeProfile);
