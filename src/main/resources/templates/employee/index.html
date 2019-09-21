@@ -16,7 +16,7 @@
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <!-- search -->
-    <form th:object="${employeeProfile}">
+    <form th:object="${employeeProfile}" method="POST">
         <div class="container col-md-11">
             <div class="card bg-light">
                 <div class="row my-3 mx-2">

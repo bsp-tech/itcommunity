@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -42,32 +41,27 @@ public class EmployeeController {
     @Autowired
     UserServiceInter userServiceInter;
 
-    @GetMapping(path = "/")
+    @RequestMapping(path = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView index(
             @ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
-            @PathVariable(name = "page", required = false) String page,
-            @RequestParam(name = "name", required = false, defaultValue = "") String name,
-            @RequestParam(name = "surname", required = false, defaultValue = "") String surname,
-            @RequestParam(name = "mail", required = false, defaultValue = "") String mail,
-            @RequestParam(name = "number", required = false, defaultValue = "") String number,
             ModelAndView modelAndView
     ) {
-        List<EmployeeProfile> list = serviceInter.findAll();
+        List<EmployeeProfile> list = employeeProfileServiceInter.search(employeeProfile);
+        List<Language> languages = languageServiceInter.findAll();
+        List<Skill> skills = skillDao.findAll();
 
         modelAndView.addObject("pages", 10);
         modelAndView.addObject("page", 1);
-        modelAndView.addObject("employeeList", list);
         modelAndView.addObject("pagination", false);
-        List<EmployeeProfile> employeeProfileList = employeeProfileServiceInter.search(employeeProfile);
-        System.out.println(employeeProfile.getEmployeeProfileLanguageList() + "\n" + employeeProfile.getEmployeeProfileSkillList());
-        List<Language> languages = languageServiceInter.findAll();
-        List<Skill> skills = skillDao.findAll();
-        modelAndView.addObject("employeeList", employeeProfileList);
         modelAndView.addObject("languages", languages);
         modelAndView.addObject("skills", skills);
+        modelAndView.addObject("employeeList", list);
+
         modelAndView.setViewName("employee/index");
+
         return modelAndView;
     }
+
     @RequestMapping(path = "/employees/{employeeId}")
     public ModelAndView detail(@PathVariable("employeeId") Integer employeeId, ModelAndView modelAndView) {
         modelAndView.setViewName("employee/details");

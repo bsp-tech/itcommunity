@@ -11,7 +11,7 @@ import java.util.List;
 public interface EmployeeProfileDataInter extends CrudRepository<EmployeeProfile, Integer> {
     EmployeeProfile findByUserId(User user);
 
-    List<EmployeeProfile> findDistinctByUserIdNameLikeOrUserIdSurnameLikeOrUserIdPhoneLikeOrUserIdEmailLikeOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(
+    List<EmployeeProfile> findDistinctByUserIdNameContainingOrUserIdSurnameContainingOrUserIdPhoneContainingOrUserIdEmailContainingOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(
             String name,
             String surname,
             String phone,

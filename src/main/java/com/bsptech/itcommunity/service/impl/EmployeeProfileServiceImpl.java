@@ -46,7 +46,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Override
     public List<EmployeeProfile> search(EmployeeProfile e) {
 
-        List<EmployeeProfile> employeeProfileList = new ArrayList<>();
+        List<EmployeeProfile> employeeProfileList = null;
         List<Language> languages = new ArrayList<>();
         List<Integer> langLevels = new ArrayList<>();
         List<Skill> skills = new ArrayList<>();
@@ -78,11 +78,15 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         if (e.getUserId() == null) {
             employeeProfileList = (List<EmployeeProfile>) employeeProfileDataInter.findAll();
         } else {
-            User u = e.getUserId();
-            employeeProfileList = employeeProfileDataInter.findDistinctByUserIdNameLikeOrUserIdSurnameLikeOrUserIdPhoneLikeOrUserIdEmailLikeOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(e.getUserId().getName()
-                    , e.getUserId().getSurname(), e.getUserId().getPhone(), e.getUserId().getEmail()
-                    , languages,
-                    langLevels, skills, skillLevels);
+            employeeProfileList = employeeProfileDataInter.findDistinctByUserIdNameContainingOrUserIdSurnameContainingOrUserIdPhoneContainingOrUserIdEmailContainingOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(
+                    e.getUserId().getName() ,
+                    e.getUserId().getSurname(),
+                    e.getUserId().getPhone(),
+                    e.getUserId().getEmail(),
+                    languages,
+                    langLevels,
+                    skills,
+                    skillLevels);
         }
         return employeeProfileList;
     }
