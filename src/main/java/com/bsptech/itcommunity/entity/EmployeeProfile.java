@@ -5,6 +5,8 @@
  */
 package com.bsptech.itcommunity.entity;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlTransient;
@@ -267,4 +269,12 @@ public class EmployeeProfile implements Serializable {
 	}
 
 
+	public boolean isFilledAnyField(){
+        boolean result = userId!=null &&(
+                        StringUtils.isNoneBlank(userId.getName())||
+                        StringUtils.isNoneBlank(userId.getSurname())||
+                        StringUtils.isNoneBlank(userId.getEmail())||
+                        StringUtils.isNoneBlank(userId.getPhone()));
+        return result;
+    }
 }
