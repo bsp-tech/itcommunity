@@ -274,7 +274,9 @@ public class EmployeeProfile implements Serializable {
                         StringUtils.isNoneBlank(userId.getName())||
                         StringUtils.isNoneBlank(userId.getSurname())||
                         StringUtils.isNoneBlank(userId.getEmail())||
-                        StringUtils.isNoneBlank(userId.getPhone()));
+                        StringUtils.isNoneBlank(userId.getPhone()))||
+                (employeeProfileLanguageList!=null && employeeProfileLanguageList.size()>0)||
+                (employeeProfileSkillList!=null && employeeProfileSkillList.size()>0);
         return result;
     }
 }
