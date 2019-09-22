@@ -45,7 +45,7 @@
     <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container mt-3" th:each="itproject : ${projectList}">
             <div class="card">
-                <div class="card-header d-flex flex-row justify-content-between align-items-center">
+                <div class="card-header d-flex flex-row justify-content-between align-items-center bg-white">
                     <h4>
                         <div th:text="${itproject.name}"></div>
                     </h4>
@@ -68,20 +68,20 @@
                         <div class="col-12  ">
                             <div class="d-flex  flex-wrap">
                                 <div class="mr-2 mt-2 position-relative">
-                                    <a target="_blank" th:href="${itproject.githubPath}" class="stretched-link btn btn-dark"><i
+                                    <a target="_blank" th:href="${itproject.githubPath}" class="stretched-link btn bg_icon text-light"><i
                                             class="fab fa-github"></i> github</a>
                                 </div>
                                 <div class="mr-2 mt-2 position-relative">
-                                    <a target="_blank" th:href="${itproject.websitePath}" class="stretched-link btn btn-dark"><i
+                                    <a target="_blank" th:href="${itproject.websitePath}" class="stretched-link btn bg_icon text-light"><i
                                             class="fas fa-link"></i> web site
                                         link</a>
                                 </div>
                                 <div class="mr-2 mt-2 position-relative">
-                                    <a target="_blank" th:href="${'/projects/'+itproject.id}" class="stretched-link btn btn-dark"><i
+                                    <a target="_blank" th:href="${'/projects/'+itproject.id}" class="stretched-link btn bg_icon text-light"><i
                                             class="fas fa-male"></i> Developers</a>
                                 </div>
                                 <div class="dropdown mr-2 mt-2">
-                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu1"
+                                    <button class="btn bg_icon text-light dropdown-toggle" type="button" id="dropdownMenu1"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-code"></i>
@@ -105,7 +105,7 @@
                                     </a>
                                     <a sec:authorize="isAnonymous()"
                                        class="btn btn-success ml-lg-auto mt-2 text-light"
-                                       href="/static/img/user/login">
+                                       href="/user/login">
                                         <i class="fas fa-plus-circle"></i> Join Team
                                     </a>
                                     <a sec:authorize="hasAuthority('JOIN_TEAM')"
