@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--    <link rel="stylesheet" th:href="@{/css/particle.css}">-->
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
     <title>Create Employee Account</title>
     <!-- Hotjar Tracking Code for http://itcommunity.herokuapp.com -->
     <script>
@@ -26,13 +28,13 @@
 <!--<div id="particles-js"></div>-->
 <div th:replace="fragments/navbar :: navbar"></div>
 <div class="col-lg-5 pt-5 mx-auto ">
-    <div class="card border border-dark">
+    <div class="card">
         <form th:action="@{/employees/register}" th:object="${employeeProfile}" method="POST">
-            <h4 class="card-header text-white bg-dark">Create Employee Account</h4>
+            <h4 class="card-header text-white bg_icon">Create Employee Account</h4>
             <div th:replace="fragments/employeeform :: employeeform"></div>
             <div class="input-group mt-1 mb-3">
                 <div class="text-center mx-auto">
-                    <button type="submit" class="btn  px-5 btn-dark mt-1 ">
+                    <button type="submit" class="btn  px-5 btn-dark mt-1 bg_icon">
                         Create Account
                     </button>
                 </div>

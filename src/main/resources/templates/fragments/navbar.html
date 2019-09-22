@@ -1,54 +1,56 @@
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark secondary-color lighten-1"
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent bg-light"
      xmlns:th="http://www.thymeleaf.org"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
      th:fragment="navbar">
-    <img width="35px" th:src="@{/img/project/icons8-user-groups-96.png}"/>
-    <a class="navbar-brand ml-1" href="/">IT COMMUNITY</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-        <ul class="navbar-nav mr-auto">
-            <li class="ml-2  my-2  nav-item active">
-                <a href="/projects" class="btn border-light fs-15  text-white bg-dark btn-lg stretched-link">Our Open Source Community</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="ml-2 my-2 nav-item active" sec:authorize="hasAuthority('CREATE_EMPLOYEE_PROFILE')">
-                <a href="/employees/register" class="btn border-light fs-15  text-white bg-dark btn-lg stretched-link">
-                    Create an IT Employee
-                </a>
-            </li>
-            <li class="ml-2 my-2 nav-item active" sec:authorize="isAnonymous()">
-                <a href="/static/img/user/login" class="btn border-light fs-15 text-white bg-dark btn-lg stretched-link">
-                    <img width="20px;" th:src="@{/img/project/icons8-customer-96.png}">
-                    Login
-                </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav nav-flex-icons" sec:authorize="isAuthenticated()">
-            <li class="nav-item active dropdown d-flex border rounded pl-2 pr-2 ml-2">
-                <img th:src="@{/img/project/icons8-customer-96.png}"
-                     style="width: 20px; cursor: pointer;"
-                     class="dropdown-toggle p-0 rounded-circle mt-2 my-2"
-                     data-toggle="dropdown"/>
-                <span class="text-white mt-1"
-                      style="cursor: pointer;" data-toggle="dropdown" href="#"
-                      th:text="${'('+#authentication.getPrincipal().getUser().getName()+' '+#authentication.getPrincipal().getUser().getSurname()+')'}">
+
+        <a class="navbar-brand logo ml-1" href="/">IT COMMUNITY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="ml-2  my-2  nav-item active">
+                    <a style="font-size: 18px;" href="/employees" class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">
+                        IT Employees
+                    </a>
+                </li>
+                <li class="ml-2  my-2  nav-item active">
+                    <a style="font-size: 18px;" href="/projects" class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">
+                       Join Open Source Projects</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons" >
+                <li class="ml-2 my-2 nav-item active" sec:authorize="isAnonymous()">
+                    <a style="font-size: 21px; font-family: 'Fredoka One', cursive;" href="/user/login" class="btn  fs-15 text-white bg-transparent btn-lg stretched-link">
+                        Login
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav nav-flex-icons" sec:authorize="isAuthenticated()">
+                <li class="ml-2 my-2 nav-item active" sec:authorize="hasAuthority('CREATE_EMPLOYEE_PROFILE')">
+                    <a href="/employees/register" class="btn text-white">
+                        Create IT Employee Profile
+                    </a>
+                </li>
+                <li class="ml-2 my-2 nav-item active dropdown">
+                    <span class="text-white btn"
+                          style="cursor: pointer;" data-toggle="dropdown" href="#"
+                          th:text="${'('+#authentication.getPrincipal().getUser().getName()+' '+#authentication.getPrincipal().getUser().getSurname()+')'}">
                 </span>
 
-                <div class="dropdown-menu mt-2" >
-                    <a class="dropdown-item" href="/static/img/user/edit">Edit user profile</a>
-                    <a class="dropdown-item"
-                       sec:authorize="!hasAuthority('CREATE_EMPLOYEE_PROFILE')"
-                       th:href="${'/employees/profile/edit'}" >Edit employee profile</a>
-                    <a class="dropdown-item" href="/logout">Log out</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+                    <div class="dropdown-menu mt-2" >
+                        <a class="dropdown-item" href="/user/edit">Edit user profile</a>
+                        <a class="dropdown-item"
+                           sec:authorize="!hasAuthority('CREATE_EMPLOYEE_PROFILE')"
+                           th:href="${'/employees/profile/edit'}" >Edit employee profile</a>
+                        <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                </li>
+            </ul>
 
+        </div>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -62,4 +64,7 @@
         })();
     </script>
     <!--End of Tawk.to Script-->
-</nav>
+    </nav>
+
+
+

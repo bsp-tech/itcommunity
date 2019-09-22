@@ -6,56 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/static/css/main.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 
     <style type="text/css">
-        .bg_icon {
-            background-color: #3030ba;
-        }
-
         body {
             background-image: url("/img/user/banner_bg2.webp");
-            background-size: cover;
-            font-family: 'Comfortaa', cursive;
-        }
-
-        .logo {
-            font-size: 26px;
-            font-family: 'Fredoka One', cursive;
+            background-size: 104%;
         }
     </style>
 </head>
 
 <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent bg-light">
-                <a class="navbar-brand logo ml-1" href="/">IT COMMUNITY</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                                <li class="ml-2  my-2  nav-item active">
-                                    <a style="font-size: 18px;" href="/projects"
-                                        class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">Our
-                                        Open Source Community</a>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav ml-auto nav-flex-icons">
-
-                                    <li class="ml-2 my-2 nav-item active">
-                                        <a style="font-size: 21px; font-family: 'Fredoka One', cursive;" href="/user/login"
-                                            class="btn  fs-15 text-white bg-transparent btn-lg stretched-link">
-                                            Login
-                                        </a>
-                                    </li>
-                                </ul>
-
-                </div>
-              </nav>
+    <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container">
         <div class="row pt-2">
             <div class="col-lg-8 ">

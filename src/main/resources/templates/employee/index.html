@@ -9,6 +9,8 @@
     <title>Index</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <script th:src="@{/js/pnglib.js}"></script>
     <script th:src="@{/js/identicon.js}"></script>
@@ -23,30 +25,31 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+
+
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <!-- search -->
     <form th:object="${employeeProfile}" method="POST">
-        <div class="container col-md-11">
-            <div class="card bg-light">
-                <div class="row my-3 mx-2">
+        <div class="container col-md-12 mt-2">
+            <div class="card">
+                <div class="row my-2 mx-0">
                     <div class="col-md-2">
-                        <input type="text" class="form-control" th:field="*{userId.name}" placeholder="Ad">
+                        <input type="text" class="form-control mt-1" th:field="*{userId.name}" placeholder="Ad">
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" th:field="*{userId.surname}" placeholder="Soyad">
+                        <input type="text" class="form-control mt-1" th:field="*{userId.surname}" placeholder="Soyad">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" th:field="*{userId.email}" placeholder="Email">
+                        <input type="text" class="form-control mt-1" th:field="*{userId.email}" placeholder="Email">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" th:field="*{userId.phone}" placeholder="Phone">
+                        <input type="text" class="form-control mt-1" th:field="*{userId.phone}" placeholder="Phone">
                     </div>
                     <div class="col-md-2">
-
-                        <button class="btn btn-dark">
-                            <p class="my-0 mx-4">
+                        <button class="btn bg_icon mt-1">
+                            <p class="my-0 mx-4 text-light">
                                 Axtar
                             </p>
                         </button>
@@ -54,12 +57,12 @@
                     <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
                         <div class="d-flex">
                             <p>
-                                <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
+                                <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
                                     Languages
                                 </button>
                             </p>
                             <p class="pl-3">
-                                <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">
+                                <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">
                                     Skills
                                 </button>
                             </p>

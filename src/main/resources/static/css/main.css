@@ -24,3 +24,22 @@
 .developer-card:hover .developer-card-details {
     opacity: 1;
 }
+
+
+.bg_icon {
+    background-color: #3030ba;
+}
+
+.navbar {
+    background-image: url("/img/user/banner_bg2.webp");
+    background-size: 104%;
+    font-family: 'Comfortaa', cursive;
+}
+body {
+    font-family: 'Comfortaa', cursive;
+}
+
+.logo {
+    font-size: 26px;
+    font-family: 'Fredoka One', cursive;
+}
