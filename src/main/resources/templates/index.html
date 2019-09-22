@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -6,27 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/static/css/main.css}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-    <!--	<link rel="stylesheet" th:href="@{/css/particle.css}">-->
-    <!-- Hotjar Tracking Code for http://itcommunity.herokuapp.com -->
-
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
 
     <style type="text/css">
         .bg_icon {
-
-
             background-color: #3030ba;
-
         }
 
         body {
-            background-image: url("banner_bg2.webp");
+            background-image: url("/img/user/banner_bg2.webp");
             background-size: cover;
             font-family: 'Comfortaa', cursive;
-
         }
 
         .logo {
@@ -42,7 +35,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-              
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                                 <li class="ml-2  my-2  nav-item active">
@@ -60,7 +53,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                  
+
                 </div>
               </nav>
     <div class="container">
@@ -68,7 +61,7 @@
             <div class="col-lg-8 ">
                 <h4 class="text-white">Finding Information technology Workers</h4>
                 <h3 class="text-white">Register as an information technology employee</h3>
-                <img width="70%" src="banner_img.webp" alt="">
+                <img width="70%" th:src="@{/img/user/banner_img.webp}" alt="">
             </div>
             <div class="col-lg-4  ">
                 <div class="card  shadow px-4  border ">
@@ -76,68 +69,51 @@
 
                     <div class="card-body pb-0 ">
                         <h4 class=" text-dark font-weight-bold bg-transparent">Sign up</h4>
-                        <form method="post">
+                        <form method="post" th:object="${user}">
                             <div class="row">
                                 <div class="w-100">
                                     <div class="input-group my-1">
-
-                                        <input type="text" class="form-control" placeholder="Name" id="name" name="name"
-                                            value="">
+                                        <input type="text" class="form-control" placeholder="Name" id="name" th:field="${user.name}" >
                                     </div>
+                                    <label th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="${user.name}"></label>
+                                </div>
+                                <div class="w-100">
+                                    <div class="input-group my-1">
+                                        <input type="text" class="form-control" placeholder="Surname" id="surname" th:field="${user.surname}">
+                                    </div>
+                                    <label th:if="${#fields.hasErrors('surname')}" class="text-danger" th:errors="${user.surname}"></label>
+                                </div>
+                                <div class="w-100">
+                                    <div class="input-group my-1">
+                                        <input type="text" class="form-control" placeholder="Age" id="age" th:field="${user.age}">
+                                    </div>
+                                    <label th:if="${#fields.hasErrors('age')}" class="text-danger" th:errors="${user.age}"></label>
+                                </div>
+                                <div class="w-100">
+                                    <div class="input-group my-1">
+                                        <input class="form-control" placeholder="Phone (optional)" id="phone" th:field="${user.phone}">
+                                    </div>
+                                    <label th:if="${#fields.hasErrors('phone')}" class="text-danger" th:errors="${user.phone}"></label>
 
                                 </div>
                                 <div class="w-100">
                                     <div class="input-group my-1">
-
-                                        <input type="text" class="form-control" placeholder="Surname" id="surname"
-                                            name="surname" value="">
+                                        <input type="email" class="form-control" placeholder="Email" id="email" th:field="${user.email}">
                                     </div>
-
+                                    <label th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="${user.email}"></label>
                                 </div>
                                 <div class="w-100">
                                     <div class="input-group my-1">
-
-                                        <input type="text" class="form-control" placeholder="Age" id="age" name="age"
-                                            value="">
+                                        <input type="password" class="form-control" placeholder="Password" id="password" th:field="${user.password}">
                                     </div>
-
+                                    <label th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="${user.password}"></label>
                                 </div>
-                                <div class="w-100">
-                                    <div class="input-group my-1">
-
-                                        <input class="form-control" placeholder="Phone (optional)" id="phone"
-                                            name="phone" value="">
-                                    </div>
-
-                                </div>
-                                <div class="w-100">
-                                    <div class="input-group my-1">
-
-                                        <input type="email" class="form-control" placeholder="Email" id="email"
-                                            name="email" value="">
-                                    </div>
-
-                                </div>
-                                <div class="w-100">
-                                    <div class="input-group my-1">
-
-                                        <input type="password" class="form-control" placeholder="Password" id="password"
-                                            name="password" value="">
-                                    </div>
-
-                                </div>
-                                <div class="input-group my-1">
-
-                                    <input type="password" class="form-control" placeholder="Repeat password"
-                                        name="password1">
-                                </div>
-
                                 <div class="input-group my-1 d-flex align-items-center">
                                     <div class="col-md-6 p-0">
                                         What is gender?
                                     </div>
                                     <div class="col-md-6 p-0">
-                                        <select class="form-control" id="genderId.id" name="genderId.id">
+                                        <select class="form-control" th:field="${user.genderId.id}">
                                             <option value="1">Male</option>
                                             <option value="2">Female</option>
                                         </select>
@@ -148,9 +124,6 @@
                             <div class="input-group mt-2">
                                 <div class="text-center mx-auto">
                                     <button type="submit" class="btn bg_icon text-white mt-1">Create Account</button>
-                                    <a class="btn btn-secondary mt-1 mr-0" href="/user/login">
-                                        <span class="text-light">Already using? Sign In</span>
-                                    </a>
                                 </div>
                             </div>
                         </form>

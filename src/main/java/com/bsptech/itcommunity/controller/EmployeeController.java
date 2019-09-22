@@ -41,7 +41,7 @@ public class EmployeeController {
     @Autowired
     UserServiceInter userServiceInter;
 
-    @RequestMapping(path = "/", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(path = "/employees", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView index(
             @ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
             ModelAndView modelAndView
@@ -57,7 +57,7 @@ public class EmployeeController {
         modelAndView.addObject("skills", skills);
         modelAndView.addObject("employeeList", list);
 
-        modelAndView.setViewName("employee/index");
+        modelAndView.setViewName("index");
 
         return modelAndView;
     }

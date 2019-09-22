@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li class="ml-2 my-2 nav-item active" sec:authorize="isAnonymous()">
-                <a href="/user/login" class="btn border-light fs-15 text-white bg-dark btn-lg stretched-link">
+                <a href="/static/img/user/login" class="btn border-light fs-15 text-white bg-dark btn-lg stretched-link">
                     <img width="20px;" th:src="@{/img/project/icons8-customer-96.png}">
                     Login
                 </a>
@@ -39,7 +39,7 @@
                 </span>
 
                 <div class="dropdown-menu mt-2" >
-                    <a class="dropdown-item" href="/user/edit">Edit user profile</a>
+                    <a class="dropdown-item" href="/static/img/user/edit">Edit user profile</a>
                     <a class="dropdown-item"
                        sec:authorize="!hasAuthority('CREATE_EMPLOYEE_PROFILE')"
                        th:href="${'/employees/profile/edit'}" >Edit employee profile</a>
