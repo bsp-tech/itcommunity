@@ -22,7 +22,27 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 </head>
+
 <style>
+      .bg_icon {
+color: white;
+
+background-color: #3030ba;
+
+}
+
+body {
+background-image: url("banner_bg2.webp");
+background-repeat: no-repeat;
+background-size: cover;
+font-family: 'Comfortaa', cursive;
+
+}
+
+.logo {
+font-size: 26px;
+font-family: 'Fredoka One', cursive;
+}
     /*canvas{display:block}#particles-js{position:absolute;width:100%;height:100%;background-color:#000000;background-image:url("");background-repeat:no-repeat;background-size:cover;background-position:50% 50%}#stats,.count-particles{-webkit-user-select:none;margin-top:5px;margin-left:5px}#stats{border-radius:3px 3px 0 0;overflow:hidden}*/
 </style>
 <body>
@@ -31,7 +51,7 @@
 <!--    <div id="particles-js"></div>-->
     <!-- Login Body -->
     <div class="container">
-        <div class="row">
+        <div class="row p-5">
             <div class="col-lg-6 p-5 mx-auto">
                 <!-- Card -->
                 <div class="card bg-light">
@@ -47,24 +67,18 @@
                                 <form action="/login" method="POST">
                                     <!-- Inputs -->
                                     <div class="input-group my-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-dark"><i
-                                                    class="text-white fa fa-user"></i></span>
-                                        </div>
+                                       
                                         <input name="username" class="form-control" placeholder="Email" type="text">
                                     </div>
                                     <div class="input-group mb-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-dark"> <i
-                                                    class="text-white fa fa-lock"></i> </span>
-                                        </div>
+                                       
                                         <input name="password" class="form-control" placeholder="Password" type="password">
                                     </div>
                                     <!-- Buttons -->
                                     <div class="form-group w-100">
                                         <div class="row">
                                             <div class="col-12 mb-2">
-                                                <button type="submit" class="btn-block d-inline btn btn-dark">
+                                                <button type="submit" class="btn-block d-inline btn  bg_icon ">
                                                     Log In
                                                 </button>
                                             </div>
