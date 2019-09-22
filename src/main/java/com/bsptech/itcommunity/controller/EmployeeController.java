@@ -50,14 +50,11 @@ public class EmployeeController {
         List<Language> languages = languageServiceInter.findAll();
         List<Skill> skills = skillDao.findAll();
 
-        modelAndView.addObject("pages", 10);
-        modelAndView.addObject("page", 1);
-        modelAndView.addObject("pagination", false);
         modelAndView.addObject("languages", languages);
         modelAndView.addObject("skills", skills);
         modelAndView.addObject("employeeList", list);
 
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("employee/index");
 
         return modelAndView;
     }
