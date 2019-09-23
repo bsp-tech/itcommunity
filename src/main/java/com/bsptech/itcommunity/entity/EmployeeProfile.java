@@ -80,11 +80,11 @@ public class EmployeeProfile implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User userId;
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "employeeProfileId", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<EmployeeProfileSkill> employeeProfileSkillList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId", fetch = FetchType.LAZY)
     private List<EmployeeProject> employeeProjectList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<EmployeeProfileLanguage> employeeProfileLanguageList;
 
     public EmployeeProfile() {

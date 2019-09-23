@@ -68,7 +68,9 @@ public class EmployeeController {
     }
 
     @RequestMapping(path = "/employees/profile/edit")
-    public ModelAndView edit(ModelAndView modelAndView) {
+    public ModelAndView editPage(ModelAndView modelAndView) {
+
+
         User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
         loggedInUser = userServiceInter.findById(loggedInUser.getId());
         EmployeeProfile emp = loggedInUser.getEmployeeProfile();
@@ -85,6 +87,20 @@ public class EmployeeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/employees/profile/edit",method=RequestMethod.POST)
+    public ModelAndView edit(@ModelAttribute @Valid EmployeeProfile employeeProfile,
+                             BindingResult result) {
+        System.out.println("languagelist="+employeeProfile.getEmployeeProfileLanguageList());
+
+//        if(result.hasErrors()) {
+//            ModelAndView mv = new ModelAndView();
+//            mv.setViewName("employee/registration");
+//            return mv;
+//        }
+//        EmployeeProfile ep = employeeProfileServiceInter.register(employeeProfile);
+        return new ModelAndView("redirect:/employees/profile/edit");
+    }
+
     @RequestMapping(path = "/employees/register")
     public ModelAndView register(ModelAndView modelAndView, Model model) {
         modelAndView.addObject("employeeProfile",new EmployeeProfile());
@@ -99,6 +115,7 @@ public class EmployeeController {
                 @ModelAttribute @Valid
                 EmployeeProfile employeeProfile,
                 BindingResult result) {
+
         if(result.hasErrors()) {
             ModelAndView mv = new ModelAndView();
             mv.setViewName("employee/registration");

@@ -118,37 +118,39 @@
                 <div class="clearfix"></div>
 
                 <!-- Repeater Items -->
-                <div class="items" data-group-language>
-                    <div class="item-content mt-2  d-flex" th:each="empLanguage, stat : *{employeeProfileLanguageList}">
-                        <div class="form-group col-lg-8 p-0 pr-2">
-                            <select name="employeeProfileLanguageList[$index].languageId.id"
-                                    class="form-control">
-                                <option value="0">Languages</option>
-                                <option
-                                        th:each="language : ${listLanguages}"
-                                        th:value="${language.id}"
-                                        th:text="${language.name}"
-                                        th:selected="${language.id == empLanguage.languageId.id}"></option>
-                            </select>
+                <div data-group-language>
+                    <div class="items" data-group-element  th:each="empLanguage, stat : *{employeeProfileLanguageList}">
+                        <div class="item-content mt-2 d-flex" >
+                            <div class="form-group col-lg-8 p-0 pr-2">
+                                <select th:name="|employeeProfileLanguageList[${stat.index}].languageId.id|"
+                                        class="form-control">
+                                    <option value="0">Languages</option>
+                                    <option
+                                            th:each="language : ${listLanguages}"
+                                            th:value="${language.id}"
+                                            th:text="${language.name}"
+                                            th:selected="${language.id == empLanguage.languageId.id}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-3 p-0 pr-2">
+                                <select th:name="|employeeProfileLanguageList[${stat.index}].level|" class="form-control" >
+                                    <option value="0">Level</option>
+                                    <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                            th:value="${i}"
+                                            th:text="${i}"
+                                            th:selected="${i == empLanguage.level}"
+                                    >
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4 p-0">
+                                <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="form-group col-lg-3 p-0 pr-2">
-                            <select name="employeeProfileLanguageList[$index].level" class="form-control" >
-                                <option value="0">Level</option>
-                                <option th:each="i: ${#numbers.sequence(1, 10)}"
-                                        th:value="${i}"
-                                        th:text="${i}"
-                                        th:selected="${i == empLanguage.level}"
-                                >
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-4 p-0">
-                            <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
-                                <i class="fa fa-remove"></i>
-                            </button>
-                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="clearfix"></div>
                 </div>
 
             </div>
@@ -163,10 +165,10 @@
                 </div>
                 <div class="clearfix"></div>
                 <div data-group-skill>
-                    <div class="items" th:each="empSkill, stat : *{employeeProfileSkillList}">
+                    <div class="items" data-group-element th:each="empSkill, stat : *{employeeProfileSkillList}">
                         <div class="item-content mt-2  d-flex" >
                             <div class="form-group col-lg-4 p-0 pr-2">
-                                <select name="employeeProfileSkillList[$index].skillId.id"
+                                <select th:name="|employeeProfileSkillList[${stat.index}].skillId.id|"
                                         class="form-control">
                                     <option value="0">Skills</option>
                                     <option
@@ -177,10 +179,10 @@
                                 </select>
                             </div>
                             <div class="form-group col-lg-4 p-0 pr-2">
-                                <input type="text" name="employeeProfileSkillList[$index].skillId.name" class="form-control" placeholder="Other Skill">
+                                <input type="text" th:name="|employeeProfileSkillList[${stat.index}].skillId.name|" class="form-control" placeholder="Other Skill">
                             </div>
                             <div class="form-group col-lg-3 p-0 pr-2">
-                                <select name="employeeProfileSkillList[$index].level" class="form-control" >
+                                <select th:name="|employeeProfileSkillList[${stat.index}].level|" class="form-control" >
                                     <option value="0">Level</option>
                                     <option th:each="i: ${#numbers.sequence(1, 10)}"
                                             th:value="${i}"
