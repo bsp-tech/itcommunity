@@ -46,7 +46,6 @@ public class UserController {
             return mv;
         }
         int r = userServiceInter.save(user);
-        System.out.println(r);
         if(r==-1){
             result.rejectValue("email","email","already exists");
             return mv;

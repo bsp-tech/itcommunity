@@ -38,7 +38,7 @@ public class EmployeeProfileSkill implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private EmployeeProfile employeeProfileId;
     @JoinColumn(name = "skill_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Skill skillId;
 
     public EmployeeProfileSkill() {
@@ -102,28 +102,34 @@ public class EmployeeProfileSkill implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EmployeeProfileSkill)) {
-            return false;
-        }
-        EmployeeProfileSkill other = (EmployeeProfileSkill) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         return "skillid:"+skillId+",level:"+level;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        EmployeeProfileSkill s = (EmployeeProfileSkill) obj;
+        boolean result = false;
+        if(s.getEmployeeProfileId().getId()!=this.getEmployeeProfileId().getId()){
+            return false;
+        }
+
+        if(this.getSkillId().getId()==s.getSkillId().getId()){
+            return true;
+        }
+
+        String n1 = this.getSkillId().getName().trim();
+        String n2 = s.getSkillId().getName().trim();
+        if(n1.equalsIgnoreCase(n2)){
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        int result = this.getEmployeeProfileId().getId()*this.getSkillId().getName().trim().toLowerCase().hashCode();
+        return result;
+    }
 }
