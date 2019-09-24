@@ -29,24 +29,24 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-//    @NotNull(message = "required")
+    @NotNull(message = "required")
     @Column(name = "approved")
     private Boolean approved;
-//    @Basic(optional = false)
+    @Basic(optional = false)
     @Column(name = "approved_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDateTime;
     @Basic(optional = false)
     @Size(max = 255)
-//    @Pattern(regexp="^((http|https):\\/\\/)?+[a-zA-Z0-9-]+$", message="Invalid cv path")
+    @Pattern(regexp="^((http|https):\\/\\/)?+[a-zA-Z0-9-]+$", message="Invalid cv path")
     @Column(name = "cv_path")
     private String cvPath;
     @Size(max = 255)
-//    @Pattern(regexp="^$|((http|https):\\/\\/)?+(github.com\\/)+[a-zA-Z0-9-]+$", message="invalid github account")
+    @Pattern(regexp="^$|((http|https):\\/\\/)?+(github.com\\/)+[a-zA-Z0-9-]+$", message="invalid github account")
     @Column(name = "github_path")
     private String githubPath;
     @Size(max = 255)
-//    @Pattern(regexp="^$|((http|https):\\/\\/)?+(www.linkedin.com\\/in\\/)+[a-zA-Z0-9-]{5,30}+$", message="Invalid Linkedin account")
+    @Pattern(regexp="^$|((http|https):\\/\\/)?+(www.linkedin.com\\/in\\/)+[a-zA-Z0-9-]{5,30}+$", message="Invalid Linkedin account")
     @Column(name = "linkedin_path")
     private String linkedinPath;
     @Basic(optional = false)
@@ -59,7 +59,7 @@ public class EmployeeProfile implements Serializable {
     private Integer experience;
     @Basic(optional = false)
     @Column(name = "about")
-//    @Size(min=300, max = 500, message = "use at least 300, maximum 500 symbols")
+    @Size(min=300, max = 500, message = "use at least 300, maximum 500 symbols")
     private String about;
     @Basic(optional = false)
     @NotNull(message = "required")
@@ -80,11 +80,11 @@ public class EmployeeProfile implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User userId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "employeeProfileId", fetch = FetchType.LAZY,cascade = CascadeType.ALL,  orphanRemoval = true)
     private List<EmployeeProfileSkill> employeeProfileSkillList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId", fetch = FetchType.LAZY)
     private List<EmployeeProject> employeeProjectList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeProfileId", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "employeeProfileId", fetch = FetchType.LAZY,cascade = CascadeType.ALL,  orphanRemoval = true)
     private List<EmployeeProfileLanguage> employeeProfileLanguageList;
 
     public EmployeeProfile() {
@@ -268,7 +268,7 @@ public class EmployeeProfile implements Serializable {
         return "EmployeeProfile{" + "employeeProfileSkillList=" + employeeProfileSkillList + ", employeeProfileLanguageList=" + employeeProfileLanguageList + '}';
     }
 
-	
+
 
 
 	public boolean isFilledAnyField(){

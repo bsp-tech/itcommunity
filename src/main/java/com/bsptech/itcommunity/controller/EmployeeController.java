@@ -82,7 +82,7 @@ public class EmployeeController {
 
         modelAndView.addObject("employeeProfile",emp);
         modelAndView.addObject("listLanguages",languageServiceInter.findAll());
-        modelAndView.addObject("listSkills",skillDao.findByEnabled(true));
+        modelAndView.addObject("listSkills",skillDao.findAll());
         modelAndView.setViewName("employee/edit");
         return modelAndView;
     }
@@ -90,11 +90,11 @@ public class EmployeeController {
     @RequestMapping(value = "/employees/profile/edit",method=RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute @Valid EmployeeProfile employeeProfile,
                              BindingResult result) {
-//        if(result.hasErrors()) {
-//            ModelAndView mv = new ModelAndView();
-//            mv.setViewName("employee/edit");
-//            return mv;
-//        }
+        if(result.hasErrors()) {
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("employee/edit");
+            return mv;
+        }
         EmployeeProfile ep = employeeProfileServiceInter.update(employeeProfile);
         return new ModelAndView("redirect:/employees/profile/edit?succes=true");
     }

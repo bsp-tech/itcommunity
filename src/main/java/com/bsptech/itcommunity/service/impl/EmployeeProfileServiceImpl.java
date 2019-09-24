@@ -11,12 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 //import com.bsptech.itcommunity.security.SecurityUtil;
 
@@ -100,57 +95,72 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     }
 
     @Override
-    public EmployeeProfile update(EmployeeProfile employeeProfile) {
+    public EmployeeProfile update(EmployeeProfile employeeProfileTemp) {
+
+        java.sql.Date nowDate = new java.sql.Date(new Date().getTime());
+
         User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
         loggedInUser = userDataInter.getOne(loggedInUser.getId());
         EmployeeProfile empProfile = loggedInUser.getEmployeeProfile();
-        Set<EmployeeProfileLanguage> langSet = new HashSet<>();
-        List<EmployeeProfileLanguage> langList = employeeProfile.getEmployeeProfileLanguageList();
-        if(langList!=null && langList.size()>0){
-            for (EmployeeProfileLanguage lang : employeeProfile.getEmployeeProfileLanguageList()){
-                if(lang.getLanguageId()!=null && lang.getLevel()>0)langSet.add(lang); 
+        empProfile.setAbout(employeeProfileTemp.getAbout());
+        empProfile.setCvPath(employeeProfileTemp.getCvPath());
+        empProfile.setExperience(employeeProfileTemp.getExperience());
+        empProfile.setGithubPath(employeeProfileTemp.getGithubPath());
+        empProfile.setIsLookingForWork(employeeProfileTemp.getIsLookingForWork());
+        empProfile.setIsWorking(employeeProfileTemp.getIsWorking());
+        empProfile.setLastUpdateDateTime(nowDate);
+        empProfile.setLinkedinPath(employeeProfileTemp.getLinkedinPath());
+        empProfile.setSpeciality(employeeProfileTemp.getSpeciality());
+
+        List<EmployeeProfileLanguage> epLanguageList = employeeProfileTemp.getEmployeeProfileLanguageList();
+        HashSet<EmployeeProfileLanguage> empProfileLanguageHash = new HashSet<>();
+
+        if (epLanguageList != null && epLanguageList.size() > 0) {
+            for (EmployeeProfileLanguage epLanguage : epLanguageList) {
+                epLanguage.setId(null);
+                epLanguage.setEmployeeProfileId(empProfile);
+                epLanguage.setInsertDateTime(nowDate);
+                empProfileLanguageHash.add(epLanguage);
+
             }
-            if(langSet!=null && langSet.size()>0){
-                for (EmployeeProfileLanguage epLanguage : langSet) {
-                    epLanguage.setEmployeeProfileId(empProfile);
-                    epLanguage.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-                }
-            }
-            empProfile.getEmployeeProfileLanguageList().clear();
-            empProfile.getEmployeeProfileLanguageList().addAll(new ArrayList<>(langSet));
         }
-        
-        Set<EmployeeProfileSkill> skillSet = new HashSet<>();
-        System.out.println("Skill List: "+employeeProfile.getEmployeeProfileSkillList());
-        for (EmployeeProfileSkill skill : employeeProfile.getEmployeeProfileSkillList()){
-            Skill skill_ = new Skill();
-            if(skill.getSkillId().getId()>0){
-                if(skill.getLevel()>0){
-                    skill_ = skillDao.getOne(skill.getSkillId().getId());
-                }
-            }else{
-                String name_ = skill.getSkillId().getName();
-                if (name_ != null && !name_.trim().isEmpty()) {
+        List<EmployeeProfileSkill> epSkillList = employeeProfileTemp.getEmployeeProfileSkillList();
+        Set<EmployeeProfileSkill> epSkillHashSet = new HashSet<>();
+
+        if (epSkillList != null && epSkillList.size() > 0) {
+
+            for (EmployeeProfileSkill epSkill : epSkillList) {
+                if (epSkill == null) continue;
+                if (epSkill.getSkillId() == null) continue;
+                if (epSkill.getLevel() == null || epSkill.getLevel() == 0) continue;
+                epSkill.setId(null);
+
+                Skill skill_ = new Skill();
+                Integer id_ = epSkill.getSkillId().getId();
+                if (id_ != null && id_ > 0) {
+                    skill_ = skillDao.getOne(id_);
+                } else {
+                    String name_ = epSkill.getSkillId().getName();
+                    if(name_==null || name_.trim().isEmpty()) continue;
+
                     skill_.setName(name_.trim());
                     skill_.setEnabled(false);
-                    skill_.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-                }else{
-                    continue;
+                    skill_.setInsertDateTime(nowDate);
                 }
-                skill.setSkillId(skill_);
-                skill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
-                skill.setEmployeeProfileId(empProfile);
-            }
-            skillSet.add(skill);
-        }
-        if(skillSet!=null && skillSet.size()>0){
-            for (EmployeeProfileSkill epSkill : skillSet) {
+                epSkill.setSkillId(skill_);
+                epSkill.setInsertDateTime(nowDate);
                 epSkill.setEmployeeProfileId(empProfile);
-                epSkill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+
+                epSkillHashSet.add(epSkill);
             }
         }
+        empProfile.getEmployeeProfileLanguageList().clear();
+        if(epLanguageList!=null)
+        empProfile.getEmployeeProfileLanguageList().addAll(new ArrayList<>(empProfileLanguageHash));
+
         empProfile.getEmployeeProfileSkillList().clear();
-        empProfile.getEmployeeProfileSkillList().addAll(new ArrayList<>(skillSet));
+        if(epSkillList!=null)
+        empProfile.getEmployeeProfileSkillList().addAll(new ArrayList<>(epSkillHashSet));
         return employeeProfileDataInter.save(empProfile);
     }
 
@@ -159,8 +169,6 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         employeeProfileDataInter.deleteById(id);
         return 0;
     }
-
-    
 
     @Override
     public EmployeeProfile register(EmployeeProfile employeeProfile) {

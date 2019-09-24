@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  *
@@ -113,6 +112,21 @@ public class EmployeeProfileLanguage implements Serializable {
     @Override
     public String toString() {
         return "languageId:"+languageId+",level:"+level;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        EmployeeProfileLanguage l = (EmployeeProfileLanguage)obj;
+        if(getEmployeeProfileId().getId()==l.getEmployeeProfileId().getId()
+        && getLanguageId().getId()==l.getLanguageId().getId()){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return languageId.getId()*employeeProfileId.getId();
     }
 
 }
