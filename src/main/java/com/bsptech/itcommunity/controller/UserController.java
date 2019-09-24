@@ -5,7 +5,11 @@
  */
 package com.bsptech.itcommunity.controller;
 
+import com.bsptech.itcommunity.dao.SkillDataInter;
+import com.bsptech.itcommunity.entity.EmployeeProfile;
 import com.bsptech.itcommunity.entity.User;
+import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
+import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
 import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +17,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -31,11 +38,32 @@ public class UserController {
 	@Autowired
     private SecurityServiceInter securityServiceInter;
 
-    @GetMapping
-    public ModelAndView register(ModelAndView modelAndView) {
-        modelAndView.addObject("user", new User());
-        modelAndView.setViewName("index");
-        return modelAndView;
+    @Autowired
+    EmployeeProfileServiceInter employeeProfileServiceInter;
+
+    @Autowired
+    LanguageServiceInter languageServiceInter;
+
+    @Autowired
+    SkillDataInter skillDao;
+
+    @Autowired
+    EmployeeProfileServiceInter serviceInter;
+
+
+    @Autowired
+    private EmployeeController employeeController;
+
+    @RequestMapping(path = "/", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView register(@ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
+                                 ModelAndView modelAndView) {
+        if(securityServiceInter.getLoggedInUserDetails()!=null){
+            return employeeController.index(employeeProfile, modelAndView);
+        }else{
+            modelAndView.addObject("user", new User());
+            modelAndView.setViewName("index");
+            return modelAndView;
+        }
     }
 
     @PostMapping
