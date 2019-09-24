@@ -90,15 +90,13 @@ public class EmployeeController {
     @RequestMapping(value = "/employees/profile/edit",method=RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute @Valid EmployeeProfile employeeProfile,
                              BindingResult result) {
-        System.out.println("languagelist="+employeeProfile.getEmployeeProfileLanguageList());
-
 //        if(result.hasErrors()) {
 //            ModelAndView mv = new ModelAndView();
-//            mv.setViewName("employee/registration");
+//            mv.setViewName("employee/edit");
 //            return mv;
 //        }
-//        EmployeeProfile ep = employeeProfileServiceInter.register(employeeProfile);
-        return new ModelAndView("redirect:/employees/profile/edit");
+        EmployeeProfile ep = employeeProfileServiceInter.update(employeeProfile);
+        return new ModelAndView("redirect:/employees/profile/edit?succes=true");
     }
 
     @RequestMapping(path = "/employees/register")

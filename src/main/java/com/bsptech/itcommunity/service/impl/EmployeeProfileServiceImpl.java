@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 //import com.bsptech.itcommunity.security.SecurityUtil;
 
@@ -23,7 +25,15 @@ import java.util.Optional;
 public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     @Autowired
     EmployeeProfileDataInter employeeProfileDataInter;
+    @Autowired
+    private SecurityServiceInter securityService;
 
+
+    @Autowired
+    private SkillDataInter skillDao;
+
+    @Autowired
+    private UserDataInter userDao;
 //    @Autowired
 //    SecurityUtil securityUtil;
 
@@ -91,7 +101,57 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Override
     public EmployeeProfile update(EmployeeProfile employeeProfile) {
-        return employeeProfileDataInter.save(employeeProfile);
+        User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
+        loggedInUser = userDataInter.getOne(loggedInUser.getId());
+        EmployeeProfile empProfile = loggedInUser.getEmployeeProfile();
+        Set<EmployeeProfileLanguage> langSet = new HashSet<>();
+        List<EmployeeProfileLanguage> langList = employeeProfile.getEmployeeProfileLanguageList();
+        if(langList!=null && langList.size()>0){
+            for (EmployeeProfileLanguage lang : employeeProfile.getEmployeeProfileLanguageList()){
+                if(lang.getLanguageId()!=null && lang.getLevel()>0)langSet.add(lang); 
+            }
+            if(langSet!=null && langSet.size()>0){
+                for (EmployeeProfileLanguage epLanguage : langSet) {
+                    epLanguage.setEmployeeProfileId(empProfile);
+                    epLanguage.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+                }
+            }
+            empProfile.getEmployeeProfileLanguageList().clear();
+            empProfile.getEmployeeProfileLanguageList().addAll(new ArrayList<>(langSet));
+        }
+        
+        Set<EmployeeProfileSkill> skillSet = new HashSet<>();
+        System.out.println("Skill List: "+employeeProfile.getEmployeeProfileSkillList());
+        for (EmployeeProfileSkill skill : employeeProfile.getEmployeeProfileSkillList()){
+            Skill skill_ = new Skill();
+            if(skill.getSkillId().getId()>0){
+                if(skill.getLevel()>0){
+                    skill_ = skillDao.getOne(skill.getSkillId().getId());
+                }
+            }else{
+                String name_ = skill.getSkillId().getName();
+                if (name_ != null && !name_.trim().isEmpty()) {
+                    skill_.setName(name_.trim());
+                    skill_.setEnabled(false);
+                    skill_.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+                }else{
+                    continue;
+                }
+                skill.setSkillId(skill_);
+                skill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+                skill.setEmployeeProfileId(empProfile);
+            }
+            skillSet.add(skill);
+        }
+        if(skillSet!=null && skillSet.size()>0){
+            for (EmployeeProfileSkill epSkill : skillSet) {
+                epSkill.setEmployeeProfileId(empProfile);
+                epSkill.setInsertDateTime(new java.sql.Date(new Date().getTime()));
+            }
+        }
+        empProfile.getEmployeeProfileSkillList().clear();
+        empProfile.getEmployeeProfileSkillList().addAll(new ArrayList<>(skillSet));
+        return employeeProfileDataInter.save(empProfile);
     }
 
     @Override
@@ -100,15 +160,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         return 0;
     }
 
-    @Autowired
-    private SecurityServiceInter securityService;
-
-
-    @Autowired
-    private SkillDataInter skillDao;
-
-    @Autowired
-    private UserDataInter userDao;
+    
 
     @Override
     public EmployeeProfile register(EmployeeProfile employeeProfile) {
