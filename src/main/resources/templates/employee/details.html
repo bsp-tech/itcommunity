@@ -58,10 +58,10 @@
                 <div class="card mt-2 p-3">
                     <div class="d-flex justify-content-between">
                         <div
-                            class="d-flex flex-md-row flex-column justify-content-center align-items-center align-items-md-start   ">
+                            class="d-flex flex-md-row flex-column justify-content-center align-items-center align-items-md-start row col-md-12">
                             <img class="rounded-lg" width="196px" height="196px"
                                 src="https://i.udemycdn.com/user/200_H/38799964_191b.jpg" alt="sds">
-                            <div class="d-flex  flex-column ml-3">
+                            <div class="d-flex  flex-column ml-3 col-md-10 col-sm-10 col-10">
                                 <div class="card_name mt-1 text-primary">
                                     <h5>
                                         <strong th:text="${p.userId.name+' '+p.userId.surname}">Sarkhan Rasullu</strong>
@@ -93,9 +93,8 @@
                                     </p>
                                 </div>
 
-                                <div class="row">
-                                        <div class="col-md-12">
-                                                <h4 class="my-2">Skills</h4>
+                                <div>
+                                    <h4 class="my-2">Skills</h4>
                                                 <div class="mb-3 ">
 
                                                     <div class="container-fluid">
@@ -113,9 +112,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                        </div>
-
-                                        <div class="col-md-12">
                                             <h4 class="my-2">Languages</h4>
                                             <div class="mb-3 ">
 
@@ -133,7 +129,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                 </div>
                                 <div class="container">

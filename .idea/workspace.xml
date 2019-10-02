@@ -8,12 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/index2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/newdevdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/newindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/details.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
