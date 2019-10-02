@@ -66,8 +66,8 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    public ModelAndView registerPost(@ModelAttribute @Valid User user, BindingResult result) {
+    @PostMapping("/users")
+    public ModelAndView registerUser(@ModelAttribute @Valid User user, BindingResult result) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");
         if(result.hasErrors()) {

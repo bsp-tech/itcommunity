@@ -41,7 +41,7 @@
 						<h4 class="card-header text-white bg-dark">Sign up</h4>
 
 						<div class="card-body px-5">
-							<form th:object="${user}" method="post">
+							<form th:object="${user}" action="/users" method="post">
 								<div th:replace="fragments/userform :: userform"></div>
 
 								<div class="input-group mt-3">
