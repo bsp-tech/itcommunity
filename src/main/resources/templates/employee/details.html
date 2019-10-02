@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script th:src="@{/js/pnglib.js}"></script>
+    <script th:src="@{/js/identicon.js}"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/5d864663c22bdd393bb70ad0/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!-- Hotjar Tracking Code for http://itcommunity.herokuapp.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:1495447,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+</head>
+<style>
+    body {
+        background-image: url("banner_bggray.png");
+        background-repeat: no-repeat;
+        background-size: repeat;
+    }
+
+    .bg {
+        background-color: #4117bc;
+    }
+</style>
+
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-12 mx-auto">
+                <div class="card mt-2 p-3">
+                    <div class="d-flex justify-content-between">
+                        <div
+                            class="d-flex flex-md-row flex-column justify-content-center align-items-center align-items-md-start   ">
+                            <img class="rounded-lg" width="196px" height="196px"
+                                src="https://i.udemycdn.com/user/200_H/38799964_191b.jpg" alt="sds">
+                            <div class="d-flex  flex-column ml-3">
+                                <div class="card_name mt-1 text-primary">
+                                    <h5>
+                                        <strong th:text="${p.userId.name+' '+p.userId.surname}">Sarkhan Rasullu</strong>
+                                    </h5>
+                                </div>
+                                <div class="mt-1" th:text="${p.speciality}">Java Software Developer</div>
+                                <div class="mt-1 d-flex flex-wrap">
+                                        <span class="border border-success p-1 mt-1 mr-2" th:if="${p.isWorking.equals(1)}">
+                                            <strong class="text-success">Working</strong>
+                                        </span>
+                                    <span class="border border-danger p-1 mt-1 mr-2" th:if="${!p.isWorking.equals(1)}">
+                                            <strong class="text-danger" >Not Working</strong>
+                                        </span>
+                                    <span class="border border-success mt-1 p-1" th:if="${p.isLookingForWork.equals(1)}">
+                                            <strong class="text-success">Available for Job Offer</strong>
+                                        </span>
+                                    <span class="border border-danger mt-1 p-1" th:if="${!p.isLookingForWork.equals(1)}">
+                                            <strong class="text-danger">Not Available for Job Offer</strong>
+                                        </span>
+                                </div>
+                                <div>
+                                        <h4 class="my-2">About</h4>
+                                    <p th:text="${p.about}">
+                                        Proven ability to build high performance, secure, data driven applications with
+                                        quality code. Solid knowledge of concepts and procedures of common software
+                                        development methodologies. Has experience with the Cloud and monitoring
+                                        processes as well as DevOps development in Windows Mac and Linux systems.
+                                        Managed small groups of software engineers during special projects.
+                                    </p>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-12">
+                                                <h4 class="my-2">Skills</h4>
+                                                <div class="mb-3 ">
+
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-md-4" th:each="s : ${p.employeeProfileSkillList}">
+                                                                <span th:text="${s.skillId.name}">Java</span>
+                                                                <div class="progress my-2">
+                                                                    <div class="progress-bar bg-dark"
+                                                                         th:attr="aria-valuenow=${s.level*10}, style=${'width:'+s.level*10+'%'}"
+                                                                         th:text="${s.level*10+'%'}">
+                                                                        80%
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <h4 class="my-2">Languages</h4>
+                                            <div class="mb-3 ">
+
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-md-4" th:each="s : ${p.employeeProfileLanguageList}">
+                                                            <span th:text="${s.languageId.name}">Java</span>
+                                                            <div class="progress my-2">
+                                                                <div class="progress-bar bg-dark"
+                                                                     th:attr="aria-valuenow=${s.level*10}, style=${'width:'+s.level*10+'%'}"
+                                                                     th:text="${s.level*10+'%'}">
+                                                                    80%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="container">
+                                        <div class="social-media ">
+                                                <a target="_blank" th:href="${p.githubPath}"
+                                                    class="mt-1 mr-2 text-decoration-none   pt-0">
+                                                    <img style="width:35px;" src="/img/project/icons8-github-80.png"/>
+                                                    Github
+                                                </a>
+                                                <a target="_blank" th:href="${p.linkedinPath}"
+                                                    class="mt-1 mr-2 text-decoration-none pt-0">
+                                                    <img style="width:35px;" src="/img/project/icons8-linkedin-64.png">
+                                                    Linkedin
+                                                </a>
+                                                <a target="_blank" th:href="${p.cvPath}"
+                                                    class=" mt-1 text-decoration-none pt-0">
+                                                   <img style="width:35px;" src="/img/project/icons8-cv-80.png">
+                                                    CV
+                                                </a>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</html>

@@ -62,8 +62,8 @@ public class EmployeeController {
     @RequestMapping(path = "/employees/{employeeId}")
     public ModelAndView detail(@PathVariable("employeeId") Integer employeeId, ModelAndView modelAndView) {
         modelAndView.setViewName("employee/details");
-        if(employeeId==1)
-            throw new RuntimeException();
+        EmployeeProfile emp = employeeProfileServiceInter.findById(employeeId);
+        modelAndView.addObject("p",emp);
         return modelAndView;
     }
 
