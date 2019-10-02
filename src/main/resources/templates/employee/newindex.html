@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" th:href="@{/css/main.css}"> -->
+    <link rel="stylesheet" href="../../static/css/main.css">
+
+    <script th:src="@{/js/pnglib.js}"></script>
+    <script th:src="@{/js/identicon.js}"></script>
+</head>
+<style>
+    body {
+        background-image: url("banner_bggray.png");
+        background-repeat: no-repeat;
+        background-size: repeat;
+    }
+
+    .bg {
+        background-color: #4117bc;
+    }
+</style>
+
+<body>
+    <nav class="navbar bg navbar-expand-lg navbar-dark ">
+
+        <a class="navbar-brand logo ml-1" href="/">IT COMMUNITY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="ml-2  my-2  nav-item active">
+                    <a style="font-size: 18px;" href="/employees"
+                        class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">
+                        IT Employees
+                    </a>
+                </li>
+                <li class="ml-2  my-2  nav-item active">
+                    <a style="font-size: 18px;" href="/projects"
+                        class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">
+                        Join Open Source Projects</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+
+                <li class="ml-2 my-2 nav-item active dropdown">
+                    <span class="text-white btn" style="cursor: pointer;" data-toggle="dropdown" href="#">(Kamil
+                        Asgarov)</span>
+
+                    <div class="dropdown-menu mt-2">
+                        <a class="dropdown-item" href="/user/edit">Edit user profile</a>
+                        <a class="dropdown-item" href="/employees/profile/edit">Edit employee profile</a>
+                        <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <form th:object="${employeeProfile}" method="POST">
+            <div class="container col-md-12 mt-2">
+                <div class="card bg-transparent">
+                    <div class="row my-2 mx-0">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control mt-1" th:field="*{userId.name}" placeholder="Ad">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control mt-1" th:field="*{userId.surname}" placeholder="Soyad">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control mt-1" th:field="*{userId.email}" placeholder="Email">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control mt-1" th:field="*{userId.phone}" placeholder="Phone">
+                        </div>
+                        
+                        <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
+                            <div class="d-flex">
+                                <p>
+                                    <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
+                                        Languages
+                                    </button>
+                                </p>
+                                <p class="pl-3">
+                                    <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">
+                                        Skills
+                                    </button>
+                                </p>
+                            </div>
+    
+                            <!--languages-->
+                            <div class="card mt-2 bg-light  border-0">
+                                <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-4" th:each="language, stat : ${languages}">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-5 d-flex align-items-center">
+                                                        <div class="form-check mr-3">
+                                                            <label class="form-check-label" th:text="${language.name}">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5 col-7 d-flex align-items-center">
+                                                        <div class="form-group mb-0">
+                                                            <input th:type="hidden" th:name="${'employeeProfileLanguageList['+stat.index+'].languageId.id'}" th:value="${language.id}">
+                                                            <select th:name="${'employeeProfileLanguageList['+stat.index+'].level'}"
+                                                                    class="form-control" >
+                                                                <option selected="" value="0">Level</option>
+                                                                <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                                                        th:value="${i}"
+                                                                        th:text="${i}"
+                                                                >
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!--skills-->
+                            <div class="card mt-2 bg-light  border-0">
+                                <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-4" th:each="skill, stat : ${skills}"
+                                                 >
+                                                <div class="row">
+                                                    <div class="col-md-3 col-5 d-flex align-items-center">
+                                                        <div class="form-check mr-3">
+                                                            <label class="form-check-label" th:text="${skill.name}">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5 col-7 d-flex align-items-center">
+                                                        <div class="form-group mb-0">
+                                                            <input th:type="hidden" th:name="${'employeeProfileSkillList['+stat.index+'].skillId.id'}" th:value="${skill.id}">
+                                                            <select th:name="${'employeeProfileSkillList['+stat.index+'].level'}"
+                                                                    class="form-control" >
+                                                                <option selected="" value="0">Level</option>
+                                                                <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                                                        th:value="${i}"
+                                                                        th:text="${i}"
+                                                                >
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class=" mx-auto my-2">
+                                
+                                    <button class="btn bg_icon mx-auto ">
+                                        <p class="my-0 mx-4 text-light">
+                                            Axtar
+                                        </p>
+                                    </button>
+                                
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    <div class="container">
+        <div class="row">
+            <div class=" col-12 mx-auto">
+                <div class="card mt-2 p-3">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-lg" width="96px" height="96px"
+                                src="https://i.udemycdn.com/user/200_H/38799964_191b.jpg" alt="sds">
+                            <div class="d-flex  flex-column ml-3">
+                                <div class="card_name mt-1 text-primary"><strong>Sarkhan Rasullu</strong></div>
+                                <div class="mt-1">Java Software Developer</div>
+                                <div class="mt-2 d-flex flex-wrap"><span
+                                        class="border border-success p-1 mt-1 mr-2"><strong
+                                            class="text-success">Working</strong> </span> <span
+                                        class="border border-success  mt-1 p-1"><strong class="text-success">Available
+                                            for job Offer</strong> </span></div>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="social-media ">
+                                <a target="_blank" th:href="${p.githubPath}"
+                                    class="mt-1 stretched-link border border-dark btn btn-white btn-sm pt-0">
+                                    <i class="fab fa-github fa-sm"></i>
+                                </a>
+                                <a target="_blank" th:href="${p.linkedinPath}"
+                                    class="mt-1 stretched-link border border-dark btn btn-btn-white btn-sm pt-0">
+                                    <i class="fab fa-linkedin fa-sm"></i>
+                                </a>
+                                <a target="_blank" th:href="${p.cvPath}"
+                                    class=" mt-1 stretched-link btn border border-dark btn-btn-white btn-sm pt-0">
+                                    <i class="fas fa-file fa-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class=" col-12 mx-auto">
+                    <div class="card mt-2 p-3">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-lg" width="96px" height="96px"
+                                    src="https://i.udemycdn.com/user/200_H/38799964_191b.jpg" alt="sds">
+                                <div class="d-flex  flex-column ml-3">
+                                    <div class="card_name mt-1 text-primary"><strong>Sarkhan Rasullu</strong></div>
+                                    <div class="mt-1">Java Software Developer</div>
+                                    <div class="mt-2 d-flex flex-wrap"><span
+                                            class="border border-success p-1 mt-1 mr-2"><strong
+                                                class="text-success">Working</strong> </span> <span
+                                            class="border border-success  mt-1 p-1"><strong class="text-success">Available
+                                                for job Offer</strong> </span></div>
+    
+                                </div>
+                            </div>
+                            <div>
+                                <div class="social-media ">
+                                    <a target="_blank" th:href="${p.githubPath}"
+                                        class="mt-1 stretched-link border border-dark btn btn-white btn-sm pt-0">
+                                        <i class="fab fa-github fa-sm"></i>
+                                    </a>
+                                    <a target="_blank" th:href="${p.linkedinPath}"
+                                        class="mt-1 stretched-link border border-dark btn btn-btn-white btn-sm pt-0">
+                                        <i class="fab fa-linkedin fa-sm"></i>
+                                    </a>
+                                    <a target="_blank" th:href="${p.cvPath}"
+                                        class=" mt-1 stretched-link btn border border-dark btn-btn-white btn-sm pt-0">
+                                        <i class="fas fa-file fa-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+                <div class=" col-12 mx-auto">
+                        <div class="card mt-2 p-3">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-lg" width="96px" height="96px"
+                                        src="https://i.udemycdn.com/user/200_H/38799964_191b.jpg" alt="sds">
+                                    <div class="d-flex  flex-column ml-3">
+                                        <div class="card_name mt-1 text-primary"><strong>Sarkhan Rasullu</strong></div>
+                                        <div class="mt-1">Java Software Developer</div>
+                                        <div class="mt-2 d-flex flex-wrap"><span
+                                                class="border border-success p-1 mt-1 mr-2"><strong
+                                                    class="text-success">Working</strong> </span> <span
+                                                class="border border-success  mt-1 p-1"><strong class="text-success">Available
+                                                    for job Offer</strong> </span></div>
+        
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="social-media ">
+                                        <a target="_blank" th:href="${p.githubPath}"
+                                            class="mt-1 stretched-link border border-dark btn btn-white btn-sm pt-0">
+                                            <i class="fab fa-github fa-sm"></i>
+                                        </a>
+                                        <a target="_blank" th:href="${p.linkedinPath}"
+                                            class="mt-1 stretched-link border border-dark btn btn-btn-white btn-sm pt-0">
+                                            <i class="fab fa-linkedin fa-sm"></i>
+                                        </a>
+                                        <a target="_blank" th:href="${p.cvPath}"
+                                            class=" mt-1 stretched-link btn border border-dark btn-btn-white btn-sm pt-0">
+                                            <i class="fas fa-file fa-sm"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+                    </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</html>
