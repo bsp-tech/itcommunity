@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" th:href="@{/css/main.css}"> -->
+    <link rel="stylesheet" href="../../static/css/main.css">
+
+    <script th:src="@{/js/pnglib.js}"></script>
+    <script th:src="@{/js/identicon.js}"></script>
+</head>
+<style>
+    body {
+        background-image: url("banner_bggray.png");
+        background-repeat: no-repeat;
+        background-size: repeat;
+    }
+
+    .bg {
+        background-color: #4117bc;
+    }
+</style>
+
+<body>
+    <nav class="navbar bg navbar-expand-lg navbar-dark ">
+
+        <a class="navbar-brand logo ml-1" href="/">IT COMMUNITY</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="ml-2  my-2  nav-item active">
+                    <a style="font-size: 18px;" href="/employees"
+                        class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">
+                        IT Employees
+                    </a>
+                </li>
+                <li class="ml-2  my-2  nav-item active">
+                    <a style="font-size: 18px;" href="/projects"
+                        class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">
+                        Join Open Source Projects</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+
+                <li class="ml-2 my-2 nav-item active dropdown">
+                    <span class="text-white btn" style="cursor: pointer;" data-toggle="dropdown" href="#">(Kamil
+                        Asgarov)</span>
+
+                    <div class="dropdown-menu mt-2">
+                        <a class="dropdown-item" href="/user/edit">Edit user profile</a>
+                        <a class="dropdown-item" href="/employees/profile/edit">Edit employee profile</a>
+                        <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-12 mx-auto">
+                <div class="card mt-2 p-3">
+                    <div class="d-flex justify-content-between">
+                        <div
+                            class="d-flex flex-md-row flex-column justify-content-center align-items-center align-items-md-start   ">
+                            <img class="rounded-lg" width="196px" height="196px"
+                                src="https://i.udemycdn.com/user/200_H/38799964_191b.jpg" alt="sds">
+                            <div class="d-flex  flex-column ml-3">
+                                <div class="card_name mt-1 text-primary"><h5><strong>Sarkhan Rasullu</strong></h5> </div>
+                                <div class="mt-1">Java Software Developer</div>
+                                <div>
+                                        <h4 class="my-2 text-center">About</h4>
+                                    <p>
+                                        Proven ability to build high performance, secure, data driven applications with
+                                        quality code. Solid knowledge of concepts and procedures of common software
+                                        development methodologies. Has experience with the Cloud and monitoring
+                                        processes as well as DevOps development in Windows Mac and Linux systems.
+                                        Managed small groups of software engineers during special projects.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4 class="my-2 text-center">Skills</h4>
+                                    <div class="mb-3 ">
+
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <span>Java</span>
+                                                    <div class="progress my-2">
+                                                        <div class="progress-bar bg-dark" aria-valuenow="80"
+                                                            style="width:80%">80%</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <span>Spring Boot</span>
+                                                    <div class="progress my-2">
+                                                        <div class="progress-bar bg-dark" aria-valuenow="60"
+                                                            style="width:60%">60%</div>
+                                                    </div>
+                                                </div>
+                                                <div class=" col-md-4">
+                                                    <span>MySQL</span>
+                                                    <div class="progress my-2">
+                                                        <div class="progress-bar bg-dark" aria-valuenow="70"
+                                                            style="width:70%">70%</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <span>Spring Security</span>
+                                                    <div class="progress my-2">
+                                                        <div class="progress-bar bg-dark" aria-valuenow="50"
+                                                            style="width:50%">50%</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <span>ReactJS</span>
+                                                    <div class="progress my-2">
+                                                        <div class="progress-bar bg-dark" aria-valuenow="70"
+                                                            style="width:70%">70%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="container">
+                                        <div class="social-media ">
+                                                <a target="_blank" th:href="${p.githubPath}"
+                                                    class="mt-1 mr-2 text-decoration-none   pt-0">
+                                                    <img style="width:35px;" src="../../static/img/project/icons8-github-80.png"">
+                                                    Github
+                                                </a>
+                                                <a target="_blank" th:href="${p.linkedinPath}"
+                                                    class="mt-1 mr-2 text-decoration-none pt-0">
+                                                    <img style="width:35px;" src="../../static/img/project/icons8-linkedin-64.png" alt="">
+                                                    Linkedin
+                                                </a>
+                                                <a target="_blank" th:href="${p.cvPath}"
+                                                    class=" mt-1 text-decoration-none pt-0">
+                                                   <img style="width:35px;" src="../../static/img/project/icons8-cv-80.png" alt="">
+                                                    CV
+                                                </a>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</html>
