@@ -7,7 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/employeeform.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/employeeform.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -214,7 +216,7 @@
       <workItem from="1569240966942" duration="2590000" />
       <workItem from="1569260040166" duration="6518000" />
       <workItem from="1569337869301" duration="1344000" />
-      <workItem from="1570046812731" duration="3544000" />
+      <workItem from="1570046812731" duration="4203000" />
     </task>
     <servers />
   </component>

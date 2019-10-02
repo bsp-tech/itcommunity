@@ -207,7 +207,9 @@
             <div class="form-group">
                 <label for="exampleFormControlTextarea1"><Strong style="font-size: 15px;">About</Strong></label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="${employeeProfile.about}"></textarea>
+                <label th:if="${#fields.hasErrors('about')}" class="text-danger w-100" th:errors="${employeeProfile.about}">Error</label>
             </div>
+
         </div>
     </div>
 
