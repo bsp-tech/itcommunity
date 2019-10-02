@@ -120,6 +120,8 @@ public class EmployeeController {
             System.out.println(result.getAllErrors());
             System.out.println("fields="+ Arrays.asList(result.getSuppressedFields()));
             ModelAndView mv = new ModelAndView();
+            mv.addObject("listLanguages",languageServiceInter.findAll());
+            mv.addObject("listSkills",skillDao.findByEnabled(true));
             mv.setViewName("employee/registration");
             return mv;
         }
