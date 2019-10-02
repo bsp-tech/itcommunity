@@ -55,8 +55,6 @@ public class EmployeeProfile implements Serializable {
     @Size(min=5, message = "use your real speciality")
     @Column(name = "speciality")
     private String speciality;
-    @NotNull(message = "required")
-    @Min(value = 1, message = "oh, no, really?")
     @Column(name = "experience")
     private Integer experience;
     @Basic(optional = false)
