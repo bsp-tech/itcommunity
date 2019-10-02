@@ -37,7 +37,7 @@ public class EmployeeProfile implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDateTime;
     @Basic(optional = false)
-    @Size(max = 255)
+    @Size(max = 1000)
     @Pattern(regexp="^((http|https):\\/\\/)?+[a-zA-Z0-9-]+$", message="Invalid cv path")
     @Column(name = "cv_path")
     private String cvPath;
