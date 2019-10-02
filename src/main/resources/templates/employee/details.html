@@ -60,7 +60,10 @@
                         <div
                             class="d-flex flex-md-row flex-column justify-content-center align-items-center align-items-md-start row col-md-12">
                             <img class="rounded-lg" width="196px" height="196px"
-                                src="https://i.udemycdn.com/user/200_H/38799964_191b.jpg" alt="sds">
+                                 th:id="${'profile-image-'+p.userId.email}"/>
+                            <script th:inline="javascript">
+                                generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
+                            </script>
                             <div class="d-flex  flex-column ml-3 col-md-10 col-sm-10 col-10">
                                 <div class="card_name mt-1 text-primary">
                                     <h5>
