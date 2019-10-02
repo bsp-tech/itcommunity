@@ -29,7 +29,6 @@ public class EmployeeProfile implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull(message = "required")
     @Column(name = "approved")
     private Boolean approved;
     @Basic(optional = false)

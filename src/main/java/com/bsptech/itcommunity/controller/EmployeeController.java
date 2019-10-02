@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -113,8 +114,11 @@ public class EmployeeController {
                 @ModelAttribute @Valid
                 EmployeeProfile employeeProfile,
                 BindingResult result) {
-
+        System.out.println("I am here");
         if(result.hasErrors()) {
+            System.out.println("has errors");
+            System.out.println(result.getAllErrors());
+            System.out.println("fields="+ Arrays.asList(result.getSuppressedFields()));
             ModelAndView mv = new ModelAndView();
             mv.setViewName("employee/registration");
             return mv;
