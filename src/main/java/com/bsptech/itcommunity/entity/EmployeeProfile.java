@@ -61,7 +61,7 @@ public class EmployeeProfile implements Serializable {
     private Integer experience;
     @Basic(optional = false)
     @Column(name = "about")
-    @NotNull(message = "required")
+    @Size(min=3, message = "tell us something about yourself")
 //    @Size(min=300, max = 500, message = "use at least 300, maximum 500 symbols")
     private String about;
     @Basic(optional = false)
