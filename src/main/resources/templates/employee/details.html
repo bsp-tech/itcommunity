@@ -58,13 +58,15 @@
                 <div class="card mt-2 p-3">
                     <div class="d-flex justify-content-between">
                         <div
-                            class="d-flex flex-md-row flex-column justify-content-center align-items-center align-items-md-start row col-md-12">
-                            <img class="rounded-lg" width="196px" height="196px"
+                            class="d-flex flex-md-row flex-column justify-content-center align-items-center align-items-md-start   ">
+                            <div>
+                                <img class="rounded-lg" width="196px" height="196px"
                                  th:id="${'profile-image-'+p.userId.email}"/>
+                            </div>
                             <script th:inline="javascript">
                                 generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
                             </script>
-                            <div class="d-flex  flex-column ml-3 col-md-10 col-sm-10 col-10">
+                            <div class="d-flex flex-column ml-3">
                                 <div class="card_name mt-1 text-primary">
                                     <h5>
                                         <strong th:text="${p.userId.name+' '+p.userId.surname}">Sarkhan Rasullu</strong>
@@ -86,7 +88,7 @@
                                         </span>
                                 </div>
                                 <div>
-                                        <h4 class="my-2">About</h4>
+                                        <h4 class="my-2 text-center">About</h4>
                                     <p th:text="${p.about}">
                                         Proven ability to build high performance, secure, data driven applications with
                                         quality code. Solid knowledge of concepts and procedures of common software
