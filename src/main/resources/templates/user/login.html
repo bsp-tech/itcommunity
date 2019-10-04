@@ -1,50 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
-
-    <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/5d864663c22bdd393bb70ad0/default';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
-    <!-- Hotjar Tracking Code for http://itcommunity.herokuapp.com -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:1495447,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
-    <style type="text/css">
-        body {
-            background-image: url("/img/user/banner_bg2.webp");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
-</head>
-
+<head th:replace="fragments/headhead :: headhead"></head>
+<style type="text/css">
+    body {
+        background-image: url("/img/user/banner_bg2.webp");
+        background-repeat: no-repeat;
+        background-size: 104%;
+    }
+</style>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
     <!-- ParticleJs-Body -->

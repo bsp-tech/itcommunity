@@ -8,7 +8,20 @@
   <component name="ChangeListManager">
     <list default="true" id="a572aab2-85f4-48a9-8735-628b38423616" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bsptech/itcommunity/entity/EmployeeProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/itcommunity.iml" beforeDir="false" afterPath="$PROJECT_DIR$/itcommunity.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/index2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/employee/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/employee/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/400.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/400.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/headhead.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/headhead.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/registration.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +31,9 @@
   </component>
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -96,33 +112,33 @@
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.bsptech.itcommunity" />
-      <recent name="com.bsptech.itcommunity.controller" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/templates/error" />
-      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
-      <recent name="$PROJECT_DIR$/src/main/resources/templates/fragments" />
-      <recent name="$PROJECT_DIR$/src/main/resources/templates/user" />
-      <recent name="D:\Workspace\itcommunity\src\main\resources\templates\project" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.bsptech.itcommunity.dao" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/static/img/user" />
       <recent name="$PROJECT_DIR$/src/main/resources/templates/" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/img" />
       <recent name="$PROJECT_DIR$/src/main/resources/templates/error" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.bsptech.itcommunity" />
+      <recent name="com.bsptech.itcommunity.controller" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bsptech.itcommunity.dao" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/fragments" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/error" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/user" />
+      <recent name="D:\Workspace\itcommunity\src\main\resources\templates\project" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -215,7 +231,8 @@
       <workItem from="1569240966942" duration="2590000" />
       <workItem from="1569260040166" duration="6518000" />
       <workItem from="1569337869301" duration="1344000" />
-      <workItem from="1570046812731" duration="6191000" />
+      <workItem from="1570046812731" duration="6477000" />
+      <workItem from="1570222077081" duration="1873000" />
     </task>
     <servers />
   </component>
