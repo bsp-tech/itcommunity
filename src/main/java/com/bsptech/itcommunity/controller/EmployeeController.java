@@ -129,5 +129,9 @@ public class EmployeeController {
         return new ModelAndView("redirect:/");
     }
 
+    @RequestMapping(path = "/about")
+    public String about() {
+        return "about";
+    }
 
 }
