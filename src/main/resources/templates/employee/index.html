@@ -227,8 +227,10 @@
                 <div class="card mt-2 p-3" th:each="p : ${employeeList}">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex align-items-center">
+                         <div>
                             <img class="rounded-lg" width="96px" height="96px"
-                                 th:id="${'profile-image-'+p.userId.email}"/>
+                            th:id="${'profile-image-'+p.userId.email}"/>
+                         </div>
                             <script th:inline="javascript">
                                 generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
                             </script>
@@ -256,7 +258,7 @@
                             </div>
                         </div>
                         <div>
-                            <div class="social-media ">
+                            <div class="social-media ml-1">
                                 <a target="_blank" th:href="${p.githubPath}"
                                     class="mt-1 stretched-link border border-dark btn btn-white btn-sm pt-0">
                                     <i class="fab fa-github fa-sm social_icon align-middle"></i>
