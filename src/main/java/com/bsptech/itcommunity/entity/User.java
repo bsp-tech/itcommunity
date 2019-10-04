@@ -53,9 +53,9 @@ public class User implements Serializable {
     private String surname;
 
     @Basic(optional = false)
-    @Size(min = 8, max = 255, message = "use minimum 8 symbols")
-    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}|$",
-            message="Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+    @Size(min = 5, max = 255, message = "use minimum 5 symbols")
+    //@Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}|$",
+            //message="Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
     @Column(name = "password")
     private String password;
 
