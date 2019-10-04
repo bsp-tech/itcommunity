@@ -13,8 +13,8 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    @NotNull(message = "you must be at least 13 years old")
-    @Min(value = 13, message = "You must be at least 13 years old")
+    @NotNull(message = "If you are younger than 13 years old, please contact us")
+    @Min(value = 13, message = "If you are younger than 13 years old, please contact us")
     private Integer age;
     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     private String email;
