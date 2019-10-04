@@ -25,8 +25,9 @@ public class User implements Serializable {
     private String phone;
     private Gender genderId;
 
-    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}|$",
-            message="Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+//    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}|$",
+//            message="Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+    @Size(min = 5,message = "Use minimum 5 symbols")
     private String password;
 
     public String getPhone() {
