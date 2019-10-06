@@ -120,8 +120,8 @@
                 <!-- Repeater Items -->
                 <div data-group-language>
                     <div class="items" data-group-element  th:each="empLanguage, stat : *{employeeProfileLanguageList}">
-                        <div class="item-content mt-2 d-flex" >
-                            <div class="form-group col-lg-8 p-0 pr-2">
+                        <div class="item-content mt-2 d-flex flex-wrap" >
+                            <div class="form-group col-lg-7 p-0 pr-2">
                                 <select th:name="|employeeProfileLanguageList[${stat.index}].languageId.id|"
                                         class="form-control">
                                     <option value="0">Languages</option>
@@ -132,7 +132,7 @@
                                             th:selected="${language.id == empLanguage.languageId.id}"></option>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-3 p-0 pr-2">
+                            <div class="form-group col-lg-4 p-0 pr-2">
                                 <select th:name="|employeeProfileLanguageList[${stat.index}].level|" class="form-control" >
                                     <option value="0">Level</option>
                                     <option th:each="i: ${#numbers.sequence(1, 10)}"
@@ -143,9 +143,9 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-4 p-0">
+                            <div class="form-group col-lg-1 p-0">
                                 <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
-                                    <i class="fa fa-remove"></i>
+                                    <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                 <div class="clearfix"></div>
                 <div data-group-skill>
                     <div class="items" data-group-element th:each="empSkill, stat : *{employeeProfileSkillList}">
-                        <div class="item-content mt-2  d-flex" >
+                        <div class="item-content mt-2  d-flex flex-wrap" >
                             <div class="form-group col-lg-4 p-0 pr-2">
                                 <select th:name="|employeeProfileSkillList[${stat.index}].skillId.id|"
                                         class="form-control">
@@ -192,9 +192,9 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-2 p-0">
+                            <div class="form-group col-lg-1 p-0">
                                 <button type="button" class="btn btn-danger repeater-remove-btn" onclick="remove(this)">
-                                    <i class="fa fa-remove"></i>
+                                    <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
                         </div>
