@@ -58,7 +58,7 @@ body {
     }
 }
 
-error-content{
+.error-content{
         margin-top: 100px;
         min-height: 418px;
         max-height: 400px;
