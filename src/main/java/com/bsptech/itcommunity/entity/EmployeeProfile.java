@@ -273,14 +273,27 @@ public class EmployeeProfile implements Serializable {
 
 
 
-	public boolean isFilledAnyField(){
-        boolean result = userId!=null &&(
-                        StringUtils.isNoneBlank(userId.getName())||
-                        StringUtils.isNoneBlank(userId.getSurname())||
-                        StringUtils.isNoneBlank(userId.getEmail())||
-                        StringUtils.isNoneBlank(userId.getPhone()))||
-                (employeeProfileLanguageList!=null && employeeProfileLanguageList.size()>0)||
-                (employeeProfileSkillList!=null && employeeProfileSkillList.size()>0);
+    public boolean isFilledAnyField() {
+        boolean isAnyLanguageLevelSelected = false;
+        for (EmployeeProfileLanguage em : employeeProfileLanguageList) {
+            if (em.getLevel() > 0) {
+                isAnyLanguageLevelSelected = true;
+            }
+        }
+        boolean isAnySkillLevelSelected = false;
+        for (EmployeeProfileSkill em : employeeProfileSkillList) {
+            if (em.getLevel() > 0) {
+                isAnySkillLevelSelected = true;
+            }
+        }
+
+        boolean result = userId != null && (
+                StringUtils.isNoneBlank(userId.getName()) ||
+                        StringUtils.isNoneBlank(userId.getSurname()) ||
+                        StringUtils.isNoneBlank(userId.getEmail()) ||
+                        StringUtils.isNoneBlank(userId.getPhone())) ||
+                isAnyLanguageLevelSelected ||
+                isAnySkillLevelSelected;
         return result;
     }
 }
