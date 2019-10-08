@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * @author sarkhanrasullu
  */
 @Entity
@@ -36,12 +35,12 @@ public class EmployeeProfile implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date approvedDateTime;
     @Basic(optional = false)
-    @Size(min=1, max = 1000, message = "required")
+    @Size(min = 1, max = 1000, message = "required")
     @NotNull(message = "required")
 //    @Pattern(regexp="^((http|https):\\/\\/)?+[a-zA-Z0-9-]+$", message="Invalid cv path")
     @Column(name = "cv_path")
     private String cvPath;
-    @Size(min=1, max = 1000, message = "required")
+    @Size(min = 1, max = 1000, message = "required")
 //    @Pattern(regexp="^$|((http|https):\\/\\/)?+(github.com\\/)+[a-zA-Z0-9-]+$", message="invalid github account")
     @Column(name = "github_path")
     @NotNull(message = "required")
@@ -50,17 +49,17 @@ public class EmployeeProfile implements Serializable {
 //    @Pattern(regexp="^$|((http|https):\\/\\/)?+(www.linkedin.com\\/in\\/)+[a-zA-Z0-9-]{5,30}+$", message="Invalid Linkedin account")
     @Column(name = "linkedin_path")
     @NotNull(message = "required")
-    @Size(min=1, max = 1000, message = "required")
+    @Size(min = 1, max = 1000, message = "required")
     private String linkedinPath;
     @Basic(optional = false)
-    @Size(min=5, message = "use your real speciality")
+    @Size(min = 5, message = "use your real speciality")
     @Column(name = "speciality")
     private String speciality;
     @Column(name = "experience")
     private Integer experience;
     @Basic(optional = false)
     @Column(name = "about")
-    @Size(min=3, message = "tell us something about yourself")
+    @Size(min = 3, message = "tell us something about yourself")
 //    @Size(min=300, max = 500, message = "use at least 300, maximum 500 symbols")
     private String about;
     @Basic(optional = false)
@@ -82,11 +81,11 @@ public class EmployeeProfile implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User userId;
-    @OneToMany(mappedBy = "employeeProfileId", fetch = FetchType.LAZY,cascade = CascadeType.ALL,  orphanRemoval = true)
+    @OneToMany(mappedBy = "employeeProfileId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmployeeProfileSkill> employeeProfileSkillList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId", fetch = FetchType.LAZY)
     private List<EmployeeProject> employeeProjectList;
-    @OneToMany(mappedBy = "employeeProfileId", fetch = FetchType.LAZY,cascade = CascadeType.ALL,  orphanRemoval = true)
+    @OneToMany(mappedBy = "employeeProfileId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmployeeProfileLanguage> employeeProfileLanguageList;
 
     public EmployeeProfile() {
@@ -271,29 +270,33 @@ public class EmployeeProfile implements Serializable {
     }
 
 
-
-
     public boolean isFilledAnyField() {
         boolean isAnyLanguageLevelSelected = false;
-        for (EmployeeProfileLanguage em : employeeProfileLanguageList) {
-            if (em.getLevel() > 0) {
-                isAnyLanguageLevelSelected = true;
-            }
-        }
-        boolean isAnySkillLevelSelected = false;
-        for (EmployeeProfileSkill em : employeeProfileSkillList) {
-            if (em.getLevel() > 0) {
-                isAnySkillLevelSelected = true;
-            }
-        }
 
+        if (employeeProfileLanguageList != null) {
+            for (EmployeeProfileLanguage em : employeeProfileLanguageList) {
+                if (em.getLevel() > 0) {
+                    isAnyLanguageLevelSelected = true;
+                }
+            }
+        }boolean isAnySkillLevelSelected = false;
+        if (employeeProfileSkillList != null) {
+
+            for (EmployeeProfileSkill em : employeeProfileSkillList) {
+                if (em.getLevel() > 0) {
+                    isAnySkillLevelSelected = true;
+                }
+            }
+        }
         boolean result = userId != null && (
                 StringUtils.isNoneBlank(userId.getName()) ||
                         StringUtils.isNoneBlank(userId.getSurname()) ||
                         StringUtils.isNoneBlank(userId.getEmail()) ||
                         StringUtils.isNoneBlank(userId.getPhone())) ||
-                isAnyLanguageLevelSelected ||
-                isAnySkillLevelSelected;
+                (employeeProfileLanguageList != null && employeeProfileLanguageList.size() > 0 && isAnyLanguageLevelSelected) ||
+                (employeeProfileSkillList != null && employeeProfileSkillList.size() > 0&& isAnySkillLevelSelected);
+
+
         return result;
     }
 }
