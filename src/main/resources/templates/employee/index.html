@@ -223,7 +223,7 @@
                 <ul class="pagination">
                     <th:block th:if="${employeeList.hasPrevious()}">
                         <li class="page-item">
-                            <button class="page-link" onclick="submitForm()" th:onclick="'javascript:setPageParameter('+${(currentPage-1)}+')'">Previous</button>
+                            <button class="page-link" th:onclick="'javascript:setPageParameter('+${(currentPage-1)}+');submitForm()'">Previous</button>
                         </li>
 
                     </th:block>
@@ -232,7 +232,7 @@
                     </th:block>
                     <th:block th:if="${employeeList.hasNext()}">
                         <li class="page-item">
-                            <button class="page-link" th:onclick="'javascript:setPageParameter('+${(currentPage+1)}+')'">Next</button>
+                            <button class="page-link" th:onclick="'javascript:setPageParameter('+${(currentPage+1)}+');submitForm()'">Next</button>
                         </li>
                     </th:block>
                 </ul>
