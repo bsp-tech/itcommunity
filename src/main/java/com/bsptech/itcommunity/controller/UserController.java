@@ -58,7 +58,7 @@ public class UserController {
     public ModelAndView register(@ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
                                  ModelAndView modelAndView) {
         if(securityServiceInter.getLoggedInUserDetails()!=null){
-            return employeeController.index(employeeProfile, modelAndView);
+            return employeeController.index(employeeProfile,modelAndView);
         }else{
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("index");

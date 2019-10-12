@@ -15,52 +15,20 @@
 </style>
 
 <body>
-<!--    <nav class="navbar bg navbar-expand-lg navbar-dark ">-->
+<script th:inline="javascript">
+    function submitForm() {
+       debugger
+        document.getElementById('searchForm').submit();
 
-<!--        <a class="navbar-brand logo ml-1" href="/">IT COMMUNITY</a>-->
-<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
-<!--            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
+    }
 
-<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--            <ul class="navbar-nav mr-auto">-->
-<!--                <li class="ml-2  my-2  nav-item active">-->
-<!--                    <a style="font-size: 18px;" href="/employees"-->
-<!--                        class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">-->
-<!--                        IT Employees-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li class="ml-2  my-2  nav-item active">-->
-<!--                    <a style="font-size: 18px;" href="/projects"-->
-<!--                        class="btn  fs-15  text-white bg-transparent btn-lg stretched-link">-->
-<!--                        Join Open Source Projects</a>-->
-<!--                </li>-->
+    function setPageParameter(id) {
+        document.getElementById("page").value=id;
 
-<!--            </ul>-->
-<!--            <ul class="navbar-nav ml-auto nav-flex-icons">-->
-
-<!--            </ul>-->
-<!--            <ul class="navbar-nav nav-flex-icons">-->
-
-<!--                <li class="ml-2 my-2 nav-item active dropdown">-->
-<!--                    <span class="text-white btn" style="cursor: pointer;" data-toggle="dropdown" href="#">(Kamil-->
-<!--                        Asgarov)</span>-->
-
-<!--                    <div class="dropdown-menu mt-2">-->
-<!--                        <a class="dropdown-item" href="/user/edit">Edit user profile</a>-->
-<!--                        <a class="dropdown-item" href="/employees/profile/edit">Edit employee profile</a>-->
-<!--                        <a class="dropdown-item" href="/logout">Log out</a>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--            </ul>-->
-
-<!--        </div>-->
-
-<!--    </nav>-->
-
+    }
+</script>
 <div th:replace="fragments/navbar :: navbar"></div>
-<form th:object="${employeeProfile}" method="POST">
+<form th:object="${employeeProfile}" method="GET" id="searchForm">
     <div class="container col-md-12 mt-2">
         <div class="card bg-transparent">
             <div class="row my-2 mx-0">
@@ -76,6 +44,7 @@
                 <div class="col-md-2">
                     <input type="text" class="form-control mt-1" th:field="*{userId.phone}" placeholder="Phone">
                 </div>
+                <input type="hidden" name="page" id="page" value="0" th:field="*{page}">
                 <div class="col-md-4">
                     <button class="btn bg_icon collapsed text-light mt-1" type="button" data-toggle="collapse"
                             href="#collapseOne" aria-expanded="false">
@@ -248,17 +217,29 @@
             </div>
         </div>
     </div>
-    <div class="col col-md-4 mx-auto mt-2">
-        <nav aria-label="Page navigation example" class="mx-auto">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
-    </div>
+    <th:block th:if="${employeeList.getTotalPages()>1}">
+        <div class="col col-md-4 mx-auto mt-2">
+            <nav aria-label="Page navigation example" class="mx-auto">
+                <ul class="pagination">
+                    <th:block th:if="${employeeList.hasPrevious()}">
+                        <li class="page-item">
+                            <button class="page-link" onclick="submitForm()" th:onclick="'javascript:setPageParameter('+${(currentPage-1)}+')'">Previous</button>
+                        </li>
+
+                    </th:block>
+                    <th:block th:each="page:${#numbers.sequence(0,employeeList.getTotalPages()-1)}">
+                        <button class="page-link" th:onclick="'javascript:setPageParameter('+${page}+');submitForm()'" th:text="${page+1}">Next</button>
+                    </th:block>
+                    <th:block th:if="${employeeList.hasNext()}">
+                        <li class="page-item">
+                            <button class="page-link" th:onclick="'javascript:setPageParameter('+${(currentPage+1)}+')'">Next</button>
+                        </li>
+                    </th:block>
+                </ul>
+            </nav>
+        </div>
+
+    </th:block>
 </div>
 
 

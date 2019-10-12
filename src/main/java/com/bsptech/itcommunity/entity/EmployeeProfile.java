@@ -87,6 +87,15 @@ public class EmployeeProfile implements Serializable {
     private List<EmployeeProject> employeeProjectList;
     @OneToMany(mappedBy = "employeeProfileId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmployeeProfileLanguage> employeeProfileLanguageList;
+    private Integer page;
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
 
     public EmployeeProfile() {
     }

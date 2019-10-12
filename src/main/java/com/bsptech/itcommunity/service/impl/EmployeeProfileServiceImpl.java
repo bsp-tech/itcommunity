@@ -9,8 +9,6 @@ import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,12 +46,12 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     }
 
     @Override
-    public List<EmployeeProfile> findAll() {
-        return (List<EmployeeProfile>) employeeProfileDataInter.findAll();
+    public Page<EmployeeProfile> findAll(Pageable pageable) {
+        return employeeProfileDataInter.findAll(pageable);
     }
 
     @Override
-    public List<EmployeeProfile> search(EmployeeProfile e, Pageable pageable) {
+    public Page<EmployeeProfile> search(EmployeeProfile e, Pageable pageable) {
 
         List<Language> languages = new ArrayList<>();
         List<Integer> langLevels = new ArrayList<>();
@@ -84,7 +82,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
             }
         }
         if (e.isFilledAnyField()) {
-            List<EmployeeProfile> list = employeeProfileDataInter.findDistinctByUserIdNameLikeOrUserIdSurnameLikeOrUserIdPhoneLikeOrUserIdEmailLikeOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(
+            Page<EmployeeProfile> list = employeeProfileDataInter.findDistinctByUserIdNameLikeOrUserIdSurnameLikeOrUserIdPhoneLikeOrUserIdEmailLikeOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(
                     e.getUserId().getName(),
                     e.getUserId().getSurname(),
                     e.getUserId().getPhone(),
@@ -92,13 +90,12 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
                     languages,
                     langLevels,
                     skills,
-                    skillLevels);
+                    skillLevels, pageable);
 
             return list;
         } else {
-            List<EmployeeProfile> list =(List<EmployeeProfile>) employeeProfileDataInter.findAll();
-            Page<EmployeeProfile> empList = new PageImpl<EmployeeProfile>(list, PageRequest.of(0, 1), list.size());
-            return empList.getContent();
+            Page<EmployeeProfile> list = employeeProfileDataInter.findAll(pageable);
+            return list;
         }
     }
 
