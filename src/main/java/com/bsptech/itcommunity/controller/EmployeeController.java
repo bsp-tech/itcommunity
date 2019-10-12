@@ -10,12 +10,18 @@ import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
@@ -47,14 +53,15 @@ public class EmployeeController {
             @ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
             ModelAndView modelAndView
     ) {
-        List<EmployeeProfile> list = employeeProfileServiceInter.search(employeeProfile);
+        Integer currentPage=employeeProfile.getPage()!=null? employeeProfile.getPage():0;
+        Page<EmployeeProfile> list = employeeProfileServiceInter.search(employeeProfile,new PageRequest(currentPage,10));
         List<Language> languages = languageServiceInter.findAll();
         List<Skill> skills = skillDao.findAll();
-
         modelAndView.addObject("languages", languages);
         modelAndView.addObject("skills", skills);
         modelAndView.addObject("employeeList", list);
-
+        modelAndView.addObject("currentPage",currentPage);
+        modelAndView.addObject("empService",employeeProfileServiceInter);
         modelAndView.setViewName("employee/index");
 
         return modelAndView;

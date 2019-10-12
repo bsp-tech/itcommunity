@@ -8,6 +8,8 @@ import com.bsptech.itcommunity.entity.*;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,12 +46,12 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
     }
 
     @Override
-    public List<EmployeeProfile> findAll() {
-        return (List<EmployeeProfile>) employeeProfileDataInter.findAll();
+    public Page<EmployeeProfile> findAll(Pageable pageable) {
+        return employeeProfileDataInter.findAll(pageable);
     }
 
     @Override
-    public List<EmployeeProfile> search(EmployeeProfile e) {
+    public Page<EmployeeProfile> search(EmployeeProfile e, Pageable pageable) {
 
         List<Language> languages = new ArrayList<>();
         List<Integer> langLevels = new ArrayList<>();
@@ -80,17 +82,20 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
             }
         }
         if (e.isFilledAnyField()) {
-            return employeeProfileDataInter.findDistinctByUserIdNameLikeOrUserIdSurnameLikeOrUserIdPhoneLikeOrUserIdEmailLikeOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(
-                    e.getUserId().getName() ,
+            Page<EmployeeProfile> list = employeeProfileDataInter.findDistinctByUserIdNameLikeOrUserIdSurnameLikeOrUserIdPhoneLikeOrUserIdEmailLikeOrEmployeeProfileLanguageList_LanguageIdInAndEmployeeProfileLanguageList_LevelInOrEmployeeProfileSkillList_SkillIdInAndEmployeeProfileSkillList_LevelIn(
+                    e.getUserId().getName(),
                     e.getUserId().getSurname(),
                     e.getUserId().getPhone(),
                     e.getUserId().getEmail(),
                     languages,
                     langLevels,
                     skills,
-                    skillLevels);
+                    skillLevels, pageable);
+
+            return list;
         } else {
-            return (List<EmployeeProfile>) employeeProfileDataInter.findAll();
+            Page<EmployeeProfile> list = employeeProfileDataInter.findAll(pageable);
+            return list;
         }
     }
 
@@ -141,7 +146,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
                     skill_ = skillDao.getOne(id_);
                 } else {
                     String name_ = epSkill.getSkillId().getName();
-                    if(name_==null || name_.trim().isEmpty()) continue;
+                    if (name_ == null || name_.trim().isEmpty()) continue;
 
                     skill_.setName(name_.trim());
                     skill_.setEnabled(false);
@@ -155,12 +160,12 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
             }
         }
         empProfile.getEmployeeProfileLanguageList().clear();
-        if(epLanguageList!=null)
-        empProfile.getEmployeeProfileLanguageList().addAll(new ArrayList<>(empProfileLanguageHash));
+        if (epLanguageList != null)
+            empProfile.getEmployeeProfileLanguageList().addAll(new ArrayList<>(empProfileLanguageHash));
 
         empProfile.getEmployeeProfileSkillList().clear();
-        if(epSkillList!=null)
-        empProfile.getEmployeeProfileSkillList().addAll(new ArrayList<>(epSkillHashSet));
+        if (epSkillList != null)
+            empProfile.getEmployeeProfileSkillList().addAll(new ArrayList<>(epSkillHashSet));
         return employeeProfileDataInter.save(empProfile);
     }
 
