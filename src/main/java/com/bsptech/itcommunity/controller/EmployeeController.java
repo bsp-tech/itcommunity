@@ -10,6 +10,7 @@ import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +48,8 @@ public class EmployeeController {
             @ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
             ModelAndView modelAndView
     ) {
-        List<EmployeeProfile> list = employeeProfileServiceInter.search(employeeProfile);
+        Pageable pageable=null;
+        List<EmployeeProfile> list = employeeProfileServiceInter.search(employeeProfile,pageable);
         List<Language> languages = languageServiceInter.findAll();
         List<Skill> skills = skillDao.findAll();
 

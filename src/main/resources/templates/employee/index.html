@@ -59,110 +59,78 @@
 
 <!--    </nav>-->
 
-    <div th:replace="fragments/navbar :: navbar"></div>
-    <form th:object="${employeeProfile}" method="POST">
-            <div class="container col-md-12 mt-2">
-                <div class="card bg-transparent">
-                    <div class="row my-2 mx-0">
-                        <div class="col-md-2">
-                            <input type="text" class="form-control mt-1" th:field="*{userId.name}" placeholder="Name">
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control mt-1" th:field="*{userId.surname}" placeholder="Surname">
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control mt-1" th:field="*{userId.email}" placeholder="Email">
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control mt-1" th:field="*{userId.phone}" placeholder="Phone">
-                        </div>
-                        <div class="col-md-4">
-                            <button class="btn bg_icon collapsed text-light mt-1" type="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
-                                Languages
-                            </button>
-                            <button class="btn bg_icon collapsed text-light mt-1" type="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">
-                                Skills
-                            </button>
-                            <button class="btn bg_icon mx-auto text-light mt-1 float-right">
-                                Search
-                            </button>
-                        </div>
+<div th:replace="fragments/navbar :: navbar"></div>
+<form th:object="${employeeProfile}" method="POST">
+    <div class="container col-md-12 mt-2">
+        <div class="card bg-transparent">
+            <div class="row my-2 mx-0">
+                <div class="col-md-2">
+                    <input type="text" class="form-control mt-1" th:field="*{userId.name}" placeholder="Name">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control mt-1" th:field="*{userId.surname}" placeholder="Surname">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control mt-1" th:field="*{userId.email}" placeholder="Email">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control mt-1" th:field="*{userId.phone}" placeholder="Phone">
+                </div>
+                <div class="col-md-4">
+                    <button class="btn bg_icon collapsed text-light mt-1" type="button" data-toggle="collapse"
+                            href="#collapseOne" aria-expanded="false">
+                        Languages
+                    </button>
+                    <button class="btn bg_icon collapsed text-light mt-1" type="button" data-toggle="collapse"
+                            href="#collapseTwo" aria-expanded="false">
+                        Skills
+                    </button>
+                    <button class="btn bg_icon mx-auto text-light mt-1 float-right">
+                        Search
+                    </button>
+                </div>
 
 
-                        <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
-<!--                            <div class="d-flex">-->
-<!--                                <p>-->
-<!--                                    <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false">-->
-<!--                                        Languages-->
-<!--                                    </button>-->
-<!--                                </p>-->
-<!--                                <p class="pl-3">-->
-<!--                                    <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">-->
-<!--                                        Skills-->
-<!--                                    </button>-->
-<!--                                </p>-->
-<!--                            </div>-->
+                <div id="accordion" class="w-100 pt-3 pl-3 pr-3">
+                    <!--                            <div class="d-flex">-->
+                    <!--                                <p>-->
+                    <!--                                    <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false">-->
+                    <!--                                        Languages-->
+                    <!--                                    </button>-->
+                    <!--                                </p>-->
+                    <!--                                <p class="pl-3">-->
+                    <!--                                    <button class="btn bg_icon collapsed text-light" type="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">-->
+                    <!--                                        Skills-->
+                    <!--                                    </button>-->
+                    <!--                                </p>-->
+                    <!--                            </div>-->
 
-                            <!--languages-->
-                            <div class="card mt-2 bg-light  border-0">
-                                <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
-                                    <div class="p-3">
+                    <!--languages-->
+                    <div class="card mt-2 bg-light  border-0">
+                        <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
+                            <div class="p-3">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4" th:each="language, stat : ${languages}">
                                         <div class="row">
-                                            <div class="col-md-4 mb-4" th:each="language, stat : ${languages}">
-                                                <div class="row">
-                                                    <div class="col-md-3 col-5 d-flex align-items-center">
-                                                        <div class="form-check mr-3">
-                                                            <label class="form-check-label" th:text="${language.name}">
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5 col-7 d-flex align-items-center">
-                                                        <div class="form-group mb-0">
-                                                            <input th:type="hidden" th:name="${'employeeProfileLanguageList['+stat.index+'].languageId.id'}" th:value="${language.id}">
-                                                            <select th:name="${'employeeProfileLanguageList['+stat.index+'].level'}"
-                                                                    class="form-control" >
-                                                                <option selected="" value="0">Level</option>
-                                                                <option th:each="i: ${#numbers.sequence(1, 10)}"
-                                                                        th:value="${i}"
-                                                                        th:text="${i}"
-                                                                >
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" th:text="${language.name}">
+                                                    </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--skills-->
-                            <div class="card mt-2 bg-light  border-0">
-                                <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
-                                    <div class="p-3">
-                                        <div class="row">
-                                            <div class="col-md-4 mb-4" th:each="skill, stat : ${skills}"
-                                                 >
-                                                <div class="row">
-                                                    <div class="col-md-3 col-5 d-flex align-items-center">
-                                                        <div class="form-check mr-3">
-                                                            <label class="form-check-label" th:text="${skill.name}">
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5 col-7 d-flex align-items-center">
-                                                        <div class="form-group mb-0">
-                                                            <input th:type="hidden" th:name="${'employeeProfileSkillList['+stat.index+'].skillId.id'}" th:value="${skill.id}">
-                                                            <select th:name="${'employeeProfileSkillList['+stat.index+'].level'}"
-                                                                    class="form-control" >
-                                                                <option selected="" value="0">Level</option>
-                                                                <option th:each="i: ${#numbers.sequence(1, 10)}"
-                                                                        th:value="${i}"
-                                                                        th:text="${i}"
-                                                                >
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <input th:type="hidden"
+                                                           th:name="${'employeeProfileLanguageList['+stat.index+'].languageId.id'}"
+                                                           th:value="${language.id}">
+                                                    <select th:name="${'employeeProfileLanguageList['+stat.index+'].level'}"
+                                                            class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                                                th:value="${i}"
+                                                                th:text="${i}"
+                                                        >
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,78 +139,130 @@
                             </div>
                         </div>
                     </div>
-<!--                    <div class="row">-->
-<!--                            <div class=" mx-auto my-2">-->
 
-<!--                                    <button class="btn bg_icon mx-auto ">-->
-<!--                                        <p class="my-0 mx-4 text-light">-->
-<!--                                            Axtar-->
-<!--                                        </p>-->
-<!--                                    </button>-->
-
-<!--                    </div>-->
+                    <!--skills-->
+                    <div class="card mt-2 bg-light  border-0">
+                        <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+                            <div class="p-3">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4" th:each="skill, stat : ${skills}"
+                                    >
+                                        <div class="row">
+                                            <div class="col-md-3 col-5 d-flex align-items-center">
+                                                <div class="form-check mr-3">
+                                                    <label class="form-check-label" th:text="${skill.name}">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 col-7 d-flex align-items-center">
+                                                <div class="form-group mb-0">
+                                                    <input th:type="hidden"
+                                                           th:name="${'employeeProfileSkillList['+stat.index+'].skillId.id'}"
+                                                           th:value="${skill.id}">
+                                                    <select th:name="${'employeeProfileSkillList['+stat.index+'].level'}"
+                                                            class="form-control">
+                                                        <option selected="" value="0">Level</option>
+                                                        <option th:each="i: ${#numbers.sequence(1, 10)}"
+                                                                th:value="${i}"
+                                                                th:text="${i}"
+                                                        >
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
-    <div class="container">
-        <div class="row">
-            <div class=" col-12 mx-auto">
-                <div class="card mt-2 p-3" th:each="p : ${employeeList}">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex align-items-center">
-                         <div>
+            <!--                    <div class="row">-->
+            <!--                            <div class=" mx-auto my-2">-->
+
+            <!--                                    <button class="btn bg_icon mx-auto ">-->
+            <!--                                        <p class="my-0 mx-4 text-light">-->
+            <!--                                            Axtar-->
+            <!--                                        </p>-->
+            <!--                                    </button>-->
+
+            <!--                    </div>-->
+        </div>
+    </div>
+    </div>
+</form>
+<div class="container">
+    <div class="row">
+        <div class=" col-12 mx-auto">
+            <div class="card mt-2 p-3" th:each="p : ${employeeList}">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div>
                             <img class="rounded-lg" width="96px" height="96px"
-                            th:id="${'profile-image-'+p.userId.email}"/>
-                         </div>
-                            <script th:inline="javascript">
-                                generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
-                            </script>
-                            <div class="d-flex  flex-column ml-3">
-                                <div class="card_name mt-1 text-primary">
-                                    <a th:href="${'/employees/'+p.id}" class="text-decoration-none">
-                                        <strong th:text="${p.userId.name+' '+p.userId.surname}">Sarkhan Rasullu</strong>
-                                    </a>
-                                </div>
-                                <div class="mt-1" th:text="${p.speciality}">Java Software Developer</div>
-                                <div class="mt-2 d-flex flex-wrap">
-                                        <span class="border border-success p-1 mt-1 mr-2" th:if="${p.isWorking.equals(1)}">
+                                 th:id="${'profile-image-'+p.userId.email}"/>
+                        </div>
+                        <script th:inline="javascript">
+                            generateIcon(/*[[${'profile-image-'+p.userId.email}]]*/)
+                        </script>
+                        <div class="d-flex  flex-column ml-3">
+                            <div class="card_name mt-1 text-primary">
+                                <a th:href="${'/employees/'+p.id}" class="text-decoration-none">
+                                    <strong th:text="${p.userId.name+' '+p.userId.surname}">Sarkhan Rasullu</strong>
+                                </a>
+                            </div>
+                            <div class="mt-1" th:text="${p.speciality}">Java Software Developer</div>
+                            <div class="mt-2 d-flex flex-wrap">
+                                        <span class="border border-success p-1 mt-1 mr-2"
+                                              th:if="${p.isWorking.equals(1)}">
                                             <strong class="text-success">Working</strong>
                                         </span>
-                                        <span class="border border-danger p-1 mt-1 mr-2" th:if="${!p.isWorking.equals(1)}">
-                                            <strong class="text-danger" >Not Working</strong>
+                                <span class="border border-danger p-1 mt-1 mr-2" th:if="${!p.isWorking.equals(1)}">
+                                            <strong class="text-danger">Not Working</strong>
                                         </span>
-                                        <span class="border border-success mt-1 p-1" th:if="${p.isLookingForWork.equals(1)}">
+                                <span class="border border-success mt-1 p-1" th:if="${p.isLookingForWork.equals(1)}">
                                             <strong class="text-success">Available for Job Offer</strong>
                                         </span>
-                                        <span class="border border-danger mt-1 p-1" th:if="${!p.isLookingForWork.equals(1)}">
+                                <span class="border border-danger mt-1 p-1" th:if="${!p.isLookingForWork.equals(1)}">
                                             <strong class="text-danger">Not Available for Job Offer</strong>
                                         </span>
-                                </div>
                             </div>
                         </div>
-                        <div>
-                            <div class="social-media ml-1">
-                                <a target="_blank" th:href="${p.githubPath}"
-                                    class="mt-1 stretched-link border border-dark btn btn-white btn-sm pt-0">
-                                    <i class="fab fa-github fa-sm social_icon align-middle"></i>
-                                </a>
-                                <a target="_blank" th:href="${p.linkedinPath}"
-                                    class="mt-1 stretched-link border border-dark btn btn-btn-white btn-sm pt-0">
-                                    <i class="fab fa-linkedin fa-sm social_icon align-middle"></i>
-                                </a>
-                                <a target="_blank" th:href="${p.cvPath}"
-                                    class="mt-1 stretched-link btn border border-dark btn-btn-white btn-sm pt-0">
-                                    <i class="fas fa-file fa-sm social_icon align-middle"></i>
-                                </a>
-                            </div>
+                    </div>
+                    <div>
+                        <div class="social-media ml-1">
+                            <a target="_blank" th:href="${p.githubPath}"
+                               class="mt-1 stretched-link border border-dark btn btn-white btn-sm pt-0">
+                                <i class="fab fa-github fa-sm social_icon align-middle"></i>
+                            </a>
+                            <a target="_blank" th:href="${p.linkedinPath}"
+                               class="mt-1 stretched-link border border-dark btn btn-btn-white btn-sm pt-0">
+                                <i class="fab fa-linkedin fa-sm social_icon align-middle"></i>
+                            </a>
+                            <a target="_blank" th:href="${p.cvPath}"
+                               class="mt-1 stretched-link btn border border-dark btn-btn-white btn-sm pt-0">
+                                <i class="fas fa-file fa-sm social_icon align-middle"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer th:replace="fragments/footer :: footer"></footer>
+    <div class="col col-md-4 mx-auto mt-2">
+        <nav aria-label="Page navigation example" class="mx-auto">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
