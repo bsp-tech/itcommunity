@@ -17,10 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -110,6 +107,24 @@ public class UserController {
     @RequestMapping(path = "/user/login")
     public ModelAndView login(ModelAndView modelAndView) {
         modelAndView.setViewName("user/login");
+        return modelAndView;
+    }
+
+    @GetMapping("/verify")
+    public ModelAndView verifyEmail(ModelAndView modelAndView,
+                                    @RequestParam(name = "email") String email,
+                                    @RequestParam(name = "code") Integer code){
+
+        User user = userServiceInter.findByEmail(email);
+
+        if(user.getVerifyEmailCode().equals(code)){
+            user.setEnabled(true);
+            userServiceInter.save(user);
+            modelAndView.setViewName("index");
+        } else {
+            modelAndView.setViewName("index");
+        }
+
         return modelAndView;
     }
 

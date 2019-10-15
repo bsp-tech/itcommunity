@@ -7,6 +7,8 @@ import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Date;
@@ -24,9 +26,17 @@ public class UserServiceImpl implements UserServiceInter {
     @Qualifier("pwdEncoder")
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    JavaMailSender javaMailSender;
+
     @Override
     public User findById(Integer id) {
         return userDataInter.findById(id).get();
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return  userDataInter.findByEmail(email);
     }
 
     @Override
@@ -45,8 +55,12 @@ public class UserServiceImpl implements UserServiceInter {
 
         user.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         user.setGroupId(new AuthGroup(2));
-        user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword().trim()));
+        user.setVerifyEmailCode(getRandomNumber());
+
+        sendVerifyCode(user.getEmail(),user.getVerifyEmailCode());
+
+        user.setEnabled(false);
         userDataInter.save(user);
 
         return user.getId();
@@ -69,6 +83,25 @@ public class UserServiceImpl implements UserServiceInter {
         }
 
         return userDataInter.save(newUser);
+    }
+
+    public int getRandomNumber(){
+        return (int)(Math.random()*((10000-1000))+1000);
+    }
+
+    public void sendVerifyCode(String email,int verifyCode){
+
+        String base = "http://www.myitcareer.net/verify?";
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+
+        msg.setTo(email);
+
+        msg.setSubject("Confirm your email address");
+        msg.setText(base + "email=" +email+"&code="+verifyCode);
+
+        javaMailSender.send(msg);
+
     }
 
 }
