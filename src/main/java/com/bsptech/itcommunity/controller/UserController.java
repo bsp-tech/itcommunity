@@ -6,6 +6,7 @@
 package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.dao.SkillDataInter;
+import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
 import com.bsptech.itcommunity.entity.User;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
@@ -31,6 +32,9 @@ import javax.validation.Valid;
 public class UserController {
 	@Autowired
     private UserServiceInter userServiceInter;
+
+	@Autowired
+    UserDataInter userDataInter;
 
 	@Autowired
     private SecurityServiceInter securityServiceInter;
@@ -119,10 +123,10 @@ public class UserController {
 
         if(user.getVerifyEmailCode().equals(code)){
             user.setEnabled(true);
-            userServiceInter.save(user);
-            modelAndView.setViewName("index");
+            userDataInter.save(user);
+            modelAndView.setViewName("redirect:/user/login?success=true");
         } else {
-            modelAndView.setViewName("index");
+            modelAndView.setViewName("/");
         }
 
         return modelAndView;
