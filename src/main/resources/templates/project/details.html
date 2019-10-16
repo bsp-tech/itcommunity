@@ -129,7 +129,7 @@
                         <table class="table w-100 ">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                
                                 <th scope="col">name</th>
                                 <th scope="col">surname</th>
                                 <th scope="col">position</th>
@@ -144,7 +144,7 @@
                             <tbody>
                             <tr th:each=" p : ${itproject.getEmployeeProjectList()}">
                                 <div th:if="${p.approved}">
-                                    <th scope="row" th:text="${p.employeeId.userId.id}"></th>
+                             
                                     <td th:text="${p.getEmployeeId().userId.name}"></td>
                                     <td th:text="${p.getEmployeeId().userId.surname}"></td>
                                     <td th:text="${p.position}"></td>
