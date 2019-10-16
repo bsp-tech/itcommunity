@@ -85,7 +85,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Join Team</h5>
+                                            <h5 class="modal-title" id="exampleModal">Join Team</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -95,7 +95,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <form action="/projects/join" method="POST">
-                                                <input th:type="hidden" name="projectId"/>
+                                                <input th:type="hidden" name="projectId" th:value="${itproject.id}"/>
                                                 <button type="submit" class="btn btn-primary">Bəli</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Xeyir</button>
                                             </form>
