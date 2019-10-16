@@ -263,6 +263,8 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
         EmployeeProject epr = new EmployeeProject();
         epr.setApproved(false);
         epr.setInsertDateTime(new Date());
+        epr.setLastUpdateDateTime(new Date());
+        epr.setJoinDateTime(new Date());
         epr.setEmployeeId(ep);
         epr.setProjectId(itproject);
 
