@@ -91,13 +91,13 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h6>Bu komandaya qoşulmağa əminsinizmi?</h6>
+                                            <h6>Are you sure to join this team?</h6>
                                         </div>
                                         <div class="modal-footer">
                                             <form action="/projects/join" method="POST">
                                                 <input th:type="hidden" name="projectId" th:value="${itproject.id}"/>
-                                                <button type="submit" class="btn btn-primary">Bəli</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Xeyir</button>
+                                                <button type="submit" class="btn btn-primary">Yes</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                             </form>
                                         </div>
                                     </div>
