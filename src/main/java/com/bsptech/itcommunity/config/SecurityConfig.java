@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/user/login", "/user/register").anonymous()//this means only un authenticated users can access to login and register page
-                .antMatchers("/employees/register","/logout","/employees/profile/edit","/user/edit", "/employees").authenticated()//this means only authenticated users can access to logout
+                .antMatchers("/employees/register","/logout","/employees/profile/edit","/user/edit", "/employees", "/employees/").authenticated()//this means only authenticated users can access to logout
                 .antMatchers("/employees/register").hasAnyAuthority("CREATE_EMPLOYEE_PROFILE")
                 .and().formLogin().loginPage("/user/login").loginProcessingUrl("/login").defaultSuccessUrl("/")
                 .and().logout().logoutSuccessUrl("/")
