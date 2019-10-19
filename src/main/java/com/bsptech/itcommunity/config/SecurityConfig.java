@@ -41,6 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/user/login").loginProcessingUrl("/login").defaultSuccessUrl("/",true)
                 .and().logout().logoutSuccessUrl("/")
                 .and().csrf().disable();
+        http
+                .rememberMe()
+                .key("myUniqueKey")
+                .rememberMeCookieName("myitcareer-login-remember-me")
+                .tokenValiditySeconds(10000000);
     }
 
 
