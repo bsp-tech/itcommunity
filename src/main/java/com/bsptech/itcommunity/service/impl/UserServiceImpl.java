@@ -3,14 +3,14 @@ package com.bsptech.itcommunity.service.impl;
 import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.AuthGroup;
 import com.bsptech.itcommunity.entity.User;
+import com.bsptech.itcommunity.service.inter.MailServiceInter;
 import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserServiceInter {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    JavaMailSender javaMailSender;
+    MailServiceInter mailServiceInter;
 
     @Override
     public User findById(Integer id) {
@@ -56,9 +56,10 @@ public class UserServiceImpl implements UserServiceInter {
         user.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         user.setGroupId(new AuthGroup(2));
         user.setPassword(passwordEncoder.encode(user.getPassword().trim()));
-        user.setVerifyEmailCode(getRandomNumber());
 
-        sendVerifyCode(user.getEmail(),user.getVerifyEmailCode());
+        user.setVerifyEmailCode((int)(Math.random()*((10000-1000))+1000));
+
+        mailServiceInter.sendEmail(user.getEmail(),user.getVerifyEmailCode());
 
         user.setEnabled(false);
         userDataInter.save(user);
@@ -83,25 +84,6 @@ public class UserServiceImpl implements UserServiceInter {
         }
 
         return userDataInter.save(newUser);
-    }
-
-    public int getRandomNumber(){
-        return (int)(Math.random()*((10000-1000))+1000);
-    }
-
-    public void sendVerifyCode(String email,int verifyCode){
-
-        String base = "http://www.myitcareer.net/verify?";
-
-        SimpleMailMessage msg = new SimpleMailMessage();
-
-        msg.setTo(email);
-
-        msg.setSubject("Confirm your email address");
-        msg.setText(base + "email=" +email+"&code="+verifyCode);
-
-        javaMailSender.send(msg);
-
     }
 
 }
