@@ -1,9 +1,6 @@
 package com.bsptech.itcommunity.service.impl;
 
-import com.bsptech.itcommunity.dao.EmployeeProfileDataInter;
-import com.bsptech.itcommunity.dao.EmployeeProjectDaoInter;
-import com.bsptech.itcommunity.dao.SkillDataInter;
-import com.bsptech.itcommunity.dao.UserDataInter;
+import com.bsptech.itcommunity.dao.*;
 import com.bsptech.itcommunity.entity.*;
 import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
 import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
@@ -241,6 +238,8 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
 
     @Autowired
     EmployeeProjectDaoInter employeeProjectDaoInter;
+    @Autowired
+    ItProjectDataInter itProjectDataInter;
 
     public int joinProject(Integer projectId) {
         User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
@@ -259,7 +258,7 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileServiceInter {
             }
         }
 
-        Itproject itproject = new Itproject(projectId);
+        Itproject itproject =itProjectDataInter.findById(projectId).get();
         EmployeeProject epr = new EmployeeProject();
         epr.setApproved(false);
         epr.setInsertDateTime(new Date());
