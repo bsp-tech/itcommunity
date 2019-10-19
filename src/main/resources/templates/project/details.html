@@ -73,7 +73,6 @@
                                     <a sec:authorize="hasAuthority('JOIN_TEAM')"
                                        class="btn btn-success ml-lg-auto mt-2 text-light"
                                        data-toggle="modal" data-target="#exampleModal"
-                                       th:onclick="'setJoinProjectId('+${itproject.id}+')'"
                                     >
                                         <i class="fas fa-plus-circle"></i>
                                         Join Team
@@ -95,7 +94,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <form action="/projects/join" method="POST">
-                                                <input th:type="hidden" name="projectId"/>
+                                                <input th:type="hidden" name="projectId" th:value="${itproject.id}"/>
                                                 <button type="submit" class="btn btn-primary">Yes</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                             </form>
