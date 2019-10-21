@@ -10,6 +10,8 @@ public interface UserServiceInter {
 
     public List<User> findAll();
 
+    public User findByEmail(String email);
+
     public int save(User user);
 
     public User update(com.bsptech.itcommunity.bean.User user);

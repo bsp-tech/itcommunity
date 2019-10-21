@@ -6,21 +6,16 @@
 package com.bsptech.itcommunity.controller;
 
 import com.bsptech.itcommunity.dao.SkillDataInter;
+import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
 import com.bsptech.itcommunity.entity.User;
-import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
-import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
-import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
-import com.bsptech.itcommunity.service.inter.UserServiceInter;
+import com.bsptech.itcommunity.service.inter.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -43,6 +38,12 @@ public class UserController {
 
     @Autowired
     LanguageServiceInter languageServiceInter;
+
+    @Autowired
+    MailServiceInter mailServiceInter;
+
+    @Autowired
+    UserDataInter userDataInter;
 
     @Autowired
     SkillDataInter skillDao;
@@ -112,5 +113,56 @@ public class UserController {
         modelAndView.setViewName("user/login");
         return modelAndView;
     }
+
+    @GetMapping("/forgot")
+    public ModelAndView forgot(ModelAndView modelAndView){
+        modelAndView.setViewName("/forgot");
+        return modelAndView;
+    }
+
+    @GetMapping("/send")
+    public ModelAndView send(ModelAndView modelAndView,
+                            @RequestParam(name = "email") String email){
+
+        User user = userServiceInter.findByEmail(email);
+
+        if(user != null){
+            user.setResetPasswordCode((int)(Math.random()*((10000-1000))+1000));
+            userDataInter.save(user);
+            mailServiceInter.sendResetCode(email,user.getResetPasswordCode());
+        }
+
+        modelAndView.setViewName("/");
+
+        return modelAndView;
+    }
+
+    @GetMapping("/reset")
+    public ModelAndView reset(ModelAndView modelAndView,
+                              @RequestParam(name = "email") String email,
+                              @RequestParam(name = "code") int code){
+
+        User user = userServiceInter.findByEmail(email);
+
+        if(user!=null && user.getResetPasswordCode().equals(code)){
+            modelAndView.addObject("user",user); // email ekranda gostermek uchun
+            modelAndView.setViewName("/reset");
+        }
+
+        return modelAndView;
+    }
+
+    @PostMapping("/reset")
+    public ModelAndView reset(ModelAndView modelAndView,String email, String newPassword){
+        User user = userServiceInter.findByEmail(email);
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+
+        userDataInter.save(user);
+
+        modelAndView.setViewName("/");
+        return modelAndView;
+    }
+
 
 }

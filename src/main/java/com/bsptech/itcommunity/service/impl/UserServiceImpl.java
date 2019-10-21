@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserServiceInter {
     }
 
     @Override
+    public User findByEmail(String email) {
+        return userDataInter.findByEmail(email);
+    }
+
+    @Override
     public int save(User user) {
         user.setEmail(user.getEmail().trim().toLowerCase());
 

@@ -59,6 +59,8 @@ public class User implements Serializable {
 
     @Column(name = "phone")
     private String phone;
+    @Column(name = "reset_password_code")
+    private Integer resetPasswordCode;
     @Basic(optional = false)
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
@@ -102,6 +104,14 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Integer getResetPasswordCode() {
+        return resetPasswordCode;
+    }
+
+    public void setResetPasswordCode(Integer resetPasswordCode) {
+        this.resetPasswordCode = resetPasswordCode;
     }
 
     public Integer getId() {
