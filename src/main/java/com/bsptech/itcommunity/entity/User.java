@@ -60,7 +60,7 @@ public class User implements Serializable {
     @Column(name = "phone")
     private String phone;
     @Column(name = "verify_email_code")
-    private Integer verifyEmailCode;
+    private String verifyEmailCode;
     @Basic(optional = false)
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
@@ -106,11 +106,11 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public Integer getVerifyEmailCode() {
+    public String getVerifyEmailCode() {
         return verifyEmailCode;
     }
 
-    public void setVerifyEmailCode(Integer verifyEmailCode) {
+    public void setVerifyEmailCode(String verifyEmailCode) {
         this.verifyEmailCode = verifyEmailCode;
     }
 

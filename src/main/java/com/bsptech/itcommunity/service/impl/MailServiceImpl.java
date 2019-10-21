@@ -13,15 +13,15 @@ public class MailServiceImpl implements MailServiceInter {
     JavaMailSender javaMailSender;
 
     @Override
-    public void sendEmail(String email, int code) {
+    public void sendEmail(String email, String code) {
 
-        String base = "http://www.myitcareer.net/verify?";
+        String message = "http://www.myitcareer.net/verify?";
         SimpleMailMessage msg = new SimpleMailMessage();
 
         msg.setTo(email);
-
-        msg.setSubject("Confirm your email address");
-        msg.setText(base + "email=" +email+"&code="+code);
+        message+= "email=" +email+"&code="+code;
+        msg.setSubject("Email Confirmation");
+        msg.setText(message);
 
         javaMailSender.send(msg);
 

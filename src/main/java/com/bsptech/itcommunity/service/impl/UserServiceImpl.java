@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserServiceInter {
@@ -56,8 +57,8 @@ public class UserServiceImpl implements UserServiceInter {
         user.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         user.setGroupId(new AuthGroup(2));
         user.setPassword(passwordEncoder.encode(user.getPassword().trim()));
-
-        user.setVerifyEmailCode((int)(Math.random()*((10000-1000))+1000));
+        UUID uuid=UUID.randomUUID();
+        user.setVerifyEmailCode(uuid.toString());
 
         mailServiceInter.sendEmail(user.getEmail(),user.getVerifyEmailCode());
 

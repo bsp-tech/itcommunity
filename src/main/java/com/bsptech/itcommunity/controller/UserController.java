@@ -30,13 +30,13 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping(value = "/")
 public class UserController {
-	@Autowired
+    @Autowired
     private UserServiceInter userServiceInter;
 
-	@Autowired
+    @Autowired
     UserDataInter userDataInter;
 
-	@Autowired
+    @Autowired
     private SecurityServiceInter securityServiceInter;
 
     @Autowired
@@ -58,9 +58,9 @@ public class UserController {
     @RequestMapping(path = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView register(@ModelAttribute(name = "employeeProfile") EmployeeProfile employeeProfile,
                                  ModelAndView modelAndView) {
-        if(securityServiceInter.getLoggedInUserDetails()!=null){
-            return employeeController.index(employeeProfile,modelAndView);
-        }else{
+        if (securityServiceInter.getLoggedInUserDetails() != null) {
+            return employeeController.index(employeeProfile, modelAndView);
+        } else {
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("index");
             return modelAndView;
@@ -71,12 +71,12 @@ public class UserController {
     public ModelAndView registerUser(@ModelAttribute @Valid User user, BindingResult result) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return mv;
         }
         int r = userServiceInter.save(user);
-        if(r==-1){
-            result.rejectValue("email","email","already exists");
+        if (r == -1) {
+            result.rejectValue("email", "email", "already exists");
             return mv;
         }
         return new ModelAndView("user/confirm");
@@ -87,9 +87,9 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
 
-    @RequestMapping(value = "/user/edit",method = RequestMethod.POST)
+    @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
     public ModelAndView editPost(@ModelAttribute @Valid com.bsptech.itcommunity.bean.User user, BindingResult result) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             ModelAndView mv = new ModelAndView();
             mv.setViewName("user/edit");
             return mv;
@@ -100,7 +100,7 @@ public class UserController {
 
     @RequestMapping(path = "/user/edit")
     public ModelAndView edit(ModelAndView modelAndView) {
-        User loggedInUser  = securityServiceInter.getLoggedInUserDetails().getUser();
+        User loggedInUser = securityServiceInter.getLoggedInUserDetails().getUser();
         User user = userServiceInter.findById(loggedInUser.getId());
         user.setPassword(null);
         modelAndView.addObject("user", user);
@@ -117,18 +117,16 @@ public class UserController {
     @GetMapping("/verify")
     public ModelAndView verifyEmail(ModelAndView modelAndView,
                                     @RequestParam(name = "email") String email,
-                                    @RequestParam(name = "code") Integer code){
+                                    @RequestParam(name = "code") String code) {
 
         User user = userServiceInter.findByEmail(email);
-
-        if(user.getVerifyEmailCode().equals(code)){
+        if (user.getVerifyEmailCode().equals(code)) {
             user.setEnabled(true);
             userDataInter.save(user);
-            modelAndView.setViewName("redirect:/user/login?success=true");
+            modelAndView.setViewName("redirect:/user/login");
         } else {
             modelAndView.setViewName("/");
         }
-
         return modelAndView;
     }
 
