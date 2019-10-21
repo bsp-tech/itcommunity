@@ -15,8 +15,7 @@ public class MailServiceImpl implements MailServiceInter {
     @Override
     public void sendEmail(String email, int code) {
 
-        String base = "http://localhost/verify?";
-
+        String base = "http://www.myitcareer.net/verify?";
         SimpleMailMessage msg = new SimpleMailMessage();
 
         msg.setTo(email);

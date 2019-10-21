@@ -79,7 +79,7 @@ public class UserController {
             result.rejectValue("email","email","already exists");
             return mv;
         }
-        return new ModelAndView("redirect:/user/login?success=true");
+        return new ModelAndView("user/confirm");
     }
 
     @Autowired
