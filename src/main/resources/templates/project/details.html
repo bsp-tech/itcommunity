@@ -73,7 +73,6 @@
                                     <a sec:authorize="hasAuthority('JOIN_TEAM')"
                                        class="btn btn-success ml-lg-auto mt-2 text-light"
                                        data-toggle="modal" data-target="#exampleModal"
-                                       th:onclick="'setJoinProjectId('+${itproject.id}+')'"
                                     >
                                         <i class="fas fa-plus-circle"></i>
                                         Join Team
@@ -95,7 +94,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <form action="/projects/join" method="POST">
-                                                <input th:type="hidden" name="projectId"/>
+                                                <input th:type="hidden" name="projectId" th:value="${itproject.id}"/>
                                                 <button type="submit" class="btn btn-primary">Yes</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                             </form>
@@ -129,7 +128,7 @@
                         <table class="table w-100 ">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                
                                 <th scope="col">name</th>
                                 <th scope="col">surname</th>
                                 <th scope="col">position</th>
@@ -144,7 +143,7 @@
                             <tbody>
                             <tr th:each=" p : ${itproject.getEmployeeProjectList()}">
                                 <div th:if="${p.approved}">
-                                    <th scope="row" th:text="${p.employeeId.userId.id}"></th>
+                             
                                     <td th:text="${p.getEmployeeId().userId.name}"></td>
                                     <td th:text="${p.getEmployeeId().userId.surname}"></td>
                                     <td th:text="${p.position}"></td>
