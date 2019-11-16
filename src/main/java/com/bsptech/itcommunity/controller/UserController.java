@@ -48,9 +48,6 @@ public class UserController {
     MailServiceInter mailServiceInter;
 
     @Autowired
-    UserDataInter userDataInter;
-
-    @Autowired
     SkillDataInter skillDao;
 
     @Autowired
@@ -154,7 +151,7 @@ public class UserController {
     }
 
     @RequestMapping("/user/change")
-    public ModelAndView change(ModelAndView modelAndView, @RequestParam("email")String email,@RequestParam("password") String password,@RequestParam("accesToken")String token) {
+    public ModelAndView change(ModelAndView modelAndView, @RequestParam("email")String email,@RequestParam("password") String password,@RequestParam("accessToken")String token) {
         User user = userServiceInter.findByEmail(email);
         if (user.getVerifyEmailCode().equals(token)) {
             user.setPassword(passwordEncoder.encode(password));

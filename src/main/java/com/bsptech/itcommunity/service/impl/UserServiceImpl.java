@@ -45,10 +45,6 @@ public class UserServiceImpl implements UserServiceInter {
         return userDataInter.findAll();
     }
 
-    @Override
-    public User findByEmail(String email) {
-        return userDataInter.findByEmail(email);
-    }
 
     @Override
     public int save(User user) {
@@ -65,7 +61,7 @@ public class UserServiceImpl implements UserServiceInter {
         UUID uuid=UUID.randomUUID();
         user.setVerifyEmailCode(uuid.toString());
 
-        mailServiceInter.sendEmail(user.getEmail(),user.getVerifyEmailCode());
+        mailServiceInter.sendEmail(user.getEmail(),user.getVerifyEmailCode(),"Account Confrimation","verify");
 
         user.setEnabled(false);
         userDataInter.save(user);
