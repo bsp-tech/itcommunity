@@ -16,6 +16,7 @@
                         <div class="input-group mt-3">
                             <div class="text-center mx-auto">
                                 <input type="text" readonly th:value="${user.email}" name="email" class="form-control">
+
                             </div>
                         </div>
                         <div class="input-group mt-3">
@@ -24,6 +25,11 @@
                             </div>
                         </div>
                         <input type="hidden" th:value="${param.code}" name="accesToken">
+                        <div class="input-group mt-3">
+                            <div class="text-center mx-auto">
+                                <input type="password" id="repassword" class="form-control">
+                            </div>
+                        </div>
                         <div class="input-group mt-3">
                             <div class="text-center mx-auto">
                                 <button type="submit" class="btn bg_icon text-light mt-1">
@@ -49,3 +55,4 @@
 <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
+

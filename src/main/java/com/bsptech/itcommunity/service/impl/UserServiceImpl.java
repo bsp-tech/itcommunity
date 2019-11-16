@@ -3,14 +3,17 @@ package com.bsptech.itcommunity.service.impl;
 import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.AuthGroup;
 import com.bsptech.itcommunity.entity.User;
+import com.bsptech.itcommunity.service.inter.MailServiceInter;
 import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
 import com.bsptech.itcommunity.service.inter.UserServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserServiceInter {
@@ -24,9 +27,17 @@ public class UserServiceImpl implements UserServiceInter {
     @Qualifier("pwdEncoder")
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    MailServiceInter mailServiceInter;
+
     @Override
     public User findById(Integer id) {
         return userDataInter.findById(id).get();
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return  userDataInter.findByEmail(email);
     }
 
     @Override
@@ -50,8 +61,13 @@ public class UserServiceImpl implements UserServiceInter {
 
         user.setInsertDateTime(new java.sql.Date(new Date().getTime()));
         user.setGroupId(new AuthGroup(2));
-        user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword().trim()));
+        UUID uuid=UUID.randomUUID();
+        user.setVerifyEmailCode(uuid.toString());
+
+        mailServiceInter.sendEmail(user.getEmail(),user.getVerifyEmailCode());
+
+        user.setEnabled(false);
         userDataInter.save(user);
 
         return user.getId();

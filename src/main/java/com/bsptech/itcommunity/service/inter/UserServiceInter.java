@@ -8,6 +8,8 @@ import java.util.List;
 public interface UserServiceInter {
     public User findById(Integer id);
 
+    public User findByEmail(String email);
+
     public List<User> findAll();
 
     public User findByEmail(String email);

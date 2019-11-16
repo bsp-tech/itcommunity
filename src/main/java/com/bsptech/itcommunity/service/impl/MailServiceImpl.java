@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MailServiceImpl implements MailServiceInter {
+
     @Autowired
     JavaMailSender javaMailSender;
 
@@ -42,4 +43,5 @@ public class MailServiceImpl implements MailServiceInter {
 //
 //        javaMailSender.send(msg);
 //    } Gerek Yoxdur!!!!!!!
+
 }

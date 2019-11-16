@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headhead :: headhead"></head>
+<style type="text/css">
+    body {
+        background-image: url("/img/user/banner_bg2.webp");
+        background-repeat: no-repeat;
+        background-size: 104%;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<!-- The Modal -->
+
+
+    <div class="card" id="information-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    In order to complete your registration, please click the confirmation link in the email that we have sent to you.
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://kit.fontawesome.com/000447bf4e.js"></script>
+<script type="text/javascript">
+    document.getElementById('information-modal').style.display='block'
+</script>
+</body>
+</html>

@@ -32,6 +32,10 @@ public class UserController {
     private UserServiceInter userServiceInter;
 
     @Autowired
+
+    UserDataInter userDataInter;
+
+    @Autowired
     private SecurityServiceInter securityServiceInter;
 
     @Autowired
@@ -80,7 +84,7 @@ public class UserController {
             result.rejectValue("email", "email", "already exists");
             return mv;
         }
-        return new ModelAndView("redirect:/user/login?success=true");
+        return new ModelAndView("user/confirm");
     }
 
     @Autowired
@@ -160,5 +164,21 @@ public class UserController {
         return modelAndView;
     }
 
+
+    @GetMapping("/verify")
+    public ModelAndView verifyEmail(ModelAndView modelAndView,
+                                    @RequestParam(name = "email") String email,
+                                    @RequestParam(name = "code") String code) {
+
+        User user = userServiceInter.findByEmail(email);
+        if (user.getVerifyEmailCode().equals(code)) {
+            user.setEnabled(true);
+            userDataInter.save(user);
+            modelAndView.setViewName("redirect:/user/login");
+        } else {
+            modelAndView.setViewName("/");
+        }
+        return modelAndView;
+    }
 
 }
