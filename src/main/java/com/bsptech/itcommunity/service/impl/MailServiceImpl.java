@@ -12,33 +12,34 @@ public class MailServiceImpl implements MailServiceInter {
     JavaMailSender javaMailSender;
 
     @Override
-    public void sendEmail(String email, int code) {
-
-        String base = "http://www.myitcareer.net/verify?";
-
-        SimpleMailMessage msg = new SimpleMailMessage();
-
-        msg.setTo(email);
-
-        msg.setSubject("Confirm your email address");
-        msg.setText(base + "email=" +email+"&code="+code);
-
-        javaMailSender.send(msg);
-
-    }
-
-    @Override
-    public void sendResetCode(String email, int code) {
-
-        String base = "http://www.myitcareer.net/reset?";
+    public void sendEmail(String email, String code, String subject,String option) {
+        System.out.println(subject);
+        String base = "http://www.myitcareer.net/"+option+"?";
 
         SimpleMailMessage msg = new SimpleMailMessage();
 
         msg.setTo(email);
 
-        msg.setSubject("Reset your password");
-        msg.setText(base + "email=" +email+"&code="+code);
+        msg.setSubject(subject);
+        msg.setText(base + "email=" + email + "&code=" + code);
 
         javaMailSender.send(msg);
+        System.out.println("Successfully Sended");
+
     }
+
+//    @Override
+//    public void sendResetCode(String email, int code) {
+//
+//        String base = "http://www.myitcareer.net/reset?";
+//
+//        SimpleMailMessage msg = new SimpleMailMessage();
+//
+//        msg.setTo(email);
+//
+//        msg.setSubject("Reset your password");
+//        msg.setText(base + "email=" + email + "&code=" + code);
+//
+//        javaMailSender.send(msg);
+//    } Gerek Yoxdur!!!!!!!
 }

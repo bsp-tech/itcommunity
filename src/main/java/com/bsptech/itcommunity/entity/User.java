@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bsptech.itcommunity.entity;
 
 import javax.persistence.*;
@@ -59,8 +54,8 @@ public class User implements Serializable {
 
     @Column(name = "phone")
     private String phone;
-    @Column(name = "reset_password_code")
-    private Integer resetPasswordCode;
+    @Column(name = "verify_email_code")
+    private String verifyEmailCode;
     @Basic(optional = false)
     @Column(name = "insert_date_time")
     @Temporal(TemporalType.TIMESTAMP)
@@ -106,12 +101,12 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public Integer getResetPasswordCode() {
-        return resetPasswordCode;
+    public String getVerifyEmailCode() {
+        return verifyEmailCode;
     }
 
-    public void setResetPasswordCode(Integer resetPasswordCode) {
-        this.resetPasswordCode = resetPasswordCode;
+    public void setVerifyEmailCode(String verifyEmailCode) {
+        this.verifyEmailCode = verifyEmailCode;
     }
 
     public Integer getId() {
@@ -242,10 +237,10 @@ public class User implements Serializable {
         return true;
     }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + "]";
-	}
+    @Override
+    public String toString() {
+        return "User [id=" + id + "]";
+    }
 
 
 
