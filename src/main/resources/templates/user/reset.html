@@ -10,14 +10,13 @@
             <div class="card">
                 <h4 class="card-header text-white bg_icon">Edit User Profile</h4>
                 <div class="card-body px-5">
-                    <div th:if="${param.success}" class="w-100 text-align text-center h4 text-primary">
-                        Successfully Updated
-                    </div>
-                    <form th:object="${user}" method="post" action="/user/reset">
+
+                    <form method="get" action="/user/change" autocomplete="off">
 
                         <div class="input-group mt-3">
                             <div class="text-center mx-auto">
-                                <input type="text" readonly th:value="${user?.email}" class="form-control" th:text="qosqarmirze@gmail.com">
+                                <input type="text" readonly th:value="${user.email}" name="email" class="form-control">
+
                             </div>
                         </div>
                         <div class="input-group mt-3">
@@ -25,6 +24,7 @@
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
                         </div>
+                        <input type="hidden" th:value="${param.code}" name="accesToken">
                         <div class="input-group mt-3">
                             <div class="text-center mx-auto">
                                 <input type="password" id="repassword" class="form-control">

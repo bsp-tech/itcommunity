@@ -29,7 +29,8 @@
                                     <!-- Inputs -->
                                     <div class="input-group my-3">
 
-                                        <input name="username" class="form-control" placeholder="Email" type="text">
+                                        <input name="username" class="form-control" placeholder="Email" type="text" id="email">
+                                        <label for="email" id="errorLbl" style="display: none;color:red;">Please type your email address</label>
                                     </div>
                                     <div class="input-group mb-4">
 
@@ -51,6 +52,11 @@
                                     <!-- Option for Register -->
                                     <div class="w-100 register-option">
                                         <p class="text-center">
+                                            Forgot password?
+                                            <a href="#" id="forgot">Reset</a>
+                                        </p>
+                                    </div> <div class="w-100 register-option">
+                                        <p class="text-center">
                                             Don't have an account?
                                             <a href="/">Register</a>
                                         </p>
@@ -68,5 +74,16 @@
     <script src="https://kit.fontawesome.com/000447bf4e.js"></script>
     <footer th:replace="fragments/footer :: footer"></footer>
 </body>
-
+<script>
+    $("#forgot").click(function () {
+        if ($("#email").val()===null){
+           $("#errorLbl").display="block"
+            $("#forgot").attr("href","#")
+            console.log("NUlllll")
+        }
+        else {
+            $("#forgot").attr("href","/user/forgot?email="+$("#email").val())
+        }
+    })
+</script>
 </html>

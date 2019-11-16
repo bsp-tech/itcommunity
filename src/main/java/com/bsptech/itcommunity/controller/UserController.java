@@ -9,10 +9,7 @@ import com.bsptech.itcommunity.dao.SkillDataInter;
 import com.bsptech.itcommunity.dao.UserDataInter;
 import com.bsptech.itcommunity.entity.EmployeeProfile;
 import com.bsptech.itcommunity.entity.User;
-import com.bsptech.itcommunity.service.inter.EmployeeProfileServiceInter;
-import com.bsptech.itcommunity.service.inter.LanguageServiceInter;
-import com.bsptech.itcommunity.service.inter.SecurityServiceInter;
-import com.bsptech.itcommunity.service.inter.UserServiceInter;
+import com.bsptech.itcommunity.service.inter.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 /**
  * @author Goshgar
@@ -34,6 +32,7 @@ public class UserController {
     private UserServiceInter userServiceInter;
 
     @Autowired
+
     UserDataInter userDataInter;
 
     @Autowired
@@ -44,6 +43,12 @@ public class UserController {
 
     @Autowired
     LanguageServiceInter languageServiceInter;
+
+    @Autowired
+    MailServiceInter mailServiceInter;
+
+    @Autowired
+    UserDataInter userDataInter;
 
     @Autowired
     SkillDataInter skillDao;
@@ -113,6 +118,52 @@ public class UserController {
         modelAndView.setViewName("user/login");
         return modelAndView;
     }
+
+    @GetMapping("user/forgot")
+    public ModelAndView send(ModelAndView modelAndView,
+                             @RequestParam(name = "email") String email) {
+        System.out.println(email);
+        User user = userServiceInter.findByEmail(email);
+        if (user != null) {
+            if (user.getVerifyEmailCode() == null) {
+                user.setVerifyEmailCode(UUID.randomUUID().toString());
+                userDataInter.save(user);}
+                mailServiceInter.sendEmail(email, user.getVerifyEmailCode(), "Reset Password","user/reset");
+        }
+        else{
+            System.out.println("User not found!");
+        }
+        modelAndView.setViewName("redirect:/");
+
+        return modelAndView;
+    }
+
+    @GetMapping("user/reset")
+    public ModelAndView reset(ModelAndView modelAndView,
+                              @RequestParam(name = "email") String email,
+                              @RequestParam(name = "code") String resetCode) {
+
+        User user = userServiceInter.findByEmail(email);
+
+        if (user != null && user.getVerifyEmailCode().equals(resetCode)) {
+            modelAndView.addObject("user", user); // email ekranda gostermek uchun
+            modelAndView.setViewName("user/reset");
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/user/change")
+    public ModelAndView change(ModelAndView modelAndView, @RequestParam("email")String email,@RequestParam("password") String password,@RequestParam("accesToken")String token) {
+        User user = userServiceInter.findByEmail(email);
+        if (user.getVerifyEmailCode().equals(token)) {
+            user.setPassword(passwordEncoder.encode(password));
+            userDataInter.save(user);
+        }
+        modelAndView.setViewName("redirect:/user/login");
+        return modelAndView;
+    }
+
 
     @GetMapping("/verify")
     public ModelAndView verifyEmail(ModelAndView modelAndView,
